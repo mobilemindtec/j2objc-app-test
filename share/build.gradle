@@ -11,7 +11,6 @@ dependencies {
 
   compile fileTree(dir: '../../libs/squidb/squidb/build/libs', include: '*.jar')
   compile fileTree(dir: '../../libs/squidb/squidb-annotations/build/libs', include: '*.jar')
-
   compile fileTree(dir: '../../libs/squidb/squidb-ios/build/libs', include: '*.jar')
 
   compile fileTree(dir: '/opt/j2objc/lib', include: 'jre_emul.jar')

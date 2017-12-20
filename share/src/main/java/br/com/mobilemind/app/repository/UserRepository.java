@@ -7,7 +7,7 @@ import java.util.List;
 
 public class UserRepository extends BaseRepository<User> {
 
-    protected UserRepository() {
+    public UserRepository() {
         super(User.class, User.TABLE, User.PROPERTIES, User.ID);
     }
 

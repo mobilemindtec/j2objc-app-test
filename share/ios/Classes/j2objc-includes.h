@@ -1,9 +1,6 @@
 #include "J2ObjC_header.h"
-
 #include "java/util/LinkedList.h"
 #include "java/util/List.h"
-
-
 #include "$Gson$Preconditions.h"
 #include "$Gson$Types.h"
 #include "AbstractCursor.h"
@@ -226,4 +223,5 @@
 #include "ViewModelSpec.h"
 #include "ViewQuery.h"
 #include "VirtualTable.h"
+#include "j2objc-includes.h"
 #include "package-info.h"

@@ -31,15 +31,13 @@
 
 #pragma mark Public
 
+- (instancetype)init;
+
 - (jboolean)exists;
 
 - (id<JavaUtilList>)findAll;
 
 - (AppUser *)findByIdWithLong:(jlong)arg0;
-
-#pragma mark Protected
-
-- (instancetype)init;
 
 // Disallowed inherited constructors, do not use.
 
