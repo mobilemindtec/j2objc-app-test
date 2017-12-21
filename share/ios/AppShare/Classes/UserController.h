@@ -18,11 +18,14 @@
 
 @class AppBaseRestDataConverter;
 @class AppBaseRestResult;
+@class JavaUtilLoggingLogger;
 
 @interface AppUserController : NSObject {
  @public
   AppBaseRestDataConverter *converter_;
 }
+
++ (JavaUtilLoggingLogger *)logger;
 
 #pragma mark Public
 
@@ -33,9 +36,14 @@
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(AppUserController)
+J2OBJC_STATIC_INIT(AppUserController)
 
 J2OBJC_FIELD_SETTER(AppUserController, converter_, AppBaseRestDataConverter *)
+
+inline JavaUtilLoggingLogger *AppUserController_get_logger(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT JavaUtilLoggingLogger *AppUserController_logger;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(AppUserController, logger, JavaUtilLoggingLogger *)
 
 FOUNDATION_EXPORT void AppUserController_init(AppUserController *self);
 

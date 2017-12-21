@@ -223,5 +223,4 @@
 #include "ViewModelSpec.h"
 #include "ViewQuery.h"
 #include "VirtualTable.h"
-#include "j2objc-includes.h"
 #include "package-info.h"

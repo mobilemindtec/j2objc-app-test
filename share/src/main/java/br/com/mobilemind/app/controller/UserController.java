@@ -9,7 +9,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.j2objc.annotations.ObjectiveCName;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class UserController{
+
+    protected static final Logger logger = Logger.getLogger(UserController.class.getName());
 
     RestDataConverter<RestResult> converter = new RestDataConverter(){
 
@@ -26,19 +31,24 @@ public class UserController{
     };
 
     @ObjectiveCName("sigInWithUserName:password:")
-    public RestResult sigIn(String username, String password) throws  Exception{
+    public RestResult sigIn(String username, String password){
 
         JsonObject json = new JsonObject();
         json.addProperty("username", username);
         json.addProperty("password", password);
 
-        String result = new RestService(Constants.SERVER_END_POINT)
-                .action("auth")
-                .header("Content-Type", "application/json")
-                .header("Accept", "application/json")
-                .postAsString(json.toString());
+        try {
+            String result = new RestService(Constants.SERVER_END_POINT)
+                    .action("auth")
+                    .header("Content-Type", "application/json")
+                    .header("Accept", "application/json")
+                    .postAsString(json.toString());
 
-        return this.converter.fromJson(result);
+            return this.converter.fromJson(result);
+        }catch(Exception e){
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            return  new RestResult(true, e.getMessage());
+        }
     }
 
 }

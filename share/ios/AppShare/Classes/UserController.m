@@ -13,6 +13,9 @@
 #include "RestResult.h"
 #include "RestService.h"
 #include "UserController.h"
+#include "java/lang/Exception.h"
+#include "java/util/logging/Level.h"
+#include "java/util/logging/Logger.h"
 
 @interface AppUserController_1 : AppBaseRestDataConverter
 
@@ -32,7 +35,15 @@ __attribute__((unused)) static AppUserController_1 *new_AppUserController_1_init
 
 __attribute__((unused)) static AppUserController_1 *create_AppUserController_1_init(void);
 
+J2OBJC_INITIALIZED_DEFN(AppUserController)
+
+JavaUtilLoggingLogger *AppUserController_logger;
+
 @implementation AppUserController
+
++ (JavaUtilLoggingLogger *)logger {
+  return AppUserController_logger;
+}
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
@@ -46,14 +57,20 @@ J2OBJC_IGNORE_DESIGNATED_END
   GsonJsonObject *json = new_GsonJsonObject_init();
   [json addPropertyWithNSString:@"username" withNSString:username];
   [json addPropertyWithNSString:@"password" withNSString:password];
-  NSString *result = [((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([new_AppBaseRestService_initWithNSString_(JreLoadStatic(AppConstants, SERVER_END_POINT)) actionWithNSString:@"auth"])) headerWithNSString:@"Content-Type" withNSString:@"application/json"])) headerWithNSString:@"Accept" withNSString:@"application/json"])) postAsStringWithNSString:[json description]];
-  return [((AppBaseRestDataConverter *) nil_chk(self->converter_)) fromJsonWithNSString:result];
+  @try {
+    NSString *result = [((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([new_AppBaseRestService_initWithNSString_(JreLoadStatic(AppConstants, SERVER_END_POINT)) actionWithNSString:@"auth"])) headerWithNSString:@"Content-Type" withNSString:@"application/json"])) headerWithNSString:@"Accept" withNSString:@"application/json"])) postAsStringWithNSString:[json description]];
+    return [((AppBaseRestDataConverter *) nil_chk(self->converter_)) fromJsonWithNSString:result];
+  }
+  @catch (JavaLangException *e) {
+    [((JavaUtilLoggingLogger *) nil_chk(AppUserController_logger)) logWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, SEVERE) withNSString:[e getMessage] withJavaLangThrowable:e];
+    return new_AppBaseRestResult_initWithBoolean_withNSString_(true, [e getMessage]);
+  }
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LAppBaseRestResult;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "LAppBaseRestResult;", 0x1, 0, 1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -61,11 +78,19 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[1].selector = @selector(sigInWithUserName:password:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
+    { "logger", "LJavaUtilLoggingLogger;", .constantValue.asLong = 0, 0x1c, -1, 2, -1, -1 },
     { "converter_", "LAppBaseRestDataConverter;", .constantValue.asLong = 0, 0x0, -1, -1, 3, -1 },
   };
-  static const void *ptrTable[] = { "sigIn", "LNSString;LNSString;", "LJavaLangException;", "Lbr/com/mobilemind/j2objc/rest/RestDataConverter<Lbr/com/mobilemind/j2objc/rest/RestResult;>;" };
-  static const J2ObjcClassInfo _AppUserController = { "UserController", "br.com.mobilemind.app.controller", ptrTable, methods, fields, 7, 0x1, 2, 1, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "sigIn", "LNSString;LNSString;", &AppUserController_logger, "Lbr/com/mobilemind/j2objc/rest/RestDataConverter<Lbr/com/mobilemind/j2objc/rest/RestResult;>;" };
+  static const J2ObjcClassInfo _AppUserController = { "UserController", "br.com.mobilemind.app.controller", ptrTable, methods, fields, 7, 0x1, 2, 2, -1, -1, -1, -1, -1 };
   return &_AppUserController;
+}
+
++ (void)initialize {
+  if (self == [AppUserController class]) {
+    AppUserController_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([AppUserController_class_() getName]);
+    J2OBJC_SET_INITIALIZED(AppUserController)
+  }
 }
 
 @end

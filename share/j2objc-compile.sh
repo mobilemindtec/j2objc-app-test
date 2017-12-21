@@ -41,18 +41,27 @@ for f in $BUILD/java/*.java; do
 
 done
 
-rm -R ios/Classes/*
+APP_SHARE_SOURCES="ios/AppShare/Classes"
+APP_SHARE_DEF_HEADER=$APP_SHARE_SOURCES/ShareApp.h
 
-cp $LIBS/squidb/ios/Classes/* ios/Classes
-cp $LIBS/j2objc-json/ios/Classes/* ios/Classes
-cp $LIBS/j2objc-app-base/ios/Classes/* ios/Classes
-cp $BUILD/objc/* ios/Classes
+rm -R $APP_SHARE_SOURCES/*
 
-echo "#include \"J2ObjC_header.h\"" >> ios/Classes/j2objc-includes.h
-echo "#include \"java/util/LinkedList.h\"" >> ios/Classes/j2objc-includes.h
-echo "#include \"java/util/List.h\"" >> ios/Classes/j2objc-includes.h
+cp $LIBS/squidb/ios/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-json/ios/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-app-base/ios/Classes/* $APP_SHARE_SOURCES/
+cp $BUILD/objc/* $APP_SHARE_SOURCES/
 
-for f in ios/Classes/*.h; do
+
+echo "#include \"J2ObjC_header.h\"" >> $APP_SHARE_DEF_HEADER
+echo "#include \"java/util/LinkedList.h\"" >> $APP_SHARE_DEF_HEADER
+echo "#include \"java/util/List.h\"" >> $APP_SHARE_DEF_HEADER
+
+for f in $APP_SHARE_SOURCES/*.h; do
 	FILE_NAME=`basename $f`
-	echo "#include \"$FILE_NAME\"" >> ios/Classes/j2objc-includes.h
+
+  if [ $FILE_NAME == "ShareApp.h" ]; then
+    continue
+  fi
+
+	echo "#include \"$FILE_NAME\"" >> $APP_SHARE_DEF_HEADER
 done

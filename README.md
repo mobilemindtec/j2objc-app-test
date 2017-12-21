@@ -19,9 +19,28 @@ This project uses:
 * App Base  - to prove HTTP REST support and others tools https://github.com/mobilemindtec/j2objc-app-base.git
 * App Share - to save shared code used on IOS and Android
 
-## Manager dependencies
+## Compile dependencies
 
-We need create to store artefacts. Will did call j2objc:
+Now we need create and store artefacts. All scrips need of relative directories structure like:
+
+```
+j2objc\ # base folder
+  j2objc-app-test\ # app structure
+    ios\ # ios app
+    android\ # android app
+    share\ # shared code written in java to share between ios and android using j2objc
+  libs\ # shared libs written in java to share between ios and android using j2objc
+    quidb\ # database manager lib
+    j2objc-json\ # json manager lib
+    j2objc-app-base\ # REST and another utils lib
+
+```
+
+Install J2OBJC in `/opt/j2objc`. So you don't need change any script or configuration. If you install J2OBJC in another location, you will have change `share/ios/AppShare.podspec` to set a new location.
+
+
+
+On a shell type:
 
 ```
 $ mkdir j2objc
@@ -70,4 +89,42 @@ $ open j2objcApp.xcworkspace
 
 ```
 
-Done. Now you can run IOS app.
+## Configure your project
+
+Set *User Header Search Paths*
+
+`"../../share/ios/AppShare/Classes/"`
+
+Create `j2objcApp-Bridging-Header.h` file with this Content:
+
+`#import "ShareApp.h"`
+
+Set *Swift Compiler General* >  *Objective C Bridging Header*
+
+`j2objcApp-Bridging-Header.h`
+
+Set *Framework Search Paths*
+
+`${J2OBJC_HOME}/frameworks $PODS_CONFIGURATION_BUILD_DIR/**`
+
+Set *Library Search Paths*
+
+`${J2OBJC_HOME}/lib`
+
+Set *Header Search Paths:*
+
+`${J2OBJC_HOME}/include`
+
+Add *User-Defined Settings*
+
+Name: `J2OBJC_HOME`
+Value: `/opt/j2objc` or another path
+
+Set *Other Linker Flags*
+
+`$(inherited) -ljre_emul -ljre_zip -l iconv -l z -framework Security`
+
+Change all Pod targets to architecture `arm64 armv7 armv7s` if need. `Podfile` there already is one script to do this.
+
+
+Done. Now you can run android and ios apps.
