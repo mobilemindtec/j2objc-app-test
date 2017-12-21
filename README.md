@@ -24,15 +24,15 @@ This project uses:
 Now we need create and store artefacts. All scrips need of relative directories structure like:
 
 ```
-j2objc\ # base folder
-  j2objc-app-test\ # app structure
-    ios\ # ios app
-    android\ # android app
-    share\ # shared code written in java to share between ios and android using j2objc
-  libs\ # shared libs written in java to share between ios and android using j2objc
-    quidb\ # database manager lib
-    j2objc-json\ # json manager lib
-    j2objc-app-base\ # REST and another utils lib
+j2objc\ -> base folder
+  j2objc-app-test\ -> app structure
+    ios\ -> ios app
+    android\ -> android app
+    share\ -> shared code written in java to share between ios and android using j2objc
+  libs\ -> shared libs written in java to share between ios and android using j2objc
+    quidb\ -> database manager lib
+    j2objc-json\ -> json manager lib
+    j2objc-app-base\ -> REST and another utils lib
 
 ```
 
