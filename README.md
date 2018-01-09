@@ -95,6 +95,13 @@ $ open j2objcApp.xcworkspace
 
 ## Configure your project, case you want create a new project.
 
+Create gradle share lib
+
+```
+$ cd share
+$ gradle init --type java-library
+```
+
 Set *User Header Search Paths*
 
 `"../../share/ios/AppShare/Classes/"`
