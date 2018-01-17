@@ -138,4 +138,7 @@ Set *Other Linker Flags*
 Change all Pod targets to architecture `arm64 armv7 armv7s` if need. `Podfile` there already is one script to do this.
 
 
+** Ever you add a new Java class run `gradle assemble` or `./j2objc-compile.sh` in share project. After run `pod install` in 
+`j2objc-app-test` to update xcode project with new files.
+
 Done. Now you can run android and ios apps.
