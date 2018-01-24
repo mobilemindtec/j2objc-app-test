@@ -2,7 +2,11 @@
 
 # J2ObjC Sample Project
 
-This project uses:
+## How to work
+
+* Put share code (java) into `j2objc-app-test/share` folder 
+* Run `gradle assemble` to convert code from java to Objective C and so run Android or IOS app. 
+* Native code Kotlin and Swift should be put into relatad project `j2objc-app-test/ios` or `j2objc-app-test/android`.
 
 ### frameworks and languages
 
@@ -24,15 +28,15 @@ This project uses:
 Now we need create and store artefacts. All scrips need of relative directories structure like:
 
 ```
-j2objc\ -> base folder
+j2objc/ -> base folder
   j2objc-app-test\ -> app structure
-    ios\ -> ios app
-    android\ -> android app
-    share\ -> shared code written in java to share between ios and android using j2objc
-  libs\ -> shared libs written in java to share between ios and android using j2objc
-    quidb\ -> database manager lib
-    j2objc-json\ -> json manager lib
-    j2objc-app-base\ -> REST and another utils lib
+    ios/ -> ios app
+    android/ -> android app
+    share/ -> shared code written in java to share between ios and android using j2objc
+  libs/ -> shared libs written in java to share between ios and android using j2objc
+    quidb -> database manager lib
+    j2objc-json/ -> json manager lib
+    j2objc-app-base/ -> REST and another utils lib
 
 ```
 
@@ -89,7 +93,14 @@ $ open j2objcApp.xcworkspace
 
 ```
 
-## Configure your project
+## Configure your project, case you want create a new project.
+
+Create gradle share lib
+
+```
+$ cd share
+$ gradle init --type java-library
+```
 
 Set *User Header Search Paths*
 
@@ -126,5 +137,8 @@ Set *Other Linker Flags*
 
 Change all Pod targets to architecture `arm64 armv7 armv7s` if need. `Podfile` there already is one script to do this.
 
+
+** Ever you add a new Java class run `gradle assemble` or `./j2objc-compile.sh` in share project. After run `pod install` in 
+`j2objc-app-test` to update xcode project with new files.
 
 Done. Now you can run android and ios apps.
