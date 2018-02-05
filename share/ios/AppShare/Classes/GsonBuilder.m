@@ -52,6 +52,7 @@
   jboolean escapeHtmlChars_;
   jboolean prettyPrinting_;
   jboolean generateNonExecutableJson_;
+  jboolean lenient_;
 }
 
 - (void)addTypeAdaptersForDateWithNSString:(NSString *)datePattern
@@ -79,6 +80,11 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
+
+- (instancetype)initWithGsonGson:(GsonGson *)gson {
+  GsonGsonBuilder_initWithGsonGson_(self, gson);
+  return self;
+}
 
 - (GsonGsonBuilder *)setVersionWithDouble:(jdouble)ignoreVersionsAfter {
   excluder_ = [((GsonExcluder *) nil_chk(excluder_)) withVersionWithDouble:ignoreVersionsAfter];
@@ -158,6 +164,11 @@ J2OBJC_IGNORE_DESIGNATED_END
   return self;
 }
 
+- (GsonGsonBuilder *)setLenient {
+  lenient_ = true;
+  return self;
+}
+
 - (GsonGsonBuilder *)disableHtmlEscaping {
   self->escapeHtmlChars_ = false;
   return self;
@@ -207,7 +218,7 @@ J2OBJC_IGNORE_DESIGNATED_END
                                                        withId:(id)typeAdapter {
   Gson_Gson_Preconditions_checkArgumentWithBoolean_([GsonJsonSerializer_class_() isInstance:typeAdapter] || [GsonJsonDeserializer_class_() isInstance:typeAdapter] || [typeAdapter isKindOfClass:[GsonTypeAdapter class]]);
   if ([GsonJsonDeserializer_class_() isInstance:typeAdapter] || [GsonJsonSerializer_class_() isInstance:typeAdapter]) {
-    [((id<JavaUtilList>) nil_chk(hierarchyFactories_)) addWithInt:0 withId:GsonTreeTypeAdapter_newTypeHierarchyFactoryWithIOSClass_withId_(baseType, typeAdapter)];
+    [((id<JavaUtilList>) nil_chk(hierarchyFactories_)) addWithId:GsonTreeTypeAdapter_newTypeHierarchyFactoryWithIOSClass_withId_(baseType, typeAdapter)];
   }
   if ([typeAdapter isKindOfClass:[GsonTypeAdapter class]]) {
     [((id<JavaUtilList>) nil_chk(factories_)) addWithId:GsonTypeAdapters_newTypeHierarchyFactoryWithIOSClass_withGsonTypeAdapter_(baseType, (GsonTypeAdapter *) cast_chk(typeAdapter, [GsonTypeAdapter class]))];
@@ -221,12 +232,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (GsonGson *)create {
-  id<JavaUtilList> factories = new_JavaUtilArrayList_init();
+  id<JavaUtilList> factories = new_JavaUtilArrayList_initWithInt_([((id<JavaUtilList>) nil_chk(self->factories_)) size] + [((id<JavaUtilList>) nil_chk(self->hierarchyFactories_)) size] + 3);
   [factories addAllWithJavaUtilCollection:self->factories_];
   JavaUtilCollections_reverseWithJavaUtilList_(factories);
-  [factories addAllWithJavaUtilCollection:self->hierarchyFactories_];
+  id<JavaUtilList> hierarchyFactories = new_JavaUtilArrayList_initWithJavaUtilCollection_(self->hierarchyFactories_);
+  JavaUtilCollections_reverseWithJavaUtilList_(hierarchyFactories);
+  [factories addAllWithJavaUtilCollection:hierarchyFactories];
   GsonGsonBuilder_addTypeAdaptersForDateWithNSString_withInt_withInt_withJavaUtilList_(self, datePattern_, dateStyle_, timeStyle_, factories);
-  return new_GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withJavaUtilList_(excluder_, fieldNamingPolicy_, instanceCreators_, serializeNulls_, complexMapKeySerialization_, generateNonExecutableJson_, escapeHtmlChars_, prettyPrinting_, serializeSpecialFloatingPointValues_, longSerializationPolicy_, factories);
+  return new_GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withNSString_withInt_withInt_withJavaUtilList_withJavaUtilList_withJavaUtilList_(excluder_, fieldNamingPolicy_, instanceCreators_, serializeNulls_, complexMapKeySerialization_, generateNonExecutableJson_, escapeHtmlChars_, prettyPrinting_, lenient_, serializeSpecialFloatingPointValues_, longSerializationPolicy_, datePattern_, dateStyle_, timeStyle_, self->factories_, self->hierarchyFactories_, factories);
 }
 
 - (void)addTypeAdaptersForDateWithNSString:(NSString *)datePattern
@@ -239,66 +252,70 @@ J2OBJC_IGNORE_DESIGNATED_END
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x81, 2, 3, -1, -1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 1, 2, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x81, 3, 4, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 4, 5, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 6, 7, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 8, 9, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x81, 10, 11, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 12, 13, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 14, 13, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 5, 6, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 7, 8, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 9, 10, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x81, 11, 12, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 13, 14, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 15, 14, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 15, 16, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 15, 17, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 15, 18, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 19, 20, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 21, 22, -1, -1, -1, -1 },
-    { NULL, "LGsonGsonBuilder;", 0x1, 23, 24, -1, 25, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 16, 17, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 16, 18, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 16, 19, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 20, 21, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 22, 23, -1, -1, -1, -1 },
+    { NULL, "LGsonGsonBuilder;", 0x1, 24, 25, -1, 26, -1, -1 },
     { NULL, "LGsonGsonBuilder;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonGson;", 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x2, 26, 27, -1, 28, -1, -1 },
+    { NULL, "V", 0x2, 27, 28, -1, 29, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   methods[0].selector = @selector(init);
-  methods[1].selector = @selector(setVersionWithDouble:);
-  methods[2].selector = @selector(excludeFieldsWithModifiersWithIntArray:);
-  methods[3].selector = @selector(generateNonExecutableJson);
-  methods[4].selector = @selector(excludeFieldsWithoutExposeAnnotation);
-  methods[5].selector = @selector(serializeNulls);
-  methods[6].selector = @selector(enableComplexMapKeySerialization);
-  methods[7].selector = @selector(disableInnerClassSerialization);
-  methods[8].selector = @selector(setLongSerializationPolicyWithGsonLongSerializationPolicy:);
-  methods[9].selector = @selector(setFieldNamingPolicyWithGsonFieldNamingPolicy:);
-  methods[10].selector = @selector(setFieldNamingStrategyWithGsonFieldNamingStrategy:);
-  methods[11].selector = @selector(setExclusionStrategiesWithGsonExclusionStrategyArray:);
-  methods[12].selector = @selector(addSerializationExclusionStrategyWithGsonExclusionStrategy:);
-  methods[13].selector = @selector(addDeserializationExclusionStrategyWithGsonExclusionStrategy:);
-  methods[14].selector = @selector(setPrettyPrinting);
-  methods[15].selector = @selector(disableHtmlEscaping);
-  methods[16].selector = @selector(setDateFormatWithNSString:);
-  methods[17].selector = @selector(setDateFormatWithInt:);
-  methods[18].selector = @selector(setDateFormatWithInt:withInt:);
-  methods[19].selector = @selector(registerTypeAdapterWithJavaLangReflectType:withId:);
-  methods[20].selector = @selector(registerTypeAdapterFactoryWithGsonTypeAdapterFactory:);
-  methods[21].selector = @selector(registerTypeHierarchyAdapterWithIOSClass:withId:);
-  methods[22].selector = @selector(serializeSpecialFloatingPointValues);
-  methods[23].selector = @selector(create);
-  methods[24].selector = @selector(addTypeAdaptersForDateWithNSString:withInt:withInt:withJavaUtilList:);
+  methods[1].selector = @selector(initWithGsonGson:);
+  methods[2].selector = @selector(setVersionWithDouble:);
+  methods[3].selector = @selector(excludeFieldsWithModifiersWithIntArray:);
+  methods[4].selector = @selector(generateNonExecutableJson);
+  methods[5].selector = @selector(excludeFieldsWithoutExposeAnnotation);
+  methods[6].selector = @selector(serializeNulls);
+  methods[7].selector = @selector(enableComplexMapKeySerialization);
+  methods[8].selector = @selector(disableInnerClassSerialization);
+  methods[9].selector = @selector(setLongSerializationPolicyWithGsonLongSerializationPolicy:);
+  methods[10].selector = @selector(setFieldNamingPolicyWithGsonFieldNamingPolicy:);
+  methods[11].selector = @selector(setFieldNamingStrategyWithGsonFieldNamingStrategy:);
+  methods[12].selector = @selector(setExclusionStrategiesWithGsonExclusionStrategyArray:);
+  methods[13].selector = @selector(addSerializationExclusionStrategyWithGsonExclusionStrategy:);
+  methods[14].selector = @selector(addDeserializationExclusionStrategyWithGsonExclusionStrategy:);
+  methods[15].selector = @selector(setPrettyPrinting);
+  methods[16].selector = @selector(setLenient);
+  methods[17].selector = @selector(disableHtmlEscaping);
+  methods[18].selector = @selector(setDateFormatWithNSString:);
+  methods[19].selector = @selector(setDateFormatWithInt:);
+  methods[20].selector = @selector(setDateFormatWithInt:withInt:);
+  methods[21].selector = @selector(registerTypeAdapterWithJavaLangReflectType:withId:);
+  methods[22].selector = @selector(registerTypeAdapterFactoryWithGsonTypeAdapterFactory:);
+  methods[23].selector = @selector(registerTypeHierarchyAdapterWithIOSClass:withId:);
+  methods[24].selector = @selector(serializeSpecialFloatingPointValues);
+  methods[25].selector = @selector(create);
+  methods[26].selector = @selector(addTypeAdaptersForDateWithNSString:withInt:withInt:withJavaUtilList:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "excluder_", "LGsonExcluder;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "longSerializationPolicy_", "LGsonLongSerializationPolicy;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "fieldNamingPolicy_", "LGsonFieldNamingStrategy;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
-    { "instanceCreators_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x12, -1, -1, 29, -1 },
-    { "factories_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 30, -1 },
-    { "hierarchyFactories_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 30, -1 },
+    { "instanceCreators_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x12, -1, -1, 30, -1 },
+    { "factories_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 31, -1 },
+    { "hierarchyFactories_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 31, -1 },
     { "serializeNulls_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "datePattern_", "LNSString;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "dateStyle_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
@@ -308,9 +325,10 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "escapeHtmlChars_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "prettyPrinting_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "generateNonExecutableJson_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
+    { "lenient_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "setVersion", "D", "excludeFieldsWithModifiers", "[I", "setLongSerializationPolicy", "LGsonLongSerializationPolicy;", "setFieldNamingPolicy", "LGsonFieldNamingPolicy;", "setFieldNamingStrategy", "LGsonFieldNamingStrategy;", "setExclusionStrategies", "[LGsonExclusionStrategy;", "addSerializationExclusionStrategy", "LGsonExclusionStrategy;", "addDeserializationExclusionStrategy", "setDateFormat", "LNSString;", "I", "II", "registerTypeAdapter", "LJavaLangReflectType;LNSObject;", "registerTypeAdapterFactory", "LGsonTypeAdapterFactory;", "registerTypeHierarchyAdapter", "LIOSClass;LNSObject;", "(Ljava/lang/Class<*>;Ljava/lang/Object;)Lcom/google/gson/GsonBuilder;", "addTypeAdaptersForDate", "LNSString;IILJavaUtilList;", "(Ljava/lang/String;IILjava/util/List<Lcom/google/gson/TypeAdapterFactory;>;)V", "Ljava/util/Map<Ljava/lang/reflect/Type;Lcom/google/gson/InstanceCreator<*>;>;", "Ljava/util/List<Lcom/google/gson/TypeAdapterFactory;>;" };
-  static const J2ObjcClassInfo _GsonGsonBuilder = { "GsonBuilder", "com.google.gson", ptrTable, methods, fields, 7, 0x11, 25, 15, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "LGsonGson;", "setVersion", "D", "excludeFieldsWithModifiers", "[I", "setLongSerializationPolicy", "LGsonLongSerializationPolicy;", "setFieldNamingPolicy", "LGsonFieldNamingPolicy;", "setFieldNamingStrategy", "LGsonFieldNamingStrategy;", "setExclusionStrategies", "[LGsonExclusionStrategy;", "addSerializationExclusionStrategy", "LGsonExclusionStrategy;", "addDeserializationExclusionStrategy", "setDateFormat", "LNSString;", "I", "II", "registerTypeAdapter", "LJavaLangReflectType;LNSObject;", "registerTypeAdapterFactory", "LGsonTypeAdapterFactory;", "registerTypeHierarchyAdapter", "LIOSClass;LNSObject;", "(Ljava/lang/Class<*>;Ljava/lang/Object;)Lcom/google/gson/GsonBuilder;", "addTypeAdaptersForDate", "LNSString;IILJavaUtilList;", "(Ljava/lang/String;IILjava/util/List<Lcom/google/gson/TypeAdapterFactory;>;)V", "Ljava/util/Map<Ljava/lang/reflect/Type;Lcom/google/gson/InstanceCreator<*>;>;", "Ljava/util/List<Lcom/google/gson/TypeAdapterFactory;>;" };
+  static const J2ObjcClassInfo _GsonGsonBuilder = { "GsonBuilder", "com.google.gson", ptrTable, methods, fields, 7, 0x11, 27, 16, -1, -1, -1, -1, -1 };
   return &_GsonGsonBuilder;
 }
 
@@ -324,9 +342,15 @@ void GsonGsonBuilder_init(GsonGsonBuilder *self) {
   self->instanceCreators_ = new_JavaUtilHashMap_init();
   self->factories_ = new_JavaUtilArrayList_init();
   self->hierarchyFactories_ = new_JavaUtilArrayList_init();
+  self->serializeNulls_ = GsonGson_DEFAULT_SERIALIZE_NULLS;
   self->dateStyle_ = JavaTextDateFormat_DEFAULT;
   self->timeStyle_ = JavaTextDateFormat_DEFAULT;
-  self->escapeHtmlChars_ = true;
+  self->complexMapKeySerialization_ = GsonGson_DEFAULT_COMPLEX_MAP_KEYS;
+  self->serializeSpecialFloatingPointValues_ = GsonGson_DEFAULT_SPECIALIZE_FLOAT_VALUES;
+  self->escapeHtmlChars_ = GsonGson_DEFAULT_ESCAPE_HTML;
+  self->prettyPrinting_ = GsonGson_DEFAULT_PRETTY_PRINT;
+  self->generateNonExecutableJson_ = GsonGson_DEFAULT_JSON_NON_EXECUTABLE;
+  self->lenient_ = GsonGson_DEFAULT_LENIENT;
 }
 
 GsonGsonBuilder *new_GsonGsonBuilder_init() {
@@ -337,20 +361,69 @@ GsonGsonBuilder *create_GsonGsonBuilder_init() {
   J2OBJC_CREATE_IMPL(GsonGsonBuilder, init)
 }
 
+void GsonGsonBuilder_initWithGsonGson_(GsonGsonBuilder *self, GsonGson *gson) {
+  NSObject_init(self);
+  self->excluder_ = JreLoadStatic(GsonExcluder, DEFAULT);
+  self->longSerializationPolicy_ = JreLoadEnum(GsonLongSerializationPolicy, DEFAULT);
+  self->fieldNamingPolicy_ = JreLoadEnum(GsonFieldNamingPolicy, IDENTITY);
+  self->instanceCreators_ = new_JavaUtilHashMap_init();
+  self->factories_ = new_JavaUtilArrayList_init();
+  self->hierarchyFactories_ = new_JavaUtilArrayList_init();
+  self->serializeNulls_ = GsonGson_DEFAULT_SERIALIZE_NULLS;
+  self->dateStyle_ = JavaTextDateFormat_DEFAULT;
+  self->timeStyle_ = JavaTextDateFormat_DEFAULT;
+  self->complexMapKeySerialization_ = GsonGson_DEFAULT_COMPLEX_MAP_KEYS;
+  self->serializeSpecialFloatingPointValues_ = GsonGson_DEFAULT_SPECIALIZE_FLOAT_VALUES;
+  self->escapeHtmlChars_ = GsonGson_DEFAULT_ESCAPE_HTML;
+  self->prettyPrinting_ = GsonGson_DEFAULT_PRETTY_PRINT;
+  self->generateNonExecutableJson_ = GsonGson_DEFAULT_JSON_NON_EXECUTABLE;
+  self->lenient_ = GsonGson_DEFAULT_LENIENT;
+  self->excluder_ = ((GsonGson *) nil_chk(gson))->excluder_;
+  self->fieldNamingPolicy_ = gson->fieldNamingStrategy_;
+  [self->instanceCreators_ putAllWithJavaUtilMap:gson->instanceCreators_];
+  self->serializeNulls_ = gson->serializeNulls_;
+  self->complexMapKeySerialization_ = gson->complexMapKeySerialization_;
+  self->generateNonExecutableJson_ = gson->generateNonExecutableJson_;
+  self->escapeHtmlChars_ = gson->htmlSafe_;
+  self->prettyPrinting_ = gson->prettyPrinting_;
+  self->lenient_ = gson->lenient_;
+  self->serializeSpecialFloatingPointValues_ = gson->serializeSpecialFloatingPointValues_;
+  self->longSerializationPolicy_ = gson->longSerializationPolicy_;
+  self->datePattern_ = gson->datePattern_;
+  self->dateStyle_ = gson->dateStyle_;
+  self->timeStyle_ = gson->timeStyle_;
+  [self->factories_ addAllWithJavaUtilCollection:gson->builderFactories_];
+  [self->hierarchyFactories_ addAllWithJavaUtilCollection:gson->builderHierarchyFactories_];
+}
+
+GsonGsonBuilder *new_GsonGsonBuilder_initWithGsonGson_(GsonGson *gson) {
+  J2OBJC_NEW_IMPL(GsonGsonBuilder, initWithGsonGson_, gson)
+}
+
+GsonGsonBuilder *create_GsonGsonBuilder_initWithGsonGson_(GsonGson *gson) {
+  J2OBJC_CREATE_IMPL(GsonGsonBuilder, initWithGsonGson_, gson)
+}
+
 void GsonGsonBuilder_addTypeAdaptersForDateWithNSString_withInt_withInt_withJavaUtilList_(GsonGsonBuilder *self, NSString *datePattern, jint dateStyle, jint timeStyle, id<JavaUtilList> factories) {
   GsonDefaultDateTypeAdapter *dateTypeAdapter;
+  GsonTypeAdapter *timestampTypeAdapter;
+  GsonTypeAdapter *javaSqlDateTypeAdapter;
   if (datePattern != nil && ![@"" isEqual:[datePattern java_trim]]) {
-    dateTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithNSString_(datePattern);
+    dateTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(JavaUtilDate_class_(), datePattern);
+    timestampTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(JavaSqlTimestamp_class_(), datePattern);
+    javaSqlDateTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(JavaSqlDate_class_(), datePattern);
   }
   else if (dateStyle != JavaTextDateFormat_DEFAULT && timeStyle != JavaTextDateFormat_DEFAULT) {
-    dateTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithInt_withInt_(dateStyle, timeStyle);
+    dateTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(JavaUtilDate_class_(), dateStyle, timeStyle);
+    timestampTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(JavaSqlTimestamp_class_(), dateStyle, timeStyle);
+    javaSqlDateTypeAdapter = new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(JavaSqlDate_class_(), dateStyle, timeStyle);
   }
   else {
     return;
   }
-  [((id<JavaUtilList>) nil_chk(factories)) addWithId:GsonTreeTypeAdapter_newFactoryWithGsonTypeToken_withId_(GsonTypeToken_getWithIOSClass_(JavaUtilDate_class_()), dateTypeAdapter)];
-  [factories addWithId:GsonTreeTypeAdapter_newFactoryWithGsonTypeToken_withId_(GsonTypeToken_getWithIOSClass_(JavaSqlTimestamp_class_()), dateTypeAdapter)];
-  [factories addWithId:GsonTreeTypeAdapter_newFactoryWithGsonTypeToken_withId_(GsonTypeToken_getWithIOSClass_(JavaSqlDate_class_()), dateTypeAdapter)];
+  [((id<JavaUtilList>) nil_chk(factories)) addWithId:GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilDate_class_(), dateTypeAdapter)];
+  [factories addWithId:GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaSqlTimestamp_class_(), timestampTypeAdapter)];
+  [factories addWithId:GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaSqlDate_class_(), javaSqlDateTypeAdapter)];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonGsonBuilder)

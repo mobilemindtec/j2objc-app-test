@@ -36,6 +36,11 @@
   id<JavaUtilList> deserializationStrategies_;
 }
 
+- (jboolean)excludeClassChecksWithIOSClass:(IOSClass *)clazz;
+
+- (jboolean)excludeClassInStrategyWithIOSClass:(IOSClass *)clazz
+                                   withBoolean:(jboolean)serialize;
+
 - (jboolean)isAnonymousOrLocalWithIOSClass:(IOSClass *)clazz;
 
 - (jboolean)isInnerClassWithIOSClass:(IOSClass *)clazz;
@@ -57,6 +62,10 @@ J2OBJC_FIELD_SETTER(GsonExcluder, deserializationStrategies_, id<JavaUtilList>)
 inline jdouble GsonExcluder_get_IGNORE_VERSIONS(void);
 #define GsonExcluder_IGNORE_VERSIONS -1.0
 J2OBJC_STATIC_FIELD_CONSTANT(GsonExcluder, IGNORE_VERSIONS, jdouble)
+
+__attribute__((unused)) static jboolean GsonExcluder_excludeClassChecksWithIOSClass_(GsonExcluder *self, IOSClass *clazz);
+
+__attribute__((unused)) static jboolean GsonExcluder_excludeClassInStrategyWithIOSClass_withBoolean_(GsonExcluder *self, IOSClass *clazz, jboolean serialize);
 
 __attribute__((unused)) static jboolean GsonExcluder_isAnonymousOrLocalWithIOSClass_(GsonExcluder *self, IOSClass *clazz);
 
@@ -129,7 +138,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     return (GsonExcluder *) cast_chk([super java_clone], [GsonExcluder class]);
   }
   @catch (JavaLangCloneNotSupportedException *e) {
-    @throw new_JavaLangAssertionError_init();
+    @throw new_JavaLangAssertionError_initWithId_(e);
   }
 }
 
@@ -184,8 +193,9 @@ J2OBJC_IGNORE_DESIGNATED_END
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)type {
   IOSClass *rawType = [((GsonTypeToken *) nil_chk(type)) getRawType];
-  jboolean skipSerialize = [self excludeClassWithIOSClass:rawType withBoolean:true];
-  jboolean skipDeserialize = [self excludeClassWithIOSClass:rawType withBoolean:false];
+  jboolean excludeClass = GsonExcluder_excludeClassChecksWithIOSClass_(self, rawType);
+  jboolean skipSerialize = excludeClass || GsonExcluder_excludeClassInStrategyWithIOSClass_withBoolean_(self, rawType, true);
+  jboolean skipDeserialize = excludeClass || GsonExcluder_excludeClassInStrategyWithIOSClass_withBoolean_(self, rawType, false);
   if (!skipSerialize && !skipDeserialize) {
     return nil;
   }
@@ -227,24 +237,18 @@ J2OBJC_IGNORE_DESIGNATED_END
   return false;
 }
 
+- (jboolean)excludeClassChecksWithIOSClass:(IOSClass *)clazz {
+  return GsonExcluder_excludeClassChecksWithIOSClass_(self, clazz);
+}
+
 - (jboolean)excludeClassWithIOSClass:(IOSClass *)clazz
                          withBoolean:(jboolean)serialize {
-  if (version__ != GsonExcluder_IGNORE_VERSIONS && !GsonExcluder_isValidVersionWithGsonSince_withGsonUntil_(self, ((id<GsonSince>) [((IOSClass *) nil_chk(clazz)) getAnnotationWithIOSClass:GsonSince_class_()]), ((id<GsonUntil>) [clazz getAnnotationWithIOSClass:GsonUntil_class_()]))) {
-    return true;
-  }
-  if (!serializeInnerClasses_ && GsonExcluder_isInnerClassWithIOSClass_(self, clazz)) {
-    return true;
-  }
-  if (GsonExcluder_isAnonymousOrLocalWithIOSClass_(self, clazz)) {
-    return true;
-  }
-  id<JavaUtilList> list = serialize ? serializationStrategies_ : deserializationStrategies_;
-  for (id<GsonExclusionStrategy> __strong exclusionStrategy in list) {
-    if ([((id<GsonExclusionStrategy>) nil_chk(exclusionStrategy)) shouldSkipClassWithIOSClass:clazz]) {
-      return true;
-    }
-  }
-  return false;
+  return GsonExcluder_excludeClassChecksWithIOSClass_(self, clazz) || GsonExcluder_excludeClassInStrategyWithIOSClass_withBoolean_(self, clazz, serialize);
+}
+
+- (jboolean)excludeClassInStrategyWithIOSClass:(IOSClass *)clazz
+                                   withBoolean:(jboolean)serialize {
+  return GsonExcluder_excludeClassInStrategyWithIOSClass_withBoolean_(self, clazz, serialize);
 }
 
 - (jboolean)isAnonymousOrLocalWithIOSClass:(IOSClass *)clazz {
@@ -283,13 +287,15 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "LGsonExcluder;", 0x1, 5, 6, -1, -1, -1, -1 },
     { NULL, "LGsonTypeAdapter;", 0x1, 7, 8, -1, 9, -1, -1 },
     { NULL, "Z", 0x1, 10, 11, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 12, 13, -1, 14, -1, -1 },
-    { NULL, "Z", 0x2, 15, 16, -1, 17, -1, -1 },
+    { NULL, "Z", 0x2, 12, 13, -1, 14, -1, -1 },
+    { NULL, "Z", 0x1, 15, 16, -1, 17, -1, -1 },
     { NULL, "Z", 0x2, 18, 16, -1, 17, -1, -1 },
-    { NULL, "Z", 0x2, 19, 16, -1, 17, -1, -1 },
-    { NULL, "Z", 0x2, 20, 21, -1, -1, -1, -1 },
+    { NULL, "Z", 0x2, 19, 13, -1, 14, -1, -1 },
+    { NULL, "Z", 0x2, 20, 13, -1, 14, -1, -1 },
+    { NULL, "Z", 0x2, 21, 13, -1, 14, -1, -1 },
     { NULL, "Z", 0x2, 22, 23, -1, -1, -1, -1 },
     { NULL, "Z", 0x2, 24, 25, -1, -1, -1, -1 },
+    { NULL, "Z", 0x2, 26, 27, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -302,26 +308,28 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[6].selector = @selector(withExclusionStrategyWithGsonExclusionStrategy:withBoolean:withBoolean:);
   methods[7].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   methods[8].selector = @selector(excludeFieldWithJavaLangReflectField:withBoolean:);
-  methods[9].selector = @selector(excludeClassWithIOSClass:withBoolean:);
-  methods[10].selector = @selector(isAnonymousOrLocalWithIOSClass:);
-  methods[11].selector = @selector(isInnerClassWithIOSClass:);
-  methods[12].selector = @selector(isStaticWithIOSClass:);
-  methods[13].selector = @selector(isValidVersionWithGsonSince:withGsonUntil:);
-  methods[14].selector = @selector(isValidSinceWithGsonSince:);
-  methods[15].selector = @selector(isValidUntilWithGsonUntil:);
+  methods[9].selector = @selector(excludeClassChecksWithIOSClass:);
+  methods[10].selector = @selector(excludeClassWithIOSClass:withBoolean:);
+  methods[11].selector = @selector(excludeClassInStrategyWithIOSClass:withBoolean:);
+  methods[12].selector = @selector(isAnonymousOrLocalWithIOSClass:);
+  methods[13].selector = @selector(isInnerClassWithIOSClass:);
+  methods[14].selector = @selector(isStaticWithIOSClass:);
+  methods[15].selector = @selector(isValidVersionWithGsonSince:withGsonUntil:);
+  methods[16].selector = @selector(isValidSinceWithGsonSince:);
+  methods[17].selector = @selector(isValidUntilWithGsonUntil:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "IGNORE_VERSIONS", "D", .constantValue.asDouble = GsonExcluder_IGNORE_VERSIONS, 0x1a, -1, -1, -1, -1 },
-    { "DEFAULT", "LGsonExcluder;", .constantValue.asLong = 0, 0x19, -1, 26, -1, -1 },
-    { "version__", "D", .constantValue.asLong = 0, 0x2, 27, -1, -1, -1 },
+    { "DEFAULT", "LGsonExcluder;", .constantValue.asLong = 0, 0x19, -1, 28, -1, -1 },
+    { "version__", "D", .constantValue.asLong = 0, 0x2, 29, -1, -1, -1 },
     { "modifiers_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "serializeInnerClasses_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "requireExpose_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
-    { "serializationStrategies_", "LJavaUtilList;", .constantValue.asLong = 0, 0x2, -1, -1, 28, -1 },
-    { "deserializationStrategies_", "LJavaUtilList;", .constantValue.asLong = 0, 0x2, -1, -1, 28, -1 },
+    { "serializationStrategies_", "LJavaUtilList;", .constantValue.asLong = 0, 0x2, -1, -1, 30, -1 },
+    { "deserializationStrategies_", "LJavaUtilList;", .constantValue.asLong = 0, 0x2, -1, -1, 30, -1 },
   };
-  static const void *ptrTable[] = { "clone", "withVersion", "D", "withModifiers", "[I", "withExclusionStrategy", "LGsonExclusionStrategy;ZZ", "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "excludeField", "LJavaLangReflectField;Z", "excludeClass", "LIOSClass;Z", "(Ljava/lang/Class<*>;Z)Z", "isAnonymousOrLocal", "LIOSClass;", "(Ljava/lang/Class<*>;)Z", "isInnerClass", "isStatic", "isValidVersion", "LGsonSince;LGsonUntil;", "isValidSince", "LGsonSince;", "isValidUntil", "LGsonUntil;", &GsonExcluder_DEFAULT, "version", "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;" };
-  static const J2ObjcClassInfo _GsonExcluder = { "Excluder", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x11, 16, 8, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "clone", "withVersion", "D", "withModifiers", "[I", "withExclusionStrategy", "LGsonExclusionStrategy;ZZ", "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "excludeField", "LJavaLangReflectField;Z", "excludeClassChecks", "LIOSClass;", "(Ljava/lang/Class<*>;)Z", "excludeClass", "LIOSClass;Z", "(Ljava/lang/Class<*>;Z)Z", "excludeClassInStrategy", "isAnonymousOrLocal", "isInnerClass", "isStatic", "isValidVersion", "LGsonSince;LGsonUntil;", "isValidSince", "LGsonSince;", "isValidUntil", "LGsonUntil;", &GsonExcluder_DEFAULT, "version", "Ljava/util/List<Lcom/google/gson/ExclusionStrategy;>;" };
+  static const J2ObjcClassInfo _GsonExcluder = { "Excluder", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x11, 18, 8, -1, -1, -1, -1, -1 };
   return &_GsonExcluder;
 }
 
@@ -353,6 +361,29 @@ GsonExcluder *new_GsonExcluder_init() {
 
 GsonExcluder *create_GsonExcluder_init() {
   J2OBJC_CREATE_IMPL(GsonExcluder, init)
+}
+
+jboolean GsonExcluder_excludeClassChecksWithIOSClass_(GsonExcluder *self, IOSClass *clazz) {
+  if (self->version__ != GsonExcluder_IGNORE_VERSIONS && !GsonExcluder_isValidVersionWithGsonSince_withGsonUntil_(self, ((id<GsonSince>) [((IOSClass *) nil_chk(clazz)) getAnnotationWithIOSClass:GsonSince_class_()]), ((id<GsonUntil>) [clazz getAnnotationWithIOSClass:GsonUntil_class_()]))) {
+    return true;
+  }
+  if (!self->serializeInnerClasses_ && GsonExcluder_isInnerClassWithIOSClass_(self, clazz)) {
+    return true;
+  }
+  if (GsonExcluder_isAnonymousOrLocalWithIOSClass_(self, clazz)) {
+    return true;
+  }
+  return false;
+}
+
+jboolean GsonExcluder_excludeClassInStrategyWithIOSClass_withBoolean_(GsonExcluder *self, IOSClass *clazz, jboolean serialize) {
+  id<JavaUtilList> list = serialize ? self->serializationStrategies_ : self->deserializationStrategies_;
+  for (id<GsonExclusionStrategy> __strong exclusionStrategy in list) {
+    if ([((id<GsonExclusionStrategy>) nil_chk(exclusionStrategy)) shouldSkipClassWithIOSClass:clazz]) {
+      return true;
+    }
+  }
+  return false;
 }
 
 jboolean GsonExcluder_isAnonymousOrLocalWithIOSClass_(GsonExcluder *self, IOSClass *clazz) {

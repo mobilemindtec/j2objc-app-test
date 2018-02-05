@@ -49,6 +49,18 @@
 
 + (id<GsonTypeAdapterFactory>)INTEGER_FACTORY;
 
++ (GsonTypeAdapter *)ATOMIC_INTEGER;
+
++ (id<GsonTypeAdapterFactory>)ATOMIC_INTEGER_FACTORY;
+
++ (GsonTypeAdapter *)ATOMIC_BOOLEAN;
+
++ (id<GsonTypeAdapterFactory>)ATOMIC_BOOLEAN_FACTORY;
+
++ (GsonTypeAdapter *)ATOMIC_INTEGER_ARRAY;
+
++ (id<GsonTypeAdapterFactory>)ATOMIC_INTEGER_ARRAY_FACTORY;
+
 + (GsonTypeAdapter *)LONG;
 
 + (GsonTypeAdapter *)FLOAT;
@@ -94,6 +106,10 @@
 + (GsonTypeAdapter *)UUID;
 
 + (id<GsonTypeAdapterFactory>)UUID_FACTORY;
+
++ (GsonTypeAdapter *)CURRENCY;
+
++ (id<GsonTypeAdapterFactory>)CURRENCY_FACTORY;
 
 + (id<GsonTypeAdapterFactory>)TIMESTAMP_FACTORY;
 
@@ -198,6 +214,36 @@ inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_INTEGER_FACTORY(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTypeAdapters_INTEGER_FACTORY;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, INTEGER_FACTORY, id<GsonTypeAdapterFactory>)
+
+inline GsonTypeAdapter *GsonTypeAdapters_get_ATOMIC_INTEGER(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT GsonTypeAdapter *GsonTypeAdapters_ATOMIC_INTEGER;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, ATOMIC_INTEGER, GsonTypeAdapter *)
+
+inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_ATOMIC_INTEGER_FACTORY(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTypeAdapters_ATOMIC_INTEGER_FACTORY;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, ATOMIC_INTEGER_FACTORY, id<GsonTypeAdapterFactory>)
+
+inline GsonTypeAdapter *GsonTypeAdapters_get_ATOMIC_BOOLEAN(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT GsonTypeAdapter *GsonTypeAdapters_ATOMIC_BOOLEAN;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, ATOMIC_BOOLEAN, GsonTypeAdapter *)
+
+inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_ATOMIC_BOOLEAN_FACTORY(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTypeAdapters_ATOMIC_BOOLEAN_FACTORY;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, ATOMIC_BOOLEAN_FACTORY, id<GsonTypeAdapterFactory>)
+
+inline GsonTypeAdapter *GsonTypeAdapters_get_ATOMIC_INTEGER_ARRAY(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT GsonTypeAdapter *GsonTypeAdapters_ATOMIC_INTEGER_ARRAY;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, ATOMIC_INTEGER_ARRAY, GsonTypeAdapter *)
+
+inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_ATOMIC_INTEGER_ARRAY_FACTORY(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTypeAdapters_ATOMIC_INTEGER_ARRAY_FACTORY;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, ATOMIC_INTEGER_ARRAY_FACTORY, id<GsonTypeAdapterFactory>)
 
 inline GsonTypeAdapter *GsonTypeAdapters_get_LONG(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
@@ -313,6 +359,16 @@ inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_UUID_FACTORY(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTypeAdapters_UUID_FACTORY;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, UUID_FACTORY, id<GsonTypeAdapterFactory>)
+
+inline GsonTypeAdapter *GsonTypeAdapters_get_CURRENCY(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT GsonTypeAdapter *GsonTypeAdapters_CURRENCY;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, CURRENCY, GsonTypeAdapter *)
+
+inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_CURRENCY_FACTORY(void);
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTypeAdapters_CURRENCY_FACTORY;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters, CURRENCY_FACTORY, id<GsonTypeAdapterFactory>)
 
 inline id<GsonTypeAdapterFactory> GsonTypeAdapters_get_TIMESTAMP_FACTORY(void);
 /*! INTERNAL ONLY - Use accessor function from above. */

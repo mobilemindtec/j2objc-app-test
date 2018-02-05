@@ -47,6 +47,8 @@
 - (void)addPropertyWithNSString:(NSString *)property
                    withNSString:(NSString *)value;
 
+- (GsonJsonObject *)deepCopy;
+
 - (id<JavaUtilSet>)entrySet;
 
 - (jboolean)isEqual:(id)o;
@@ -63,11 +65,11 @@
 
 - (NSUInteger)hash;
 
+- (id<JavaUtilSet>)keySet;
+
 - (GsonJsonElement *)removeWithNSString:(NSString *)property;
 
-#pragma mark Package-Private
-
-- (GsonJsonObject *)deepCopy;
+- (jint)size;
 
 @end
 

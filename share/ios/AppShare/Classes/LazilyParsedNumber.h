@@ -24,13 +24,13 @@
 
 - (jdouble)doubleValue;
 
+- (jboolean)isEqual:(id)obj;
+
 - (jfloat)floatValue;
 
 - (NSUInteger)hash;
 
 - (jint)intValue;
-
-- (jboolean)isEqual:(id)obj;
 
 - (jlong)longLongValue;
 

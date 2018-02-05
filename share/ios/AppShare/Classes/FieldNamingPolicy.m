@@ -11,15 +11,11 @@
 #include "java/lang/IllegalArgumentException.h"
 #include "java/lang/StringBuilder.h"
 #include "java/lang/reflect/Field.h"
+#include "java/util/Locale.h"
 
 #pragma clang diagnostic ignored "-Wprotocol"
 
 @interface GsonFieldNamingPolicy ()
-
-+ (NSString *)separateCamelCaseWithNSString:(NSString *)name
-                               withNSString:(NSString *)separator;
-
-+ (NSString *)upperCaseFirstLetterWithNSString:(NSString *)name;
 
 + (NSString *)modifyStringWithChar:(jchar)firstCharacter
                       withNSString:(NSString *)srcString
@@ -30,10 +26,6 @@
 __attribute__((unused)) static void GsonFieldNamingPolicy_initWithNSString_withInt_(GsonFieldNamingPolicy *self, NSString *__name, jint __ordinal);
 
 __attribute__((unused)) static GsonFieldNamingPolicy *new_GsonFieldNamingPolicy_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static NSString *GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_(NSString *name, NSString *separator);
-
-__attribute__((unused)) static NSString *GsonFieldNamingPolicy_upperCaseFirstLetterWithNSString_(NSString *name);
 
 __attribute__((unused)) static NSString *GsonFieldNamingPolicy_modifyStringWithChar_withNSString_withInt_(jchar firstCharacter, NSString *srcString, jint indexOfSubstring);
 
@@ -152,8 +144,8 @@ GsonFieldNamingPolicy *GsonFieldNamingPolicy_values_[5];
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, "LNSString;", 0xa, 0, 1, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0xa, 2, 3, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x8, 0, 1, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x8, 2, 3, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0xa, 4, 5, -1, -1, -1, -1 },
     { NULL, "[LGsonFieldNamingPolicy;", 0x9, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonFieldNamingPolicy;", 0x9, 6, 3, -1, -1, -1, -1 },
@@ -202,7 +194,7 @@ GsonFieldNamingPolicy *new_GsonFieldNamingPolicy_initWithNSString_withInt_(NSStr
 NSString *GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_(NSString *name, NSString *separator) {
   GsonFieldNamingPolicy_initialize();
   JavaLangStringBuilder *translation = new_JavaLangStringBuilder_init();
-  for (jint i = 0; i < [((NSString *) nil_chk(name)) java_length]; i++) {
+  for (jint i = 0, length = [((NSString *) nil_chk(name)) java_length]; i < length; i++) {
     jchar character = [name charAtWithInt:i];
     if (JavaLangCharacter_isUpperCaseWithChar_(character) && [translation java_length] != 0) {
       (void) [translation appendWithNSString:separator];
@@ -217,15 +209,13 @@ NSString *GsonFieldNamingPolicy_upperCaseFirstLetterWithNSString_(NSString *name
   JavaLangStringBuilder *fieldNameBuilder = new_JavaLangStringBuilder_init();
   jint index = 0;
   jchar firstCharacter = [((NSString *) nil_chk(name)) charAtWithInt:index];
-  while (index < [name java_length] - 1) {
+  jint length = [name java_length];
+  while (index < length - 1) {
     if (JavaLangCharacter_isLetterWithChar_(firstCharacter)) {
       break;
     }
     (void) [fieldNameBuilder appendWithChar:firstCharacter];
     firstCharacter = [name charAtWithInt:++index];
-  }
-  if (index == [name java_length]) {
-    return [fieldNameBuilder description];
   }
   if (!JavaLangCharacter_isUpperCaseWithChar_(firstCharacter)) {
     NSString *modifiedTarget = GsonFieldNamingPolicy_modifyStringWithChar_withNSString_withInt_(JavaLangCharacter_toUpperCaseWithChar_(firstCharacter), name, ++index);
@@ -370,7 +360,7 @@ GsonFieldNamingPolicy_3 *new_GsonFieldNamingPolicy_3_initWithNSString_withInt_(N
 @implementation GsonFieldNamingPolicy_4
 
 - (NSString *)translateNameWithJavaLangReflectField:(JavaLangReflectField *)f {
-  return [((NSString *) nil_chk(GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_([((JavaLangReflectField *) nil_chk(f)) getName], @"_"))) lowercaseString];
+  return [((NSString *) nil_chk(GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_([((JavaLangReflectField *) nil_chk(f)) getName], @"_"))) java_lowercaseStringWithJRELocale:JreLoadStatic(JavaUtilLocale, ENGLISH)];
 }
 
 - (void)dealloc {
@@ -403,7 +393,7 @@ GsonFieldNamingPolicy_4 *new_GsonFieldNamingPolicy_4_initWithNSString_withInt_(N
 @implementation GsonFieldNamingPolicy_5
 
 - (NSString *)translateNameWithJavaLangReflectField:(JavaLangReflectField *)f {
-  return [((NSString *) nil_chk(GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_([((JavaLangReflectField *) nil_chk(f)) getName], @"-"))) lowercaseString];
+  return [((NSString *) nil_chk(GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_([((JavaLangReflectField *) nil_chk(f)) getName], @"-"))) java_lowercaseStringWithJRELocale:JreLoadStatic(JavaUtilLocale, ENGLISH)];
 }
 
 - (void)dealloc {

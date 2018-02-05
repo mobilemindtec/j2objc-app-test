@@ -20,8 +20,6 @@
 
 #pragma mark Public
 
-- (instancetype)init;
-
 + (void)checkArgumentWithBoolean:(jboolean)condition;
 
 + (id)checkNotNullWithId:(id)obj;
@@ -29,12 +27,6 @@
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(Gson_Gson_Preconditions)
-
-FOUNDATION_EXPORT void Gson_Gson_Preconditions_init(Gson_Gson_Preconditions *self);
-
-FOUNDATION_EXPORT Gson_Gson_Preconditions *new_Gson_Gson_Preconditions_init(void) NS_RETURNS_RETAINED;
-
-FOUNDATION_EXPORT Gson_Gson_Preconditions *create_Gson_Gson_Preconditions_init(void);
 
 FOUNDATION_EXPORT id Gson_Gson_Preconditions_checkNotNullWithId_(id obj);
 

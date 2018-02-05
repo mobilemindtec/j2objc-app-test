@@ -25,6 +25,7 @@
 #include "java/io/Flushable.h"
 
 @class JavaIoWriter;
+@class JavaLangBoolean;
 
 @interface GsonJsonWriter : NSObject < JavaIoCloseable, JavaIoFlushable >
 
@@ -65,6 +66,8 @@
 - (void)setSerializeNullsWithBoolean:(jboolean)serializeNulls;
 
 - (GsonJsonWriter *)valueWithBoolean:(jboolean)value;
+
+- (GsonJsonWriter *)valueWithJavaLangBoolean:(JavaLangBoolean *)value;
 
 - (GsonJsonWriter *)valueWithDouble:(jdouble)value;
 

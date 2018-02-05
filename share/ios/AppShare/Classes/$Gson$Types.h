@@ -63,6 +63,8 @@
 
 #pragma mark Package-Private
 
++ (void)checkNotPrimitiveWithJavaLangReflectType:(id<JavaLangReflectType>)type;
+
 + (jboolean)equalWithId:(id)a
                  withId:(id)b;
 
@@ -73,6 +75,8 @@
 + (id<JavaLangReflectType>)getSupertypeWithJavaLangReflectType:(id<JavaLangReflectType>)context
                                                   withIOSClass:(IOSClass *)contextRawType
                                                   withIOSClass:(IOSClass *)supertype;
+
++ (jint)hashCodeOrZeroWithId:(id)o;
 
 + (id<JavaLangReflectType>)resolveTypeVariableWithJavaLangReflectType:(id<JavaLangReflectType>)context
                                                          withIOSClass:(IOSClass *)contextRawType
@@ -103,6 +107,8 @@ FOUNDATION_EXPORT jboolean Gson_Gson_Types_equalWithId_withId_(id a, id b);
 
 FOUNDATION_EXPORT jboolean Gson_Gson_Types_equalsWithJavaLangReflectType_withJavaLangReflectType_(id<JavaLangReflectType> a, id<JavaLangReflectType> b);
 
+FOUNDATION_EXPORT jint Gson_Gson_Types_hashCodeOrZeroWithId_(id o);
+
 FOUNDATION_EXPORT NSString *Gson_Gson_Types_typeToStringWithJavaLangReflectType_(id<JavaLangReflectType> type);
 
 FOUNDATION_EXPORT id<JavaLangReflectType> Gson_Gson_Types_getGenericSupertypeWithJavaLangReflectType_withIOSClass_withIOSClass_(id<JavaLangReflectType> context, IOSClass *rawType, IOSClass *toResolve);
@@ -118,6 +124,8 @@ FOUNDATION_EXPORT IOSObjectArray *Gson_Gson_Types_getMapKeyAndValueTypesWithJava
 FOUNDATION_EXPORT id<JavaLangReflectType> Gson_Gson_Types_resolveWithJavaLangReflectType_withIOSClass_withJavaLangReflectType_(id<JavaLangReflectType> context, IOSClass *contextRawType, id<JavaLangReflectType> toResolve);
 
 FOUNDATION_EXPORT id<JavaLangReflectType> Gson_Gson_Types_resolveTypeVariableWithJavaLangReflectType_withIOSClass_withJavaLangReflectTypeVariable_(id<JavaLangReflectType> context, IOSClass *contextRawType, id<JavaLangReflectTypeVariable> unknown);
+
+FOUNDATION_EXPORT void Gson_Gson_Types_checkNotPrimitiveWithJavaLangReflectType_(id<JavaLangReflectType> type);
 
 J2OBJC_TYPE_LITERAL_HEADER(Gson_Gson_Types)
 

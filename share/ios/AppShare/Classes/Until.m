@@ -8,6 +8,7 @@
 #include "J2ObjC_source.h"
 #include "Until.h"
 #include "java/lang/annotation/Annotation.h"
+#include "java/lang/annotation/Documented.h"
 #include "java/lang/annotation/ElementType.h"
 #include "java/lang/annotation/Retention.h"
 #include "java/lang/annotation/RetentionPolicy.h"
@@ -52,7 +53,7 @@ id<GsonUntil> create_GsonUntil(jdouble value) {
 }
 
 IOSObjectArray *GsonUntil__Annotations$0() {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationRetention(JreLoadEnum(JavaLangAnnotationRetentionPolicy, RUNTIME)), create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, FIELD), JreLoadEnum(JavaLangAnnotationElementType, TYPE) } count:2 type:JavaLangAnnotationElementType_class_()]) } count:2 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationDocumented(), create_JavaLangAnnotationRetention(JreLoadEnum(JavaLangAnnotationRetentionPolicy, RUNTIME)), create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, FIELD), JreLoadEnum(JavaLangAnnotationElementType, TYPE) } count:2 type:JavaLangAnnotationElementType_class_()]) } count:3 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonUntil)

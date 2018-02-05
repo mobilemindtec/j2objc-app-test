@@ -19,6 +19,7 @@
 #include "JsonWriter.h"
 #include "ObjectConstructor.h"
 #include "Primitives.h"
+#include "ReflectionAccessor.h"
 #include "ReflectiveTypeAdapterFactory.h"
 #include "SerializedName.h"
 #include "TypeAdapter.h"
@@ -30,8 +31,11 @@
 #include "java/lang/IllegalStateException.h"
 #include "java/lang/reflect/Field.h"
 #include "java/lang/reflect/Type.h"
+#include "java/util/ArrayList.h"
 #include "java/util/Collection.h"
+#include "java/util/Collections.h"
 #include "java/util/LinkedHashMap.h"
+#include "java/util/List.h"
 #include "java/util/Map.h"
 
 @interface GsonReflectiveTypeAdapterFactory () {
@@ -39,9 +43,11 @@
   GsonConstructorConstructor *constructorConstructor_;
   id<GsonFieldNamingStrategy> fieldNamingPolicy_;
   GsonExcluder *excluder_;
+  GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory_;
+  ComGoogleGsonInternalReflectReflectionAccessor *accessor_;
 }
 
-- (NSString *)getFieldNameWithJavaLangReflectField:(JavaLangReflectField *)f;
+- (id<JavaUtilList>)getFieldNamesWithJavaLangReflectField:(JavaLangReflectField *)f;
 
 - (GsonReflectiveTypeAdapterFactory_BoundField *)createBoundFieldWithGsonGson:(GsonGson *)context
                                                      withJavaLangReflectField:(JavaLangReflectField *)field
@@ -49,10 +55,6 @@
                                                             withGsonTypeToken:(GsonTypeToken *)fieldType
                                                                   withBoolean:(jboolean)serialize
                                                                   withBoolean:(jboolean)deserialize;
-
-- (GsonTypeAdapter *)getFieldAdapterWithGsonGson:(GsonGson *)gson
-                        withJavaLangReflectField:(JavaLangReflectField *)field
-                               withGsonTypeToken:(GsonTypeToken *)fieldType;
 
 - (id<JavaUtilMap>)getBoundFieldsWithGsonGson:(GsonGson *)context
                             withGsonTypeToken:(GsonTypeToken *)type
@@ -63,32 +65,34 @@
 J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory, constructorConstructor_, GsonConstructorConstructor *)
 J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory, fieldNamingPolicy_, id<GsonFieldNamingStrategy>)
 J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory, excluder_, GsonExcluder *)
+J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory, jsonAdapterFactory_, GsonJsonAdapterAnnotationTypeAdapterFactory *)
+J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory, accessor_, ComGoogleGsonInternalReflectReflectionAccessor *)
 
-__attribute__((unused)) static NSString *GsonReflectiveTypeAdapterFactory_getFieldNameWithJavaLangReflectField_(GsonReflectiveTypeAdapterFactory *self, JavaLangReflectField *f);
+__attribute__((unused)) static id<JavaUtilList> GsonReflectiveTypeAdapterFactory_getFieldNamesWithJavaLangReflectField_(GsonReflectiveTypeAdapterFactory *self, JavaLangReflectField *f);
 
 __attribute__((unused)) static GsonReflectiveTypeAdapterFactory_BoundField *GsonReflectiveTypeAdapterFactory_createBoundFieldWithGsonGson_withJavaLangReflectField_withNSString_withGsonTypeToken_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory *self, GsonGson *context, JavaLangReflectField *field, NSString *name, GsonTypeToken *fieldType, jboolean serialize, jboolean deserialize);
-
-__attribute__((unused)) static GsonTypeAdapter *GsonReflectiveTypeAdapterFactory_getFieldAdapterWithGsonGson_withJavaLangReflectField_withGsonTypeToken_(GsonReflectiveTypeAdapterFactory *self, GsonGson *gson, JavaLangReflectField *field, GsonTypeToken *fieldType);
 
 __attribute__((unused)) static id<JavaUtilMap> GsonReflectiveTypeAdapterFactory_getBoundFieldsWithGsonGson_withGsonTypeToken_withIOSClass_(GsonReflectiveTypeAdapterFactory *self, GsonGson *context, GsonTypeToken *type, IOSClass *raw);
 
 @interface GsonReflectiveTypeAdapterFactory_1 : GsonReflectiveTypeAdapterFactory_BoundField {
  @public
-  GsonGson *val$context_;
   JavaLangReflectField *val$field_;
+  jboolean val$jsonAdapterPresent_;
+  GsonTypeAdapter *val$typeAdapter_;
+  GsonGson *val$context_;
   GsonTypeToken *val$fieldType_;
   jboolean val$isPrimitive_;
-  GsonTypeAdapter *typeAdapter_;
 }
 
-- (instancetype)initWithGsonReflectiveTypeAdapterFactory:(GsonReflectiveTypeAdapterFactory *)outer$
-                                            withGsonGson:(GsonGson *)capture$0
-                                withJavaLangReflectField:(JavaLangReflectField *)capture$1
-                                       withGsonTypeToken:(GsonTypeToken *)capture$2
-                                             withBoolean:(jboolean)capture$3
-                                            withNSString:(NSString *)name
-                                             withBoolean:(jboolean)serialized
-                                             withBoolean:(jboolean)deserialized;
+- (instancetype)initWithJavaLangReflectField:(JavaLangReflectField *)capture$0
+                                 withBoolean:(jboolean)capture$1
+                         withGsonTypeAdapter:(GsonTypeAdapter *)capture$2
+                                withGsonGson:(GsonGson *)capture$3
+                           withGsonTypeToken:(GsonTypeToken *)capture$4
+                                 withBoolean:(jboolean)capture$5
+                                withNSString:(NSString *)name
+                                 withBoolean:(jboolean)serialized
+                                 withBoolean:(jboolean)deserialized;
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)writer
                          withId:(id)value;
@@ -102,13 +106,11 @@ __attribute__((unused)) static id<JavaUtilMap> GsonReflectiveTypeAdapterFactory_
 
 J2OBJC_EMPTY_STATIC_INIT(GsonReflectiveTypeAdapterFactory_1)
 
-J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory_1, typeAdapter_, GsonTypeAdapter *)
+__attribute__((unused)) static void GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory_1 *self, JavaLangReflectField *capture$0, jboolean capture$1, GsonTypeAdapter *capture$2, GsonGson *capture$3, GsonTypeToken *capture$4, jboolean capture$5, NSString *name, jboolean serialized, jboolean deserialized);
 
-__attribute__((unused)) static void GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory_1 *self, GsonReflectiveTypeAdapterFactory *outer$, GsonGson *capture$0, JavaLangReflectField *capture$1, GsonTypeToken *capture$2, jboolean capture$3, NSString *name, jboolean serialized, jboolean deserialized);
+__attribute__((unused)) static GsonReflectiveTypeAdapterFactory_1 *new_GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(JavaLangReflectField *capture$0, jboolean capture$1, GsonTypeAdapter *capture$2, GsonGson *capture$3, GsonTypeToken *capture$4, jboolean capture$5, NSString *name, jboolean serialized, jboolean deserialized) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonReflectiveTypeAdapterFactory_1 *new_GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory *outer$, GsonGson *capture$0, JavaLangReflectField *capture$1, GsonTypeToken *capture$2, jboolean capture$3, NSString *name, jboolean serialized, jboolean deserialized) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static GsonReflectiveTypeAdapterFactory_1 *create_GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory *outer$, GsonGson *capture$0, JavaLangReflectField *capture$1, GsonTypeToken *capture$2, jboolean capture$3, NSString *name, jboolean serialized, jboolean deserialized);
+__attribute__((unused)) static GsonReflectiveTypeAdapterFactory_1 *create_GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(JavaLangReflectField *capture$0, jboolean capture$1, GsonTypeAdapter *capture$2, GsonGson *capture$3, GsonTypeToken *capture$4, jboolean capture$5, NSString *name, jboolean serialized, jboolean deserialized);
 
 @interface GsonReflectiveTypeAdapterFactory_Adapter () {
  @public
@@ -116,26 +118,18 @@ __attribute__((unused)) static GsonReflectiveTypeAdapterFactory_1 *create_GsonRe
   id<JavaUtilMap> boundFields_;
 }
 
-- (instancetype)initWithGsonObjectConstructor:(id<GsonObjectConstructor>)constructor
-                              withJavaUtilMap:(id<JavaUtilMap>)boundFields;
-
 @end
 
 J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory_Adapter, constructor_, id<GsonObjectConstructor>)
 J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory_Adapter, boundFields_, id<JavaUtilMap>)
 
-__attribute__((unused)) static void GsonReflectiveTypeAdapterFactory_Adapter_initWithGsonObjectConstructor_withJavaUtilMap_(GsonReflectiveTypeAdapterFactory_Adapter *self, id<GsonObjectConstructor> constructor, id<JavaUtilMap> boundFields);
-
-__attribute__((unused)) static GsonReflectiveTypeAdapterFactory_Adapter *new_GsonReflectiveTypeAdapterFactory_Adapter_initWithGsonObjectConstructor_withJavaUtilMap_(id<GsonObjectConstructor> constructor, id<JavaUtilMap> boundFields) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static GsonReflectiveTypeAdapterFactory_Adapter *create_GsonReflectiveTypeAdapterFactory_Adapter_initWithGsonObjectConstructor_withJavaUtilMap_(id<GsonObjectConstructor> constructor, id<JavaUtilMap> boundFields);
-
 @implementation GsonReflectiveTypeAdapterFactory
 
 - (instancetype)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
                        withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
-                                  withGsonExcluder:(GsonExcluder *)excluder {
-  GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(self, constructorConstructor, fieldNamingPolicy, excluder);
+                                  withGsonExcluder:(GsonExcluder *)excluder
+   withGsonJsonAdapterAnnotationTypeAdapterFactory:(GsonJsonAdapterAnnotationTypeAdapterFactory *)jsonAdapterFactory {
+  GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(self, constructorConstructor, fieldNamingPolicy, excluder, jsonAdapterFactory);
   return self;
 }
 
@@ -150,13 +144,8 @@ __attribute__((unused)) static GsonReflectiveTypeAdapterFactory_Adapter *create_
   return GsonReflectiveTypeAdapterFactory_excludeFieldWithJavaLangReflectField_withBoolean_withGsonExcluder_(f, serialize, excluder);
 }
 
-- (NSString *)getFieldNameWithJavaLangReflectField:(JavaLangReflectField *)f {
-  return GsonReflectiveTypeAdapterFactory_getFieldNameWithJavaLangReflectField_(self, f);
-}
-
-+ (NSString *)getFieldNameWithGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
-                             withJavaLangReflectField:(JavaLangReflectField *)f {
-  return GsonReflectiveTypeAdapterFactory_getFieldNameWithGsonFieldNamingStrategy_withJavaLangReflectField_(fieldNamingPolicy, f);
+- (id<JavaUtilList>)getFieldNamesWithJavaLangReflectField:(JavaLangReflectField *)f {
+  return GsonReflectiveTypeAdapterFactory_getFieldNamesWithJavaLangReflectField_(self, f);
 }
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
@@ -178,12 +167,6 @@ __attribute__((unused)) static GsonReflectiveTypeAdapterFactory_Adapter *create_
   return GsonReflectiveTypeAdapterFactory_createBoundFieldWithGsonGson_withJavaLangReflectField_withNSString_withGsonTypeToken_withBoolean_withBoolean_(self, context, field, name, fieldType, serialize, deserialize);
 }
 
-- (GsonTypeAdapter *)getFieldAdapterWithGsonGson:(GsonGson *)gson
-                        withJavaLangReflectField:(JavaLangReflectField *)field
-                               withGsonTypeToken:(GsonTypeToken *)fieldType {
-  return GsonReflectiveTypeAdapterFactory_getFieldAdapterWithGsonGson_withJavaLangReflectField_withGsonTypeToken_(self, gson, field, fieldType);
-}
-
 - (id<JavaUtilMap>)getBoundFieldsWithGsonGson:(GsonGson *)context
                             withGsonTypeToken:(GsonTypeToken *)type
                                  withIOSClass:(IOSClass *)raw {
@@ -195,50 +178,50 @@ __attribute__((unused)) static GsonReflectiveTypeAdapterFactory_Adapter *create_
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, 1, 2, -1, -1, -1, -1 },
     { NULL, "Z", 0x8, 1, 3, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x2, 4, 5, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x8, 4, 6, -1, -1, -1, -1 },
+    { NULL, "LJavaUtilList;", 0x2, 4, 5, -1, 6, -1, -1 },
     { NULL, "LGsonTypeAdapter;", 0x1, 7, 8, -1, 9, -1, -1 },
     { NULL, "LGsonReflectiveTypeAdapterFactory_BoundField;", 0x2, 10, 11, -1, 12, -1, -1 },
-    { NULL, "LGsonTypeAdapter;", 0x2, 13, 14, -1, 15, -1, -1 },
-    { NULL, "LJavaUtilMap;", 0x2, 16, 17, -1, 18, -1, -1 },
+    { NULL, "LJavaUtilMap;", 0x2, 13, 14, -1, 15, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(initWithGsonConstructorConstructor:withGsonFieldNamingStrategy:withGsonExcluder:);
+  methods[0].selector = @selector(initWithGsonConstructorConstructor:withGsonFieldNamingStrategy:withGsonExcluder:withGsonJsonAdapterAnnotationTypeAdapterFactory:);
   methods[1].selector = @selector(excludeFieldWithJavaLangReflectField:withBoolean:);
   methods[2].selector = @selector(excludeFieldWithJavaLangReflectField:withBoolean:withGsonExcluder:);
-  methods[3].selector = @selector(getFieldNameWithJavaLangReflectField:);
-  methods[4].selector = @selector(getFieldNameWithGsonFieldNamingStrategy:withJavaLangReflectField:);
-  methods[5].selector = @selector(createWithGsonGson:withGsonTypeToken:);
-  methods[6].selector = @selector(createBoundFieldWithGsonGson:withJavaLangReflectField:withNSString:withGsonTypeToken:withBoolean:withBoolean:);
-  methods[7].selector = @selector(getFieldAdapterWithGsonGson:withJavaLangReflectField:withGsonTypeToken:);
-  methods[8].selector = @selector(getBoundFieldsWithGsonGson:withGsonTypeToken:withIOSClass:);
+  methods[3].selector = @selector(getFieldNamesWithJavaLangReflectField:);
+  methods[4].selector = @selector(createWithGsonGson:withGsonTypeToken:);
+  methods[5].selector = @selector(createBoundFieldWithGsonGson:withJavaLangReflectField:withNSString:withGsonTypeToken:withBoolean:withBoolean:);
+  methods[6].selector = @selector(getBoundFieldsWithGsonGson:withGsonTypeToken:withIOSClass:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "constructorConstructor_", "LGsonConstructorConstructor;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
     { "fieldNamingPolicy_", "LGsonFieldNamingStrategy;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
     { "excluder_", "LGsonExcluder;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "jsonAdapterFactory_", "LGsonJsonAdapterAnnotationTypeAdapterFactory;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "accessor_", "LComGoogleGsonInternalReflectReflectionAccessor;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LGsonConstructorConstructor;LGsonFieldNamingStrategy;LGsonExcluder;", "excludeField", "LJavaLangReflectField;Z", "LJavaLangReflectField;ZLGsonExcluder;", "getFieldName", "LJavaLangReflectField;", "LGsonFieldNamingStrategy;LJavaLangReflectField;", "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "createBoundField", "LGsonGson;LJavaLangReflectField;LNSString;LGsonTypeToken;ZZ", "(Lcom/google/gson/Gson;Ljava/lang/reflect/Field;Ljava/lang/String;Lcom/google/gson/reflect/TypeToken<*>;ZZ)Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField;", "getFieldAdapter", "LGsonGson;LJavaLangReflectField;LGsonTypeToken;", "(Lcom/google/gson/Gson;Ljava/lang/reflect/Field;Lcom/google/gson/reflect/TypeToken<*>;)Lcom/google/gson/TypeAdapter<*>;", "getBoundFields", "LGsonGson;LGsonTypeToken;LIOSClass;", "(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<*>;Ljava/lang/Class<*>;)Ljava/util/Map<Ljava/lang/String;Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField;>;", "LGsonReflectiveTypeAdapterFactory_BoundField;LGsonReflectiveTypeAdapterFactory_Adapter;" };
-  static const J2ObjcClassInfo _GsonReflectiveTypeAdapterFactory = { "ReflectiveTypeAdapterFactory", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 9, 3, -1, 19, -1, -1, -1 };
+  static const void *ptrTable[] = { "LGsonConstructorConstructor;LGsonFieldNamingStrategy;LGsonExcluder;LGsonJsonAdapterAnnotationTypeAdapterFactory;", "excludeField", "LJavaLangReflectField;Z", "LJavaLangReflectField;ZLGsonExcluder;", "getFieldNames", "LJavaLangReflectField;", "(Ljava/lang/reflect/Field;)Ljava/util/List<Ljava/lang/String;>;", "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "createBoundField", "LGsonGson;LJavaLangReflectField;LNSString;LGsonTypeToken;ZZ", "(Lcom/google/gson/Gson;Ljava/lang/reflect/Field;Ljava/lang/String;Lcom/google/gson/reflect/TypeToken<*>;ZZ)Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField;", "getBoundFields", "LGsonGson;LGsonTypeToken;LIOSClass;", "(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<*>;Ljava/lang/Class<*>;)Ljava/util/Map<Ljava/lang/String;Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField;>;", "LGsonReflectiveTypeAdapterFactory_BoundField;LGsonReflectiveTypeAdapterFactory_Adapter;" };
+  static const J2ObjcClassInfo _GsonReflectiveTypeAdapterFactory = { "ReflectiveTypeAdapterFactory", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 7, 5, -1, 16, -1, -1, -1 };
   return &_GsonReflectiveTypeAdapterFactory;
 }
 
 @end
 
-void GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(GsonReflectiveTypeAdapterFactory *self, GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder) {
+void GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(GsonReflectiveTypeAdapterFactory *self, GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder, GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory) {
   NSObject_init(self);
+  self->accessor_ = ComGoogleGsonInternalReflectReflectionAccessor_getInstance();
   self->constructorConstructor_ = constructorConstructor;
   self->fieldNamingPolicy_ = fieldNamingPolicy;
   self->excluder_ = excluder;
+  self->jsonAdapterFactory_ = jsonAdapterFactory;
 }
 
-GsonReflectiveTypeAdapterFactory *new_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder) {
-  J2OBJC_NEW_IMPL(GsonReflectiveTypeAdapterFactory, initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_, constructorConstructor, fieldNamingPolicy, excluder)
+GsonReflectiveTypeAdapterFactory *new_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder, GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory) {
+  J2OBJC_NEW_IMPL(GsonReflectiveTypeAdapterFactory, initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_, constructorConstructor, fieldNamingPolicy, excluder, jsonAdapterFactory)
 }
 
-GsonReflectiveTypeAdapterFactory *create_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder) {
-  J2OBJC_CREATE_IMPL(GsonReflectiveTypeAdapterFactory, initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_, constructorConstructor, fieldNamingPolicy, excluder)
+GsonReflectiveTypeAdapterFactory *create_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder, GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory) {
+  J2OBJC_CREATE_IMPL(GsonReflectiveTypeAdapterFactory, initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_, constructorConstructor, fieldNamingPolicy, excluder, jsonAdapterFactory)
 }
 
 jboolean GsonReflectiveTypeAdapterFactory_excludeFieldWithJavaLangReflectField_withBoolean_withGsonExcluder_(JavaLangReflectField *f, jboolean serialize, GsonExcluder *excluder) {
@@ -246,28 +229,42 @@ jboolean GsonReflectiveTypeAdapterFactory_excludeFieldWithJavaLangReflectField_w
   return ![((GsonExcluder *) nil_chk(excluder)) excludeClassWithIOSClass:[((JavaLangReflectField *) nil_chk(f)) getType] withBoolean:serialize] && ![excluder excludeFieldWithJavaLangReflectField:f withBoolean:serialize];
 }
 
-NSString *GsonReflectiveTypeAdapterFactory_getFieldNameWithJavaLangReflectField_(GsonReflectiveTypeAdapterFactory *self, JavaLangReflectField *f) {
-  return GsonReflectiveTypeAdapterFactory_getFieldNameWithGsonFieldNamingStrategy_withJavaLangReflectField_(self->fieldNamingPolicy_, f);
-}
-
-NSString *GsonReflectiveTypeAdapterFactory_getFieldNameWithGsonFieldNamingStrategy_withJavaLangReflectField_(id<GsonFieldNamingStrategy> fieldNamingPolicy, JavaLangReflectField *f) {
-  GsonReflectiveTypeAdapterFactory_initialize();
-  id<GsonSerializedName> serializedName = ((id<GsonSerializedName>) [((JavaLangReflectField *) nil_chk(f)) getAnnotationWithIOSClass:GsonSerializedName_class_()]);
-  return serializedName == nil ? [((id<GsonFieldNamingStrategy>) nil_chk(fieldNamingPolicy)) translateNameWithJavaLangReflectField:f] : [serializedName value];
+id<JavaUtilList> GsonReflectiveTypeAdapterFactory_getFieldNamesWithJavaLangReflectField_(GsonReflectiveTypeAdapterFactory *self, JavaLangReflectField *f) {
+  id<GsonSerializedName> annotation = ((id<GsonSerializedName>) [((JavaLangReflectField *) nil_chk(f)) getAnnotationWithIOSClass:GsonSerializedName_class_()]);
+  if (annotation == nil) {
+    NSString *name = [((id<GsonFieldNamingStrategy>) nil_chk(self->fieldNamingPolicy_)) translateNameWithJavaLangReflectField:f];
+    return JavaUtilCollections_singletonListWithId_(name);
+  }
+  NSString *serializedName = [annotation value];
+  IOSObjectArray *alternates = [annotation alternate];
+  if (((IOSObjectArray *) nil_chk(alternates))->size_ == 0) {
+    return JavaUtilCollections_singletonListWithId_(serializedName);
+  }
+  id<JavaUtilList> fieldNames = new_JavaUtilArrayList_initWithInt_(alternates->size_ + 1);
+  [fieldNames addWithId:serializedName];
+  {
+    IOSObjectArray *a__ = alternates;
+    NSString * const *b__ = a__->buffer_;
+    NSString * const *e__ = b__ + a__->size_;
+    while (b__ < e__) {
+      NSString *alternate = *b__++;
+      [fieldNames addWithId:alternate];
+    }
+  }
+  return fieldNames;
 }
 
 GsonReflectiveTypeAdapterFactory_BoundField *GsonReflectiveTypeAdapterFactory_createBoundFieldWithGsonGson_withJavaLangReflectField_withNSString_withGsonTypeToken_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory *self, GsonGson *context, JavaLangReflectField *field, NSString *name, GsonTypeToken *fieldType, jboolean serialize, jboolean deserialize) {
   jboolean isPrimitive = GsonPrimitives_isPrimitiveWithJavaLangReflectType_([((GsonTypeToken *) nil_chk(fieldType)) getRawType]);
-  return new_GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(self, context, field, fieldType, isPrimitive, name, serialize, deserialize);
-}
-
-GsonTypeAdapter *GsonReflectiveTypeAdapterFactory_getFieldAdapterWithGsonGson_withJavaLangReflectField_withGsonTypeToken_(GsonReflectiveTypeAdapterFactory *self, GsonGson *gson, JavaLangReflectField *field, GsonTypeToken *fieldType) {
   id<GsonJsonAdapter> annotation = ((id<GsonJsonAdapter>) [((JavaLangReflectField *) nil_chk(field)) getAnnotationWithIOSClass:GsonJsonAdapter_class_()]);
+  GsonTypeAdapter *mapped = nil;
   if (annotation != nil) {
-    GsonTypeAdapter *adapter = GsonJsonAdapterAnnotationTypeAdapterFactory_getTypeAdapterWithGsonConstructorConstructor_withGsonGson_withGsonTypeToken_withGsonJsonAdapter_(self->constructorConstructor_, gson, fieldType, annotation);
-    if (adapter != nil) return adapter;
+    mapped = [((GsonJsonAdapterAnnotationTypeAdapterFactory *) nil_chk(self->jsonAdapterFactory_)) getTypeAdapterWithGsonConstructorConstructor:self->constructorConstructor_ withGsonGson:context withGsonTypeToken:fieldType withGsonJsonAdapter:annotation];
   }
-  return [((GsonGson *) nil_chk(gson)) getAdapterWithGsonTypeToken:fieldType];
+  jboolean jsonAdapterPresent = mapped != nil;
+  if (mapped == nil) mapped = [((GsonGson *) nil_chk(context)) getAdapterWithGsonTypeToken:fieldType];
+  GsonTypeAdapter *typeAdapter = mapped;
+  return new_GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(field, jsonAdapterPresent, typeAdapter, context, fieldType, isPrimitive, name, serialize, deserialize);
 }
 
 id<JavaUtilMap> GsonReflectiveTypeAdapterFactory_getBoundFieldsWithGsonGson_withGsonTypeToken_withIOSClass_(GsonReflectiveTypeAdapterFactory *self, GsonGson *context, GsonTypeToken *type, IOSClass *raw) {
@@ -289,10 +286,17 @@ id<JavaUtilMap> GsonReflectiveTypeAdapterFactory_getBoundFieldsWithGsonGson_with
         if (!serialize && !deserialize) {
           continue;
         }
-        [((JavaLangReflectField *) nil_chk(field)) setAccessibleWithBoolean:true];
-        id<JavaLangReflectType> fieldType = Gson_Gson_Types_resolveWithJavaLangReflectType_withIOSClass_withJavaLangReflectType_([type getType], raw, [field getGenericType]);
-        GsonReflectiveTypeAdapterFactory_BoundField *boundField = GsonReflectiveTypeAdapterFactory_createBoundFieldWithGsonGson_withJavaLangReflectField_withNSString_withGsonTypeToken_withBoolean_withBoolean_(self, context, field, GsonReflectiveTypeAdapterFactory_getFieldNameWithJavaLangReflectField_(self, field), GsonTypeToken_getWithJavaLangReflectType_(fieldType), serialize, deserialize);
-        GsonReflectiveTypeAdapterFactory_BoundField *previous = [result putWithId:((GsonReflectiveTypeAdapterFactory_BoundField *) nil_chk(boundField))->name_ withId:boundField];
+        [((ComGoogleGsonInternalReflectReflectionAccessor *) nil_chk(self->accessor_)) makeAccessibleWithJavaLangReflectAccessibleObject:field];
+        id<JavaLangReflectType> fieldType = Gson_Gson_Types_resolveWithJavaLangReflectType_withIOSClass_withJavaLangReflectType_([type getType], raw, [((JavaLangReflectField *) nil_chk(field)) getGenericType]);
+        id<JavaUtilList> fieldNames = GsonReflectiveTypeAdapterFactory_getFieldNamesWithJavaLangReflectField_(self, field);
+        GsonReflectiveTypeAdapterFactory_BoundField *previous = nil;
+        for (jint i = 0, size = [((id<JavaUtilList>) nil_chk(fieldNames)) size]; i < size; ++i) {
+          NSString *name = [fieldNames getWithInt:i];
+          if (i != 0) serialize = false;
+          GsonReflectiveTypeAdapterFactory_BoundField *boundField = GsonReflectiveTypeAdapterFactory_createBoundFieldWithGsonGson_withJavaLangReflectField_withNSString_withGsonTypeToken_withBoolean_withBoolean_(self, context, field, name, GsonTypeToken_getWithJavaLangReflectType_(fieldType), serialize, deserialize);
+          GsonReflectiveTypeAdapterFactory_BoundField *replaced = [result putWithId:name withId:boundField];
+          if (previous == nil) previous = replaced;
+        }
         if (previous != nil) {
           @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("@$$", declaredType, @" declares multiple JSON fields named ", previous->name_));
         }
@@ -370,28 +374,29 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonReflectiveTypeAdapterFactory_BoundField)
 
 @implementation GsonReflectiveTypeAdapterFactory_1
 
-- (instancetype)initWithGsonReflectiveTypeAdapterFactory:(GsonReflectiveTypeAdapterFactory *)outer$
-                                            withGsonGson:(GsonGson *)capture$0
-                                withJavaLangReflectField:(JavaLangReflectField *)capture$1
-                                       withGsonTypeToken:(GsonTypeToken *)capture$2
-                                             withBoolean:(jboolean)capture$3
-                                            withNSString:(NSString *)name
-                                             withBoolean:(jboolean)serialized
-                                             withBoolean:(jboolean)deserialized {
-  GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(self, outer$, capture$0, capture$1, capture$2, capture$3, name, serialized, deserialized);
+- (instancetype)initWithJavaLangReflectField:(JavaLangReflectField *)capture$0
+                                 withBoolean:(jboolean)capture$1
+                         withGsonTypeAdapter:(GsonTypeAdapter *)capture$2
+                                withGsonGson:(GsonGson *)capture$3
+                           withGsonTypeToken:(GsonTypeToken *)capture$4
+                                 withBoolean:(jboolean)capture$5
+                                withNSString:(NSString *)name
+                                 withBoolean:(jboolean)serialized
+                                 withBoolean:(jboolean)deserialized {
+  GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(self, capture$0, capture$1, capture$2, capture$3, capture$4, capture$5, name, serialized, deserialized);
   return self;
 }
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)writer
                          withId:(id)value {
   id fieldValue = [((JavaLangReflectField *) nil_chk(val$field_)) getWithId:value];
-  GsonTypeAdapter *t = new_GsonTypeAdapterRuntimeTypeWrapper_initWithGsonGson_withGsonTypeAdapter_withJavaLangReflectType_(val$context_, self->typeAdapter_, [((GsonTypeToken *) nil_chk(val$fieldType_)) getType]);
+  GsonTypeAdapter *t = val$jsonAdapterPresent_ ? val$typeAdapter_ : new_GsonTypeAdapterRuntimeTypeWrapper_initWithGsonGson_withGsonTypeAdapter_withJavaLangReflectType_(val$context_, val$typeAdapter_, [((GsonTypeToken *) nil_chk(val$fieldType_)) getType]);
   [t writeWithGsonJsonWriter:writer withId:fieldValue];
 }
 
 - (void)readWithGsonJsonReader:(GsonJsonReader *)reader
                         withId:(id)value {
-  id fieldValue = [((GsonTypeAdapter *) nil_chk(typeAdapter_)) readWithGsonJsonReader:reader];
+  id fieldValue = [((GsonTypeAdapter *) nil_chk(val$typeAdapter_)) readWithGsonJsonReader:reader];
   if (fieldValue != nil || !val$isPrimitive_) {
     [((JavaLangReflectField *) nil_chk(val$field_)) setWithId:value withId:fieldValue];
   }
@@ -412,40 +417,42 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonReflectiveTypeAdapterFactory_BoundField)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(initWithGsonReflectiveTypeAdapterFactory:withGsonGson:withJavaLangReflectField:withGsonTypeToken:withBoolean:withNSString:withBoolean:withBoolean:);
+  methods[0].selector = @selector(initWithJavaLangReflectField:withBoolean:withGsonTypeAdapter:withGsonGson:withGsonTypeToken:withBoolean:withNSString:withBoolean:withBoolean:);
   methods[1].selector = @selector(writeWithGsonJsonWriter:withId:);
   methods[2].selector = @selector(readWithGsonJsonReader:withId:);
   methods[3].selector = @selector(writeFieldWithId:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "val$context_", "LGsonGson;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
     { "val$field_", "LJavaLangReflectField;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "val$fieldType_", "LGsonTypeToken;", .constantValue.asLong = 0, 0x1012, -1, -1, 8, -1 },
+    { "val$jsonAdapterPresent_", "Z", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 8, -1 },
+    { "val$context_", "LGsonGson;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$fieldType_", "LGsonTypeToken;", .constantValue.asLong = 0, 0x1012, -1, -1, 9, -1 },
     { "val$isPrimitive_", "Z", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
-    { "typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x10, -1, -1, 9, -1 },
   };
-  static const void *ptrTable[] = { "LNSString;ZZ", "write", "LGsonJsonWriter;LNSObject;", "LJavaIoIOException;LJavaLangIllegalAccessException;", "read", "LGsonJsonReader;LNSObject;", "writeField", "LNSObject;", "Lcom/google/gson/reflect/TypeToken<*>;", "Lcom/google/gson/TypeAdapter<*>;", "LGsonReflectiveTypeAdapterFactory;", "createBoundFieldWithGsonGson:withJavaLangReflectField:withNSString:withGsonTypeToken:withBoolean:withBoolean:" };
-  static const J2ObjcClassInfo _GsonReflectiveTypeAdapterFactory_1 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 4, 5, 10, -1, 11, -1, -1 };
+  static const void *ptrTable[] = { "LNSString;ZZ", "write", "LGsonJsonWriter;LNSObject;", "LJavaIoIOException;LJavaLangIllegalAccessException;", "read", "LGsonJsonReader;LNSObject;", "writeField", "LNSObject;", "Lcom/google/gson/TypeAdapter<*>;", "Lcom/google/gson/reflect/TypeToken<*>;", "LGsonReflectiveTypeAdapterFactory;", "createBoundFieldWithGsonGson:withJavaLangReflectField:withNSString:withGsonTypeToken:withBoolean:withBoolean:" };
+  static const J2ObjcClassInfo _GsonReflectiveTypeAdapterFactory_1 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 4, 6, 10, -1, 11, -1, -1 };
   return &_GsonReflectiveTypeAdapterFactory_1;
 }
 
 @end
 
-void GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory_1 *self, GsonReflectiveTypeAdapterFactory *outer$, GsonGson *capture$0, JavaLangReflectField *capture$1, GsonTypeToken *capture$2, jboolean capture$3, NSString *name, jboolean serialized, jboolean deserialized) {
-  self->val$context_ = capture$0;
-  self->val$field_ = capture$1;
-  self->val$fieldType_ = capture$2;
-  self->val$isPrimitive_ = capture$3;
+void GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory_1 *self, JavaLangReflectField *capture$0, jboolean capture$1, GsonTypeAdapter *capture$2, GsonGson *capture$3, GsonTypeToken *capture$4, jboolean capture$5, NSString *name, jboolean serialized, jboolean deserialized) {
+  self->val$field_ = capture$0;
+  self->val$jsonAdapterPresent_ = capture$1;
+  self->val$typeAdapter_ = capture$2;
+  self->val$context_ = capture$3;
+  self->val$fieldType_ = capture$4;
+  self->val$isPrimitive_ = capture$5;
   GsonReflectiveTypeAdapterFactory_BoundField_initWithNSString_withBoolean_withBoolean_(self, name, serialized, deserialized);
-  self->typeAdapter_ = GsonReflectiveTypeAdapterFactory_getFieldAdapterWithGsonGson_withJavaLangReflectField_withGsonTypeToken_(outer$, capture$0, capture$1, capture$2);
 }
 
-GsonReflectiveTypeAdapterFactory_1 *new_GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory *outer$, GsonGson *capture$0, JavaLangReflectField *capture$1, GsonTypeToken *capture$2, jboolean capture$3, NSString *name, jboolean serialized, jboolean deserialized) {
-  J2OBJC_NEW_IMPL(GsonReflectiveTypeAdapterFactory_1, initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_, outer$, capture$0, capture$1, capture$2, capture$3, name, serialized, deserialized)
+GsonReflectiveTypeAdapterFactory_1 *new_GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(JavaLangReflectField *capture$0, jboolean capture$1, GsonTypeAdapter *capture$2, GsonGson *capture$3, GsonTypeToken *capture$4, jboolean capture$5, NSString *name, jboolean serialized, jboolean deserialized) {
+  J2OBJC_NEW_IMPL(GsonReflectiveTypeAdapterFactory_1, initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_, capture$0, capture$1, capture$2, capture$3, capture$4, capture$5, name, serialized, deserialized)
 }
 
-GsonReflectiveTypeAdapterFactory_1 *create_GsonReflectiveTypeAdapterFactory_1_initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(GsonReflectiveTypeAdapterFactory *outer$, GsonGson *capture$0, JavaLangReflectField *capture$1, GsonTypeToken *capture$2, jboolean capture$3, NSString *name, jboolean serialized, jboolean deserialized) {
-  J2OBJC_CREATE_IMPL(GsonReflectiveTypeAdapterFactory_1, initWithGsonReflectiveTypeAdapterFactory_withGsonGson_withJavaLangReflectField_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_, outer$, capture$0, capture$1, capture$2, capture$3, name, serialized, deserialized)
+GsonReflectiveTypeAdapterFactory_1 *create_GsonReflectiveTypeAdapterFactory_1_initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_(JavaLangReflectField *capture$0, jboolean capture$1, GsonTypeAdapter *capture$2, GsonGson *capture$3, GsonTypeToken *capture$4, jboolean capture$5, NSString *name, jboolean serialized, jboolean deserialized) {
+  J2OBJC_CREATE_IMPL(GsonReflectiveTypeAdapterFactory_1, initWithJavaLangReflectField_withBoolean_withGsonTypeAdapter_withGsonGson_withGsonTypeToken_withBoolean_withNSString_withBoolean_withBoolean_, capture$0, capture$1, capture$2, capture$3, capture$4, capture$5, name, serialized, deserialized)
 }
 
 @implementation GsonReflectiveTypeAdapterFactory_Adapter
@@ -501,14 +508,14 @@ GsonReflectiveTypeAdapterFactory_1 *create_GsonReflectiveTypeAdapterFactory_1_in
     }
   }
   @catch (JavaLangIllegalAccessException *e) {
-    @throw new_JavaLangAssertionError_init();
+    @throw new_JavaLangAssertionError_initWithId_(e);
   }
   (void) [outArg endObject];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x2, -1, 0, -1, 1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 0, -1, 1, -1, -1 },
     { NULL, "LNSObject;", 0x1, 2, 3, 4, 5, -1, -1 },
     { NULL, "V", 0x1, 6, 7, 4, 8, -1, -1 },
   };

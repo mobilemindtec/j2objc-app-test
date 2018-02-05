@@ -37,6 +37,8 @@
 
 - (instancetype)initWithNSString:(NSString *)string;
 
+- (GsonJsonPrimitive *)deepCopy;
+
 - (jboolean)isEqual:(id)obj;
 
 - (JavaMathBigDecimal *)getAsBigDecimal;
@@ -74,8 +76,6 @@
 #pragma mark Package-Private
 
 - (instancetype)initWithId:(id)primitive;
-
-- (GsonJsonPrimitive *)deepCopy;
 
 - (JavaLangBoolean *)getAsBooleanWrapper;
 

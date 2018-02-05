@@ -4,6 +4,7 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "JsonArray.h"
@@ -19,15 +20,18 @@
 #include "java/lang/Double.h"
 #include "java/lang/IllegalStateException.h"
 #include "java/lang/NumberFormatException.h"
-#include "java/util/ArrayList.h"
+#include "java/lang/StringBuilder.h"
+#include "java/lang/System.h"
 #include "java/util/Iterator.h"
-#include "java/util/List.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
 
 @interface GsonJsonTreeReader () {
  @public
-  id<JavaUtilList> stack_JsonTreeReader_;
+  IOSObjectArray *stack_JsonTreeReader_;
+  jint stackSize_JsonTreeReader_;
+  IOSObjectArray *pathNames_JsonTreeReader_;
+  IOSIntArray *pathIndices_JsonTreeReader_;
 }
 
 - (id)peekStack;
@@ -36,9 +40,15 @@
 
 - (void)expectWithGsonJsonToken:(GsonJsonToken *)expected;
 
+- (void)pushWithId:(id)newTop;
+
+- (NSString *)locationString;
+
 @end
 
-J2OBJC_FIELD_SETTER(GsonJsonTreeReader, stack_JsonTreeReader_, id<JavaUtilList>)
+J2OBJC_FIELD_SETTER(GsonJsonTreeReader, stack_JsonTreeReader_, IOSObjectArray *)
+J2OBJC_FIELD_SETTER(GsonJsonTreeReader, pathNames_JsonTreeReader_, IOSObjectArray *)
+J2OBJC_FIELD_SETTER(GsonJsonTreeReader, pathIndices_JsonTreeReader_, IOSIntArray *)
 
 inline JavaIoReader *GsonJsonTreeReader_get_UNREADABLE_READER(void);
 static JavaIoReader *GsonJsonTreeReader_UNREADABLE_READER;
@@ -53,6 +63,10 @@ __attribute__((unused)) static id GsonJsonTreeReader_peekStack(GsonJsonTreeReade
 __attribute__((unused)) static id GsonJsonTreeReader_popStack(GsonJsonTreeReader *self);
 
 __attribute__((unused)) static void GsonJsonTreeReader_expectWithGsonJsonToken_(GsonJsonTreeReader *self, GsonJsonToken *expected);
+
+__attribute__((unused)) static void GsonJsonTreeReader_pushWithId_(GsonJsonTreeReader *self, id newTop);
+
+__attribute__((unused)) static NSString *GsonJsonTreeReader_locationString(GsonJsonTreeReader *self);
 
 @interface GsonJsonTreeReader_1 : JavaIoReader
 
@@ -86,25 +100,32 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
 - (void)beginArray {
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, BEGIN_ARRAY));
   GsonJsonArray *array = (GsonJsonArray *) cast_chk(GsonJsonTreeReader_peekStack(self), [GsonJsonArray class]);
-  [((id<JavaUtilList>) nil_chk(stack_JsonTreeReader_)) addWithId:[((GsonJsonArray *) nil_chk(array)) iterator]];
+  GsonJsonTreeReader_pushWithId_(self, [((GsonJsonArray *) nil_chk(array)) iterator]);
+  *IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1) = 0;
 }
 
 - (void)endArray {
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, END_ARRAY));
   (void) GsonJsonTreeReader_popStack(self);
   (void) GsonJsonTreeReader_popStack(self);
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
 }
 
 - (void)beginObject {
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, BEGIN_OBJECT));
   GsonJsonObject *object = (GsonJsonObject *) cast_chk(GsonJsonTreeReader_peekStack(self), [GsonJsonObject class]);
-  [((id<JavaUtilList>) nil_chk(stack_JsonTreeReader_)) addWithId:[((id<JavaUtilSet>) nil_chk([((GsonJsonObject *) nil_chk(object)) entrySet])) iterator]];
+  GsonJsonTreeReader_pushWithId_(self, [((id<JavaUtilSet>) nil_chk([((GsonJsonObject *) nil_chk(object)) entrySet])) iterator]);
 }
 
 - (void)endObject {
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, END_OBJECT));
   (void) GsonJsonTreeReader_popStack(self);
   (void) GsonJsonTreeReader_popStack(self);
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
 }
 
 - (jboolean)hasNext {
@@ -113,19 +134,19 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
 }
 
 - (GsonJsonToken *)peek {
-  if ([((id<JavaUtilList>) nil_chk(stack_JsonTreeReader_)) isEmpty]) {
+  if (stackSize_JsonTreeReader_ == 0) {
     return JreLoadEnum(GsonJsonToken, END_DOCUMENT);
   }
   id o = GsonJsonTreeReader_peekStack(self);
   if ([JavaUtilIterator_class_() isInstance:o]) {
-    jboolean isObject = [[stack_JsonTreeReader_ getWithInt:[stack_JsonTreeReader_ size] - 2] isKindOfClass:[GsonJsonObject class]];
+    jboolean isObject = [IOSObjectArray_Get(nil_chk(stack_JsonTreeReader_), stackSize_JsonTreeReader_ - 2) isKindOfClass:[GsonJsonObject class]];
     id<JavaUtilIterator> iterator = (id<JavaUtilIterator>) cast_check(o, JavaUtilIterator_class_());
     if ([((id<JavaUtilIterator>) nil_chk(iterator)) hasNext]) {
       if (isObject) {
         return JreLoadEnum(GsonJsonToken, NAME);
       }
       else {
-        [stack_JsonTreeReader_ addWithId:[iterator next]];
+        GsonJsonTreeReader_pushWithId_(self, [iterator next]);
         return [self peek];
       }
     }
@@ -181,72 +202,101 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, NAME));
   id<JavaUtilIterator> i = (id<JavaUtilIterator>) cast_check(GsonJsonTreeReader_peekStack(self), JavaUtilIterator_class_());
   id<JavaUtilMap_Entry> entry_ = (id<JavaUtilMap_Entry>) cast_check([((id<JavaUtilIterator>) nil_chk(i)) next], JavaUtilMap_Entry_class_());
-  [((id<JavaUtilList>) nil_chk(stack_JsonTreeReader_)) addWithId:[((id<JavaUtilMap_Entry>) nil_chk(entry_)) getValue]];
-  return (NSString *) cast_chk([entry_ getKey], [NSString class]);
+  NSString *result = (NSString *) cast_chk([((id<JavaUtilMap_Entry>) nil_chk(entry_)) getKey], [NSString class]);
+  (void) IOSObjectArray_Set(nil_chk(pathNames_JsonTreeReader_), stackSize_JsonTreeReader_ - 1, result);
+  GsonJsonTreeReader_pushWithId_(self, [entry_ getValue]);
+  return result;
 }
 
 - (NSString *)nextString {
   GsonJsonToken *token = [self peek];
   if (token != JreLoadEnum(GsonJsonToken, STRING) && token != JreLoadEnum(GsonJsonToken, NUMBER)) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@", @"Expected ", JreLoadEnum(GsonJsonToken, STRING), @" but was ", token));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@$", @"Expected ", JreLoadEnum(GsonJsonToken, STRING), @" but was ", token, GsonJsonTreeReader_locationString(self)));
   }
-  return [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_popStack(self), [GsonJsonPrimitive class])))) getAsString];
+  NSString *result = [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_popStack(self), [GsonJsonPrimitive class])))) getAsString];
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
+  return result;
 }
 
 - (jboolean)nextBoolean {
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, BOOLEAN));
-  return [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_popStack(self), [GsonJsonPrimitive class])))) getAsBoolean];
+  jboolean result = [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_popStack(self), [GsonJsonPrimitive class])))) getAsBoolean];
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
+  return result;
 }
 
 - (void)nextNull {
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, NULL));
   (void) GsonJsonTreeReader_popStack(self);
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
 }
 
 - (jdouble)nextDouble {
   GsonJsonToken *token = [self peek];
   if (token != JreLoadEnum(GsonJsonToken, NUMBER) && token != JreLoadEnum(GsonJsonToken, STRING)) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@", @"Expected ", JreLoadEnum(GsonJsonToken, NUMBER), @" but was ", token));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@$", @"Expected ", JreLoadEnum(GsonJsonToken, NUMBER), @" but was ", token, GsonJsonTreeReader_locationString(self)));
   }
   jdouble result = [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_peekStack(self), [GsonJsonPrimitive class])))) getAsDouble];
   if (![self isLenient] && (JavaLangDouble_isNaNWithDouble_(result) || JavaLangDouble_isInfiniteWithDouble_(result))) {
     @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$D", @"JSON forbids NaN and infinities: ", result));
   }
   (void) GsonJsonTreeReader_popStack(self);
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
   return result;
 }
 
 - (jlong)nextLong {
   GsonJsonToken *token = [self peek];
   if (token != JreLoadEnum(GsonJsonToken, NUMBER) && token != JreLoadEnum(GsonJsonToken, STRING)) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@", @"Expected ", JreLoadEnum(GsonJsonToken, NUMBER), @" but was ", token));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@$", @"Expected ", JreLoadEnum(GsonJsonToken, NUMBER), @" but was ", token, GsonJsonTreeReader_locationString(self)));
   }
   jlong result = [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_peekStack(self), [GsonJsonPrimitive class])))) getAsLong];
   (void) GsonJsonTreeReader_popStack(self);
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
   return result;
 }
 
 - (jint)nextInt {
   GsonJsonToken *token = [self peek];
   if (token != JreLoadEnum(GsonJsonToken, NUMBER) && token != JreLoadEnum(GsonJsonToken, STRING)) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@", @"Expected ", JreLoadEnum(GsonJsonToken, NUMBER), @" but was ", token));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@$", @"Expected ", JreLoadEnum(GsonJsonToken, NUMBER), @" but was ", token, GsonJsonTreeReader_locationString(self)));
   }
   jint result = [((GsonJsonPrimitive *) nil_chk(((GsonJsonPrimitive *) cast_chk(GsonJsonTreeReader_peekStack(self), [GsonJsonPrimitive class])))) getAsInt];
   (void) GsonJsonTreeReader_popStack(self);
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
+  }
   return result;
 }
 
 - (void)close {
-  [((id<JavaUtilList>) nil_chk(stack_JsonTreeReader_)) clear];
-  [stack_JsonTreeReader_ addWithId:GsonJsonTreeReader_SENTINEL_CLOSED];
+  stack_JsonTreeReader_ = [IOSObjectArray newArrayWithObjects:(id[]){ GsonJsonTreeReader_SENTINEL_CLOSED } count:1 type:NSObject_class_()];
+  stackSize_JsonTreeReader_ = 1;
 }
 
 - (void)skipValue {
   if ([self peek] == JreLoadEnum(GsonJsonToken, NAME)) {
     (void) [self nextName];
+    (void) IOSObjectArray_Set(nil_chk(pathNames_JsonTreeReader_), stackSize_JsonTreeReader_ - 2, @"null");
   }
   else {
     (void) GsonJsonTreeReader_popStack(self);
+    if (stackSize_JsonTreeReader_ > 0) {
+      (void) IOSObjectArray_Set(nil_chk(pathNames_JsonTreeReader_), stackSize_JsonTreeReader_ - 1, @"null");
+    }
+  }
+  if (stackSize_JsonTreeReader_ > 0) {
+    (*IOSIntArray_GetRef(nil_chk(pathIndices_JsonTreeReader_), stackSize_JsonTreeReader_ - 1))++;
   }
 }
 
@@ -258,8 +308,36 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
   GsonJsonTreeReader_expectWithGsonJsonToken_(self, JreLoadEnum(GsonJsonToken, NAME));
   id<JavaUtilIterator> i = (id<JavaUtilIterator>) cast_check(GsonJsonTreeReader_peekStack(self), JavaUtilIterator_class_());
   id<JavaUtilMap_Entry> entry_ = (id<JavaUtilMap_Entry>) cast_check([((id<JavaUtilIterator>) nil_chk(i)) next], JavaUtilMap_Entry_class_());
-  [((id<JavaUtilList>) nil_chk(stack_JsonTreeReader_)) addWithId:[((id<JavaUtilMap_Entry>) nil_chk(entry_)) getValue]];
-  [stack_JsonTreeReader_ addWithId:new_GsonJsonPrimitive_initWithNSString_((NSString *) cast_chk([entry_ getKey], [NSString class]))];
+  GsonJsonTreeReader_pushWithId_(self, [((id<JavaUtilMap_Entry>) nil_chk(entry_)) getValue]);
+  GsonJsonTreeReader_pushWithId_(self, new_GsonJsonPrimitive_initWithNSString_((NSString *) cast_chk([entry_ getKey], [NSString class])));
+}
+
+- (void)pushWithId:(id)newTop {
+  GsonJsonTreeReader_pushWithId_(self, newTop);
+}
+
+- (NSString *)getPath {
+  JavaLangStringBuilder *result = [new_JavaLangStringBuilder_init() appendWithChar:'$'];
+  for (jint i = 0; i < stackSize_JsonTreeReader_; i++) {
+    if ([IOSObjectArray_Get(nil_chk(stack_JsonTreeReader_), i) isKindOfClass:[GsonJsonArray class]]) {
+      if ([JavaUtilIterator_class_() isInstance:IOSObjectArray_Get(stack_JsonTreeReader_, ++i)]) {
+        (void) [((JavaLangStringBuilder *) nil_chk([((JavaLangStringBuilder *) nil_chk([((JavaLangStringBuilder *) nil_chk(result)) appendWithChar:'['])) appendWithInt:IOSIntArray_Get(nil_chk(pathIndices_JsonTreeReader_), i)])) appendWithChar:']'];
+      }
+    }
+    else if ([IOSObjectArray_Get(stack_JsonTreeReader_, i) isKindOfClass:[GsonJsonObject class]]) {
+      if ([JavaUtilIterator_class_() isInstance:IOSObjectArray_Get(stack_JsonTreeReader_, ++i)]) {
+        (void) [((JavaLangStringBuilder *) nil_chk(result)) appendWithChar:'.'];
+        if (IOSObjectArray_Get(nil_chk(pathNames_JsonTreeReader_), i) != nil) {
+          (void) [result appendWithNSString:IOSObjectArray_Get(pathNames_JsonTreeReader_, i)];
+        }
+      }
+    }
+  }
+  return [((JavaLangStringBuilder *) nil_chk(result)) description];
+}
+
+- (NSString *)locationString {
+  return GsonJsonTreeReader_locationString(self);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -285,6 +363,9 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
     { NULL, "V", 0x1, -1, -1, 1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, 4, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, 1, -1, -1, -1 },
+    { NULL, "V", 0x2, 5, 6, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x2, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -309,14 +390,20 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
   methods[18].selector = @selector(skipValue);
   methods[19].selector = @selector(description);
   methods[20].selector = @selector(promoteNameToValue);
+  methods[21].selector = @selector(pushWithId:);
+  methods[22].selector = @selector(getPath);
+  methods[23].selector = @selector(locationString);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "UNREADABLE_READER", "LJavaIoReader;", .constantValue.asLong = 0, 0x1a, -1, 5, -1, -1 },
-    { "SENTINEL_CLOSED", "LNSObject;", .constantValue.asLong = 0, 0x1a, -1, 6, -1, -1 },
-    { "stack_JsonTreeReader_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, 7, -1, 8, -1 },
+    { "UNREADABLE_READER", "LJavaIoReader;", .constantValue.asLong = 0, 0x1a, -1, 7, -1, -1 },
+    { "SENTINEL_CLOSED", "LNSObject;", .constantValue.asLong = 0, 0x1a, -1, 8, -1, -1 },
+    { "stack_JsonTreeReader_", "[LNSObject;", .constantValue.asLong = 0, 0x2, 9, -1, -1, -1 },
+    { "stackSize_JsonTreeReader_", "I", .constantValue.asLong = 0, 0x2, 10, -1, -1, -1 },
+    { "pathNames_JsonTreeReader_", "[LNSString;", .constantValue.asLong = 0, 0x2, 11, -1, -1, -1 },
+    { "pathIndices_JsonTreeReader_", "[I", .constantValue.asLong = 0, 0x2, 12, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LGsonJsonElement;", "LJavaIoIOException;", "expect", "LGsonJsonToken;", "toString", &GsonJsonTreeReader_UNREADABLE_READER, &GsonJsonTreeReader_SENTINEL_CLOSED, "stack", "Ljava/util/List<Ljava/lang/Object;>;" };
-  static const J2ObjcClassInfo _GsonJsonTreeReader = { "JsonTreeReader", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 21, 3, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "LGsonJsonElement;", "LJavaIoIOException;", "expect", "LGsonJsonToken;", "toString", "push", "LNSObject;", &GsonJsonTreeReader_UNREADABLE_READER, &GsonJsonTreeReader_SENTINEL_CLOSED, "stack", "stackSize", "pathNames", "pathIndices" };
+  static const J2ObjcClassInfo _GsonJsonTreeReader = { "JsonTreeReader", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 24, 6, -1, -1, -1, -1, -1 };
   return &_GsonJsonTreeReader;
 }
 
@@ -332,8 +419,11 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
 
 void GsonJsonTreeReader_initWithGsonJsonElement_(GsonJsonTreeReader *self, GsonJsonElement *element) {
   GsonJsonReader_initWithJavaIoReader_(self, GsonJsonTreeReader_UNREADABLE_READER);
-  self->stack_JsonTreeReader_ = new_JavaUtilArrayList_init();
-  [self->stack_JsonTreeReader_ addWithId:element];
+  self->stack_JsonTreeReader_ = [IOSObjectArray newArrayWithLength:32 type:NSObject_class_()];
+  self->stackSize_JsonTreeReader_ = 0;
+  self->pathNames_JsonTreeReader_ = [IOSObjectArray newArrayWithLength:32 type:NSString_class_()];
+  self->pathIndices_JsonTreeReader_ = [IOSIntArray newArrayWithLength:32];
+  GsonJsonTreeReader_pushWithId_(self, element);
 }
 
 GsonJsonTreeReader *new_GsonJsonTreeReader_initWithGsonJsonElement_(GsonJsonElement *element) {
@@ -345,17 +435,38 @@ GsonJsonTreeReader *create_GsonJsonTreeReader_initWithGsonJsonElement_(GsonJsonE
 }
 
 id GsonJsonTreeReader_peekStack(GsonJsonTreeReader *self) {
-  return [((id<JavaUtilList>) nil_chk(self->stack_JsonTreeReader_)) getWithInt:[self->stack_JsonTreeReader_ size] - 1];
+  return IOSObjectArray_Get(nil_chk(self->stack_JsonTreeReader_), self->stackSize_JsonTreeReader_ - 1);
 }
 
 id GsonJsonTreeReader_popStack(GsonJsonTreeReader *self) {
-  return [((id<JavaUtilList>) nil_chk(self->stack_JsonTreeReader_)) removeWithInt:[self->stack_JsonTreeReader_ size] - 1];
+  id result = IOSObjectArray_Get(nil_chk(self->stack_JsonTreeReader_), --self->stackSize_JsonTreeReader_);
+  (void) IOSObjectArray_Set(self->stack_JsonTreeReader_, self->stackSize_JsonTreeReader_, nil);
+  return result;
 }
 
 void GsonJsonTreeReader_expectWithGsonJsonToken_(GsonJsonTreeReader *self, GsonJsonToken *expected) {
   if ([self peek] != expected) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@", @"Expected ", expected, @" but was ", [self peek]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$@$", @"Expected ", expected, @" but was ", [self peek], GsonJsonTreeReader_locationString(self)));
   }
+}
+
+void GsonJsonTreeReader_pushWithId_(GsonJsonTreeReader *self, id newTop) {
+  if (self->stackSize_JsonTreeReader_ == ((IOSObjectArray *) nil_chk(self->stack_JsonTreeReader_))->size_) {
+    IOSObjectArray *newStack = [IOSObjectArray newArrayWithLength:self->stackSize_JsonTreeReader_ * 2 type:NSObject_class_()];
+    IOSIntArray *newPathIndices = [IOSIntArray newArrayWithLength:self->stackSize_JsonTreeReader_ * 2];
+    IOSObjectArray *newPathNames = [IOSObjectArray newArrayWithLength:self->stackSize_JsonTreeReader_ * 2 type:NSString_class_()];
+    JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(self->stack_JsonTreeReader_, 0, newStack, 0, self->stackSize_JsonTreeReader_);
+    JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(self->pathIndices_JsonTreeReader_, 0, newPathIndices, 0, self->stackSize_JsonTreeReader_);
+    JavaLangSystem_arraycopyWithId_withInt_withId_withInt_withInt_(self->pathNames_JsonTreeReader_, 0, newPathNames, 0, self->stackSize_JsonTreeReader_);
+    self->stack_JsonTreeReader_ = newStack;
+    self->pathIndices_JsonTreeReader_ = newPathIndices;
+    self->pathNames_JsonTreeReader_ = newPathNames;
+  }
+  (void) IOSObjectArray_Set(self->stack_JsonTreeReader_, self->stackSize_JsonTreeReader_++, newTop);
+}
+
+NSString *GsonJsonTreeReader_locationString(GsonJsonTreeReader *self) {
+  return JreStrcat("$$", @" at path ", [self getPath]);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonTreeReader)

@@ -3,7 +3,7 @@
 //  source: ./build/j2objc/java/UserController.java
 //
 
-#include "Constants.h"
+#include "AppShareConstants.h"
 #include "Gson.h"
 #include "GsonBuilder.h"
 #include "IOSClass.h"
@@ -58,7 +58,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   [json addPropertyWithNSString:@"username" withNSString:username];
   [json addPropertyWithNSString:@"password" withNSString:password];
   @try {
-    NSString *result = [((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([new_AppBaseRestService_initWithNSString_(JreLoadStatic(AppConstants, SERVER_END_POINT)) actionWithNSString:@"auth"])) headerWithNSString:@"Content-Type" withNSString:@"application/json"])) headerWithNSString:@"Accept" withNSString:@"application/json"])) postAsStringWithNSString:[json description]];
+    NSString *result = [((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([((AppBaseRestService *) nil_chk([new_AppBaseRestService_initWithNSString_(JreLoadStatic(AppAppShareConstants, SERVER_END_POINT)) actionWithNSString:@"auth"])) headerWithNSString:@"Content-Type" withNSString:@"application/json"])) headerWithNSString:@"Accept" withNSString:@"application/json"])) postAsStringWithNSString:[json description]];
     return [((AppBaseRestDataConverter *) nil_chk(self->converter_)) fromJsonWithNSString:result];
   }
   @catch (JavaLangException *e) {

@@ -78,8 +78,9 @@ id<GsonTypeAdapterFactory> GsonArrayTypeAdapter_FACTORY;
     [list addWithId:instance];
   }
   [inArg endArray];
-  id array = JavaLangReflectArray_newInstanceWithIOSClass_withInt_(componentType_, [list size]);
-  for (jint i = 0; i < [list size]; i++) {
+  jint size = [list size];
+  id array = JavaLangReflectArray_newInstanceWithIOSClass_withInt_(componentType_, size);
+  for (jint i = 0; i < size; i++) {
     JavaLangReflectArray_setWithId_withInt_withId_(array, i, [list getWithInt:i]);
   }
   return array;

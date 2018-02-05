@@ -11,6 +11,7 @@
 #include "JsonWriter.h"
 #include "java/io/IOException.h"
 #include "java/io/Writer.h"
+#include "java/lang/Boolean.h"
 #include "java/lang/Double.h"
 #include "java/lang/IllegalArgumentException.h"
 #include "java/lang/IllegalStateException.h"
@@ -53,7 +54,7 @@
 
 - (void)beforeName;
 
-- (void)beforeValueWithBoolean:(jboolean)root;
+- (void)beforeValue;
 
 @end
 
@@ -89,7 +90,7 @@ __attribute__((unused)) static void GsonJsonWriter_newline(GsonJsonWriter *self)
 
 __attribute__((unused)) static void GsonJsonWriter_beforeName(GsonJsonWriter *self);
 
-__attribute__((unused)) static void GsonJsonWriter_beforeValueWithBoolean_(GsonJsonWriter *self, jboolean root);
+__attribute__((unused)) static void GsonJsonWriter_beforeValue(GsonJsonWriter *self);
 
 J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
 
@@ -199,7 +200,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
     return [self nullValue];
   }
   GsonJsonWriter_writeDeferredName(self);
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
   GsonJsonWriter_stringWithNSString_(self, value);
   return self;
 }
@@ -209,7 +210,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
     return [self nullValue];
   }
   GsonJsonWriter_writeDeferredName(self);
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
   (void) [((JavaIoWriter *) nil_chk(out_)) appendWithJavaLangCharSequence:value];
   return self;
 }
@@ -224,31 +225,41 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
       return self;
     }
   }
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
   [((JavaIoWriter *) nil_chk(out_)) writeWithNSString:@"null"];
   return self;
 }
 
 - (GsonJsonWriter *)valueWithBoolean:(jboolean)value {
   GsonJsonWriter_writeDeferredName(self);
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
   [((JavaIoWriter *) nil_chk(out_)) writeWithNSString:value ? @"true" : @"false"];
   return self;
 }
 
-- (GsonJsonWriter *)valueWithDouble:(jdouble)value {
-  if (JavaLangDouble_isNaNWithDouble_(value) || JavaLangDouble_isInfiniteWithDouble_(value)) {
-    @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("$D", @"Numeric values must be finite, but was ", value));
+- (GsonJsonWriter *)valueWithJavaLangBoolean:(JavaLangBoolean *)value {
+  if (value == nil) {
+    return [self nullValue];
   }
   GsonJsonWriter_writeDeferredName(self);
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
+  [((JavaIoWriter *) nil_chk(out_)) writeWithNSString:[value booleanValue] ? @"true" : @"false"];
+  return self;
+}
+
+- (GsonJsonWriter *)valueWithDouble:(jdouble)value {
+  GsonJsonWriter_writeDeferredName(self);
+  if (!lenient_ && (JavaLangDouble_isNaNWithDouble_(value) || JavaLangDouble_isInfiniteWithDouble_(value))) {
+    @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("$D", @"Numeric values must be finite, but was ", value));
+  }
+  GsonJsonWriter_beforeValue(self);
   (void) [((JavaIoWriter *) nil_chk(out_)) appendWithJavaLangCharSequence:JavaLangDouble_toStringWithDouble_(value)];
   return self;
 }
 
 - (GsonJsonWriter *)valueWithLong:(jlong)value {
   GsonJsonWriter_writeDeferredName(self);
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
   [((JavaIoWriter *) nil_chk(out_)) writeWithNSString:JavaLangLong_toStringWithLong_(value)];
   return self;
 }
@@ -262,7 +273,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
   if (!lenient_ && ([((NSString *) nil_chk(string)) isEqual:@"-Infinity"] || [string isEqual:@"Infinity"] || [string isEqual:@"NaN"])) {
     @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("$@", @"Numeric values must be finite, but was ", value));
   }
-  GsonJsonWriter_beforeValueWithBoolean_(self, false);
+  GsonJsonWriter_beforeValue(self);
   (void) [((JavaIoWriter *) nil_chk(out_)) appendWithJavaLangCharSequence:string];
   return self;
 }
@@ -295,8 +306,8 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
   GsonJsonWriter_beforeName(self);
 }
 
-- (void)beforeValueWithBoolean:(jboolean)root {
-  GsonJsonWriter_beforeValueWithBoolean_(self, root);
+- (void)beforeValue {
+  GsonJsonWriter_beforeValue(self);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -327,12 +338,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
     { NULL, "LGsonJsonWriter;", 0x1, 16, 18, 7, -1, -1, -1 },
     { NULL, "LGsonJsonWriter;", 0x1, 16, 19, 7, -1, -1, -1 },
     { NULL, "LGsonJsonWriter;", 0x1, 16, 20, 7, -1, -1, -1 },
+    { NULL, "LGsonJsonWriter;", 0x1, 16, 21, 7, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, 7, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, 7, -1, -1, -1 },
-    { NULL, "V", 0x2, 21, 2, 7, -1, -1, -1 },
+    { NULL, "V", 0x2, 22, 2, 7, -1, -1, -1 },
     { NULL, "V", 0x2, -1, -1, 7, -1, -1, -1 },
     { NULL, "V", 0x2, -1, -1, 7, -1, -1, -1 },
-    { NULL, "V", 0x2, 22, 4, 7, -1, -1, -1 },
+    { NULL, "V", 0x2, -1, -1, 7, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -359,15 +371,16 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
   methods[20].selector = @selector(jsonValueWithNSString:);
   methods[21].selector = @selector(nullValue);
   methods[22].selector = @selector(valueWithBoolean:);
-  methods[23].selector = @selector(valueWithDouble:);
-  methods[24].selector = @selector(valueWithLong:);
-  methods[25].selector = @selector(valueWithNSNumber:);
-  methods[26].selector = @selector(flush);
-  methods[27].selector = @selector(close);
-  methods[28].selector = @selector(stringWithNSString:);
-  methods[29].selector = @selector(newline);
-  methods[30].selector = @selector(beforeName);
-  methods[31].selector = @selector(beforeValueWithBoolean:);
+  methods[23].selector = @selector(valueWithJavaLangBoolean:);
+  methods[24].selector = @selector(valueWithDouble:);
+  methods[25].selector = @selector(valueWithLong:);
+  methods[26].selector = @selector(valueWithNSNumber:);
+  methods[27].selector = @selector(flush);
+  methods[28].selector = @selector(close);
+  methods[29].selector = @selector(stringWithNSString:);
+  methods[30].selector = @selector(newline);
+  methods[31].selector = @selector(beforeName);
+  methods[32].selector = @selector(beforeValue);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "REPLACEMENT_CHARS", "[LNSString;", .constantValue.asLong = 0, 0x1a, -1, 23, -1, -1 },
@@ -382,8 +395,8 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
     { "deferredName_", "LNSString;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "serializeNulls_", "Z", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LJavaIoWriter;", "setIndent", "LNSString;", "setLenient", "Z", "setHtmlSafe", "setSerializeNulls", "LJavaIoIOException;", "open", "ILNSString;", "close", "IILNSString;", "push", "I", "replaceTop", "name", "value", "jsonValue", "D", "J", "LNSNumber;", "string", "beforeValue", &GsonJsonWriter_REPLACEMENT_CHARS, &GsonJsonWriter_HTML_SAFE_REPLACEMENT_CHARS };
-  static const J2ObjcClassInfo _GsonJsonWriter = { "JsonWriter", "com.google.gson.stream", ptrTable, methods, fields, 7, 0x1, 32, 11, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "LJavaIoWriter;", "setIndent", "LNSString;", "setLenient", "Z", "setHtmlSafe", "setSerializeNulls", "LJavaIoIOException;", "open", "ILNSString;", "close", "IILNSString;", "push", "I", "replaceTop", "name", "value", "jsonValue", "LJavaLangBoolean;", "D", "J", "LNSNumber;", "string", &GsonJsonWriter_REPLACEMENT_CHARS, &GsonJsonWriter_HTML_SAFE_REPLACEMENT_CHARS };
+  static const J2ObjcClassInfo _GsonJsonWriter = { "JsonWriter", "com.google.gson.stream", ptrTable, methods, fields, 7, 0x1, 33, 11, -1, -1, -1, -1, -1 };
   return &_GsonJsonWriter;
 }
 
@@ -438,7 +451,7 @@ GsonJsonWriter *create_GsonJsonWriter_initWithJavaIoWriter_(JavaIoWriter *outArg
 }
 
 GsonJsonWriter *GsonJsonWriter_openWithInt_withNSString_(GsonJsonWriter *self, jint empty, NSString *openBracket) {
-  GsonJsonWriter_beforeValueWithBoolean_(self, true);
+  GsonJsonWriter_beforeValue(self);
   GsonJsonWriter_pushWithInt_(self, empty);
   [((JavaIoWriter *) nil_chk(self->out_)) writeWithNSString:openBracket];
   return self;
@@ -545,16 +558,13 @@ void GsonJsonWriter_beforeName(GsonJsonWriter *self) {
   GsonJsonWriter_replaceTopWithInt_(self, GsonJsonScope_DANGLING_NAME);
 }
 
-void GsonJsonWriter_beforeValueWithBoolean_(GsonJsonWriter *self, jboolean root) {
+void GsonJsonWriter_beforeValue(GsonJsonWriter *self) {
   switch (GsonJsonWriter_peek(self)) {
     case GsonJsonScope_NONEMPTY_DOCUMENT:
     if (!self->lenient_) {
       @throw new_JavaLangIllegalStateException_initWithNSString_(@"JSON must have only one top-level value.");
     }
     case GsonJsonScope_EMPTY_DOCUMENT:
-    if (!self->lenient_ && !root) {
-      @throw new_JavaLangIllegalStateException_initWithNSString_(@"JSON must start with an array or an object.");
-    }
     GsonJsonWriter_replaceTopWithInt_(self, GsonJsonScope_NONEMPTY_DOCUMENT);
     break;
     case GsonJsonScope_EMPTY_ARRAY:

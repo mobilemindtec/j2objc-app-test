@@ -13,38 +13,20 @@
 #endif
 #undef RESTRICT_Constants
 
-#if !defined (AppConstants_) && (INCLUDE_ALL_Constants || defined(INCLUDE_AppConstants))
-#define AppConstants_
+#if !defined (ComYahooSquidbAnnotationsConstants_) && (INCLUDE_ALL_Constants || defined(INCLUDE_ComYahooSquidbAnnotationsConstants))
+#define ComYahooSquidbAnnotationsConstants_
 
-@interface AppConstants : NSObject
+#define RESTRICT_JavaLangAnnotationAnnotation 1
+#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "java/lang/annotation/Annotation.h"
 
-+ (NSString *)SERVER_END_POINT;
-
-+ (void)setSERVER_END_POINT:(NSString *)value;
-
-#pragma mark Public
-
-- (instancetype)init;
+@protocol ComYahooSquidbAnnotationsConstants < JavaLangAnnotationAnnotation >
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(AppConstants)
+J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsConstants)
 
-inline NSString *AppConstants_get_SERVER_END_POINT(void);
-inline NSString *AppConstants_set_SERVER_END_POINT(NSString *value);
-/*! INTERNAL ONLY - Use accessor function from above. */
-FOUNDATION_EXPORT NSString *AppConstants_SERVER_END_POINT;
-J2OBJC_STATIC_FIELD_OBJ(AppConstants, SERVER_END_POINT, NSString *)
-
-FOUNDATION_EXPORT void AppConstants_init(AppConstants *self);
-
-FOUNDATION_EXPORT AppConstants *new_AppConstants_init(void) NS_RETURNS_RETAINED;
-
-FOUNDATION_EXPORT AppConstants *create_AppConstants_init(void);
-
-J2OBJC_TYPE_LITERAL_HEADER(AppConstants)
-
-@compatibility_alias BrComMobilemindAppUtilConstants AppConstants;
+J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsConstants)
 
 #endif
 

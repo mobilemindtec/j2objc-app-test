@@ -168,6 +168,14 @@ J2OBJC_IGNORE_DESIGNATED_END
   return self;
 }
 
+- (GsonJsonWriter *)valueWithJavaLangBoolean:(JavaLangBoolean *)value {
+  if (value == nil) {
+    return [self nullValue];
+  }
+  GsonJsonTreeWriter_putWithGsonJsonElement_(self, new_GsonJsonPrimitive_initWithJavaLangBoolean_(value));
+  return self;
+}
+
 - (GsonJsonWriter *)valueWithDouble:(jdouble)value {
   if (![self isLenient] && (JavaLangDouble_isNaNWithDouble_(value) || JavaLangDouble_isInfiniteWithDouble_(value))) {
     @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("$D", @"JSON forbids NaN and infinities: ", value));
@@ -222,6 +230,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "LGsonJsonWriter;", 0x1, 5, 7, 2, -1, -1, -1 },
     { NULL, "LGsonJsonWriter;", 0x1, 5, 8, 2, -1, -1, -1 },
     { NULL, "LGsonJsonWriter;", 0x1, 5, 9, 2, -1, -1, -1 },
+    { NULL, "LGsonJsonWriter;", 0x1, 5, 10, 2, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, 2, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, 2, -1, -1, -1 },
   };
@@ -239,21 +248,22 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[9].selector = @selector(valueWithNSString:);
   methods[10].selector = @selector(nullValue);
   methods[11].selector = @selector(valueWithBoolean:);
-  methods[12].selector = @selector(valueWithDouble:);
-  methods[13].selector = @selector(valueWithLong:);
-  methods[14].selector = @selector(valueWithNSNumber:);
-  methods[15].selector = @selector(flush);
-  methods[16].selector = @selector(close);
+  methods[12].selector = @selector(valueWithJavaLangBoolean:);
+  methods[13].selector = @selector(valueWithDouble:);
+  methods[14].selector = @selector(valueWithLong:);
+  methods[15].selector = @selector(valueWithNSNumber:);
+  methods[16].selector = @selector(flush);
+  methods[17].selector = @selector(close);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "UNWRITABLE_WRITER", "LJavaIoWriter;", .constantValue.asLong = 0, 0x1a, -1, 10, -1, -1 },
-    { "SENTINEL_CLOSED", "LGsonJsonPrimitive;", .constantValue.asLong = 0, 0x1a, -1, 11, -1, -1 },
-    { "stack_JsonTreeWriter_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, 12, -1, 13, -1 },
+    { "UNWRITABLE_WRITER", "LJavaIoWriter;", .constantValue.asLong = 0, 0x1a, -1, 11, -1, -1 },
+    { "SENTINEL_CLOSED", "LGsonJsonPrimitive;", .constantValue.asLong = 0, 0x1a, -1, 12, -1, -1 },
+    { "stack_JsonTreeWriter_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, 13, -1, 14, -1 },
     { "pendingName_", "LNSString;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "product_", "LGsonJsonElement;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "put", "LGsonJsonElement;", "LJavaIoIOException;", "name", "LNSString;", "value", "Z", "D", "J", "LNSNumber;", &GsonJsonTreeWriter_UNWRITABLE_WRITER, &GsonJsonTreeWriter_SENTINEL_CLOSED, "stack", "Ljava/util/List<Lcom/google/gson/JsonElement;>;" };
-  static const J2ObjcClassInfo _GsonJsonTreeWriter = { "JsonTreeWriter", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 17, 5, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "put", "LGsonJsonElement;", "LJavaIoIOException;", "name", "LNSString;", "value", "Z", "LJavaLangBoolean;", "D", "J", "LNSNumber;", &GsonJsonTreeWriter_UNWRITABLE_WRITER, &GsonJsonTreeWriter_SENTINEL_CLOSED, "stack", "Ljava/util/List<Lcom/google/gson/JsonElement;>;" };
+  static const J2ObjcClassInfo _GsonJsonTreeWriter = { "JsonTreeWriter", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 18, 5, -1, -1, -1, -1, -1 };
   return &_GsonJsonTreeWriter;
 }
 

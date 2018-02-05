@@ -25,19 +25,21 @@
 @protocol GsonJsonAdapter < JavaLangAnnotationAnnotation >
 
 @property (readonly) IOSClass *value;
+@property (readonly) jboolean nullSafe;
 
 @end
 
 @interface GsonJsonAdapter : NSObject < GsonJsonAdapter > {
  @public
   IOSClass *value_;
+  jboolean nullSafe_;
 }
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonJsonAdapter)
 
-FOUNDATION_EXPORT id<GsonJsonAdapter> create_GsonJsonAdapter(IOSClass *value);
+FOUNDATION_EXPORT id<GsonJsonAdapter> create_GsonJsonAdapter(jboolean nullSafe, IOSClass *value);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonJsonAdapter)
 

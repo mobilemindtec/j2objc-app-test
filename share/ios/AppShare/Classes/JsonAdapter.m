@@ -18,35 +18,44 @@ __attribute__((unused)) static IOSObjectArray *GsonJsonAdapter__Annotations$0(vo
 @implementation GsonJsonAdapter
 
 @synthesize value = value_;
+@synthesize nullSafe = nullSafe_;
+
++ (jboolean)nullSafeDefault {
+  return true;
+}
 
 - (IOSClass *)annotationType {
   return GsonJsonAdapter_class_();
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"@com.google.gson.annotations.JsonAdapter(value=%@)", value_];
+  return [NSString stringWithFormat:@"@com.google.gson.annotations.JsonAdapter(value=%@, nullSafe=%d)", value_, nullSafe_];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "LIOSClass;", 0x401, -1, -1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x401, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   methods[0].selector = @selector(value);
+  methods[1].selector = @selector(nullSafe);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "value_", "LIOSClass;", .constantValue.asLong = 0, 0x1000, -1, -1, 0, -1 },
+    { "nullSafe_", "Z", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "Ljava/lang/Class<*>;", (void *)&GsonJsonAdapter__Annotations$0 };
-  static const J2ObjcClassInfo _GsonJsonAdapter = { "JsonAdapter", "com.google.gson.annotations", ptrTable, methods, fields, 7, 0x2609, 1, 1, -1, -1, -1, -1, 1 };
+  static const J2ObjcClassInfo _GsonJsonAdapter = { "JsonAdapter", "com.google.gson.annotations", ptrTable, methods, fields, 7, 0x2609, 2, 2, -1, -1, -1, -1, 1 };
   return &_GsonJsonAdapter;
 }
 
 @end
 
-id<GsonJsonAdapter> create_GsonJsonAdapter(IOSClass *value) {
+id<GsonJsonAdapter> create_GsonJsonAdapter(jboolean nullSafe, IOSClass *value) {
   GsonJsonAdapter *self = AUTORELEASE([[GsonJsonAdapter alloc] init]);
+  self->nullSafe_ = nullSafe;
   self->value_ = RETAIN_(value);
   return self;
 }

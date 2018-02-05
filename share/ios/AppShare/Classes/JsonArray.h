@@ -38,6 +38,8 @@
 
 - (instancetype)init;
 
+- (instancetype)initWithInt:(jint)capacity;
+
 - (void)addWithJavaLangBoolean:(JavaLangBoolean *)bool_;
 
 - (void)addWithJavaLangCharacter:(JavaLangCharacter *)character;
@@ -51,6 +53,8 @@
 - (void)addAllWithGsonJsonArray:(GsonJsonArray *)array;
 
 - (jboolean)containsWithGsonJsonElement:(GsonJsonElement *)element;
+
+- (GsonJsonArray *)deepCopy;
 
 - (jboolean)isEqual:(id)o;
 
@@ -95,8 +99,6 @@
 
 #pragma mark Package-Private
 
-- (GsonJsonArray *)deepCopy;
-
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonJsonArray)
@@ -106,6 +108,12 @@ FOUNDATION_EXPORT void GsonJsonArray_init(GsonJsonArray *self);
 FOUNDATION_EXPORT GsonJsonArray *new_GsonJsonArray_init(void) NS_RETURNS_RETAINED;
 
 FOUNDATION_EXPORT GsonJsonArray *create_GsonJsonArray_init(void);
+
+FOUNDATION_EXPORT void GsonJsonArray_initWithInt_(GsonJsonArray *self, jint capacity);
+
+FOUNDATION_EXPORT GsonJsonArray *new_GsonJsonArray_initWithInt_(jint capacity) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT GsonJsonArray *create_GsonJsonArray_initWithInt_(jint capacity);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonJsonArray)
 

@@ -63,21 +63,21 @@ J2OBJC_IGNORE_DESIGNATED_END
   if ([self isJsonArray]) {
     return (GsonJsonArray *) cast_chk(self, [GsonJsonArray class]);
   }
-  @throw new_JavaLangIllegalStateException_initWithNSString_(@"This is not a JSON Array.");
+  @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@", @"Not a JSON Array: ", self));
 }
 
 - (GsonJsonPrimitive *)getAsJsonPrimitive {
   if ([self isJsonPrimitive]) {
     return (GsonJsonPrimitive *) cast_chk(self, [GsonJsonPrimitive class]);
   }
-  @throw new_JavaLangIllegalStateException_initWithNSString_(@"This is not a JSON Primitive.");
+  @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@", @"Not a JSON Primitive: ", self));
 }
 
 - (GsonJsonNull *)getAsJsonNull {
   if ([self isJsonNull]) {
     return (GsonJsonNull *) cast_chk(self, [GsonJsonNull class]);
   }
-  @throw new_JavaLangIllegalStateException_initWithNSString_(@"This is not a JSON Null.");
+  @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@", @"Not a JSON Null: ", self));
 }
 
 - (jboolean)getAsBoolean {
@@ -148,7 +148,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LGsonJsonElement;", 0x400, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonElement;", 0x401, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, -1, -1, -1, -1, -1, -1 },

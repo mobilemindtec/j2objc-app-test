@@ -25,7 +25,10 @@
 @class GsonTypeAdapter;
 @class GsonTypeToken;
 
-@interface GsonMapTypeAdapterFactory : NSObject < GsonTypeAdapterFactory >
+@interface GsonMapTypeAdapterFactory : NSObject < GsonTypeAdapterFactory > {
+ @public
+  jboolean complexMapKeySerialization_;
+}
 
 #pragma mark Public
 

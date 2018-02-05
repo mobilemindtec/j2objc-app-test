@@ -6,41 +6,37 @@
 #include "DateTypeAdapter.h"
 #include "Gson.h"
 #include "IOSClass.h"
+#include "ISO8601Utils.h"
 #include "J2ObjC_source.h"
 #include "JsonReader.h"
 #include "JsonSyntaxException.h"
 #include "JsonToken.h"
 #include "JsonWriter.h"
+#include "PreJava9DateFormatProvider.h"
 #include "TypeAdapter.h"
 #include "TypeAdapterFactory.h"
 #include "TypeToken.h"
+#include "VersionUtils.h"
 #include "java/text/DateFormat.h"
 #include "java/text/ParseException.h"
-#include "java/text/SimpleDateFormat.h"
+#include "java/text/ParsePosition.h"
+#include "java/util/ArrayList.h"
 #include "java/util/Date.h"
+#include "java/util/List.h"
 #include "java/util/Locale.h"
-#include "java/util/TimeZone.h"
 
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 
 @interface GsonDateTypeAdapter () {
  @public
-  JavaTextDateFormat *enUsFormat_;
-  JavaTextDateFormat *localFormat_;
-  JavaTextDateFormat *iso8601Format_;
+  id<JavaUtilList> dateFormats_;
 }
-
-+ (JavaTextDateFormat *)buildIso8601Format;
 
 - (JavaUtilDate *)deserializeToDateWithNSString:(NSString *)json;
 
 @end
 
-J2OBJC_FIELD_SETTER(GsonDateTypeAdapter, enUsFormat_, JavaTextDateFormat *)
-J2OBJC_FIELD_SETTER(GsonDateTypeAdapter, localFormat_, JavaTextDateFormat *)
-J2OBJC_FIELD_SETTER(GsonDateTypeAdapter, iso8601Format_, JavaTextDateFormat *)
-
-__attribute__((unused)) static JavaTextDateFormat *GsonDateTypeAdapter_buildIso8601Format(void);
+J2OBJC_FIELD_SETTER(GsonDateTypeAdapter, dateFormats_, id<JavaUtilList>)
 
 __attribute__((unused)) static JavaUtilDate *GsonDateTypeAdapter_deserializeToDateWithNSString_(GsonDateTypeAdapter *self, NSString *json);
 
@@ -78,10 +74,6 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-+ (JavaTextDateFormat *)buildIso8601Format {
-  return GsonDateTypeAdapter_buildIso8601Format();
-}
-
 - (JavaUtilDate *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
   if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
     [inArg nextNull];
@@ -101,7 +93,7 @@ J2OBJC_IGNORE_DESIGNATED_END
       (void) [((GsonJsonWriter *) nil_chk(outArg)) nullValue];
       return;
     }
-    NSString *dateFormatAsString = [((JavaTextDateFormat *) nil_chk(enUsFormat_)) formatWithJavaUtilDate:value];
+    NSString *dateFormatAsString = [((JavaTextDateFormat *) nil_chk([((id<JavaUtilList>) nil_chk(dateFormats_)) getWithInt:0])) formatWithJavaUtilDate:value];
     (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSString:dateFormatAsString];
   }
 }
@@ -109,7 +101,6 @@ J2OBJC_IGNORE_DESIGNATED_END
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LJavaTextDateFormat;", 0xa, -1, -1, -1, -1, -1, -1 },
     { NULL, "LJavaUtilDate;", 0x1, 0, 1, 2, -1, -1, -1 },
     { NULL, "LJavaUtilDate;", 0x22, 3, 4, -1, -1, -1, -1 },
     { NULL, "V", 0x21, 5, 6, 2, -1, -1, -1 },
@@ -117,19 +108,16 @@ J2OBJC_IGNORE_DESIGNATED_END
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   methods[0].selector = @selector(init);
-  methods[1].selector = @selector(buildIso8601Format);
-  methods[2].selector = @selector(readWithGsonJsonReader:);
-  methods[3].selector = @selector(deserializeToDateWithNSString:);
-  methods[4].selector = @selector(writeWithGsonJsonWriter:withId:);
+  methods[1].selector = @selector(readWithGsonJsonReader:);
+  methods[2].selector = @selector(deserializeToDateWithNSString:);
+  methods[3].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 7, -1, -1 },
-    { "enUsFormat_", "LJavaTextDateFormat;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
-    { "localFormat_", "LJavaTextDateFormat;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
-    { "iso8601Format_", "LJavaTextDateFormat;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "dateFormats_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 8, -1 },
   };
-  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "deserializeToDate", "LNSString;", "write", "LGsonJsonWriter;LJavaUtilDate;", &GsonDateTypeAdapter_FACTORY, "Lcom/google/gson/TypeAdapter<Ljava/util/Date;>;" };
-  static const J2ObjcClassInfo _GsonDateTypeAdapter = { "DateTypeAdapter", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 5, 4, -1, -1, -1, 8, -1 };
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "deserializeToDate", "LNSString;", "write", "LGsonJsonWriter;LJavaUtilDate;", &GsonDateTypeAdapter_FACTORY, "Ljava/util/List<Ljava/text/DateFormat;>;", "Lcom/google/gson/TypeAdapter<Ljava/util/Date;>;" };
+  static const J2ObjcClassInfo _GsonDateTypeAdapter = { "DateTypeAdapter", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 4, 2, -1, -1, -1, 9, -1 };
   return &_GsonDateTypeAdapter;
 }
 
@@ -144,9 +132,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void GsonDateTypeAdapter_init(GsonDateTypeAdapter *self) {
   GsonTypeAdapter_init(self);
-  self->enUsFormat_ = JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_withJavaUtilLocale_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT, JreLoadStatic(JavaUtilLocale, US));
-  self->localFormat_ = JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT);
-  self->iso8601Format_ = GsonDateTypeAdapter_buildIso8601Format();
+  self->dateFormats_ = new_JavaUtilArrayList_init();
+  [self->dateFormats_ addWithId:JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_withJavaUtilLocale_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT, JreLoadStatic(JavaUtilLocale, US))];
+  if (![((JavaUtilLocale *) nil_chk(JavaUtilLocale_getDefault())) isEqual:JreLoadStatic(JavaUtilLocale, US)]) {
+    [self->dateFormats_ addWithId:JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT)];
+  }
+  if (ComGoogleGsonUtilVersionUtils_isJava9OrLater()) {
+    [self->dateFormats_ addWithId:GsonPreJava9DateFormatProvider_getUSDateTimeFormatWithInt_withInt_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT)];
+  }
 }
 
 GsonDateTypeAdapter *new_GsonDateTypeAdapter_init() {
@@ -157,27 +150,17 @@ GsonDateTypeAdapter *create_GsonDateTypeAdapter_init() {
   J2OBJC_CREATE_IMPL(GsonDateTypeAdapter, init)
 }
 
-JavaTextDateFormat *GsonDateTypeAdapter_buildIso8601Format() {
-  GsonDateTypeAdapter_initialize();
-  JavaTextDateFormat *iso8601Format = new_JavaTextSimpleDateFormat_initWithNSString_withJavaUtilLocale_(@"yyyy-MM-dd'T'HH:mm:ss'Z'", JreLoadStatic(JavaUtilLocale, US));
-  [iso8601Format setTimeZoneWithJavaUtilTimeZone:JavaUtilTimeZone_getTimeZoneWithNSString_(@"UTC")];
-  return iso8601Format;
-}
-
 JavaUtilDate *GsonDateTypeAdapter_deserializeToDateWithNSString_(GsonDateTypeAdapter *self, NSString *json) {
   @synchronized(self) {
-    @try {
-      return [((JavaTextDateFormat *) nil_chk(self->localFormat_)) parseWithNSString:json];
-    }
-    @catch (JavaTextParseException *ignored) {
-    }
-    @try {
-      return [((JavaTextDateFormat *) nil_chk(self->enUsFormat_)) parseWithNSString:json];
-    }
-    @catch (JavaTextParseException *ignored) {
+    for (JavaTextDateFormat * __strong dateFormat in nil_chk(self->dateFormats_)) {
+      @try {
+        return [((JavaTextDateFormat *) nil_chk(dateFormat)) parseWithNSString:json];
+      }
+      @catch (JavaTextParseException *ignored) {
+      }
     }
     @try {
-      return [((JavaTextDateFormat *) nil_chk(self->iso8601Format_)) parseWithNSString:json];
+      return ComGoogleGsonInternalBindUtilISO8601Utils_parseWithNSString_withJavaTextParsePosition_(json, new_JavaTextParsePosition_initWithInt_(0));
     }
     @catch (JavaTextParseException *e) {
       @throw new_GsonJsonSyntaxException_initWithNSString_withJavaLangThrowable_(json, e);

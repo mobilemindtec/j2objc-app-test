@@ -28,6 +28,10 @@
 
 - (id)newInstanceWithIOSClass:(IOSClass *)c OBJC_METHOD_FAMILY_NONE;
 
+#pragma mark Package-Private
+
++ (void)assertInstantiableWithIOSClass:(IOSClass *)c;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonUnsafeAllocator)
@@ -35,6 +39,8 @@ J2OBJC_EMPTY_STATIC_INIT(GsonUnsafeAllocator)
 FOUNDATION_EXPORT void GsonUnsafeAllocator_init(GsonUnsafeAllocator *self);
 
 FOUNDATION_EXPORT GsonUnsafeAllocator *GsonUnsafeAllocator_create(void);
+
+FOUNDATION_EXPORT void GsonUnsafeAllocator_assertInstantiableWithIOSClass_(IOSClass *c);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonUnsafeAllocator)
 

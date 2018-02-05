@@ -21,21 +21,17 @@
 #include "TypeToken.h"
 #include "java/lang/reflect/Type.h"
 
+@class GsonTreeTypeAdapter_GsonContextImpl;
+
 @interface GsonTreeTypeAdapter () {
  @public
   id<GsonJsonSerializer> serializer_;
   id<GsonJsonDeserializer> deserializer_;
-  GsonGson *gson_;
   GsonTypeToken *typeToken_;
   id<GsonTypeAdapterFactory> skipPast_;
+  GsonTreeTypeAdapter_GsonContextImpl *context_;
   GsonTypeAdapter *delegate_;
 }
-
-- (instancetype)initWithGsonJsonSerializer:(id<GsonJsonSerializer>)serializer
-                  withGsonJsonDeserializer:(id<GsonJsonDeserializer>)deserializer
-                              withGsonGson:(GsonGson *)gson
-                         withGsonTypeToken:(GsonTypeToken *)typeToken
-                withGsonTypeAdapterFactory:(id<GsonTypeAdapterFactory>)skipPast;
 
 - (GsonTypeAdapter *)delegate;
 
@@ -43,16 +39,10 @@
 
 J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, serializer_, id<GsonJsonSerializer>)
 J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, deserializer_, id<GsonJsonDeserializer>)
-J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, gson_, GsonGson *)
 J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, typeToken_, GsonTypeToken *)
 J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, skipPast_, id<GsonTypeAdapterFactory>)
+J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, context_, GsonTreeTypeAdapter_GsonContextImpl *)
 J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, delegate_, GsonTypeAdapter *)
-
-__attribute__((unused)) static void GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(GsonTreeTypeAdapter *self, id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast);
-
-__attribute__((unused)) static GsonTreeTypeAdapter *new_GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static GsonTreeTypeAdapter *create_GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast);
 
 __attribute__((unused)) static GsonTypeAdapter *GsonTreeTypeAdapter_delegate(GsonTreeTypeAdapter *self);
 
@@ -90,6 +80,33 @@ __attribute__((unused)) static GsonTreeTypeAdapter_SingleTypeFactory *create_Gso
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_SingleTypeFactory)
 
+@interface GsonTreeTypeAdapter_GsonContextImpl : NSObject < GsonJsonSerializationContext, GsonJsonDeserializationContext > {
+ @public
+  GsonTreeTypeAdapter *this$0_;
+}
+
+- (instancetype)initWithGsonTreeTypeAdapter:(GsonTreeTypeAdapter *)outer$;
+
+- (GsonJsonElement *)serializeWithId:(id)src;
+
+- (GsonJsonElement *)serializeWithId:(id)src
+             withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc;
+
+- (id)deserializeWithGsonJsonElement:(GsonJsonElement *)json
+             withJavaLangReflectType:(id<JavaLangReflectType>)typeOfT;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonTreeTypeAdapter_GsonContextImpl)
+
+__attribute__((unused)) static void GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(GsonTreeTypeAdapter_GsonContextImpl *self, GsonTreeTypeAdapter *outer$);
+
+__attribute__((unused)) static GsonTreeTypeAdapter_GsonContextImpl *new_GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(GsonTreeTypeAdapter *outer$) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonTreeTypeAdapter_GsonContextImpl *create_GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(GsonTreeTypeAdapter *outer$);
+
+J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_GsonContextImpl)
+
 @implementation GsonTreeTypeAdapter
 
 - (instancetype)initWithGsonJsonSerializer:(id<GsonJsonSerializer>)serializer
@@ -109,7 +126,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_SingleTypeFactory)
   if ([((GsonJsonElement *) nil_chk(value)) isJsonNull]) {
     return nil;
   }
-  return [deserializer_ deserializeWithGsonJsonElement:value withJavaLangReflectType:[((GsonTypeToken *) nil_chk(typeToken_)) getType] withGsonJsonDeserializationContext:((GsonGson *) nil_chk(gson_))->deserializationContext_];
+  return [deserializer_ deserializeWithGsonJsonElement:value withJavaLangReflectType:[((GsonTypeToken *) nil_chk(typeToken_)) getType] withGsonJsonDeserializationContext:context_];
 }
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
@@ -122,7 +139,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_SingleTypeFactory)
     (void) [((GsonJsonWriter *) nil_chk(outArg)) nullValue];
     return;
   }
-  GsonJsonElement *tree = [serializer_ serializeWithId:value withJavaLangReflectType:[((GsonTypeToken *) nil_chk(typeToken_)) getType] withGsonJsonSerializationContext:((GsonGson *) nil_chk(gson_))->serializationContext_];
+  GsonJsonElement *tree = [serializer_ serializeWithId:value withJavaLangReflectType:[((GsonTypeToken *) nil_chk(typeToken_)) getType] withGsonJsonSerializationContext:context_];
   GsonStreams_writeWithGsonJsonElement_withGsonJsonWriter_(tree, outArg);
 }
 
@@ -147,7 +164,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_SingleTypeFactory)
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x2, -1, 0, -1, 1, -1, -1 },
+    { NULL, NULL, 0x1, -1, 0, -1, 1, -1, -1 },
     { NULL, "LNSObject;", 0x1, 2, 3, 4, 5, -1, -1 },
     { NULL, "V", 0x1, 6, 7, 4, 8, -1, -1 },
     { NULL, "LGsonTypeAdapter;", 0x2, -1, -1, -1, 9, -1, -1 },
@@ -168,13 +185,14 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_SingleTypeFactory)
   static const J2ObjcFieldInfo fields[] = {
     { "serializer_", "LGsonJsonSerializer;", .constantValue.asLong = 0, 0x12, -1, -1, 17, -1 },
     { "deserializer_", "LGsonJsonDeserializer;", .constantValue.asLong = 0, 0x12, -1, -1, 18, -1 },
-    { "gson_", "LGsonGson;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "gson_", "LGsonGson;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
     { "typeToken_", "LGsonTypeToken;", .constantValue.asLong = 0, 0x12, -1, -1, 19, -1 },
     { "skipPast_", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "context_", "LGsonTreeTypeAdapter_GsonContextImpl;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
     { "delegate_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x2, -1, -1, 20, -1 },
   };
-  static const void *ptrTable[] = { "LGsonJsonSerializer;LGsonJsonDeserializer;LGsonGson;LGsonTypeToken;LGsonTypeAdapterFactory;", "(Lcom/google/gson/JsonSerializer<TT;>;Lcom/google/gson/JsonDeserializer<TT;>;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;Lcom/google/gson/TypeAdapterFactory;)V", "read", "LGsonJsonReader;", "LJavaIoIOException;", "(Lcom/google/gson/stream/JsonReader;)TT;", "write", "LGsonJsonWriter;LNSObject;", "(Lcom/google/gson/stream/JsonWriter;TT;)V", "()Lcom/google/gson/TypeAdapter<TT;>;", "newFactory", "LGsonTypeToken;LNSObject;", "(Lcom/google/gson/reflect/TypeToken<*>;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;", "newFactoryWithMatchRawType", "newTypeHierarchyFactory", "LIOSClass;LNSObject;", "(Ljava/lang/Class<*>;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;", "Lcom/google/gson/JsonSerializer<TT;>;", "Lcom/google/gson/JsonDeserializer<TT;>;", "Lcom/google/gson/reflect/TypeToken<TT;>;", "Lcom/google/gson/TypeAdapter<TT;>;", "LGsonTreeTypeAdapter_SingleTypeFactory;", "<T:Ljava/lang/Object;>Lcom/google/gson/TypeAdapter<TT;>;" };
-  static const J2ObjcClassInfo _GsonTreeTypeAdapter = { "TreeTypeAdapter", "com.google.gson", ptrTable, methods, fields, 7, 0x10, 7, 6, -1, 21, -1, 22, -1 };
+  static const void *ptrTable[] = { "LGsonJsonSerializer;LGsonJsonDeserializer;LGsonGson;LGsonTypeToken;LGsonTypeAdapterFactory;", "(Lcom/google/gson/JsonSerializer<TT;>;Lcom/google/gson/JsonDeserializer<TT;>;Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;Lcom/google/gson/TypeAdapterFactory;)V", "read", "LGsonJsonReader;", "LJavaIoIOException;", "(Lcom/google/gson/stream/JsonReader;)TT;", "write", "LGsonJsonWriter;LNSObject;", "(Lcom/google/gson/stream/JsonWriter;TT;)V", "()Lcom/google/gson/TypeAdapter<TT;>;", "newFactory", "LGsonTypeToken;LNSObject;", "(Lcom/google/gson/reflect/TypeToken<*>;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;", "newFactoryWithMatchRawType", "newTypeHierarchyFactory", "LIOSClass;LNSObject;", "(Ljava/lang/Class<*>;Ljava/lang/Object;)Lcom/google/gson/TypeAdapterFactory;", "Lcom/google/gson/JsonSerializer<TT;>;", "Lcom/google/gson/JsonDeserializer<TT;>;", "Lcom/google/gson/reflect/TypeToken<TT;>;", "Lcom/google/gson/TypeAdapter<TT;>;", "LGsonTreeTypeAdapter_SingleTypeFactory;LGsonTreeTypeAdapter_GsonContextImpl;", "<T:Ljava/lang/Object;>Lcom/google/gson/TypeAdapter<TT;>;" };
+  static const J2ObjcClassInfo _GsonTreeTypeAdapter = { "TreeTypeAdapter", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 7, 7, -1, 21, -1, 22, -1 };
   return &_GsonTreeTypeAdapter;
 }
 
@@ -182,6 +200,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_SingleTypeFactory)
 
 void GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(GsonTreeTypeAdapter *self, id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast) {
   GsonTypeAdapter_init(self);
+  self->context_ = new_GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(self);
   self->serializer_ = serializer;
   self->deserializer_ = deserializer;
   self->gson_ = gson;
@@ -238,7 +257,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter)
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x2, -1, 0, -1, 1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 0, -1, 1, -1, -1 },
     { NULL, "LGsonTypeAdapter;", 0x1, 2, 3, -1, 4, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -254,7 +273,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter)
     { "deserializer_", "LGsonJsonDeserializer;", .constantValue.asLong = 0, 0x12, -1, -1, 8, -1 },
   };
   static const void *ptrTable[] = { "LNSObject;LGsonTypeToken;ZLIOSClass;", "(Ljava/lang/Object;Lcom/google/gson/reflect/TypeToken<*>;ZLjava/lang/Class<*>;)V", "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "Lcom/google/gson/reflect/TypeToken<*>;", "Ljava/lang/Class<*>;", "Lcom/google/gson/JsonSerializer<*>;", "Lcom/google/gson/JsonDeserializer<*>;", "LGsonTreeTypeAdapter;" };
-  static const J2ObjcClassInfo _GsonTreeTypeAdapter_SingleTypeFactory = { "SingleTypeFactory", "com.google.gson", ptrTable, methods, fields, 7, 0xa, 2, 5, 9, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _GsonTreeTypeAdapter_SingleTypeFactory = { "SingleTypeFactory", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x1a, 2, 5, 9, -1, -1, -1, -1 };
   return &_GsonTreeTypeAdapter_SingleTypeFactory;
 }
 
@@ -279,3 +298,63 @@ GsonTreeTypeAdapter_SingleTypeFactory *create_GsonTreeTypeAdapter_SingleTypeFact
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter_SingleTypeFactory)
+
+@implementation GsonTreeTypeAdapter_GsonContextImpl
+
+- (instancetype)initWithGsonTreeTypeAdapter:(GsonTreeTypeAdapter *)outer$ {
+  GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(self, outer$);
+  return self;
+}
+
+- (GsonJsonElement *)serializeWithId:(id)src {
+  return [((GsonGson *) nil_chk(this$0_->gson_)) toJsonTreeWithId:src];
+}
+
+- (GsonJsonElement *)serializeWithId:(id)src
+             withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc {
+  return [((GsonGson *) nil_chk(this$0_->gson_)) toJsonTreeWithId:src withJavaLangReflectType:typeOfSrc];
+}
+
+- (id)deserializeWithGsonJsonElement:(GsonJsonElement *)json
+             withJavaLangReflectType:(id<JavaLangReflectType>)typeOfT {
+  return [((GsonGson *) nil_chk(this$0_->gson_)) fromJsonWithGsonJsonElement:json withJavaLangReflectType:typeOfT];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x2, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonElement;", 0x1, 0, 1, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonElement;", 0x1, 0, 2, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x1, 3, 4, 5, 6, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithGsonTreeTypeAdapter:);
+  methods[1].selector = @selector(serializeWithId:);
+  methods[2].selector = @selector(serializeWithId:withJavaLangReflectType:);
+  methods[3].selector = @selector(deserializeWithGsonJsonElement:withJavaLangReflectType:);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LGsonTreeTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 7, -1 },
+  };
+  static const void *ptrTable[] = { "serialize", "LNSObject;", "LNSObject;LJavaLangReflectType;", "deserialize", "LGsonJsonElement;LJavaLangReflectType;", "LGsonJsonParseException;", "<R:Ljava/lang/Object;>(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;)TR;", "Lcom/google/gson/internal/bind/TreeTypeAdapter<TT;>;", "LGsonTreeTypeAdapter;" };
+  static const J2ObjcClassInfo _GsonTreeTypeAdapter_GsonContextImpl = { "GsonContextImpl", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x12, 4, 1, 8, -1, -1, -1, -1 };
+  return &_GsonTreeTypeAdapter_GsonContextImpl;
+}
+
+@end
+
+void GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(GsonTreeTypeAdapter_GsonContextImpl *self, GsonTreeTypeAdapter *outer$) {
+  self->this$0_ = outer$;
+  NSObject_init(self);
+}
+
+GsonTreeTypeAdapter_GsonContextImpl *new_GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(GsonTreeTypeAdapter *outer$) {
+  J2OBJC_NEW_IMPL(GsonTreeTypeAdapter_GsonContextImpl, initWithGsonTreeTypeAdapter_, outer$)
+}
+
+GsonTreeTypeAdapter_GsonContextImpl *create_GsonTreeTypeAdapter_GsonContextImpl_initWithGsonTreeTypeAdapter_(GsonTreeTypeAdapter *outer$) {
+  J2OBJC_CREATE_IMPL(GsonTreeTypeAdapter_GsonContextImpl, initWithGsonTreeTypeAdapter_, outer$)
+}
+
+J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter_GsonContextImpl)

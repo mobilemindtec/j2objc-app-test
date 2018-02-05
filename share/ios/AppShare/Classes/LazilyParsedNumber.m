@@ -71,12 +71,19 @@ __attribute__((unused)) static id GsonLazilyParsedNumber_writeReplace(GsonLazily
   return GsonLazilyParsedNumber_writeReplace(self);
 }
 
-- (jboolean)isEqual:(id)obj {
-  return self == obj;
+- (NSUInteger)hash {
+  return ((jint) [((NSString *) nil_chk(value_)) hash]);
 }
 
-- (NSUInteger)hash {
-  return (NSUInteger)self;
+- (jboolean)isEqual:(id)obj {
+  if (self == obj) {
+    return true;
+  }
+  if ([obj isKindOfClass:[GsonLazilyParsedNumber class]]) {
+    GsonLazilyParsedNumber *other = (GsonLazilyParsedNumber *) cast_chk(obj, [GsonLazilyParsedNumber class]);
+    return value_ == ((GsonLazilyParsedNumber *) nil_chk(other))->value_ || [((NSString *) nil_chk(value_)) isEqual:other->value_];
+  }
+  return false;
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -88,6 +95,8 @@ __attribute__((unused)) static id GsonLazilyParsedNumber_writeReplace(GsonLazily
     { NULL, "D", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, 2, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x2, -1, -1, 3, -1, -1, -1 },
+    { NULL, "I", 0x1, 4, -1, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 5, 6, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -98,12 +107,14 @@ __attribute__((unused)) static id GsonLazilyParsedNumber_writeReplace(GsonLazily
   methods[4].selector = @selector(doubleValue);
   methods[5].selector = @selector(description);
   methods[6].selector = @selector(writeReplace);
+  methods[7].selector = @selector(hash);
+  methods[8].selector = @selector(isEqual:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "value_", "LNSString;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LNSString;", "longValue", "toString", "LJavaIoObjectStreamException;" };
-  static const J2ObjcClassInfo _GsonLazilyParsedNumber = { "LazilyParsedNumber", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x11, 7, 1, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "LNSString;", "longValue", "toString", "LJavaIoObjectStreamException;", "hashCode", "equals", "LNSObject;" };
+  static const J2ObjcClassInfo _GsonLazilyParsedNumber = { "LazilyParsedNumber", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x11, 9, 1, -1, -1, -1, -1, -1 };
   return &_GsonLazilyParsedNumber;
 }
 

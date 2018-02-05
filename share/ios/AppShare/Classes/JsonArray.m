@@ -38,12 +38,20 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
+- (instancetype)initWithInt:(jint)capacity {
+  GsonJsonArray_initWithInt_(self, capacity);
+  return self;
+}
+
 - (GsonJsonArray *)deepCopy {
-  GsonJsonArray *result = new_GsonJsonArray_init();
-  for (GsonJsonElement * __strong element in nil_chk(elements_)) {
-    [result addWithGsonJsonElement:[((GsonJsonElement *) nil_chk(element)) deepCopy]];
+  if (![((id<JavaUtilList>) nil_chk(elements_)) isEmpty]) {
+    GsonJsonArray *result = new_GsonJsonArray_initWithInt_([elements_ size]);
+    for (GsonJsonElement * __strong element in elements_) {
+      [result addWithGsonJsonElement:[((GsonJsonElement *) nil_chk(element)) deepCopy]];
+    }
+    return result;
   }
-  return result;
+  return new_GsonJsonArray_init();
 }
 
 - (void)addWithJavaLangBoolean:(JavaLangBoolean *)bool_ {
@@ -209,20 +217,21 @@ J2OBJC_IGNORE_DESIGNATED_END
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LGsonJsonArray;", 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 1, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 2, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 3, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 4, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 0, 5, -1, -1, -1, -1 },
-    { NULL, "V", 0x1, 6, 7, -1, -1, -1, -1 },
-    { NULL, "LGsonJsonElement;", 0x1, 8, 9, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 10, 5, -1, -1, -1, -1 },
-    { NULL, "LGsonJsonElement;", 0x1, 10, 11, -1, -1, -1, -1 },
-    { NULL, "Z", 0x1, 12, 5, -1, -1, -1, -1 },
+    { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonArray;", 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 2, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 3, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 4, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 5, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 1, 6, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 7, 8, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonElement;", 0x1, 9, 10, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 11, 6, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonElement;", 0x1, 11, 0, -1, -1, -1, -1 },
+    { NULL, "Z", 0x1, 12, 6, -1, -1, -1, -1 },
     { NULL, "I", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LJavaUtilIterator;", 0x1, -1, -1, -1, 13, -1, -1 },
-    { NULL, "LGsonJsonElement;", 0x1, 14, 11, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonElement;", 0x1, 14, 0, -1, -1, -1, -1 },
     { NULL, "LNSNumber;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "D", 0x1, -1, -1, -1, -1, -1, -1 },
@@ -241,40 +250,41 @@ J2OBJC_IGNORE_DESIGNATED_END
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   methods[0].selector = @selector(init);
-  methods[1].selector = @selector(deepCopy);
-  methods[2].selector = @selector(addWithJavaLangBoolean:);
-  methods[3].selector = @selector(addWithJavaLangCharacter:);
-  methods[4].selector = @selector(addWithNSNumber:);
-  methods[5].selector = @selector(addWithNSString:);
-  methods[6].selector = @selector(addWithGsonJsonElement:);
-  methods[7].selector = @selector(addAllWithGsonJsonArray:);
-  methods[8].selector = @selector(setWithInt:withGsonJsonElement:);
-  methods[9].selector = @selector(removeWithGsonJsonElement:);
-  methods[10].selector = @selector(removeWithInt:);
-  methods[11].selector = @selector(containsWithGsonJsonElement:);
-  methods[12].selector = @selector(size);
-  methods[13].selector = @selector(iterator);
-  methods[14].selector = @selector(getWithInt:);
-  methods[15].selector = @selector(getAsNumber);
-  methods[16].selector = @selector(getAsString);
-  methods[17].selector = @selector(getAsDouble);
-  methods[18].selector = @selector(getAsBigDecimal);
-  methods[19].selector = @selector(getAsBigInteger);
-  methods[20].selector = @selector(getAsFloat);
-  methods[21].selector = @selector(getAsLong);
-  methods[22].selector = @selector(getAsInt);
-  methods[23].selector = @selector(getAsByte);
-  methods[24].selector = @selector(getAsCharacter);
-  methods[25].selector = @selector(getAsShort);
-  methods[26].selector = @selector(getAsBoolean);
-  methods[27].selector = @selector(isEqual:);
-  methods[28].selector = @selector(hash);
+  methods[1].selector = @selector(initWithInt:);
+  methods[2].selector = @selector(deepCopy);
+  methods[3].selector = @selector(addWithJavaLangBoolean:);
+  methods[4].selector = @selector(addWithJavaLangCharacter:);
+  methods[5].selector = @selector(addWithNSNumber:);
+  methods[6].selector = @selector(addWithNSString:);
+  methods[7].selector = @selector(addWithGsonJsonElement:);
+  methods[8].selector = @selector(addAllWithGsonJsonArray:);
+  methods[9].selector = @selector(setWithInt:withGsonJsonElement:);
+  methods[10].selector = @selector(removeWithGsonJsonElement:);
+  methods[11].selector = @selector(removeWithInt:);
+  methods[12].selector = @selector(containsWithGsonJsonElement:);
+  methods[13].selector = @selector(size);
+  methods[14].selector = @selector(iterator);
+  methods[15].selector = @selector(getWithInt:);
+  methods[16].selector = @selector(getAsNumber);
+  methods[17].selector = @selector(getAsString);
+  methods[18].selector = @selector(getAsDouble);
+  methods[19].selector = @selector(getAsBigDecimal);
+  methods[20].selector = @selector(getAsBigInteger);
+  methods[21].selector = @selector(getAsFloat);
+  methods[22].selector = @selector(getAsLong);
+  methods[23].selector = @selector(getAsInt);
+  methods[24].selector = @selector(getAsByte);
+  methods[25].selector = @selector(getAsCharacter);
+  methods[26].selector = @selector(getAsShort);
+  methods[27].selector = @selector(getAsBoolean);
+  methods[28].selector = @selector(isEqual:);
+  methods[29].selector = @selector(hash);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "elements_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 18, -1 },
   };
-  static const void *ptrTable[] = { "add", "LJavaLangBoolean;", "LJavaLangCharacter;", "LNSNumber;", "LNSString;", "LGsonJsonElement;", "addAll", "LGsonJsonArray;", "set", "ILGsonJsonElement;", "remove", "I", "contains", "()Ljava/util/Iterator<Lcom/google/gson/JsonElement;>;", "get", "equals", "LNSObject;", "hashCode", "Ljava/util/List<Lcom/google/gson/JsonElement;>;", "Lcom/google/gson/JsonElement;Ljava/lang/Iterable<Lcom/google/gson/JsonElement;>;" };
-  static const J2ObjcClassInfo _GsonJsonArray = { "JsonArray", "com.google.gson", ptrTable, methods, fields, 7, 0x11, 29, 1, -1, -1, -1, 19, -1 };
+  static const void *ptrTable[] = { "I", "add", "LJavaLangBoolean;", "LJavaLangCharacter;", "LNSNumber;", "LNSString;", "LGsonJsonElement;", "addAll", "LGsonJsonArray;", "set", "ILGsonJsonElement;", "remove", "contains", "()Ljava/util/Iterator<Lcom/google/gson/JsonElement;>;", "get", "equals", "LNSObject;", "hashCode", "Ljava/util/List<Lcom/google/gson/JsonElement;>;", "Lcom/google/gson/JsonElement;Ljava/lang/Iterable<Lcom/google/gson/JsonElement;>;" };
+  static const J2ObjcClassInfo _GsonJsonArray = { "JsonArray", "com.google.gson", ptrTable, methods, fields, 7, 0x11, 30, 1, -1, -1, -1, 19, -1 };
   return &_GsonJsonArray;
 }
 
@@ -291,6 +301,19 @@ GsonJsonArray *new_GsonJsonArray_init() {
 
 GsonJsonArray *create_GsonJsonArray_init() {
   J2OBJC_CREATE_IMPL(GsonJsonArray, init)
+}
+
+void GsonJsonArray_initWithInt_(GsonJsonArray *self, jint capacity) {
+  GsonJsonElement_init(self);
+  self->elements_ = new_JavaUtilArrayList_initWithInt_(capacity);
+}
+
+GsonJsonArray *new_GsonJsonArray_initWithInt_(jint capacity) {
+  J2OBJC_NEW_IMPL(GsonJsonArray, initWithInt_, capacity)
+}
+
+GsonJsonArray *create_GsonJsonArray_initWithInt_(jint capacity) {
+  J2OBJC_CREATE_IMPL(GsonJsonArray, initWithInt_, capacity)
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonArray)

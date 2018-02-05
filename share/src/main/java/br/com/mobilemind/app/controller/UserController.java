@@ -1,6 +1,6 @@
 package br.com.mobilemind.app.controller;
 
-import br.com.mobilemind.app.util.Constants;
+import br.com.mobilemind.app.util.AppShareConstants;
 import br.com.mobilemind.j2objc.rest.RestDataConverter;
 import br.com.mobilemind.j2objc.rest.RestResult;
 import br.com.mobilemind.j2objc.rest.RestService;
@@ -38,7 +38,7 @@ public class UserController{
         json.addProperty("password", password);
 
         try {
-            String result = new RestService(Constants.SERVER_END_POINT)
+            String result = new RestService(AppShareConstants.SERVER_END_POINT)
                     .action("auth")
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")

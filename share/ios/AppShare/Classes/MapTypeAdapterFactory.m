@@ -38,7 +38,6 @@
 @interface GsonMapTypeAdapterFactory () {
  @public
   GsonConstructorConstructor *constructorConstructor_;
-  jboolean complexMapKeySerialization_;
 }
 
 - (GsonTypeAdapter *)getKeyAdapterWithGsonGson:(GsonGson *)context
@@ -140,7 +139,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonMapTypeAdapterFactory_Adapter)
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "constructorConstructor_", "LGsonConstructorConstructor;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
-    { "complexMapKeySerialization_", "Z", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "complexMapKeySerialization_", "Z", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LGsonConstructorConstructor;Z", "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "getKeyAdapter", "LGsonGson;LJavaLangReflectType;", "(Lcom/google/gson/Gson;Ljava/lang/reflect/Type;)Lcom/google/gson/TypeAdapter<*>;", "LGsonMapTypeAdapterFactory_Adapter;" };
   static const J2ObjcClassInfo _GsonMapTypeAdapterFactory = { "MapTypeAdapterFactory", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 3, 2, -1, 7, -1, -1, -1 };
@@ -245,7 +244,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonMapTypeAdapterFactory)
   }
   if (hasComplexKeys) {
     (void) [((GsonJsonWriter *) nil_chk(outArg)) beginArray];
-    for (jint i = 0; i < [keys size]; i++) {
+    for (jint i = 0, size = [keys size]; i < size; i++) {
       (void) [outArg beginArray];
       GsonStreams_writeWithGsonJsonElement_withGsonJsonWriter_([keys getWithInt:i], outArg);
       [((GsonTypeAdapter *) nil_chk(valueTypeAdapter_)) writeWithGsonJsonWriter:outArg withId:[values getWithInt:i]];
@@ -255,7 +254,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonMapTypeAdapterFactory)
   }
   else {
     (void) [((GsonJsonWriter *) nil_chk(outArg)) beginObject];
-    for (jint i = 0; i < [keys size]; i++) {
+    for (jint i = 0, size = [keys size]; i < size; i++) {
       GsonJsonElement *keyElement = [keys getWithInt:i];
       (void) [outArg nameWithNSString:GsonMapTypeAdapterFactory_Adapter_keyToStringWithGsonJsonElement_(self, keyElement)];
       [((GsonTypeAdapter *) nil_chk(valueTypeAdapter_)) writeWithGsonJsonWriter:outArg withId:[values getWithInt:i]];

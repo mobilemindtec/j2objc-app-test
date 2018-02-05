@@ -837,7 +837,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_Node)
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x2, -1, -1, -1, -1, -1, -1 },
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
     { NULL, "Z", 0x11, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonLinkedTreeMap_Node;", 0x10, -1, -1, -1, 0, -1, -1 },
     { NULL, "V", 0x11, -1, -1, -1, -1, -1, -1 },

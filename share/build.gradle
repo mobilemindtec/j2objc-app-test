@@ -6,7 +6,7 @@ repositories {
 
 dependencies {
   testImplementation 'junit:junit:4.12'
-  compile fileTree(dir: '../../libs/j2objc-json/build/libs', include: '*.jar')
+  compile fileTree(dir: '../../libs/j2objc-gson/build/libs', include: '*.jar')
   compile fileTree(dir: '../../libs/j2objc-app-base/build/libs', include: '*.jar')
 
   compile fileTree(dir: '../../libs/squidb/squidb/build/libs', include: '*.jar')

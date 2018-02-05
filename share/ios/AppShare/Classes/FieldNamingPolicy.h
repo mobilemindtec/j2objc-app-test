@@ -59,6 +59,11 @@ typedef NS_ENUM(NSUInteger, GsonFieldNamingPolicy_Enum) {
 
 #pragma mark Package-Private
 
++ (NSString *)separateCamelCaseWithNSString:(NSString *)name
+                               withNSString:(NSString *)separator;
+
++ (NSString *)upperCaseFirstLetterWithNSString:(NSString *)name;
+
 - (GsonFieldNamingPolicy_Enum)toNSEnum;
 
 @end
@@ -82,6 +87,10 @@ J2OBJC_ENUM_CONSTANT(GsonFieldNamingPolicy, LOWER_CASE_WITH_UNDERSCORES)
 
 inline GsonFieldNamingPolicy *GsonFieldNamingPolicy_get_LOWER_CASE_WITH_DASHES(void);
 J2OBJC_ENUM_CONSTANT(GsonFieldNamingPolicy, LOWER_CASE_WITH_DASHES)
+
+FOUNDATION_EXPORT NSString *GsonFieldNamingPolicy_separateCamelCaseWithNSString_withNSString_(NSString *name, NSString *separator);
+
+FOUNDATION_EXPORT NSString *GsonFieldNamingPolicy_upperCaseFirstLetterWithNSString_(NSString *name);
 
 FOUNDATION_EXPORT IOSObjectArray *GsonFieldNamingPolicy_values(void);
 

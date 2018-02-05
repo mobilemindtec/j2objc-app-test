@@ -15,6 +15,7 @@
 #include "java/lang/Integer.h"
 #include "java/lang/Long.h"
 #include "java/lang/Short.h"
+#include "java/lang/UnsupportedOperationException.h"
 #include "java/lang/Void.h"
 #include "java/lang/reflect/Type.h"
 #include "java/util/Collections.h"
@@ -134,6 +135,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void GsonPrimitives_init(GsonPrimitives *self) {
   NSObject_init(self);
+  @throw new_JavaLangUnsupportedOperationException_init();
 }
 
 GsonPrimitives *new_GsonPrimitives_init() {

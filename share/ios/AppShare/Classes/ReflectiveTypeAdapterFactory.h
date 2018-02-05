@@ -23,6 +23,7 @@
 @class GsonConstructorConstructor;
 @class GsonExcluder;
 @class GsonGson;
+@class GsonJsonAdapterAnnotationTypeAdapterFactory;
 @class GsonTypeAdapter;
 @class GsonTypeToken;
 @class JavaLangReflectField;
@@ -34,7 +35,8 @@
 
 - (instancetype)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
                        withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
-                                  withGsonExcluder:(GsonExcluder *)excluder;
+                                  withGsonExcluder:(GsonExcluder *)excluder
+   withGsonJsonAdapterAnnotationTypeAdapterFactory:(GsonJsonAdapterAnnotationTypeAdapterFactory *)jsonAdapterFactory;
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)type;
@@ -48,9 +50,6 @@
                                      withBoolean:(jboolean)serialize
                                 withGsonExcluder:(GsonExcluder *)excluder;
 
-+ (NSString *)getFieldNameWithGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
-                             withJavaLangReflectField:(JavaLangReflectField *)f;
-
 // Disallowed inherited constructors, do not use.
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -59,15 +58,13 @@
 
 J2OBJC_EMPTY_STATIC_INIT(GsonReflectiveTypeAdapterFactory)
 
-FOUNDATION_EXPORT void GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(GsonReflectiveTypeAdapterFactory *self, GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder);
+FOUNDATION_EXPORT void GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(GsonReflectiveTypeAdapterFactory *self, GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder, GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory);
 
-FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory *new_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory *new_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder, GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory *create_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder);
+FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory *create_GsonReflectiveTypeAdapterFactory_initWithGsonConstructorConstructor_withGsonFieldNamingStrategy_withGsonExcluder_withGsonJsonAdapterAnnotationTypeAdapterFactory_(GsonConstructorConstructor *constructorConstructor, id<GsonFieldNamingStrategy> fieldNamingPolicy, GsonExcluder *excluder, GsonJsonAdapterAnnotationTypeAdapterFactory *jsonAdapterFactory);
 
 FOUNDATION_EXPORT jboolean GsonReflectiveTypeAdapterFactory_excludeFieldWithJavaLangReflectField_withBoolean_withGsonExcluder_(JavaLangReflectField *f, jboolean serialize, GsonExcluder *excluder);
-
-FOUNDATION_EXPORT NSString *GsonReflectiveTypeAdapterFactory_getFieldNameWithGsonFieldNamingStrategy_withJavaLangReflectField_(id<GsonFieldNamingStrategy> fieldNamingPolicy, JavaLangReflectField *f);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory)
 
@@ -125,6 +122,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_BoundField)
 
 @class GsonJsonReader;
 @class GsonJsonWriter;
+@protocol GsonObjectConstructor;
+@protocol JavaUtilMap;
 
 @interface GsonReflectiveTypeAdapterFactory_Adapter : GsonTypeAdapter
 
@@ -135,6 +134,11 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_BoundField)
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
                          withId:(id)value;
 
+#pragma mark Package-Private
+
+- (instancetype)initWithGsonObjectConstructor:(id<GsonObjectConstructor>)constructor
+                              withJavaUtilMap:(id<JavaUtilMap>)boundFields;
+
 // Disallowed inherited constructors, do not use.
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -142,6 +146,12 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_BoundField)
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonReflectiveTypeAdapterFactory_Adapter)
+
+FOUNDATION_EXPORT void GsonReflectiveTypeAdapterFactory_Adapter_initWithGsonObjectConstructor_withJavaUtilMap_(GsonReflectiveTypeAdapterFactory_Adapter *self, id<GsonObjectConstructor> constructor, id<JavaUtilMap> boundFields);
+
+FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory_Adapter *new_GsonReflectiveTypeAdapterFactory_Adapter_initWithGsonObjectConstructor_withJavaUtilMap_(id<GsonObjectConstructor> constructor, id<JavaUtilMap> boundFields) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory_Adapter *create_GsonReflectiveTypeAdapterFactory_Adapter_initWithGsonObjectConstructor_withJavaUtilMap_(id<GsonObjectConstructor> constructor, id<JavaUtilMap> boundFields);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_Adapter)
 

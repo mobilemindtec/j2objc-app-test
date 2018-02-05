@@ -76,11 +76,17 @@
 
 - (GsonGsonBuilder *)setFieldNamingStrategyWithGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingStrategy;
 
+- (GsonGsonBuilder *)setLenient;
+
 - (GsonGsonBuilder *)setLongSerializationPolicyWithGsonLongSerializationPolicy:(GsonLongSerializationPolicy *)serializationPolicy;
 
 - (GsonGsonBuilder *)setPrettyPrinting;
 
 - (GsonGsonBuilder *)setVersionWithDouble:(jdouble)ignoreVersionsAfter;
+
+#pragma mark Package-Private
+
+- (instancetype)initWithGsonGson:(GsonGson *)gson;
 
 @end
 
@@ -91,6 +97,12 @@ FOUNDATION_EXPORT void GsonGsonBuilder_init(GsonGsonBuilder *self);
 FOUNDATION_EXPORT GsonGsonBuilder *new_GsonGsonBuilder_init(void) NS_RETURNS_RETAINED;
 
 FOUNDATION_EXPORT GsonGsonBuilder *create_GsonGsonBuilder_init(void);
+
+FOUNDATION_EXPORT void GsonGsonBuilder_initWithGsonGson_(GsonGsonBuilder *self, GsonGson *gson);
+
+FOUNDATION_EXPORT GsonGsonBuilder *new_GsonGsonBuilder_initWithGsonGson_(GsonGson *gson) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT GsonGsonBuilder *create_GsonGsonBuilder_initWithGsonGson_(GsonGson *gson);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonGsonBuilder)
 

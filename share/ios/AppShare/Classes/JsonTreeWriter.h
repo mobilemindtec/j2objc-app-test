@@ -22,6 +22,7 @@
 
 @class GsonJsonElement;
 @class JavaIoWriter;
+@class JavaLangBoolean;
 
 @interface GsonJsonTreeWriter : GsonJsonWriter
 
@@ -48,6 +49,8 @@
 - (GsonJsonWriter *)nullValue;
 
 - (GsonJsonWriter *)valueWithBoolean:(jboolean)value;
+
+- (GsonJsonWriter *)valueWithJavaLangBoolean:(JavaLangBoolean *)value;
 
 - (GsonJsonWriter *)valueWithDouble:(jdouble)value;
 

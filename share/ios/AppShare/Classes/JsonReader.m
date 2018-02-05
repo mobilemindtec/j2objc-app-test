@@ -21,6 +21,7 @@
 #include "java/lang/IllegalStateException.h"
 #include "java/lang/Integer.h"
 #include "java/lang/Long.h"
+#include "java/lang/Math.h"
 #include "java/lang/NullPointerException.h"
 #include "java/lang/NumberFormatException.h"
 #include "java/lang/StringBuilder.h"
@@ -35,7 +36,6 @@
   jint limit_;
   jint lineNumber_;
   jint lineStart_;
-  jint peeked_;
   jlong peekedLong_;
   jint peekedNumberLength_;
   NSString *peekedString_;
@@ -44,8 +44,6 @@
   IOSObjectArray *pathNames_;
   IOSIntArray *pathIndices_;
 }
-
-- (jint)doPeek;
 
 - (jint)peekKeyword;
 
@@ -64,10 +62,6 @@
 - (void)pushWithInt:(jint)newTop;
 
 - (jboolean)fillBufferWithInt:(jint)minimum;
-
-- (jint)getLineNumber;
-
-- (jint)getColumnNumber;
 
 - (jint)nextNonWhitespaceWithBoolean:(jboolean)throwOnEof;
 
@@ -204,8 +198,6 @@ inline jint GsonJsonReader_get_NUMBER_CHAR_EXP_DIGIT(void);
 #define GsonJsonReader_NUMBER_CHAR_EXP_DIGIT 7
 J2OBJC_STATIC_FIELD_CONSTANT(GsonJsonReader, NUMBER_CHAR_EXP_DIGIT, jint)
 
-__attribute__((unused)) static jint GsonJsonReader_doPeek(GsonJsonReader *self);
-
 __attribute__((unused)) static jint GsonJsonReader_peekKeyword(GsonJsonReader *self);
 
 __attribute__((unused)) static jint GsonJsonReader_peekNumber(GsonJsonReader *self);
@@ -223,10 +215,6 @@ __attribute__((unused)) static void GsonJsonReader_skipUnquotedValue(GsonJsonRea
 __attribute__((unused)) static void GsonJsonReader_pushWithInt_(GsonJsonReader *self, jint newTop);
 
 __attribute__((unused)) static jboolean GsonJsonReader_fillBufferWithInt_(GsonJsonReader *self, jint minimum);
-
-__attribute__((unused)) static jint GsonJsonReader_getLineNumber(GsonJsonReader *self);
-
-__attribute__((unused)) static jint GsonJsonReader_getColumnNumber(GsonJsonReader *self);
 
 __attribute__((unused)) static jint GsonJsonReader_nextNonWhitespaceWithBoolean_(GsonJsonReader *self, jboolean throwOnEof);
 
@@ -278,7 +266,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (void)beginArray {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_BEGIN_ARRAY) {
     GsonJsonReader_pushWithInt_(self, GsonJsonScope_EMPTY_ARRAY);
@@ -286,14 +274,14 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     peeked_ = GsonJsonReader_PEEKED_NONE;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected BEGIN_ARRAY but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected BEGIN_ARRAY but was ", [self peek], [self locationString]));
   }
 }
 
 - (void)endArray {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_END_ARRAY) {
     stackSize_--;
@@ -301,28 +289,28 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     peeked_ = GsonJsonReader_PEEKED_NONE;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected END_ARRAY but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected END_ARRAY but was ", [self peek], [self locationString]));
   }
 }
 
 - (void)beginObject {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_BEGIN_OBJECT) {
     GsonJsonReader_pushWithInt_(self, GsonJsonScope_EMPTY_OBJECT);
     peeked_ = GsonJsonReader_PEEKED_NONE;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected BEGIN_OBJECT but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected BEGIN_OBJECT but was ", [self peek], [self locationString]));
   }
 }
 
 - (void)endObject {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_END_OBJECT) {
     stackSize_--;
@@ -331,14 +319,14 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     peeked_ = GsonJsonReader_PEEKED_NONE;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected END_OBJECT but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected END_OBJECT but was ", [self peek], [self locationString]));
   }
 }
 
 - (jboolean)hasNext {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   return p != GsonJsonReader_PEEKED_END_OBJECT && p != GsonJsonReader_PEEKED_END_ARRAY;
 }
@@ -346,7 +334,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (GsonJsonToken *)peek {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   switch (p) {
     case GsonJsonReader_PEEKED_BEGIN_OBJECT:
@@ -382,7 +370,139 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 }
 
 - (jint)doPeek {
-  return GsonJsonReader_doPeek(self);
+  jint peekStack = IOSIntArray_Get(nil_chk(stack_), stackSize_ - 1);
+  if (peekStack == GsonJsonScope_EMPTY_ARRAY) {
+    *IOSIntArray_GetRef(stack_, stackSize_ - 1) = GsonJsonScope_NONEMPTY_ARRAY;
+  }
+  else if (peekStack == GsonJsonScope_NONEMPTY_ARRAY) {
+    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
+    switch (c) {
+      case ']':
+      return peeked_ = GsonJsonReader_PEEKED_END_ARRAY;
+      case ';':
+      GsonJsonReader_checkLenient(self);
+      case ',':
+      break;
+      default:
+      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Unterminated array"));
+    }
+  }
+  else if (peekStack == GsonJsonScope_EMPTY_OBJECT || peekStack == GsonJsonScope_NONEMPTY_OBJECT) {
+    *IOSIntArray_GetRef(stack_, stackSize_ - 1) = GsonJsonScope_DANGLING_NAME;
+    if (peekStack == GsonJsonScope_NONEMPTY_OBJECT) {
+      jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
+      switch (c) {
+        case '}':
+        return peeked_ = GsonJsonReader_PEEKED_END_OBJECT;
+        case ';':
+        GsonJsonReader_checkLenient(self);
+        case ',':
+        break;
+        default:
+        @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Unterminated object"));
+      }
+    }
+    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
+    switch (c) {
+      case '"':
+      return peeked_ = GsonJsonReader_PEEKED_DOUBLE_QUOTED_NAME;
+      case '\'':
+      GsonJsonReader_checkLenient(self);
+      return peeked_ = GsonJsonReader_PEEKED_SINGLE_QUOTED_NAME;
+      case '}':
+      if (peekStack != GsonJsonScope_NONEMPTY_OBJECT) {
+        return peeked_ = GsonJsonReader_PEEKED_END_OBJECT;
+      }
+      else {
+        @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected name"));
+      }
+      default:
+      GsonJsonReader_checkLenient(self);
+      pos_--;
+      if (GsonJsonReader_isLiteralWithChar_(self, (jchar) c)) {
+        return peeked_ = GsonJsonReader_PEEKED_UNQUOTED_NAME;
+      }
+      else {
+        @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected name"));
+      }
+    }
+  }
+  else if (peekStack == GsonJsonScope_DANGLING_NAME) {
+    *IOSIntArray_GetRef(stack_, stackSize_ - 1) = GsonJsonScope_NONEMPTY_OBJECT;
+    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
+    switch (c) {
+      case ':':
+      break;
+      case '=':
+      GsonJsonReader_checkLenient(self);
+      if ((pos_ < limit_ || GsonJsonReader_fillBufferWithInt_(self, 1)) && IOSCharArray_Get(nil_chk(buffer_), pos_) == '>') {
+        pos_++;
+      }
+      break;
+      default:
+      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected ':'"));
+    }
+  }
+  else if (peekStack == GsonJsonScope_EMPTY_DOCUMENT) {
+    if (lenient_) {
+      GsonJsonReader_consumeNonExecutePrefix(self);
+    }
+    *IOSIntArray_GetRef(nil_chk(stack_), stackSize_ - 1) = GsonJsonScope_NONEMPTY_DOCUMENT;
+  }
+  else if (peekStack == GsonJsonScope_NONEMPTY_DOCUMENT) {
+    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, false);
+    if (c == -1) {
+      return peeked_ = GsonJsonReader_PEEKED_EOF;
+    }
+    else {
+      GsonJsonReader_checkLenient(self);
+      pos_--;
+    }
+  }
+  else if (peekStack == GsonJsonScope_CLOSED) {
+    @throw new_JavaLangIllegalStateException_initWithNSString_(@"JsonReader is closed");
+  }
+  jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
+  switch (c) {
+    case ']':
+    if (peekStack == GsonJsonScope_EMPTY_ARRAY) {
+      return peeked_ = GsonJsonReader_PEEKED_END_ARRAY;
+    }
+    case ';':
+    case ',':
+    if (peekStack == GsonJsonScope_EMPTY_ARRAY || peekStack == GsonJsonScope_NONEMPTY_ARRAY) {
+      GsonJsonReader_checkLenient(self);
+      pos_--;
+      return peeked_ = GsonJsonReader_PEEKED_NULL;
+    }
+    else {
+      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Unexpected value"));
+    }
+    case '\'':
+    GsonJsonReader_checkLenient(self);
+    return peeked_ = GsonJsonReader_PEEKED_SINGLE_QUOTED;
+    case '"':
+    return peeked_ = GsonJsonReader_PEEKED_DOUBLE_QUOTED;
+    case '[':
+    return peeked_ = GsonJsonReader_PEEKED_BEGIN_ARRAY;
+    case '{':
+    return peeked_ = GsonJsonReader_PEEKED_BEGIN_OBJECT;
+    default:
+    pos_--;
+  }
+  jint result = GsonJsonReader_peekKeyword(self);
+  if (result != GsonJsonReader_PEEKED_NONE) {
+    return result;
+  }
+  result = GsonJsonReader_peekNumber(self);
+  if (result != GsonJsonReader_PEEKED_NONE) {
+    return result;
+  }
+  if (!GsonJsonReader_isLiteralWithChar_(self, IOSCharArray_Get(nil_chk(buffer_), pos_))) {
+    @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected value"));
+  }
+  GsonJsonReader_checkLenient(self);
+  return peeked_ = GsonJsonReader_PEEKED_UNQUOTED;
 }
 
 - (jint)peekKeyword {
@@ -400,7 +520,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (NSString *)nextName {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   NSString *result;
   if (p == GsonJsonReader_PEEKED_UNQUOTED_NAME) {
@@ -413,7 +533,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     result = GsonJsonReader_nextQuotedValueWithChar_(self, '"');
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected a name but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected a name but was ", [self peek], [self locationString]));
   }
   peeked_ = GsonJsonReader_PEEKED_NONE;
   (void) IOSObjectArray_Set(nil_chk(pathNames_), stackSize_ - 1, result);
@@ -423,7 +543,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (NSString *)nextString {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   NSString *result;
   if (p == GsonJsonReader_PEEKED_UNQUOTED) {
@@ -447,7 +567,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     pos_ += peekedNumberLength_;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected a string but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected a string but was ", [self peek], [self locationString]));
   }
   peeked_ = GsonJsonReader_PEEKED_NONE;
   (*IOSIntArray_GetRef(nil_chk(pathIndices_), stackSize_ - 1))++;
@@ -457,7 +577,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (jboolean)nextBoolean {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_TRUE) {
     peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -469,27 +589,27 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     (*IOSIntArray_GetRef(nil_chk(pathIndices_), stackSize_ - 1))++;
     return false;
   }
-  @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected a boolean but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+  @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected a boolean but was ", [self peek], [self locationString]));
 }
 
 - (void)nextNull {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_NULL) {
     peeked_ = GsonJsonReader_PEEKED_NONE;
     (*IOSIntArray_GetRef(nil_chk(pathIndices_), stackSize_ - 1))++;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected null but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected null but was ", [self peek], [self locationString]));
   }
 }
 
 - (jdouble)nextDouble {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_LONG) {
     peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -507,12 +627,12 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     peekedString_ = GsonJsonReader_nextUnquotedValue(self);
   }
   else if (p != GsonJsonReader_PEEKED_BUFFERED) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected a double but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected a double but was ", [self peek], [self locationString]));
   }
   peeked_ = GsonJsonReader_PEEKED_BUFFERED;
   jdouble result = JavaLangDouble_parseDoubleWithNSString_(peekedString_);
   if (!lenient_ && (JavaLangDouble_isNaNWithDouble_(result) || JavaLangDouble_isInfiniteWithDouble_(result))) {
-    @throw new_GsonMalformedJsonException_initWithNSString_(JreStrcat("$D$I$I$$", @"JSON forbids NaN and infinities: ", result, @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_GsonMalformedJsonException_initWithNSString_(JreStrcat("$D$", @"JSON forbids NaN and infinities: ", result, [self locationString]));
   }
   peekedString_ = nil;
   peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -523,7 +643,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (jlong)nextLong {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   if (p == GsonJsonReader_PEEKED_LONG) {
     peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -534,8 +654,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     peekedString_ = [NSString java_stringWithCharacters:buffer_ offset:pos_ length:peekedNumberLength_];
     pos_ += peekedNumberLength_;
   }
-  else if (p == GsonJsonReader_PEEKED_SINGLE_QUOTED || p == GsonJsonReader_PEEKED_DOUBLE_QUOTED) {
-    peekedString_ = GsonJsonReader_nextQuotedValueWithChar_(self, p == GsonJsonReader_PEEKED_SINGLE_QUOTED ? '\'' : '"');
+  else if (p == GsonJsonReader_PEEKED_SINGLE_QUOTED || p == GsonJsonReader_PEEKED_DOUBLE_QUOTED || p == GsonJsonReader_PEEKED_UNQUOTED) {
+    if (p == GsonJsonReader_PEEKED_UNQUOTED) {
+      peekedString_ = GsonJsonReader_nextUnquotedValue(self);
+    }
+    else {
+      peekedString_ = GsonJsonReader_nextQuotedValueWithChar_(self, p == GsonJsonReader_PEEKED_SINGLE_QUOTED ? '\'' : '"');
+    }
     @try {
       jlong result = JavaLangLong_parseLongWithNSString_(peekedString_);
       peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -546,13 +671,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     }
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected a long but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected a long but was ", [self peek], [self locationString]));
   }
   peeked_ = GsonJsonReader_PEEKED_BUFFERED;
   jdouble asDouble = JavaLangDouble_parseDoubleWithNSString_(peekedString_);
   jlong result = JreFpToLong(asDouble);
   if (result != asDouble) {
-    @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$$$I$I$$", @"Expected a long but was ", peekedString_, @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$$$", @"Expected a long but was ", peekedString_, [self locationString]));
   }
   peekedString_ = nil;
   peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -579,13 +704,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 - (jint)nextInt {
   jint p = peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(self);
+    p = [self doPeek];
   }
   jint result;
   if (p == GsonJsonReader_PEEKED_LONG) {
     result = (jint) peekedLong_;
     if (peekedLong_ != result) {
-      @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$J$I$I$$", @"Expected an int but was ", peekedLong_, @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+      @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$J$", @"Expected an int but was ", peekedLong_, [self locationString]));
     }
     peeked_ = GsonJsonReader_PEEKED_NONE;
     (*IOSIntArray_GetRef(nil_chk(pathIndices_), stackSize_ - 1))++;
@@ -595,8 +720,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     peekedString_ = [NSString java_stringWithCharacters:buffer_ offset:pos_ length:peekedNumberLength_];
     pos_ += peekedNumberLength_;
   }
-  else if (p == GsonJsonReader_PEEKED_SINGLE_QUOTED || p == GsonJsonReader_PEEKED_DOUBLE_QUOTED) {
-    peekedString_ = GsonJsonReader_nextQuotedValueWithChar_(self, p == GsonJsonReader_PEEKED_SINGLE_QUOTED ? '\'' : '"');
+  else if (p == GsonJsonReader_PEEKED_SINGLE_QUOTED || p == GsonJsonReader_PEEKED_DOUBLE_QUOTED || p == GsonJsonReader_PEEKED_UNQUOTED) {
+    if (p == GsonJsonReader_PEEKED_UNQUOTED) {
+      peekedString_ = GsonJsonReader_nextUnquotedValue(self);
+    }
+    else {
+      peekedString_ = GsonJsonReader_nextQuotedValueWithChar_(self, p == GsonJsonReader_PEEKED_SINGLE_QUOTED ? '\'' : '"');
+    }
     @try {
       result = JavaLangInteger_parseIntWithNSString_(peekedString_);
       peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -607,13 +737,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     }
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected an int but was ", [self peek], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected an int but was ", [self peek], [self locationString]));
   }
   peeked_ = GsonJsonReader_PEEKED_BUFFERED;
   jdouble asDouble = JavaLangDouble_parseDoubleWithNSString_(peekedString_);
   result = JreFpToInt(asDouble);
   if (result != asDouble) {
-    @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$$$I$I$$", @"Expected an int but was ", peekedString_, @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+    @throw new_JavaLangNumberFormatException_initWithNSString_(JreStrcat("$$$", @"Expected an int but was ", peekedString_, [self locationString]));
   }
   peekedString_ = nil;
   peeked_ = GsonJsonReader_PEEKED_NONE;
@@ -633,7 +763,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
   do {
     jint p = peeked_;
     if (p == GsonJsonReader_PEEKED_NONE) {
-      p = GsonJsonReader_doPeek(self);
+      p = [self doPeek];
     }
     if (p == GsonJsonReader_PEEKED_BEGIN_ARRAY) {
       GsonJsonReader_pushWithInt_(self, GsonJsonScope_EMPTY_ARRAY);
@@ -678,14 +808,6 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
   return GsonJsonReader_fillBufferWithInt_(self, minimum);
 }
 
-- (jint)getLineNumber {
-  return GsonJsonReader_getLineNumber(self);
-}
-
-- (jint)getColumnNumber {
-  return GsonJsonReader_getColumnNumber(self);
-}
-
 - (jint)nextNonWhitespaceWithBoolean:(jboolean)throwOnEof {
   return GsonJsonReader_nextNonWhitespaceWithBoolean_(self, throwOnEof);
 }
@@ -703,7 +825,13 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
 }
 
 - (NSString *)description {
-  return JreStrcat("$$I$I", [[self java_getClass] getSimpleName], @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self));
+  return JreStrcat("$$", [[self java_getClass] getSimpleName], [self locationString]);
+}
+
+- (NSString *)locationString {
+  jint line = lineNumber_ + 1;
+  jint column = pos_ - lineStart_ + 1;
+  return JreStrcat("$I$I$$", @" at line ", line, @" column ", column, @" path ", [self getPath]);
 }
 
 - (NSString *)getPath {
@@ -754,7 +882,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     { NULL, "V", 0x1, -1, -1, 3, -1, -1, -1 },
     { NULL, "Z", 0x1, -1, -1, 3, -1, -1, -1 },
     { NULL, "LGsonJsonToken;", 0x1, -1, -1, 3, -1, -1, -1 },
-    { NULL, "I", 0x2, -1, -1, 3, -1, -1, -1 },
+    { NULL, "I", 0x0, -1, -1, 3, -1, -1, -1 },
     { NULL, "I", 0x2, -1, -1, 3, -1, -1, -1 },
     { NULL, "I", 0x2, -1, -1, 3, -1, -1, -1 },
     { NULL, "Z", 0x2, 4, 5, 3, -1, -1, -1 },
@@ -773,13 +901,12 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     { NULL, "V", 0x1, -1, -1, 3, -1, -1, -1 },
     { NULL, "V", 0x2, 8, 9, -1, -1, -1, -1 },
     { NULL, "Z", 0x2, 10, 9, 3, -1, -1, -1 },
-    { NULL, "I", 0x2, -1, -1, -1, -1, -1, -1 },
-    { NULL, "I", 0x2, -1, -1, -1, -1, -1, -1 },
     { NULL, "I", 0x2, 11, 2, 3, -1, -1, -1 },
     { NULL, "V", 0x2, -1, -1, 3, -1, -1, -1 },
     { NULL, "V", 0x2, -1, -1, 3, -1, -1, -1 },
     { NULL, "Z", 0x2, 12, 13, 3, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, 14, -1, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x0, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSString;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "C", 0x2, -1, -1, 3, -1, -1, -1 },
     { NULL, "LJavaIoIOException;", 0x2, 15, 13, 3, -1, -1, -1 },
@@ -815,17 +942,16 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
   methods[25].selector = @selector(skipValue);
   methods[26].selector = @selector(pushWithInt:);
   methods[27].selector = @selector(fillBufferWithInt:);
-  methods[28].selector = @selector(getLineNumber);
-  methods[29].selector = @selector(getColumnNumber);
-  methods[30].selector = @selector(nextNonWhitespaceWithBoolean:);
-  methods[31].selector = @selector(checkLenient);
-  methods[32].selector = @selector(skipToEndOfLine);
-  methods[33].selector = @selector(skipToWithNSString:);
-  methods[34].selector = @selector(description);
-  methods[35].selector = @selector(getPath);
-  methods[36].selector = @selector(readEscapeCharacter);
-  methods[37].selector = @selector(syntaxErrorWithNSString:);
-  methods[38].selector = @selector(consumeNonExecutePrefix);
+  methods[28].selector = @selector(nextNonWhitespaceWithBoolean:);
+  methods[29].selector = @selector(checkLenient);
+  methods[30].selector = @selector(skipToEndOfLine);
+  methods[31].selector = @selector(skipToWithNSString:);
+  methods[32].selector = @selector(description);
+  methods[33].selector = @selector(locationString);
+  methods[34].selector = @selector(getPath);
+  methods[35].selector = @selector(readEscapeCharacter);
+  methods[36].selector = @selector(syntaxErrorWithNSString:);
+  methods[37].selector = @selector(consumeNonExecutePrefix);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "NON_EXECUTE_PREFIX", "[C", .constantValue.asLong = 0, 0x1a, -1, 16, -1, -1 },
@@ -863,7 +989,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     { "limit_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "lineNumber_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "lineStart_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
-    { "peeked_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
+    { "peeked_", "I", .constantValue.asLong = 0, 0x0, -1, -1, -1, -1 },
     { "peekedLong_", "J", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "peekedNumberLength_", "I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
     { "peekedString_", "LNSString;", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
@@ -873,7 +999,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonReader)
     { "pathIndices_", "[I", .constantValue.asLong = 0, 0x2, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LJavaIoReader;", "setLenient", "Z", "LJavaIoIOException;", "isLiteral", "C", "nextQuotedValue", "skipQuotedValue", "push", "I", "fillBuffer", "nextNonWhitespace", "skipTo", "LNSString;", "toString", "syntaxError", &GsonJsonReader_NON_EXECUTE_PREFIX };
-  static const J2ObjcClassInfo _GsonJsonReader = { "JsonReader", "com.google.gson.stream", ptrTable, methods, fields, 7, 0x1, 39, 43, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _GsonJsonReader = { "JsonReader", "com.google.gson.stream", ptrTable, methods, fields, 7, 0x1, 38, 43, -1, -1, -1, -1, -1 };
   return &_GsonJsonReader;
 }
 
@@ -917,148 +1043,6 @@ GsonJsonReader *new_GsonJsonReader_initWithJavaIoReader_(JavaIoReader *inArg) {
 
 GsonJsonReader *create_GsonJsonReader_initWithJavaIoReader_(JavaIoReader *inArg) {
   J2OBJC_CREATE_IMPL(GsonJsonReader, initWithJavaIoReader_, inArg)
-}
-
-jint GsonJsonReader_doPeek(GsonJsonReader *self) {
-  jint peekStack = IOSIntArray_Get(nil_chk(self->stack_), self->stackSize_ - 1);
-  if (peekStack == GsonJsonScope_EMPTY_ARRAY) {
-    *IOSIntArray_GetRef(self->stack_, self->stackSize_ - 1) = GsonJsonScope_NONEMPTY_ARRAY;
-  }
-  else if (peekStack == GsonJsonScope_NONEMPTY_ARRAY) {
-    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
-    switch (c) {
-      case ']':
-      return self->peeked_ = GsonJsonReader_PEEKED_END_ARRAY;
-      case ';':
-      GsonJsonReader_checkLenient(self);
-      case ',':
-      break;
-      default:
-      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Unterminated array"));
-    }
-  }
-  else if (peekStack == GsonJsonScope_EMPTY_OBJECT || peekStack == GsonJsonScope_NONEMPTY_OBJECT) {
-    *IOSIntArray_GetRef(self->stack_, self->stackSize_ - 1) = GsonJsonScope_DANGLING_NAME;
-    if (peekStack == GsonJsonScope_NONEMPTY_OBJECT) {
-      jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
-      switch (c) {
-        case '}':
-        return self->peeked_ = GsonJsonReader_PEEKED_END_OBJECT;
-        case ';':
-        GsonJsonReader_checkLenient(self);
-        case ',':
-        break;
-        default:
-        @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Unterminated object"));
-      }
-    }
-    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
-    switch (c) {
-      case '"':
-      return self->peeked_ = GsonJsonReader_PEEKED_DOUBLE_QUOTED_NAME;
-      case '\'':
-      GsonJsonReader_checkLenient(self);
-      return self->peeked_ = GsonJsonReader_PEEKED_SINGLE_QUOTED_NAME;
-      case '}':
-      if (peekStack != GsonJsonScope_NONEMPTY_OBJECT) {
-        return self->peeked_ = GsonJsonReader_PEEKED_END_OBJECT;
-      }
-      else {
-        @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected name"));
-      }
-      default:
-      GsonJsonReader_checkLenient(self);
-      self->pos_--;
-      if (GsonJsonReader_isLiteralWithChar_(self, (jchar) c)) {
-        return self->peeked_ = GsonJsonReader_PEEKED_UNQUOTED_NAME;
-      }
-      else {
-        @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected name"));
-      }
-    }
-  }
-  else if (peekStack == GsonJsonScope_DANGLING_NAME) {
-    *IOSIntArray_GetRef(self->stack_, self->stackSize_ - 1) = GsonJsonScope_NONEMPTY_OBJECT;
-    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
-    switch (c) {
-      case ':':
-      break;
-      case '=':
-      GsonJsonReader_checkLenient(self);
-      if ((self->pos_ < self->limit_ || GsonJsonReader_fillBufferWithInt_(self, 1)) && IOSCharArray_Get(nil_chk(self->buffer_), self->pos_) == '>') {
-        self->pos_++;
-      }
-      break;
-      default:
-      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected ':'"));
-    }
-  }
-  else if (peekStack == GsonJsonScope_EMPTY_DOCUMENT) {
-    if (self->lenient_) {
-      GsonJsonReader_consumeNonExecutePrefix(self);
-    }
-    *IOSIntArray_GetRef(nil_chk(self->stack_), self->stackSize_ - 1) = GsonJsonScope_NONEMPTY_DOCUMENT;
-  }
-  else if (peekStack == GsonJsonScope_NONEMPTY_DOCUMENT) {
-    jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, false);
-    if (c == -1) {
-      return self->peeked_ = GsonJsonReader_PEEKED_EOF;
-    }
-    else {
-      GsonJsonReader_checkLenient(self);
-      self->pos_--;
-    }
-  }
-  else if (peekStack == GsonJsonScope_CLOSED) {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(@"JsonReader is closed");
-  }
-  jint c = GsonJsonReader_nextNonWhitespaceWithBoolean_(self, true);
-  switch (c) {
-    case ']':
-    if (peekStack == GsonJsonScope_EMPTY_ARRAY) {
-      return self->peeked_ = GsonJsonReader_PEEKED_END_ARRAY;
-    }
-    case ';':
-    case ',':
-    if (peekStack == GsonJsonScope_EMPTY_ARRAY || peekStack == GsonJsonScope_NONEMPTY_ARRAY) {
-      GsonJsonReader_checkLenient(self);
-      self->pos_--;
-      return self->peeked_ = GsonJsonReader_PEEKED_NULL;
-    }
-    else {
-      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Unexpected value"));
-    }
-    case '\'':
-    GsonJsonReader_checkLenient(self);
-    return self->peeked_ = GsonJsonReader_PEEKED_SINGLE_QUOTED;
-    case '"':
-    if (self->stackSize_ == 1) {
-      GsonJsonReader_checkLenient(self);
-    }
-    return self->peeked_ = GsonJsonReader_PEEKED_DOUBLE_QUOTED;
-    case '[':
-    return self->peeked_ = GsonJsonReader_PEEKED_BEGIN_ARRAY;
-    case '{':
-    return self->peeked_ = GsonJsonReader_PEEKED_BEGIN_OBJECT;
-    default:
-    self->pos_--;
-  }
-  if (self->stackSize_ == 1) {
-    GsonJsonReader_checkLenient(self);
-  }
-  jint result = GsonJsonReader_peekKeyword(self);
-  if (result != GsonJsonReader_PEEKED_NONE) {
-    return result;
-  }
-  result = GsonJsonReader_peekNumber(self);
-  if (result != GsonJsonReader_PEEKED_NONE) {
-    return result;
-  }
-  if (!GsonJsonReader_isLiteralWithChar_(self, IOSCharArray_Get(nil_chk(self->buffer_), self->pos_))) {
-    @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Expected value"));
-  }
-  GsonJsonReader_checkLenient(self);
-  return self->peeked_ = GsonJsonReader_PEEKED_UNQUOTED;
 }
 
 jint GsonJsonReader_peekKeyword(GsonJsonReader *self) {
@@ -1181,7 +1165,7 @@ jint GsonJsonReader_peekNumber(GsonJsonReader *self) {
     }
   }
   break_charactersOfNumber: ;
-  if (last == GsonJsonReader_NUMBER_CHAR_DIGIT && fitsInLong && (value != JavaLangLong_MIN_VALUE || negative)) {
+  if (last == GsonJsonReader_NUMBER_CHAR_DIGIT && fitsInLong && (value != JavaLangLong_MIN_VALUE || negative) && (value != 0 || false == negative)) {
     self->peekedLong_ = negative ? value : -value;
     self->pos_ += i;
     return self->peeked_ = GsonJsonReader_PEEKED_LONG;
@@ -1222,7 +1206,7 @@ jboolean GsonJsonReader_isLiteralWithChar_(GsonJsonReader *self, jchar c) {
 
 NSString *GsonJsonReader_nextQuotedValueWithChar_(GsonJsonReader *self, jchar quote) {
   IOSCharArray *buffer = self->buffer_;
-  JavaLangStringBuilder *builder = new_JavaLangStringBuilder_init();
+  JavaLangStringBuilder *builder = nil;
   while (true) {
     jint p = self->pos_;
     jint l = self->limit_;
@@ -1231,12 +1215,23 @@ NSString *GsonJsonReader_nextQuotedValueWithChar_(GsonJsonReader *self, jchar qu
       jint c = IOSCharArray_Get(nil_chk(buffer), p++);
       if (c == quote) {
         self->pos_ = p;
-        (void) [builder appendWithCharArray:buffer withInt:start withInt:p - start - 1];
-        return [builder description];
+        jint len = p - start - 1;
+        if (builder == nil) {
+          return [NSString java_stringWithCharacters:buffer offset:start length:len];
+        }
+        else {
+          (void) [builder appendWithCharArray:buffer withInt:start withInt:len];
+          return [builder description];
+        }
       }
       else if (c == '\\') {
         self->pos_ = p;
-        (void) [builder appendWithCharArray:buffer withInt:start withInt:p - start - 1];
+        jint len = p - start - 1;
+        if (builder == nil) {
+          jint estimatedLength = (len + 1) * 2;
+          builder = new_JavaLangStringBuilder_initWithInt_(JavaLangMath_maxWithInt_withInt_(estimatedLength, 16));
+        }
+        (void) [builder appendWithCharArray:buffer withInt:start withInt:len];
         (void) [builder appendWithChar:GsonJsonReader_readEscapeCharacter(self)];
         p = self->pos_;
         l = self->limit_;
@@ -1246,6 +1241,10 @@ NSString *GsonJsonReader_nextQuotedValueWithChar_(GsonJsonReader *self, jchar qu
         self->lineNumber_++;
         self->lineStart_ = p;
       }
+    }
+    if (builder == nil) {
+      jint estimatedLength = (p - start) * 2;
+      builder = new_JavaLangStringBuilder_initWithInt_(JavaLangMath_maxWithInt_withInt_(estimatedLength, 16));
     }
     (void) [builder appendWithCharArray:buffer withInt:start withInt:p - start];
     self->pos_ = p;
@@ -1290,7 +1289,7 @@ NSString *GsonJsonReader_nextUnquotedValue(GsonJsonReader *self) {
       }
     }
     if (builder == nil) {
-      builder = new_JavaLangStringBuilder_init();
+      builder = new_JavaLangStringBuilder_initWithInt_(JavaLangMath_maxWithInt_withInt_(i, 16));
     }
     (void) [builder appendWithCharArray:self->buffer_ withInt:self->pos_ withInt:i];
     self->pos_ += i;
@@ -1300,14 +1299,7 @@ NSString *GsonJsonReader_nextUnquotedValue(GsonJsonReader *self) {
     }
   }
   break_findNonLiteralCharacter: ;
-  NSString *result;
-  if (builder == nil) {
-    result = [NSString java_stringWithCharacters:self->buffer_ offset:self->pos_ length:i];
-  }
-  else {
-    (void) [builder appendWithCharArray:self->buffer_ withInt:self->pos_ withInt:i];
-    result = [builder description];
-  }
+  NSString *result = (nil == builder) ? [NSString java_stringWithCharacters:self->buffer_ offset:self->pos_ length:i] : [((JavaLangStringBuilder *) nil_chk([((JavaLangStringBuilder *) nil_chk(builder)) appendWithCharArray:self->buffer_ withInt:self->pos_ withInt:i])) description];
   self->pos_ += i;
   return result;
 }
@@ -1412,14 +1404,6 @@ jboolean GsonJsonReader_fillBufferWithInt_(GsonJsonReader *self, jint minimum) {
   return false;
 }
 
-jint GsonJsonReader_getLineNumber(GsonJsonReader *self) {
-  return self->lineNumber_ + 1;
-}
-
-jint GsonJsonReader_getColumnNumber(GsonJsonReader *self) {
-  return self->pos_ - self->lineStart_ + 1;
-}
-
 jint GsonJsonReader_nextNonWhitespaceWithBoolean_(GsonJsonReader *self, jboolean throwOnEof) {
   IOSCharArray *buffer = self->buffer_;
   jint p = self->pos_;
@@ -1486,7 +1470,7 @@ jint GsonJsonReader_nextNonWhitespaceWithBoolean_(GsonJsonReader *self, jboolean
     }
   }
   if (throwOnEof) {
-    @throw new_JavaIoEOFException_initWithNSString_(JreStrcat("$I$I", @"End of input at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self)));
+    @throw new_JavaIoEOFException_initWithNSString_(JreStrcat("$$", @"End of input", [self locationString]));
   }
   else {
     return -1;
@@ -1514,14 +1498,15 @@ void GsonJsonReader_skipToEndOfLine(GsonJsonReader *self) {
 }
 
 jboolean GsonJsonReader_skipToWithNSString_(GsonJsonReader *self, NSString *toFind) {
-  for (; self->pos_ + [((NSString *) nil_chk(toFind)) java_length] <= self->limit_ || GsonJsonReader_fillBufferWithInt_(self, [toFind java_length]); self->pos_++) {
+  jint length = [((NSString *) nil_chk(toFind)) java_length];
+  for (; self->pos_ + length <= self->limit_ || GsonJsonReader_fillBufferWithInt_(self, length); self->pos_++) {
     {
       if (IOSCharArray_Get(nil_chk(self->buffer_), self->pos_) == 0x000a) {
         self->lineNumber_++;
         self->lineStart_ = self->pos_ + 1;
         continue;
       }
-      for (jint c = 0; c < [toFind java_length]; c++) {
+      for (jint c = 0; c < length; c++) {
         if (IOSCharArray_Get(self->buffer_, self->pos_ + c) != [toFind charAtWithInt:c]) {
           goto continue_outer;
         }
@@ -1580,14 +1565,16 @@ jchar GsonJsonReader_readEscapeCharacter(GsonJsonReader *self) {
       case '\'':
       case '"':
       case '\\':
-      default:
+      case '/':
       return escaped;
+      default:
+      @throw nil_chk(GsonJsonReader_syntaxErrorWithNSString_(self, @"Invalid escape sequence"));
     }
   }
 }
 
 JavaIoIOException *GsonJsonReader_syntaxErrorWithNSString_(GsonJsonReader *self, NSString *message) {
-  @throw new_GsonMalformedJsonException_initWithNSString_(JreStrcat("$$I$I$$", message, @" at line ", GsonJsonReader_getLineNumber(self), @" column ", GsonJsonReader_getColumnNumber(self), @" path ", [self getPath]));
+  @throw new_GsonMalformedJsonException_initWithNSString_(JreStrcat("$$", message, [self locationString]));
 }
 
 void GsonJsonReader_consumeNonExecutePrefix(GsonJsonReader *self) {
@@ -1622,7 +1609,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   }
   jint p = ((GsonJsonReader *) nil_chk(reader))->peeked_;
   if (p == GsonJsonReader_PEEKED_NONE) {
-    p = GsonJsonReader_doPeek(reader);
+    p = [reader doPeek];
   }
   if (p == GsonJsonReader_PEEKED_DOUBLE_QUOTED_NAME) {
     reader->peeked_ = GsonJsonReader_PEEKED_DOUBLE_QUOTED;
@@ -1634,7 +1621,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     reader->peeked_ = GsonJsonReader_PEEKED_UNQUOTED;
   }
   else {
-    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$I$I$$", @"Expected a name but was ", [reader peek], @"  at line ", GsonJsonReader_getLineNumber(reader), @" column ", GsonJsonReader_getColumnNumber(reader), @" path ", [reader getPath]));
+    @throw new_JavaLangIllegalStateException_initWithNSString_(JreStrcat("$@$", @"Expected a name but was ", [reader peek], [reader locationString]));
   }
 }
 

@@ -11,12 +11,12 @@ mkdir -p $BUILD/{java,objc,bin}
 
 find "./src/main" -name '*.java' -type f -exec cp {} "$BUILD/java/" \;
 find "./src/main" -type f -name 'packages.properties' -exec cat {} + >> "$BUILD/java/packages.properties" ;
-find "$LIBS/j2objc-json/src/main" -type f -name 'packages.properties' -exec cat {} + >> "$BUILD/java/packages.properties" ;
+find "$LIBS/j2objc-gson/src/main" -type f -name 'packages.properties' -exec cat {} + >> "$BUILD/java/packages.properties" ;
 find "$LIBS/j2objc-app-base/src/main" -type f -name 'packages.properties' -exec cat {} + >> "$BUILD/java/packages.properties" ;
 
 
 CLASS_PATH_SQUIDB="$LIBS/squidb/squidb/src:$LIBS/squidb/squidb-annotations/src:$LIBS/squidb/squidb-ios/src"
-CLASS_PATH="./src/main/java:$LIBS/j2objc-json/src/main/java:$LIBS/j2objc-app-base/src/main/java:"
+CLASS_PATH="./src/main/java:$LIBS/j2objc-gson/src/main/java:$LIBS/j2objc-app-base/src/main/java:"
 
 for f in $BUILD/java/*.java; do
 
@@ -46,9 +46,9 @@ APP_SHARE_DEF_HEADER=$APP_SHARE_SOURCES/ShareApp.h
 
 rm -R $APP_SHARE_SOURCES/*
 
-cp $LIBS/squidb/ios/Classes/* $APP_SHARE_SOURCES/
-cp $LIBS/j2objc-json/ios/Classes/* $APP_SHARE_SOURCES/
-cp $LIBS/j2objc-app-base/ios/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/squidb/ios/SquiDB/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-gson/ios/J2ObjCGson/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-app-base/ios/J2ObjCAppBase/Classes/* $APP_SHARE_SOURCES/
 cp $BUILD/objc/* $APP_SHARE_SOURCES/
 
 

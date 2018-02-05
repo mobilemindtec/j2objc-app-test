@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/Ricardo Bocchi/NSBackgroundTask'
+  s.homepage         = 'https://github.com/mobilemindtec/j2objc-app-test'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Ricardo Bocchi' => 'ricardo@mobilemind.com.br' }
-  s.source           = { :git => 'https://github.com/Ricardo Bocchi/NSBackgroundTask.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/mobilemindtec/j2objc-app-test.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   #s.ios.deployment_target = '8.0'
@@ -49,12 +49,10 @@ TODO: Add long description of the pod here.
 
     s.pod_target_xcconfig = {
       "OTHER_LDFLAGS" => "-ljre_emul -ljre_zip -l iconv -l z -framework Security",
-      "FRAMEWORK_SEARCH_PATHS" => "\"/opt/j2objc/framework\"",
-      "LIBRARY_SEARCH_PATHS" => "\"/opt/j2objc/lib\"",
-      "HEADER_SEARCH_PATHS" => "\"/opt/j2objc/include\"",
-      #"VALID_ARCHITECTURES" => "arm64 armv7 armv7s"
+      "FRAMEWORK_SEARCH_PATHS" => "\"$J2OBJC_HOME/framework\"",
+      "LIBRARY_SEARCH_PATHS" => "\"$J2OBJC_HOME/lib\"",
+      "HEADER_SEARCH_PATHS" => "\"$J2OBJC_HOME/include\"",
     }
-
 
     s.dependency 'sqlite3', '3.21.0'
 

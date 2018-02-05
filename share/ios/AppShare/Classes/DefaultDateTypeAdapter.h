@@ -16,70 +16,76 @@
 #if !defined (GsonDefaultDateTypeAdapter_) && (INCLUDE_ALL_DefaultDateTypeAdapter || defined(INCLUDE_GsonDefaultDateTypeAdapter))
 #define GsonDefaultDateTypeAdapter_
 
-#define RESTRICT_JsonSerializer 1
-#define INCLUDE_GsonJsonSerializer 1
-#include "JsonSerializer.h"
-
-#define RESTRICT_JsonDeserializer 1
-#define INCLUDE_GsonJsonDeserializer 1
-#include "JsonDeserializer.h"
+#define RESTRICT_TypeAdapter 1
+#define INCLUDE_GsonTypeAdapter 1
+#include "TypeAdapter.h"
 
 @class GsonJsonElement;
-@class JavaTextDateFormat;
+@class GsonJsonReader;
+@class GsonJsonWriter;
+@class IOSClass;
+@class JavaIoReader;
 @class JavaUtilDate;
-@protocol GsonJsonDeserializationContext;
-@protocol GsonJsonSerializationContext;
-@protocol JavaLangReflectType;
 
-@interface GsonDefaultDateTypeAdapter : NSObject < GsonJsonSerializer, GsonJsonDeserializer >
+@interface GsonDefaultDateTypeAdapter : GsonTypeAdapter
 
 #pragma mark Public
+
+- (instancetype)initWithIOSClass:(IOSClass *)dateType
+                         withInt:(jint)dateStyle
+                         withInt:(jint)timeStyle;
 
 - (instancetype)initWithInt:(jint)dateStyle
                     withInt:(jint)timeStyle;
 
-- (JavaUtilDate *)deserializeWithGsonJsonElement:(GsonJsonElement *)json
-                         withJavaLangReflectType:(id<JavaLangReflectType>)typeOfT
-              withGsonJsonDeserializationContext:(id<GsonJsonDeserializationContext>)context;
+- (JavaUtilDate *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
-- (GsonJsonElement *)serializeWithId:(JavaUtilDate *)src
-             withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc
-    withGsonJsonSerializationContext:(id<GsonJsonSerializationContext>)context;
+- (JavaUtilDate *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+
+- (JavaUtilDate *)fromJsonWithNSString:(NSString *)arg0;
+
+- (JavaUtilDate *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
 
 - (NSString *)description;
 
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(JavaUtilDate *)value;
+
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype)initWithIOSClass:(IOSClass *)dateType;
 
-- (instancetype)initWithJavaTextDateFormat:(JavaTextDateFormat *)enUsFormat
-                    withJavaTextDateFormat:(JavaTextDateFormat *)localFormat;
+- (instancetype)initWithIOSClass:(IOSClass *)dateType
+                         withInt:(jint)style;
 
-- (instancetype)initWithInt:(jint)style;
+- (instancetype)initWithIOSClass:(IOSClass *)dateType
+                    withNSString:(NSString *)datePattern;
 
-- (instancetype)initWithNSString:(NSString *)datePattern;
+// Disallowed inherited constructors, do not use.
+
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonDefaultDateTypeAdapter)
 
-FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_init(GsonDefaultDateTypeAdapter *self);
+FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithIOSClass_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType);
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_init(void) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_(IOSClass *dateType) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_init(void);
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_(IOSClass *dateType);
 
-FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithNSString_(GsonDefaultDateTypeAdapter *self, NSString *datePattern);
+FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType, NSString *datePattern);
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithNSString_(NSString *datePattern) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(IOSClass *dateType, NSString *datePattern) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithNSString_(NSString *datePattern);
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(IOSClass *dateType, NSString *datePattern);
 
-FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithInt_(GsonDefaultDateTypeAdapter *self, jint style);
+FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType, jint style);
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithInt_(jint style) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(IOSClass *dateType, jint style) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithInt_(jint style);
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(IOSClass *dateType, jint style);
 
 FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithInt_withInt_(GsonDefaultDateTypeAdapter *self, jint dateStyle, jint timeStyle);
 
@@ -87,11 +93,11 @@ FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_ini
 
 FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithInt_withInt_(jint dateStyle, jint timeStyle);
 
-FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(GsonDefaultDateTypeAdapter *self, JavaTextDateFormat *enUsFormat, JavaTextDateFormat *localFormat);
+FOUNDATION_EXPORT void GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType, jint dateStyle, jint timeStyle);
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(JavaTextDateFormat *enUsFormat, JavaTextDateFormat *localFormat) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(IOSClass *dateType, jint dateStyle, jint timeStyle) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(JavaTextDateFormat *enUsFormat, JavaTextDateFormat *localFormat);
+FOUNDATION_EXPORT GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(IOSClass *dateType, jint dateStyle, jint timeStyle);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonDefaultDateTypeAdapter)
 

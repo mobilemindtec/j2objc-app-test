@@ -17,6 +17,7 @@
 #define GsonGson_
 
 @class GsonExcluder;
+@class GsonGsonBuilder;
 @class GsonJsonElement;
 @class GsonJsonReader;
 @class GsonJsonWriter;
@@ -25,9 +26,8 @@
 @class GsonTypeToken;
 @class IOSClass;
 @class JavaIoReader;
+@class JavaIoWriter;
 @protocol GsonFieldNamingStrategy;
-@protocol GsonJsonDeserializationContext;
-@protocol GsonJsonSerializationContext;
 @protocol GsonTypeAdapterFactory;
 @protocol JavaLangAppendable;
 @protocol JavaLangReflectType;
@@ -36,15 +36,46 @@
 
 @interface GsonGson : NSObject {
  @public
-  id<GsonJsonDeserializationContext> deserializationContext_;
-  id<GsonJsonSerializationContext> serializationContext_;
+  id<JavaUtilList> factories_;
+  GsonExcluder *excluder_;
+  id<GsonFieldNamingStrategy> fieldNamingStrategy_;
+  id<JavaUtilMap> instanceCreators_;
+  jboolean serializeNulls_;
+  jboolean complexMapKeySerialization_;
+  jboolean generateNonExecutableJson_;
+  jboolean htmlSafe_;
+  jboolean prettyPrinting_;
+  jboolean lenient_;
+  jboolean serializeSpecialFloatingPointValues_;
+  NSString *datePattern_;
+  jint dateStyle_;
+  jint timeStyle_;
+  GsonLongSerializationPolicy *longSerializationPolicy_;
+  id<JavaUtilList> builderFactories_;
+  id<JavaUtilList> builderHierarchyFactories_;
 }
 
 + (jboolean)DEFAULT_JSON_NON_EXECUTABLE;
 
++ (jboolean)DEFAULT_LENIENT;
+
++ (jboolean)DEFAULT_PRETTY_PRINT;
+
++ (jboolean)DEFAULT_ESCAPE_HTML;
+
++ (jboolean)DEFAULT_SERIALIZE_NULLS;
+
++ (jboolean)DEFAULT_COMPLEX_MAP_KEYS;
+
++ (jboolean)DEFAULT_SPECIALIZE_FLOAT_VALUES;
+
 #pragma mark Public
 
 - (instancetype)init;
+
+- (GsonExcluder *)excluder;
+
+- (id<GsonFieldNamingStrategy>)fieldNamingStrategy;
 
 - (id)fromJsonWithGsonJsonElement:(GsonJsonElement *)json
                      withIOSClass:(IOSClass *)classOfT;
@@ -73,6 +104,16 @@
 
 - (GsonTypeAdapter *)getDelegateAdapterWithGsonTypeAdapterFactory:(id<GsonTypeAdapterFactory>)skipPast
                                                 withGsonTypeToken:(GsonTypeToken *)type;
+
+- (jboolean)htmlSafe;
+
+- (GsonGsonBuilder *)newBuilder OBJC_METHOD_FAMILY_NONE;
+
+- (GsonJsonReader *)newJsonReaderWithJavaIoReader:(JavaIoReader *)reader OBJC_METHOD_FAMILY_NONE;
+
+- (GsonJsonWriter *)newJsonWriterWithJavaIoWriter:(JavaIoWriter *)writer OBJC_METHOD_FAMILY_NONE;
+
+- (jboolean)serializeNulls;
 
 - (NSString *)toJsonWithGsonJsonElement:(GsonJsonElement *)jsonElement;
 
@@ -108,27 +149,65 @@ withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc
 #pragma mark Package-Private
 
 - (instancetype)initWithGsonExcluder:(GsonExcluder *)excluder
-         withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
+         withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingStrategy
                      withJavaUtilMap:(id<JavaUtilMap>)instanceCreators
                          withBoolean:(jboolean)serializeNulls
                          withBoolean:(jboolean)complexMapKeySerialization
                          withBoolean:(jboolean)generateNonExecutableGson
                          withBoolean:(jboolean)htmlSafe
                          withBoolean:(jboolean)prettyPrinting
+                         withBoolean:(jboolean)lenient
                          withBoolean:(jboolean)serializeSpecialFloatingPointValues
      withGsonLongSerializationPolicy:(GsonLongSerializationPolicy *)longSerializationPolicy
-                    withJavaUtilList:(id<JavaUtilList>)typeAdapterFactories;
+                        withNSString:(NSString *)datePattern
+                             withInt:(jint)dateStyle
+                             withInt:(jint)timeStyle
+                    withJavaUtilList:(id<JavaUtilList>)builderFactories
+                    withJavaUtilList:(id<JavaUtilList>)builderHierarchyFactories
+                    withJavaUtilList:(id<JavaUtilList>)factoriesToBeAdded;
+
++ (void)checkValidFloatingPointWithDouble:(jdouble)value;
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonGson)
+J2OBJC_STATIC_INIT(GsonGson)
 
-J2OBJC_FIELD_SETTER(GsonGson, deserializationContext_, id<GsonJsonDeserializationContext>)
-J2OBJC_FIELD_SETTER(GsonGson, serializationContext_, id<GsonJsonSerializationContext>)
+J2OBJC_FIELD_SETTER(GsonGson, factories_, id<JavaUtilList>)
+J2OBJC_FIELD_SETTER(GsonGson, excluder_, GsonExcluder *)
+J2OBJC_FIELD_SETTER(GsonGson, fieldNamingStrategy_, id<GsonFieldNamingStrategy>)
+J2OBJC_FIELD_SETTER(GsonGson, instanceCreators_, id<JavaUtilMap>)
+J2OBJC_FIELD_SETTER(GsonGson, datePattern_, NSString *)
+J2OBJC_FIELD_SETTER(GsonGson, longSerializationPolicy_, GsonLongSerializationPolicy *)
+J2OBJC_FIELD_SETTER(GsonGson, builderFactories_, id<JavaUtilList>)
+J2OBJC_FIELD_SETTER(GsonGson, builderHierarchyFactories_, id<JavaUtilList>)
 
 inline jboolean GsonGson_get_DEFAULT_JSON_NON_EXECUTABLE(void);
 #define GsonGson_DEFAULT_JSON_NON_EXECUTABLE false
 J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_JSON_NON_EXECUTABLE, jboolean)
+
+inline jboolean GsonGson_get_DEFAULT_LENIENT(void);
+#define GsonGson_DEFAULT_LENIENT false
+J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_LENIENT, jboolean)
+
+inline jboolean GsonGson_get_DEFAULT_PRETTY_PRINT(void);
+#define GsonGson_DEFAULT_PRETTY_PRINT false
+J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_PRETTY_PRINT, jboolean)
+
+inline jboolean GsonGson_get_DEFAULT_ESCAPE_HTML(void);
+#define GsonGson_DEFAULT_ESCAPE_HTML true
+J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_ESCAPE_HTML, jboolean)
+
+inline jboolean GsonGson_get_DEFAULT_SERIALIZE_NULLS(void);
+#define GsonGson_DEFAULT_SERIALIZE_NULLS false
+J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_SERIALIZE_NULLS, jboolean)
+
+inline jboolean GsonGson_get_DEFAULT_COMPLEX_MAP_KEYS(void);
+#define GsonGson_DEFAULT_COMPLEX_MAP_KEYS false
+J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_COMPLEX_MAP_KEYS, jboolean)
+
+inline jboolean GsonGson_get_DEFAULT_SPECIALIZE_FLOAT_VALUES(void);
+#define GsonGson_DEFAULT_SPECIALIZE_FLOAT_VALUES false
+J2OBJC_STATIC_FIELD_CONSTANT(GsonGson, DEFAULT_SPECIALIZE_FLOAT_VALUES, jboolean)
 
 FOUNDATION_EXPORT void GsonGson_init(GsonGson *self);
 
@@ -136,11 +215,13 @@ FOUNDATION_EXPORT GsonGson *new_GsonGson_init(void) NS_RETURNS_RETAINED;
 
 FOUNDATION_EXPORT GsonGson *create_GsonGson_init(void);
 
-FOUNDATION_EXPORT void GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withJavaUtilList_(GsonGson *self, GsonExcluder *excluder, id<GsonFieldNamingStrategy> fieldNamingPolicy, id<JavaUtilMap> instanceCreators, jboolean serializeNulls, jboolean complexMapKeySerialization, jboolean generateNonExecutableGson, jboolean htmlSafe, jboolean prettyPrinting, jboolean serializeSpecialFloatingPointValues, GsonLongSerializationPolicy *longSerializationPolicy, id<JavaUtilList> typeAdapterFactories);
+FOUNDATION_EXPORT void GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withNSString_withInt_withInt_withJavaUtilList_withJavaUtilList_withJavaUtilList_(GsonGson *self, GsonExcluder *excluder, id<GsonFieldNamingStrategy> fieldNamingStrategy, id<JavaUtilMap> instanceCreators, jboolean serializeNulls, jboolean complexMapKeySerialization, jboolean generateNonExecutableGson, jboolean htmlSafe, jboolean prettyPrinting, jboolean lenient, jboolean serializeSpecialFloatingPointValues, GsonLongSerializationPolicy *longSerializationPolicy, NSString *datePattern, jint dateStyle, jint timeStyle, id<JavaUtilList> builderFactories, id<JavaUtilList> builderHierarchyFactories, id<JavaUtilList> factoriesToBeAdded);
 
-FOUNDATION_EXPORT GsonGson *new_GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withJavaUtilList_(GsonExcluder *excluder, id<GsonFieldNamingStrategy> fieldNamingPolicy, id<JavaUtilMap> instanceCreators, jboolean serializeNulls, jboolean complexMapKeySerialization, jboolean generateNonExecutableGson, jboolean htmlSafe, jboolean prettyPrinting, jboolean serializeSpecialFloatingPointValues, GsonLongSerializationPolicy *longSerializationPolicy, id<JavaUtilList> typeAdapterFactories) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT GsonGson *new_GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withNSString_withInt_withInt_withJavaUtilList_withJavaUtilList_withJavaUtilList_(GsonExcluder *excluder, id<GsonFieldNamingStrategy> fieldNamingStrategy, id<JavaUtilMap> instanceCreators, jboolean serializeNulls, jboolean complexMapKeySerialization, jboolean generateNonExecutableGson, jboolean htmlSafe, jboolean prettyPrinting, jboolean lenient, jboolean serializeSpecialFloatingPointValues, GsonLongSerializationPolicy *longSerializationPolicy, NSString *datePattern, jint dateStyle, jint timeStyle, id<JavaUtilList> builderFactories, id<JavaUtilList> builderHierarchyFactories, id<JavaUtilList> factoriesToBeAdded) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT GsonGson *create_GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withJavaUtilList_(GsonExcluder *excluder, id<GsonFieldNamingStrategy> fieldNamingPolicy, id<JavaUtilMap> instanceCreators, jboolean serializeNulls, jboolean complexMapKeySerialization, jboolean generateNonExecutableGson, jboolean htmlSafe, jboolean prettyPrinting, jboolean serializeSpecialFloatingPointValues, GsonLongSerializationPolicy *longSerializationPolicy, id<JavaUtilList> typeAdapterFactories);
+FOUNDATION_EXPORT GsonGson *create_GsonGson_initWithGsonExcluder_withGsonFieldNamingStrategy_withJavaUtilMap_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withBoolean_withGsonLongSerializationPolicy_withNSString_withInt_withInt_withJavaUtilList_withJavaUtilList_withJavaUtilList_(GsonExcluder *excluder, id<GsonFieldNamingStrategy> fieldNamingStrategy, id<JavaUtilMap> instanceCreators, jboolean serializeNulls, jboolean complexMapKeySerialization, jboolean generateNonExecutableGson, jboolean htmlSafe, jboolean prettyPrinting, jboolean lenient, jboolean serializeSpecialFloatingPointValues, GsonLongSerializationPolicy *longSerializationPolicy, NSString *datePattern, jint dateStyle, jint timeStyle, id<JavaUtilList> builderFactories, id<JavaUtilList> builderHierarchyFactories, id<JavaUtilList> factoriesToBeAdded);
+
+FOUNDATION_EXPORT void GsonGson_checkValidFloatingPointWithDouble_(jdouble value);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonGson)
 

@@ -215,7 +215,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonPrimitive)
     { NULL, NULL, 0x1, -1, 2, -1, -1, -1, -1 },
     { NULL, NULL, 0x1, -1, 3, -1, -1, -1, -1 },
     { NULL, NULL, 0x0, -1, 4, -1, -1, -1, -1 },
-    { NULL, "LGsonJsonPrimitive;", 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LGsonJsonPrimitive;", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "V", 0x0, 5, 4, -1, -1, -1, -1 },
     { NULL, "Z", 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LJavaLangBoolean;", 0x0, -1, -1, -1, -1, -1, -1 },

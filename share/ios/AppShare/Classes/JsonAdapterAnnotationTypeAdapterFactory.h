@@ -37,9 +37,9 @@
 
 #pragma mark Package-Private
 
-+ (GsonTypeAdapter *)getTypeAdapterWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
+- (GsonTypeAdapter *)getTypeAdapterWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
                                                      withGsonGson:(GsonGson *)gson
-                                                withGsonTypeToken:(GsonTypeToken *)fieldType
+                                                withGsonTypeToken:(GsonTypeToken *)type
                                               withGsonJsonAdapter:(id<GsonJsonAdapter>)annotation;
 
 // Disallowed inherited constructors, do not use.
@@ -55,8 +55,6 @@ FOUNDATION_EXPORT void GsonJsonAdapterAnnotationTypeAdapterFactory_initWithGsonC
 FOUNDATION_EXPORT GsonJsonAdapterAnnotationTypeAdapterFactory *new_GsonJsonAdapterAnnotationTypeAdapterFactory_initWithGsonConstructorConstructor_(GsonConstructorConstructor *constructorConstructor) NS_RETURNS_RETAINED;
 
 FOUNDATION_EXPORT GsonJsonAdapterAnnotationTypeAdapterFactory *create_GsonJsonAdapterAnnotationTypeAdapterFactory_initWithGsonConstructorConstructor_(GsonConstructorConstructor *constructorConstructor);
-
-FOUNDATION_EXPORT GsonTypeAdapter *GsonJsonAdapterAnnotationTypeAdapterFactory_getTypeAdapterWithGsonConstructorConstructor_withGsonGson_withGsonTypeToken_withGsonJsonAdapter_(GsonConstructorConstructor *constructorConstructor, GsonGson *gson, GsonTypeToken *fieldType, id<GsonJsonAdapter> annotation);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonJsonAdapterAnnotationTypeAdapterFactory)
 

@@ -5,58 +5,69 @@
 
 #include "DefaultDateTypeAdapter.h"
 #include "IOSClass.h"
+#include "ISO8601Utils.h"
 #include "J2ObjC_source.h"
-#include "JsonDeserializationContext.h"
-#include "JsonElement.h"
-#include "JsonParseException.h"
-#include "JsonPrimitive.h"
-#include "JsonSerializationContext.h"
+#include "JsonReader.h"
 #include "JsonSyntaxException.h"
+#include "JsonToken.h"
+#include "JsonWriter.h"
+#include "PreJava9DateFormatProvider.h"
+#include "TypeAdapter.h"
+#include "VersionUtils.h"
+#include "java/lang/AssertionError.h"
 #include "java/lang/IllegalArgumentException.h"
-#include "java/lang/StringBuilder.h"
-#include "java/lang/reflect/Type.h"
 #include "java/sql/Date.h"
 #include "java/sql/Timestamp.h"
 #include "java/text/DateFormat.h"
 #include "java/text/ParseException.h"
+#include "java/text/ParsePosition.h"
 #include "java/text/SimpleDateFormat.h"
+#include "java/util/ArrayList.h"
 #include "java/util/Date.h"
+#include "java/util/List.h"
 #include "java/util/Locale.h"
-#include "java/util/TimeZone.h"
+
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
 
 @interface GsonDefaultDateTypeAdapter () {
  @public
-  JavaTextDateFormat *enUsFormat_;
-  JavaTextDateFormat *localFormat_;
-  JavaTextDateFormat *iso8601Format_;
+  IOSClass *dateType_;
+  id<JavaUtilList> dateFormats_;
 }
 
-- (JavaUtilDate *)deserializeToDateWithGsonJsonElement:(GsonJsonElement *)json;
++ (IOSClass *)verifyDateTypeWithIOSClass:(IOSClass *)dateType;
+
+- (JavaUtilDate *)deserializeToDateWithNSString:(NSString *)s;
 
 @end
 
-J2OBJC_FIELD_SETTER(GsonDefaultDateTypeAdapter, enUsFormat_, JavaTextDateFormat *)
-J2OBJC_FIELD_SETTER(GsonDefaultDateTypeAdapter, localFormat_, JavaTextDateFormat *)
-J2OBJC_FIELD_SETTER(GsonDefaultDateTypeAdapter, iso8601Format_, JavaTextDateFormat *)
+J2OBJC_FIELD_SETTER(GsonDefaultDateTypeAdapter, dateType_, IOSClass *)
+J2OBJC_FIELD_SETTER(GsonDefaultDateTypeAdapter, dateFormats_, id<JavaUtilList>)
 
-__attribute__((unused)) static JavaUtilDate *GsonDefaultDateTypeAdapter_deserializeToDateWithGsonJsonElement_(GsonDefaultDateTypeAdapter *self, GsonJsonElement *json);
+inline NSString *GsonDefaultDateTypeAdapter_get_SIMPLE_NAME(void);
+static NSString *GsonDefaultDateTypeAdapter_SIMPLE_NAME = @"DefaultDateTypeAdapter";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonDefaultDateTypeAdapter, SIMPLE_NAME, NSString *)
+
+__attribute__((unused)) static IOSClass *GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(IOSClass *dateType);
+
+__attribute__((unused)) static JavaUtilDate *GsonDefaultDateTypeAdapter_deserializeToDateWithNSString_(GsonDefaultDateTypeAdapter *self, NSString *s);
 
 @implementation GsonDefaultDateTypeAdapter
 
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  GsonDefaultDateTypeAdapter_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
-
-- (instancetype)initWithNSString:(NSString *)datePattern {
-  GsonDefaultDateTypeAdapter_initWithNSString_(self, datePattern);
+- (instancetype)initWithIOSClass:(IOSClass *)dateType {
+  GsonDefaultDateTypeAdapter_initWithIOSClass_(self, dateType);
   return self;
 }
 
-- (instancetype)initWithInt:(jint)style {
-  GsonDefaultDateTypeAdapter_initWithInt_(self, style);
+- (instancetype)initWithIOSClass:(IOSClass *)dateType
+                    withNSString:(NSString *)datePattern {
+  GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(self, dateType, datePattern);
+  return self;
+}
+
+- (instancetype)initWithIOSClass:(IOSClass *)dateType
+                         withInt:(jint)style {
+  GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(self, dateType, style);
   return self;
 }
 
@@ -66,127 +77,163 @@ J2OBJC_IGNORE_DESIGNATED_END
   return self;
 }
 
-- (instancetype)initWithJavaTextDateFormat:(JavaTextDateFormat *)enUsFormat
-                    withJavaTextDateFormat:(JavaTextDateFormat *)localFormat {
-  GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(self, enUsFormat, localFormat);
+- (instancetype)initWithIOSClass:(IOSClass *)dateType
+                         withInt:(jint)dateStyle
+                         withInt:(jint)timeStyle {
+  GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(self, dateType, dateStyle, timeStyle);
   return self;
 }
 
-- (GsonJsonElement *)serializeWithId:(JavaUtilDate *)src
-             withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc
-    withGsonJsonSerializationContext:(id<GsonJsonSerializationContext>)context {
-  @synchronized(localFormat_) {
-    NSString *dateFormatAsString = [((JavaTextDateFormat *) nil_chk(enUsFormat_)) formatWithJavaUtilDate:src];
-    return new_GsonJsonPrimitive_initWithNSString_(dateFormatAsString);
++ (IOSClass *)verifyDateTypeWithIOSClass:(IOSClass *)dateType {
+  return GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(dateType);
+}
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(JavaUtilDate *)value {
+  if (value == nil) {
+    (void) [((GsonJsonWriter *) nil_chk(outArg)) nullValue];
+    return;
+  }
+  @synchronized(dateFormats_) {
+    NSString *dateFormatAsString = [((JavaTextDateFormat *) nil_chk([((id<JavaUtilList>) nil_chk(dateFormats_)) getWithInt:0])) formatWithJavaUtilDate:value];
+    (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSString:dateFormatAsString];
   }
 }
 
-- (JavaUtilDate *)deserializeWithGsonJsonElement:(GsonJsonElement *)json
-                         withJavaLangReflectType:(id<JavaLangReflectType>)typeOfT
-              withGsonJsonDeserializationContext:(id<GsonJsonDeserializationContext>)context {
-  if (!([json isKindOfClass:[GsonJsonPrimitive class]])) {
-    @throw new_GsonJsonParseException_initWithNSString_(@"The date should be a string value");
+- (JavaUtilDate *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
+    [inArg nextNull];
+    return nil;
   }
-  JavaUtilDate *date = GsonDefaultDateTypeAdapter_deserializeToDateWithGsonJsonElement_(self, json);
-  if (typeOfT == (id) JavaUtilDate_class_()) {
+  JavaUtilDate *date = GsonDefaultDateTypeAdapter_deserializeToDateWithNSString_(self, [inArg nextString]);
+  if (dateType_ == JavaUtilDate_class_()) {
     return date;
   }
-  else if (typeOfT == (id) JavaSqlTimestamp_class_()) {
+  else if (dateType_ == JavaSqlTimestamp_class_()) {
     return new_JavaSqlTimestamp_initWithLong_([((JavaUtilDate *) nil_chk(date)) getTime]);
   }
-  else if (typeOfT == (id) JavaSqlDate_class_()) {
+  else if (dateType_ == JavaSqlDate_class_()) {
     return new_JavaSqlDate_initWithLong_([((JavaUtilDate *) nil_chk(date)) getTime]);
   }
   else {
-    @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("@$@", [self java_getClass], @" cannot deserialize to ", typeOfT));
+    @throw new_JavaLangAssertionError_init();
   }
 }
 
-- (JavaUtilDate *)deserializeToDateWithGsonJsonElement:(GsonJsonElement *)json {
-  return GsonDefaultDateTypeAdapter_deserializeToDateWithGsonJsonElement_(self, json);
+- (JavaUtilDate *)deserializeToDateWithNSString:(NSString *)s {
+  return GsonDefaultDateTypeAdapter_deserializeToDateWithNSString_(self, s);
 }
 
 - (NSString *)description {
-  JavaLangStringBuilder *sb = new_JavaLangStringBuilder_init();
-  (void) [sb appendWithNSString:[GsonDefaultDateTypeAdapter_class_() getSimpleName]];
-  (void) [((JavaLangStringBuilder *) nil_chk([((JavaLangStringBuilder *) nil_chk([sb appendWithChar:'('])) appendWithNSString:[[((JavaTextDateFormat *) nil_chk(localFormat_)) java_getClass] getSimpleName]])) appendWithChar:')'];
-  return [sb description];
+  JavaTextDateFormat *defaultFormat = [((id<JavaUtilList>) nil_chk(dateFormats_)) getWithInt:0];
+  if ([defaultFormat isKindOfClass:[JavaTextSimpleDateFormat class]]) {
+    return JreStrcat("$C$C", GsonDefaultDateTypeAdapter_SIMPLE_NAME, '(', [((JavaTextSimpleDateFormat *) nil_chk(((JavaTextSimpleDateFormat *) cast_chk(defaultFormat, [JavaTextSimpleDateFormat class])))) toPattern], ')');
+  }
+  else {
+    return JreStrcat("$C$C", GsonDefaultDateTypeAdapter_SIMPLE_NAME, '(', [[((JavaTextDateFormat *) nil_chk(defaultFormat)) java_getClass] getSimpleName], ')');
+  }
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 1, -1, -1, -1, -1 },
-    { NULL, NULL, 0x1, -1, 2, -1, -1, -1, -1 },
-    { NULL, NULL, 0x0, -1, 3, -1, -1, -1, -1 },
-    { NULL, "LGsonJsonElement;", 0x1, 4, 5, -1, -1, -1, -1 },
-    { NULL, "LJavaUtilDate;", 0x1, 6, 7, 8, -1, -1, -1 },
-    { NULL, "LJavaUtilDate;", 0x2, 9, 10, -1, -1, -1, -1 },
-    { NULL, "LNSString;", 0x1, 11, -1, -1, -1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 0, -1, 1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 2, -1, 3, -1, -1 },
+    { NULL, NULL, 0x0, -1, 4, -1, 5, -1, -1 },
+    { NULL, NULL, 0x1, -1, 6, -1, -1, -1, -1 },
+    { NULL, NULL, 0x1, -1, 7, -1, 8, -1, -1 },
+    { NULL, "LIOSClass;", 0xa, 9, 0, -1, 10, -1, -1 },
+    { NULL, "V", 0x1, 11, 12, 13, -1, -1, -1 },
+    { NULL, "LJavaUtilDate;", 0x1, 14, 15, 13, -1, -1, -1 },
+    { NULL, "LJavaUtilDate;", 0x2, 16, 17, -1, -1, -1, -1 },
+    { NULL, "LNSString;", 0x1, 18, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(init);
-  methods[1].selector = @selector(initWithNSString:);
-  methods[2].selector = @selector(initWithInt:);
+  methods[0].selector = @selector(initWithIOSClass:);
+  methods[1].selector = @selector(initWithIOSClass:withNSString:);
+  methods[2].selector = @selector(initWithIOSClass:withInt:);
   methods[3].selector = @selector(initWithInt:withInt:);
-  methods[4].selector = @selector(initWithJavaTextDateFormat:withJavaTextDateFormat:);
-  methods[5].selector = @selector(serializeWithId:withJavaLangReflectType:withGsonJsonSerializationContext:);
-  methods[6].selector = @selector(deserializeWithGsonJsonElement:withJavaLangReflectType:withGsonJsonDeserializationContext:);
-  methods[7].selector = @selector(deserializeToDateWithGsonJsonElement:);
-  methods[8].selector = @selector(description);
+  methods[4].selector = @selector(initWithIOSClass:withInt:withInt:);
+  methods[5].selector = @selector(verifyDateTypeWithIOSClass:);
+  methods[6].selector = @selector(writeWithGsonJsonWriter:withId:);
+  methods[7].selector = @selector(readWithGsonJsonReader:);
+  methods[8].selector = @selector(deserializeToDateWithNSString:);
+  methods[9].selector = @selector(description);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "enUsFormat_", "LJavaTextDateFormat;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
-    { "localFormat_", "LJavaTextDateFormat;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
-    { "iso8601Format_", "LJavaTextDateFormat;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
+    { "SIMPLE_NAME", "LNSString;", .constantValue.asLong = 0, 0x1a, -1, 19, -1, -1 },
+    { "dateType_", "LIOSClass;", .constantValue.asLong = 0, 0x12, -1, -1, 20, -1 },
+    { "dateFormats_", "LJavaUtilList;", .constantValue.asLong = 0, 0x12, -1, -1, 21, -1 },
   };
-  static const void *ptrTable[] = { "LNSString;", "I", "II", "LJavaTextDateFormat;LJavaTextDateFormat;", "serialize", "LJavaUtilDate;LJavaLangReflectType;LGsonJsonSerializationContext;", "deserialize", "LGsonJsonElement;LJavaLangReflectType;LGsonJsonDeserializationContext;", "LGsonJsonParseException;", "deserializeToDate", "LGsonJsonElement;", "toString", "Ljava/lang/Object;Lcom/google/gson/JsonSerializer<Ljava/util/Date;>;Lcom/google/gson/JsonDeserializer<Ljava/util/Date;>;" };
-  static const J2ObjcClassInfo _GsonDefaultDateTypeAdapter = { "DefaultDateTypeAdapter", "com.google.gson", ptrTable, methods, fields, 7, 0x10, 9, 3, -1, -1, -1, 12, -1 };
+  static const void *ptrTable[] = { "LIOSClass;", "(Ljava/lang/Class<+Ljava/util/Date;>;)V", "LIOSClass;LNSString;", "(Ljava/lang/Class<+Ljava/util/Date;>;Ljava/lang/String;)V", "LIOSClass;I", "(Ljava/lang/Class<+Ljava/util/Date;>;I)V", "II", "LIOSClass;II", "(Ljava/lang/Class<+Ljava/util/Date;>;II)V", "verifyDateType", "(Ljava/lang/Class<+Ljava/util/Date;>;)Ljava/lang/Class<+Ljava/util/Date;>;", "write", "LGsonJsonWriter;LJavaUtilDate;", "LJavaIoIOException;", "read", "LGsonJsonReader;", "deserializeToDate", "LNSString;", "toString", &GsonDefaultDateTypeAdapter_SIMPLE_NAME, "Ljava/lang/Class<+Ljava/util/Date;>;", "Ljava/util/List<Ljava/text/DateFormat;>;", "Lcom/google/gson/TypeAdapter<Ljava/util/Date;>;" };
+  static const J2ObjcClassInfo _GsonDefaultDateTypeAdapter = { "DefaultDateTypeAdapter", "com.google.gson", ptrTable, methods, fields, 7, 0x10, 10, 3, -1, -1, -1, 22, -1 };
   return &_GsonDefaultDateTypeAdapter;
 }
 
 @end
 
-void GsonDefaultDateTypeAdapter_init(GsonDefaultDateTypeAdapter *self) {
-  GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(self, JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_withJavaUtilLocale_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT, JreLoadStatic(JavaUtilLocale, US)), JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT));
+void GsonDefaultDateTypeAdapter_initWithIOSClass_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType) {
+  GsonTypeAdapter_init(self);
+  self->dateFormats_ = new_JavaUtilArrayList_init();
+  self->dateType_ = GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(dateType);
+  [self->dateFormats_ addWithId:JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_withJavaUtilLocale_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT, JreLoadStatic(JavaUtilLocale, US))];
+  if (![((JavaUtilLocale *) nil_chk(JavaUtilLocale_getDefault())) isEqual:JreLoadStatic(JavaUtilLocale, US)]) {
+    [self->dateFormats_ addWithId:JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT)];
+  }
+  if (ComGoogleGsonUtilVersionUtils_isJava9OrLater()) {
+    [self->dateFormats_ addWithId:GsonPreJava9DateFormatProvider_getUSDateTimeFormatWithInt_withInt_(JavaTextDateFormat_DEFAULT, JavaTextDateFormat_DEFAULT)];
+  }
 }
 
-GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_init() {
-  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, init)
+GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_(IOSClass *dateType) {
+  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_, dateType)
 }
 
-GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_init() {
-  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, init)
+GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_(IOSClass *dateType) {
+  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_, dateType)
 }
 
-void GsonDefaultDateTypeAdapter_initWithNSString_(GsonDefaultDateTypeAdapter *self, NSString *datePattern) {
-  GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(self, new_JavaTextSimpleDateFormat_initWithNSString_withJavaUtilLocale_(datePattern, JreLoadStatic(JavaUtilLocale, US)), new_JavaTextSimpleDateFormat_initWithNSString_(datePattern));
+void GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType, NSString *datePattern) {
+  GsonTypeAdapter_init(self);
+  self->dateFormats_ = new_JavaUtilArrayList_init();
+  self->dateType_ = GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(dateType);
+  [self->dateFormats_ addWithId:new_JavaTextSimpleDateFormat_initWithNSString_withJavaUtilLocale_(datePattern, JreLoadStatic(JavaUtilLocale, US))];
+  if (![((JavaUtilLocale *) nil_chk(JavaUtilLocale_getDefault())) isEqual:JreLoadStatic(JavaUtilLocale, US)]) {
+    [self->dateFormats_ addWithId:new_JavaTextSimpleDateFormat_initWithNSString_(datePattern)];
+  }
 }
 
-GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithNSString_(NSString *datePattern) {
-  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithNSString_, datePattern)
+GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(IOSClass *dateType, NSString *datePattern) {
+  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_withNSString_, dateType, datePattern)
 }
 
-GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithNSString_(NSString *datePattern) {
-  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithNSString_, datePattern)
+GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_withNSString_(IOSClass *dateType, NSString *datePattern) {
+  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_withNSString_, dateType, datePattern)
 }
 
-void GsonDefaultDateTypeAdapter_initWithInt_(GsonDefaultDateTypeAdapter *self, jint style) {
-  GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(self, JavaTextDateFormat_getDateInstanceWithInt_withJavaUtilLocale_(style, JreLoadStatic(JavaUtilLocale, US)), JavaTextDateFormat_getDateInstanceWithInt_(style));
+void GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType, jint style) {
+  GsonTypeAdapter_init(self);
+  self->dateFormats_ = new_JavaUtilArrayList_init();
+  self->dateType_ = GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(dateType);
+  [self->dateFormats_ addWithId:JavaTextDateFormat_getDateInstanceWithInt_withJavaUtilLocale_(style, JreLoadStatic(JavaUtilLocale, US))];
+  if (![((JavaUtilLocale *) nil_chk(JavaUtilLocale_getDefault())) isEqual:JreLoadStatic(JavaUtilLocale, US)]) {
+    [self->dateFormats_ addWithId:JavaTextDateFormat_getDateInstanceWithInt_(style)];
+  }
+  if (ComGoogleGsonUtilVersionUtils_isJava9OrLater()) {
+    [self->dateFormats_ addWithId:GsonPreJava9DateFormatProvider_getUSDateFormatWithInt_(style)];
+  }
 }
 
-GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithInt_(jint style) {
-  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithInt_, style)
+GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(IOSClass *dateType, jint style) {
+  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_withInt_, dateType, style)
 }
 
-GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithInt_(jint style) {
-  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithInt_, style)
+GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_(IOSClass *dateType, jint style) {
+  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_withInt_, dateType, style)
 }
 
 void GsonDefaultDateTypeAdapter_initWithInt_withInt_(GsonDefaultDateTypeAdapter *self, jint dateStyle, jint timeStyle) {
-  GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(self, JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_withJavaUtilLocale_(dateStyle, timeStyle, JreLoadStatic(JavaUtilLocale, US)), JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_(dateStyle, timeStyle));
+  GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(self, JavaUtilDate_class_(), dateStyle, timeStyle);
 }
 
 GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithInt_withInt_(jint dateStyle, jint timeStyle) {
@@ -197,39 +244,49 @@ GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithInt_withIn
   J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithInt_withInt_, dateStyle, timeStyle)
 }
 
-void GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(GsonDefaultDateTypeAdapter *self, JavaTextDateFormat *enUsFormat, JavaTextDateFormat *localFormat) {
-  NSObject_init(self);
-  self->enUsFormat_ = enUsFormat;
-  self->localFormat_ = localFormat;
-  self->iso8601Format_ = new_JavaTextSimpleDateFormat_initWithNSString_withJavaUtilLocale_(@"yyyy-MM-dd'T'HH:mm:ss'Z'", JreLoadStatic(JavaUtilLocale, US));
-  [self->iso8601Format_ setTimeZoneWithJavaUtilTimeZone:JavaUtilTimeZone_getTimeZoneWithNSString_(@"UTC")];
+void GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(GsonDefaultDateTypeAdapter *self, IOSClass *dateType, jint dateStyle, jint timeStyle) {
+  GsonTypeAdapter_init(self);
+  self->dateFormats_ = new_JavaUtilArrayList_init();
+  self->dateType_ = GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(dateType);
+  [self->dateFormats_ addWithId:JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_withJavaUtilLocale_(dateStyle, timeStyle, JreLoadStatic(JavaUtilLocale, US))];
+  if (![((JavaUtilLocale *) nil_chk(JavaUtilLocale_getDefault())) isEqual:JreLoadStatic(JavaUtilLocale, US)]) {
+    [self->dateFormats_ addWithId:JavaTextDateFormat_getDateTimeInstanceWithInt_withInt_(dateStyle, timeStyle)];
+  }
+  if (ComGoogleGsonUtilVersionUtils_isJava9OrLater()) {
+    [self->dateFormats_ addWithId:GsonPreJava9DateFormatProvider_getUSDateTimeFormatWithInt_withInt_(dateStyle, timeStyle)];
+  }
 }
 
-GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(JavaTextDateFormat *enUsFormat, JavaTextDateFormat *localFormat) {
-  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithJavaTextDateFormat_withJavaTextDateFormat_, enUsFormat, localFormat)
+GsonDefaultDateTypeAdapter *new_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(IOSClass *dateType, jint dateStyle, jint timeStyle) {
+  J2OBJC_NEW_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_withInt_withInt_, dateType, dateStyle, timeStyle)
 }
 
-GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithJavaTextDateFormat_withJavaTextDateFormat_(JavaTextDateFormat *enUsFormat, JavaTextDateFormat *localFormat) {
-  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithJavaTextDateFormat_withJavaTextDateFormat_, enUsFormat, localFormat)
+GsonDefaultDateTypeAdapter *create_GsonDefaultDateTypeAdapter_initWithIOSClass_withInt_withInt_(IOSClass *dateType, jint dateStyle, jint timeStyle) {
+  J2OBJC_CREATE_IMPL(GsonDefaultDateTypeAdapter, initWithIOSClass_withInt_withInt_, dateType, dateStyle, timeStyle)
 }
 
-JavaUtilDate *GsonDefaultDateTypeAdapter_deserializeToDateWithGsonJsonElement_(GsonDefaultDateTypeAdapter *self, GsonJsonElement *json) {
-  @synchronized(self->localFormat_) {
+IOSClass *GsonDefaultDateTypeAdapter_verifyDateTypeWithIOSClass_(IOSClass *dateType) {
+  GsonDefaultDateTypeAdapter_initialize();
+  if (dateType != JavaUtilDate_class_() && dateType != JavaSqlDate_class_() && dateType != JavaSqlTimestamp_class_()) {
+    @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("$@$@$@$@", @"Date type must be one of ", JavaUtilDate_class_(), @", ", JavaSqlTimestamp_class_(), @", or ", JavaSqlDate_class_(), @" but was ", dateType));
+  }
+  return dateType;
+}
+
+JavaUtilDate *GsonDefaultDateTypeAdapter_deserializeToDateWithNSString_(GsonDefaultDateTypeAdapter *self, NSString *s) {
+  @synchronized(self->dateFormats_) {
+    for (JavaTextDateFormat * __strong dateFormat in nil_chk(self->dateFormats_)) {
+      @try {
+        return [((JavaTextDateFormat *) nil_chk(dateFormat)) parseWithNSString:s];
+      }
+      @catch (JavaTextParseException *ignored) {
+      }
+    }
     @try {
-      return [((JavaTextDateFormat *) nil_chk(self->localFormat_)) parseWithNSString:[((GsonJsonElement *) nil_chk(json)) getAsString]];
-    }
-    @catch (JavaTextParseException *ignored) {
-    }
-    @try {
-      return [((JavaTextDateFormat *) nil_chk(self->enUsFormat_)) parseWithNSString:[json getAsString]];
-    }
-    @catch (JavaTextParseException *ignored) {
-    }
-    @try {
-      return [((JavaTextDateFormat *) nil_chk(self->iso8601Format_)) parseWithNSString:[json getAsString]];
+      return ComGoogleGsonInternalBindUtilISO8601Utils_parseWithNSString_withJavaTextParsePosition_(s, new_JavaTextParsePosition_initWithInt_(0));
     }
     @catch (JavaTextParseException *e) {
-      @throw new_GsonJsonSyntaxException_initWithNSString_withJavaLangThrowable_([json getAsString], e);
+      @throw new_GsonJsonSyntaxException_initWithNSString_withJavaLangThrowable_(s, e);
     }
   }
 }

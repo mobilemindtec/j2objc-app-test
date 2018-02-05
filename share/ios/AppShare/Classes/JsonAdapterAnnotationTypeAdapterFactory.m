@@ -9,7 +9,10 @@
 #include "J2ObjC_source.h"
 #include "JsonAdapter.h"
 #include "JsonAdapterAnnotationTypeAdapterFactory.h"
+#include "JsonDeserializer.h"
+#include "JsonSerializer.h"
 #include "ObjectConstructor.h"
+#include "TreeTypeAdapter.h"
 #include "TypeAdapter.h"
 #include "TypeAdapterFactory.h"
 #include "TypeToken.h"
@@ -33,25 +36,45 @@ J2OBJC_FIELD_SETTER(GsonJsonAdapterAnnotationTypeAdapterFactory, constructorCons
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)targetType {
-  id<GsonJsonAdapter> annotation = ((id<GsonJsonAdapter>) [((IOSClass *) nil_chk([((GsonTypeToken *) nil_chk(targetType)) getRawType])) getAnnotationWithIOSClass:GsonJsonAdapter_class_()]);
+  IOSClass *rawType = [((GsonTypeToken *) nil_chk(targetType)) getRawType];
+  id<GsonJsonAdapter> annotation = ((id<GsonJsonAdapter>) [((IOSClass *) nil_chk(rawType)) getAnnotationWithIOSClass:GsonJsonAdapter_class_()]);
   if (annotation == nil) {
     return nil;
   }
-  return GsonJsonAdapterAnnotationTypeAdapterFactory_getTypeAdapterWithGsonConstructorConstructor_withGsonGson_withGsonTypeToken_withGsonJsonAdapter_(constructorConstructor_, gson, targetType, annotation);
+  return [self getTypeAdapterWithGsonConstructorConstructor:constructorConstructor_ withGsonGson:gson withGsonTypeToken:targetType withGsonJsonAdapter:annotation];
 }
 
-+ (GsonTypeAdapter *)getTypeAdapterWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
+- (GsonTypeAdapter *)getTypeAdapterWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
                                                      withGsonGson:(GsonGson *)gson
-                                                withGsonTypeToken:(GsonTypeToken *)fieldType
+                                                withGsonTypeToken:(GsonTypeToken *)type
                                               withGsonJsonAdapter:(id<GsonJsonAdapter>)annotation {
-  return GsonJsonAdapterAnnotationTypeAdapterFactory_getTypeAdapterWithGsonConstructorConstructor_withGsonGson_withGsonTypeToken_withGsonJsonAdapter_(constructorConstructor, gson, fieldType, annotation);
+  id instance = [((id<GsonObjectConstructor>) nil_chk([((GsonConstructorConstructor *) nil_chk(constructorConstructor)) getWithGsonTypeToken:GsonTypeToken_getWithIOSClass_([((id<GsonJsonAdapter>) nil_chk(annotation)) value])])) construct];
+  GsonTypeAdapter *typeAdapter;
+  if ([instance isKindOfClass:[GsonTypeAdapter class]]) {
+    typeAdapter = (GsonTypeAdapter *) cast_chk(instance, [GsonTypeAdapter class]);
+  }
+  else if ([GsonTypeAdapterFactory_class_() isInstance:instance]) {
+    typeAdapter = [((id<GsonTypeAdapterFactory>) nil_chk(((id<GsonTypeAdapterFactory>) cast_check(instance, GsonTypeAdapterFactory_class_())))) createWithGsonGson:gson withGsonTypeToken:type];
+  }
+  else if ([GsonJsonSerializer_class_() isInstance:instance] || [GsonJsonDeserializer_class_() isInstance:instance]) {
+    id<GsonJsonSerializer> serializer = [GsonJsonSerializer_class_() isInstance:instance] ? (id<GsonJsonSerializer>) cast_check(instance, GsonJsonSerializer_class_()) : nil;
+    id<GsonJsonDeserializer> deserializer = [GsonJsonDeserializer_class_() isInstance:instance] ? (id<GsonJsonDeserializer>) cast_check(instance, GsonJsonDeserializer_class_()) : nil;
+    typeAdapter = new_GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(serializer, deserializer, gson, type, nil);
+  }
+  else {
+    @throw new_JavaLangIllegalArgumentException_initWithNSString_(JreStrcat("$$$$$", @"Invalid attempt to bind an instance of ", [[nil_chk(instance) java_getClass] getName], @" as a @JsonAdapter for ", [((GsonTypeToken *) nil_chk(type)) description], @". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer."));
+  }
+  if (typeAdapter != nil && [annotation nullSafe]) {
+    typeAdapter = [typeAdapter nullSafe];
+  }
+  return typeAdapter;
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, 0, -1, -1, -1, -1 },
     { NULL, "LGsonTypeAdapter;", 0x1, 1, 2, -1, 3, -1, -1 },
-    { NULL, "LGsonTypeAdapter;", 0x8, 4, 5, -1, 6, -1, -1 },
+    { NULL, "LGsonTypeAdapter;", 0x0, 4, 5, -1, 6, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -80,20 +103,6 @@ GsonJsonAdapterAnnotationTypeAdapterFactory *new_GsonJsonAdapterAnnotationTypeAd
 
 GsonJsonAdapterAnnotationTypeAdapterFactory *create_GsonJsonAdapterAnnotationTypeAdapterFactory_initWithGsonConstructorConstructor_(GsonConstructorConstructor *constructorConstructor) {
   J2OBJC_CREATE_IMPL(GsonJsonAdapterAnnotationTypeAdapterFactory, initWithGsonConstructorConstructor_, constructorConstructor)
-}
-
-GsonTypeAdapter *GsonJsonAdapterAnnotationTypeAdapterFactory_getTypeAdapterWithGsonConstructorConstructor_withGsonGson_withGsonTypeToken_withGsonJsonAdapter_(GsonConstructorConstructor *constructorConstructor, GsonGson *gson, GsonTypeToken *fieldType, id<GsonJsonAdapter> annotation) {
-  GsonJsonAdapterAnnotationTypeAdapterFactory_initialize();
-  IOSClass *value = [((id<GsonJsonAdapter>) nil_chk(annotation)) value];
-  if ([GsonTypeAdapter_class_() isAssignableFrom:value]) {
-    IOSClass *typeAdapter = value;
-    return [((id<GsonObjectConstructor>) nil_chk([((GsonConstructorConstructor *) nil_chk(constructorConstructor)) getWithGsonTypeToken:GsonTypeToken_getWithIOSClass_(typeAdapter)])) construct];
-  }
-  if ([GsonTypeAdapterFactory_class_() isAssignableFrom:value]) {
-    IOSClass *typeAdapterFactory = value;
-    return [((id<GsonTypeAdapterFactory>) nil_chk([((id<GsonObjectConstructor>) nil_chk([((GsonConstructorConstructor *) nil_chk(constructorConstructor)) getWithGsonTypeToken:GsonTypeToken_getWithIOSClass_(typeAdapterFactory)])) construct])) createWithGsonGson:gson withGsonTypeToken:fieldType];
-  }
-  @throw new_JavaLangIllegalArgumentException_initWithNSString_(@"@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference.");
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonAdapterAnnotationTypeAdapterFactory)

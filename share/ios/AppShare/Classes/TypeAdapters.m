@@ -47,16 +47,22 @@
 #include "java/net/URISyntaxException.h"
 #include "java/net/URL.h"
 #include "java/sql/Timestamp.h"
+#include "java/util/ArrayList.h"
 #include "java/util/BitSet.h"
 #include "java/util/Calendar.h"
+#include "java/util/Currency.h"
 #include "java/util/Date.h"
 #include "java/util/GregorianCalendar.h"
 #include "java/util/HashMap.h"
+#include "java/util/List.h"
 #include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
 #include "java/util/StringTokenizer.h"
 #include "java/util/UUID.h"
+#include "java/util/concurrent/atomic/AtomicBoolean.h"
+#include "java/util/concurrent/atomic/AtomicInteger.h"
+#include "java/util/concurrent/atomic/AtomicIntegerArray.h"
 
 @class JavaIoReader;
 
@@ -253,16 +259,16 @@ __attribute__((unused)) static GsonTypeAdapters_7 *create_GsonTypeAdapters_7_ini
 
 - (instancetype)init;
 
-- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+- (JavaUtilConcurrentAtomicAtomicInteger *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
-                         withId:(NSNumber *)value;
+                         withId:(JavaUtilConcurrentAtomicAtomicInteger *)value;
 
-- (NSNumber *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+- (JavaUtilConcurrentAtomicAtomicInteger *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
 
-- (NSNumber *)fromJsonWithNSString:(NSString *)arg0;
+- (JavaUtilConcurrentAtomicAtomicInteger *)fromJsonWithNSString:(NSString *)arg0;
 
-- (NSNumber *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+- (JavaUtilConcurrentAtomicAtomicInteger *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
 @end
 
@@ -278,16 +284,16 @@ __attribute__((unused)) static GsonTypeAdapters_8 *create_GsonTypeAdapters_8_ini
 
 - (instancetype)init;
 
-- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+- (JavaUtilConcurrentAtomicAtomicBoolean *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
-                         withId:(NSNumber *)value;
+                         withId:(JavaUtilConcurrentAtomicAtomicBoolean *)value;
 
-- (NSNumber *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+- (JavaUtilConcurrentAtomicAtomicBoolean *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
 
-- (NSNumber *)fromJsonWithNSString:(NSString *)arg0;
+- (JavaUtilConcurrentAtomicAtomicBoolean *)fromJsonWithNSString:(NSString *)arg0;
 
-- (NSNumber *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+- (JavaUtilConcurrentAtomicAtomicBoolean *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
 @end
 
@@ -303,16 +309,16 @@ __attribute__((unused)) static GsonTypeAdapters_9 *create_GsonTypeAdapters_9_ini
 
 - (instancetype)init;
 
-- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+- (JavaUtilConcurrentAtomicAtomicIntegerArray *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
-                         withId:(NSNumber *)value;
+                         withId:(JavaUtilConcurrentAtomicAtomicIntegerArray *)value;
 
-- (NSNumber *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+- (JavaUtilConcurrentAtomicAtomicIntegerArray *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
 
-- (NSNumber *)fromJsonWithNSString:(NSString *)arg0;
+- (JavaUtilConcurrentAtomicAtomicIntegerArray *)fromJsonWithNSString:(NSString *)arg0;
 
-- (NSNumber *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+- (JavaUtilConcurrentAtomicAtomicIntegerArray *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
 @end
 
@@ -353,6 +359,81 @@ __attribute__((unused)) static GsonTypeAdapters_11 *create_GsonTypeAdapters_11_i
 
 - (instancetype)init;
 
+- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(NSNumber *)value;
+
+- (NSNumber *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+
+- (NSNumber *)fromJsonWithNSString:(NSString *)arg0;
+
+- (NSNumber *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_12)
+
+__attribute__((unused)) static void GsonTypeAdapters_12_init(GsonTypeAdapters_12 *self);
+
+__attribute__((unused)) static GsonTypeAdapters_12 *new_GsonTypeAdapters_12_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonTypeAdapters_12 *create_GsonTypeAdapters_12_init(void);
+
+@interface GsonTypeAdapters_13 : GsonTypeAdapter
+
+- (instancetype)init;
+
+- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(NSNumber *)value;
+
+- (NSNumber *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+
+- (NSNumber *)fromJsonWithNSString:(NSString *)arg0;
+
+- (NSNumber *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_13)
+
+__attribute__((unused)) static void GsonTypeAdapters_13_init(GsonTypeAdapters_13 *self);
+
+__attribute__((unused)) static GsonTypeAdapters_13 *new_GsonTypeAdapters_13_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonTypeAdapters_13 *create_GsonTypeAdapters_13_init(void);
+
+@interface GsonTypeAdapters_14 : GsonTypeAdapter
+
+- (instancetype)init;
+
+- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(NSNumber *)value;
+
+- (NSNumber *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+
+- (NSNumber *)fromJsonWithNSString:(NSString *)arg0;
+
+- (NSNumber *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_14)
+
+__attribute__((unused)) static void GsonTypeAdapters_14_init(GsonTypeAdapters_14 *self);
+
+__attribute__((unused)) static GsonTypeAdapters_14 *new_GsonTypeAdapters_14_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonTypeAdapters_14 *create_GsonTypeAdapters_14_init(void);
+
+@interface GsonTypeAdapters_15 : GsonTypeAdapter
+
+- (instancetype)init;
+
 - (JavaLangCharacter *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
@@ -366,15 +447,15 @@ __attribute__((unused)) static GsonTypeAdapters_11 *create_GsonTypeAdapters_11_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_12)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_15)
 
-__attribute__((unused)) static void GsonTypeAdapters_12_init(GsonTypeAdapters_12 *self);
+__attribute__((unused)) static void GsonTypeAdapters_15_init(GsonTypeAdapters_15 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_12 *new_GsonTypeAdapters_12_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_15 *new_GsonTypeAdapters_15_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_12 *create_GsonTypeAdapters_12_init(void);
+__attribute__((unused)) static GsonTypeAdapters_15 *create_GsonTypeAdapters_15_init(void);
 
-@interface GsonTypeAdapters_13 : GsonTypeAdapter
+@interface GsonTypeAdapters_16 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -391,15 +472,15 @@ __attribute__((unused)) static GsonTypeAdapters_12 *create_GsonTypeAdapters_12_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_13)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_16)
 
-__attribute__((unused)) static void GsonTypeAdapters_13_init(GsonTypeAdapters_13 *self);
+__attribute__((unused)) static void GsonTypeAdapters_16_init(GsonTypeAdapters_16 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_13 *new_GsonTypeAdapters_13_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_16 *new_GsonTypeAdapters_16_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_13 *create_GsonTypeAdapters_13_init(void);
+__attribute__((unused)) static GsonTypeAdapters_16 *create_GsonTypeAdapters_16_init(void);
 
-@interface GsonTypeAdapters_14 : GsonTypeAdapter
+@interface GsonTypeAdapters_17 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -416,15 +497,15 @@ __attribute__((unused)) static GsonTypeAdapters_13 *create_GsonTypeAdapters_13_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_14)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_17)
 
-__attribute__((unused)) static void GsonTypeAdapters_14_init(GsonTypeAdapters_14 *self);
+__attribute__((unused)) static void GsonTypeAdapters_17_init(GsonTypeAdapters_17 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_14 *new_GsonTypeAdapters_14_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_17 *new_GsonTypeAdapters_17_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_14 *create_GsonTypeAdapters_14_init(void);
+__attribute__((unused)) static GsonTypeAdapters_17 *create_GsonTypeAdapters_17_init(void);
 
-@interface GsonTypeAdapters_15 : GsonTypeAdapter
+@interface GsonTypeAdapters_18 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -441,15 +522,15 @@ __attribute__((unused)) static GsonTypeAdapters_14 *create_GsonTypeAdapters_14_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_15)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_18)
 
-__attribute__((unused)) static void GsonTypeAdapters_15_init(GsonTypeAdapters_15 *self);
+__attribute__((unused)) static void GsonTypeAdapters_18_init(GsonTypeAdapters_18 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_15 *new_GsonTypeAdapters_15_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_18 *new_GsonTypeAdapters_18_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_15 *create_GsonTypeAdapters_15_init(void);
+__attribute__((unused)) static GsonTypeAdapters_18 *create_GsonTypeAdapters_18_init(void);
 
-@interface GsonTypeAdapters_16 : GsonTypeAdapter
+@interface GsonTypeAdapters_19 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -466,15 +547,15 @@ __attribute__((unused)) static GsonTypeAdapters_15 *create_GsonTypeAdapters_15_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_16)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_19)
 
-__attribute__((unused)) static void GsonTypeAdapters_16_init(GsonTypeAdapters_16 *self);
+__attribute__((unused)) static void GsonTypeAdapters_19_init(GsonTypeAdapters_19 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_16 *new_GsonTypeAdapters_16_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_19 *new_GsonTypeAdapters_19_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_16 *create_GsonTypeAdapters_16_init(void);
+__attribute__((unused)) static GsonTypeAdapters_19 *create_GsonTypeAdapters_19_init(void);
 
-@interface GsonTypeAdapters_17 : GsonTypeAdapter
+@interface GsonTypeAdapters_20 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -491,15 +572,15 @@ __attribute__((unused)) static GsonTypeAdapters_16 *create_GsonTypeAdapters_16_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_17)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_20)
 
-__attribute__((unused)) static void GsonTypeAdapters_17_init(GsonTypeAdapters_17 *self);
+__attribute__((unused)) static void GsonTypeAdapters_20_init(GsonTypeAdapters_20 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_17 *new_GsonTypeAdapters_17_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_20 *new_GsonTypeAdapters_20_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_17 *create_GsonTypeAdapters_17_init(void);
+__attribute__((unused)) static GsonTypeAdapters_20 *create_GsonTypeAdapters_20_init(void);
 
-@interface GsonTypeAdapters_18 : GsonTypeAdapter
+@interface GsonTypeAdapters_21 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -516,15 +597,15 @@ __attribute__((unused)) static GsonTypeAdapters_17 *create_GsonTypeAdapters_17_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_18)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_21)
 
-__attribute__((unused)) static void GsonTypeAdapters_18_init(GsonTypeAdapters_18 *self);
+__attribute__((unused)) static void GsonTypeAdapters_21_init(GsonTypeAdapters_21 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_18 *new_GsonTypeAdapters_18_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_21 *new_GsonTypeAdapters_21_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_18 *create_GsonTypeAdapters_18_init(void);
+__attribute__((unused)) static GsonTypeAdapters_21 *create_GsonTypeAdapters_21_init(void);
 
-@interface GsonTypeAdapters_19 : GsonTypeAdapter
+@interface GsonTypeAdapters_22 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -541,15 +622,15 @@ __attribute__((unused)) static GsonTypeAdapters_18 *create_GsonTypeAdapters_18_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_19)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_22)
 
-__attribute__((unused)) static void GsonTypeAdapters_19_init(GsonTypeAdapters_19 *self);
+__attribute__((unused)) static void GsonTypeAdapters_22_init(GsonTypeAdapters_22 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_19 *new_GsonTypeAdapters_19_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_22 *new_GsonTypeAdapters_22_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_19 *create_GsonTypeAdapters_19_init(void);
+__attribute__((unused)) static GsonTypeAdapters_22 *create_GsonTypeAdapters_22_init(void);
 
-@interface GsonTypeAdapters_20 : GsonTypeAdapter
+@interface GsonTypeAdapters_23 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -566,15 +647,15 @@ __attribute__((unused)) static GsonTypeAdapters_19 *create_GsonTypeAdapters_19_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_20)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_23)
 
-__attribute__((unused)) static void GsonTypeAdapters_20_init(GsonTypeAdapters_20 *self);
+__attribute__((unused)) static void GsonTypeAdapters_23_init(GsonTypeAdapters_23 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_20 *new_GsonTypeAdapters_20_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_23 *new_GsonTypeAdapters_23_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_20 *create_GsonTypeAdapters_20_init(void);
+__attribute__((unused)) static GsonTypeAdapters_23 *create_GsonTypeAdapters_23_init(void);
 
-@interface GsonTypeAdapters_21 : GsonTypeAdapter
+@interface GsonTypeAdapters_24 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -591,15 +672,40 @@ __attribute__((unused)) static GsonTypeAdapters_20 *create_GsonTypeAdapters_20_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_21)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_24)
 
-__attribute__((unused)) static void GsonTypeAdapters_21_init(GsonTypeAdapters_21 *self);
+__attribute__((unused)) static void GsonTypeAdapters_24_init(GsonTypeAdapters_24 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_21 *new_GsonTypeAdapters_21_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_24 *new_GsonTypeAdapters_24_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_21 *create_GsonTypeAdapters_21_init(void);
+__attribute__((unused)) static GsonTypeAdapters_24 *create_GsonTypeAdapters_24_init(void);
 
-@interface GsonTypeAdapters_22 : NSObject < GsonTypeAdapterFactory >
+@interface GsonTypeAdapters_25 : GsonTypeAdapter
+
+- (instancetype)init;
+
+- (JavaUtilCurrency *)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(JavaUtilCurrency *)value;
+
+- (JavaUtilCurrency *)fromJsonWithJavaIoReader:(JavaIoReader *)arg0;
+
+- (JavaUtilCurrency *)fromJsonWithNSString:(NSString *)arg0;
+
+- (JavaUtilCurrency *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_25)
+
+__attribute__((unused)) static void GsonTypeAdapters_25_init(GsonTypeAdapters_25 *self);
+
+__attribute__((unused)) static GsonTypeAdapters_25 *new_GsonTypeAdapters_25_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonTypeAdapters_25 *create_GsonTypeAdapters_25_init(void);
+
+@interface GsonTypeAdapters_26 : NSObject < GsonTypeAdapterFactory >
 
 - (instancetype)init;
 
@@ -608,15 +714,15 @@ __attribute__((unused)) static GsonTypeAdapters_21 *create_GsonTypeAdapters_21_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_22)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_26)
 
-__attribute__((unused)) static void GsonTypeAdapters_22_init(GsonTypeAdapters_22 *self);
+__attribute__((unused)) static void GsonTypeAdapters_26_init(GsonTypeAdapters_26 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_22 *new_GsonTypeAdapters_22_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_26 *new_GsonTypeAdapters_26_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_22 *create_GsonTypeAdapters_22_init(void);
+__attribute__((unused)) static GsonTypeAdapters_26 *create_GsonTypeAdapters_26_init(void);
 
-@interface GsonTypeAdapters_22_1 : GsonTypeAdapter {
+@interface GsonTypeAdapters_26_1 : GsonTypeAdapter {
  @public
   GsonTypeAdapter *val$dateTypeAdapter_;
 }
@@ -636,15 +742,15 @@ __attribute__((unused)) static GsonTypeAdapters_22 *create_GsonTypeAdapters_22_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_22_1)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_26_1)
 
-__attribute__((unused)) static void GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(GsonTypeAdapters_22_1 *self, GsonTypeAdapter *capture$0);
+__attribute__((unused)) static void GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(GsonTypeAdapters_26_1 *self, GsonTypeAdapter *capture$0);
 
-__attribute__((unused)) static GsonTypeAdapters_22_1 *new_GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_26_1 *new_GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_22_1 *create_GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0);
+__attribute__((unused)) static GsonTypeAdapters_26_1 *create_GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0);
 
-@interface GsonTypeAdapters_23 : GsonTypeAdapter
+@interface GsonTypeAdapters_27 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -661,39 +767,39 @@ __attribute__((unused)) static GsonTypeAdapters_22_1 *create_GsonTypeAdapters_22
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_23)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_27)
 
-inline NSString *GsonTypeAdapters_23_get_YEAR(void);
-static NSString *GsonTypeAdapters_23_YEAR = @"year";
-J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_23, YEAR, NSString *)
+inline NSString *GsonTypeAdapters_27_get_YEAR(void);
+static NSString *GsonTypeAdapters_27_YEAR = @"year";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_27, YEAR, NSString *)
 
-inline NSString *GsonTypeAdapters_23_get_MONTH(void);
-static NSString *GsonTypeAdapters_23_MONTH = @"month";
-J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_23, MONTH, NSString *)
+inline NSString *GsonTypeAdapters_27_get_MONTH(void);
+static NSString *GsonTypeAdapters_27_MONTH = @"month";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_27, MONTH, NSString *)
 
-inline NSString *GsonTypeAdapters_23_get_DAY_OF_MONTH(void);
-static NSString *GsonTypeAdapters_23_DAY_OF_MONTH = @"dayOfMonth";
-J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_23, DAY_OF_MONTH, NSString *)
+inline NSString *GsonTypeAdapters_27_get_DAY_OF_MONTH(void);
+static NSString *GsonTypeAdapters_27_DAY_OF_MONTH = @"dayOfMonth";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_27, DAY_OF_MONTH, NSString *)
 
-inline NSString *GsonTypeAdapters_23_get_HOUR_OF_DAY(void);
-static NSString *GsonTypeAdapters_23_HOUR_OF_DAY = @"hourOfDay";
-J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_23, HOUR_OF_DAY, NSString *)
+inline NSString *GsonTypeAdapters_27_get_HOUR_OF_DAY(void);
+static NSString *GsonTypeAdapters_27_HOUR_OF_DAY = @"hourOfDay";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_27, HOUR_OF_DAY, NSString *)
 
-inline NSString *GsonTypeAdapters_23_get_MINUTE(void);
-static NSString *GsonTypeAdapters_23_MINUTE = @"minute";
-J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_23, MINUTE, NSString *)
+inline NSString *GsonTypeAdapters_27_get_MINUTE(void);
+static NSString *GsonTypeAdapters_27_MINUTE = @"minute";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_27, MINUTE, NSString *)
 
-inline NSString *GsonTypeAdapters_23_get_SECOND(void);
-static NSString *GsonTypeAdapters_23_SECOND = @"second";
-J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_23, SECOND, NSString *)
+inline NSString *GsonTypeAdapters_27_get_SECOND(void);
+static NSString *GsonTypeAdapters_27_SECOND = @"second";
+J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonTypeAdapters_27, SECOND, NSString *)
 
-__attribute__((unused)) static void GsonTypeAdapters_23_init(GsonTypeAdapters_23 *self);
+__attribute__((unused)) static void GsonTypeAdapters_27_init(GsonTypeAdapters_27 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_23 *new_GsonTypeAdapters_23_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_27 *new_GsonTypeAdapters_27_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_23 *create_GsonTypeAdapters_23_init(void);
+__attribute__((unused)) static GsonTypeAdapters_27 *create_GsonTypeAdapters_27_init(void);
 
-@interface GsonTypeAdapters_24 : GsonTypeAdapter
+@interface GsonTypeAdapters_28 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -710,15 +816,15 @@ __attribute__((unused)) static GsonTypeAdapters_23 *create_GsonTypeAdapters_23_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_24)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_28)
 
-__attribute__((unused)) static void GsonTypeAdapters_24_init(GsonTypeAdapters_24 *self);
+__attribute__((unused)) static void GsonTypeAdapters_28_init(GsonTypeAdapters_28 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_24 *new_GsonTypeAdapters_24_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_28 *new_GsonTypeAdapters_28_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_24 *create_GsonTypeAdapters_24_init(void);
+__attribute__((unused)) static GsonTypeAdapters_28 *create_GsonTypeAdapters_28_init(void);
 
-@interface GsonTypeAdapters_25 : GsonTypeAdapter
+@interface GsonTypeAdapters_29 : GsonTypeAdapter
 
 - (instancetype)init;
 
@@ -735,13 +841,13 @@ __attribute__((unused)) static GsonTypeAdapters_24 *create_GsonTypeAdapters_24_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_25)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_29)
 
-__attribute__((unused)) static void GsonTypeAdapters_25_init(GsonTypeAdapters_25 *self);
+__attribute__((unused)) static void GsonTypeAdapters_29_init(GsonTypeAdapters_29 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_25 *new_GsonTypeAdapters_25_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_29 *new_GsonTypeAdapters_29_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_25 *create_GsonTypeAdapters_25_init(void);
+__attribute__((unused)) static GsonTypeAdapters_29 *create_GsonTypeAdapters_29_init(void);
 
 @interface GsonTypeAdapters_EnumTypeAdapter : GsonTypeAdapter {
  @public
@@ -777,7 +883,7 @@ __attribute__((unused)) static GsonTypeAdapters_EnumTypeAdapter *create_GsonType
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonTypeAdapters_EnumTypeAdapter)
 
-@interface GsonTypeAdapters_26 : NSObject < GsonTypeAdapterFactory >
+@interface GsonTypeAdapters_30 : NSObject < GsonTypeAdapterFactory >
 
 - (instancetype)init;
 
@@ -786,15 +892,15 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTypeAdapters_EnumTypeAdapter)
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_26)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_30)
 
-__attribute__((unused)) static void GsonTypeAdapters_26_init(GsonTypeAdapters_26 *self);
+__attribute__((unused)) static void GsonTypeAdapters_30_init(GsonTypeAdapters_30 *self);
 
-__attribute__((unused)) static GsonTypeAdapters_26 *new_GsonTypeAdapters_26_init(void) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_30 *new_GsonTypeAdapters_30_init(void) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_26 *create_GsonTypeAdapters_26_init(void);
+__attribute__((unused)) static GsonTypeAdapters_30 *create_GsonTypeAdapters_30_init(void);
 
-@interface GsonTypeAdapters_27 : NSObject < GsonTypeAdapterFactory > {
+@interface GsonTypeAdapters_31 : NSObject < GsonTypeAdapterFactory > {
  @public
   GsonTypeToken *val$type_;
   GsonTypeAdapter *val$typeAdapter_;
@@ -808,15 +914,15 @@ __attribute__((unused)) static GsonTypeAdapters_26 *create_GsonTypeAdapters_26_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_27)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_31)
 
-__attribute__((unused)) static void GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeAdapters_27 *self, GsonTypeToken *capture$0, GsonTypeAdapter *capture$1);
+__attribute__((unused)) static void GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeAdapters_31 *self, GsonTypeToken *capture$0, GsonTypeAdapter *capture$1);
 
-__attribute__((unused)) static GsonTypeAdapters_27 *new_GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_31 *new_GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_27 *create_GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1);
+__attribute__((unused)) static GsonTypeAdapters_31 *create_GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1);
 
-@interface GsonTypeAdapters_28 : NSObject < GsonTypeAdapterFactory > {
+@interface GsonTypeAdapters_32 : NSObject < GsonTypeAdapterFactory > {
  @public
   IOSClass *val$type_;
   GsonTypeAdapter *val$typeAdapter_;
@@ -832,15 +938,15 @@ __attribute__((unused)) static GsonTypeAdapters_27 *create_GsonTypeAdapters_27_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_28)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_32)
 
-__attribute__((unused)) static void GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_28 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1);
+__attribute__((unused)) static void GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_32 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1);
 
-__attribute__((unused)) static GsonTypeAdapters_28 *new_GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_32 *new_GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_28 *create_GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1);
+__attribute__((unused)) static GsonTypeAdapters_32 *create_GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1);
 
-@interface GsonTypeAdapters_29 : NSObject < GsonTypeAdapterFactory > {
+@interface GsonTypeAdapters_33 : NSObject < GsonTypeAdapterFactory > {
  @public
   IOSClass *val$unboxed_;
   IOSClass *val$boxed_;
@@ -858,15 +964,15 @@ __attribute__((unused)) static GsonTypeAdapters_28 *create_GsonTypeAdapters_28_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_29)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_33)
 
-__attribute__((unused)) static void GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_29 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
+__attribute__((unused)) static void GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_33 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
 
-__attribute__((unused)) static GsonTypeAdapters_29 *new_GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_33 *new_GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_29 *create_GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
+__attribute__((unused)) static GsonTypeAdapters_33 *create_GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
 
-@interface GsonTypeAdapters_30 : NSObject < GsonTypeAdapterFactory > {
+@interface GsonTypeAdapters_34 : NSObject < GsonTypeAdapterFactory > {
  @public
   IOSClass *val$base_;
   IOSClass *val$sub_;
@@ -884,15 +990,15 @@ __attribute__((unused)) static GsonTypeAdapters_29 *create_GsonTypeAdapters_29_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_30)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_34)
 
-__attribute__((unused)) static void GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_30 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
+__attribute__((unused)) static void GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_34 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
 
-__attribute__((unused)) static GsonTypeAdapters_30 *new_GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_34 *new_GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_30 *create_GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
+__attribute__((unused)) static GsonTypeAdapters_34 *create_GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2);
 
-@interface GsonTypeAdapters_31 : NSObject < GsonTypeAdapterFactory > {
+@interface GsonTypeAdapters_35 : NSObject < GsonTypeAdapterFactory > {
  @public
   IOSClass *val$clazz_;
   GsonTypeAdapter *val$typeAdapter_;
@@ -908,13 +1014,37 @@ __attribute__((unused)) static GsonTypeAdapters_30 *create_GsonTypeAdapters_30_i
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_31)
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_35)
 
-__attribute__((unused)) static void GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_31 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1);
+__attribute__((unused)) static void GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_35 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1);
 
-__attribute__((unused)) static GsonTypeAdapters_31 *new_GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonTypeAdapters_35 *new_GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonTypeAdapters_31 *create_GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1);
+__attribute__((unused)) static GsonTypeAdapters_35 *create_GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1);
+
+@interface GsonTypeAdapters_35_1 : GsonTypeAdapter {
+ @public
+  GsonTypeAdapters_35 *this$0_;
+  IOSClass *val$requestedType_;
+}
+
+- (instancetype)initWithGsonTypeAdapters_35:(GsonTypeAdapters_35 *)outer$
+                               withIOSClass:(IOSClass *)capture$0;
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(id)value;
+
+- (id)readWithGsonJsonReader:(GsonJsonReader *)inArg;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonTypeAdapters_35_1)
+
+__attribute__((unused)) static void GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(GsonTypeAdapters_35_1 *self, GsonTypeAdapters_35 *outer$, IOSClass *capture$0);
+
+__attribute__((unused)) static GsonTypeAdapters_35_1 *new_GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(GsonTypeAdapters_35 *outer$, IOSClass *capture$0) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonTypeAdapters_35_1 *create_GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(GsonTypeAdapters_35 *outer$, IOSClass *capture$0);
 
 J2OBJC_INITIALIZED_DEFN(GsonTypeAdapters)
 
@@ -931,6 +1061,12 @@ GsonTypeAdapter *GsonTypeAdapters_SHORT;
 id<GsonTypeAdapterFactory> GsonTypeAdapters_SHORT_FACTORY;
 GsonTypeAdapter *GsonTypeAdapters_INTEGER;
 id<GsonTypeAdapterFactory> GsonTypeAdapters_INTEGER_FACTORY;
+GsonTypeAdapter *GsonTypeAdapters_ATOMIC_INTEGER;
+id<GsonTypeAdapterFactory> GsonTypeAdapters_ATOMIC_INTEGER_FACTORY;
+GsonTypeAdapter *GsonTypeAdapters_ATOMIC_BOOLEAN;
+id<GsonTypeAdapterFactory> GsonTypeAdapters_ATOMIC_BOOLEAN_FACTORY;
+GsonTypeAdapter *GsonTypeAdapters_ATOMIC_INTEGER_ARRAY;
+id<GsonTypeAdapterFactory> GsonTypeAdapters_ATOMIC_INTEGER_ARRAY_FACTORY;
 GsonTypeAdapter *GsonTypeAdapters_LONG;
 GsonTypeAdapter *GsonTypeAdapters_FLOAT;
 GsonTypeAdapter *GsonTypeAdapters_DOUBLE;
@@ -954,6 +1090,8 @@ GsonTypeAdapter *GsonTypeAdapters_INET_ADDRESS;
 id<GsonTypeAdapterFactory> GsonTypeAdapters_INET_ADDRESS_FACTORY;
 GsonTypeAdapter *GsonTypeAdapters_UUID;
 id<GsonTypeAdapterFactory> GsonTypeAdapters_UUID_FACTORY;
+GsonTypeAdapter *GsonTypeAdapters_CURRENCY;
+id<GsonTypeAdapterFactory> GsonTypeAdapters_CURRENCY_FACTORY;
 id<GsonTypeAdapterFactory> GsonTypeAdapters_TIMESTAMP_FACTORY;
 GsonTypeAdapter *GsonTypeAdapters_CALENDAR;
 id<GsonTypeAdapterFactory> GsonTypeAdapters_CALENDAR_FACTORY;
@@ -1015,6 +1153,30 @@ id<GsonTypeAdapterFactory> GsonTypeAdapters_ENUM_FACTORY;
 
 + (id<GsonTypeAdapterFactory>)INTEGER_FACTORY {
   return GsonTypeAdapters_INTEGER_FACTORY;
+}
+
++ (GsonTypeAdapter *)ATOMIC_INTEGER {
+  return GsonTypeAdapters_ATOMIC_INTEGER;
+}
+
++ (id<GsonTypeAdapterFactory>)ATOMIC_INTEGER_FACTORY {
+  return GsonTypeAdapters_ATOMIC_INTEGER_FACTORY;
+}
+
++ (GsonTypeAdapter *)ATOMIC_BOOLEAN {
+  return GsonTypeAdapters_ATOMIC_BOOLEAN;
+}
+
++ (id<GsonTypeAdapterFactory>)ATOMIC_BOOLEAN_FACTORY {
+  return GsonTypeAdapters_ATOMIC_BOOLEAN_FACTORY;
+}
+
++ (GsonTypeAdapter *)ATOMIC_INTEGER_ARRAY {
+  return GsonTypeAdapters_ATOMIC_INTEGER_ARRAY;
+}
+
++ (id<GsonTypeAdapterFactory>)ATOMIC_INTEGER_ARRAY_FACTORY {
+  return GsonTypeAdapters_ATOMIC_INTEGER_ARRAY_FACTORY;
 }
 
 + (GsonTypeAdapter *)LONG {
@@ -1109,6 +1271,14 @@ id<GsonTypeAdapterFactory> GsonTypeAdapters_ENUM_FACTORY;
   return GsonTypeAdapters_UUID_FACTORY;
 }
 
++ (GsonTypeAdapter *)CURRENCY {
+  return GsonTypeAdapters_CURRENCY;
+}
+
++ (id<GsonTypeAdapterFactory>)CURRENCY_FACTORY {
+  return GsonTypeAdapters_CURRENCY_FACTORY;
+}
+
 + (id<GsonTypeAdapterFactory>)TIMESTAMP_FACTORY {
   return GsonTypeAdapters_TIMESTAMP_FACTORY;
 }
@@ -1182,7 +1352,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "LGsonTypeAdapterFactory;", 0x9, 0, 3, -1, 4, -1, -1 },
     { NULL, "LGsonTypeAdapterFactory;", 0x9, 0, 5, -1, 6, -1, -1 },
     { NULL, "LGsonTypeAdapterFactory;", 0x9, 7, 5, -1, 8, -1, -1 },
-    { NULL, "LGsonTypeAdapterFactory;", 0x9, 9, 3, -1, 4, -1, -1 },
+    { NULL, "LGsonTypeAdapterFactory;", 0x9, 9, 3, -1, 10, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -1194,61 +1364,69 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[5].selector = @selector(newTypeHierarchyFactoryWithIOSClass:withGsonTypeAdapter:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "CLASS", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 10, 11, -1 },
-    { "CLASS_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 12, -1, -1 },
-    { "BIT_SET", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 13, 14, -1 },
-    { "BIT_SET_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 15, -1, -1 },
-    { "BOOLEAN", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 16, 17, -1 },
-    { "BOOLEAN_AS_STRING", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 18, 17, -1 },
-    { "BOOLEAN_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 19, -1, -1 },
-    { "BYTE", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 20, 21, -1 },
-    { "BYTE_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 22, -1, -1 },
-    { "SHORT", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 23, 21, -1 },
-    { "SHORT_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 24, -1, -1 },
-    { "INTEGER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 25, 21, -1 },
-    { "INTEGER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 26, -1, -1 },
-    { "LONG", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 27, 21, -1 },
-    { "FLOAT", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 28, 21, -1 },
-    { "DOUBLE", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 29, 21, -1 },
-    { "NUMBER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 30, 21, -1 },
-    { "NUMBER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 31, -1, -1 },
-    { "CHARACTER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 32, 33, -1 },
-    { "CHARACTER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 34, -1, -1 },
-    { "STRING", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 35, 36, -1 },
-    { "BIG_DECIMAL", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 37, 38, -1 },
-    { "BIG_INTEGER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 39, 40, -1 },
-    { "STRING_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 41, -1, -1 },
-    { "STRING_BUILDER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 42, 43, -1 },
-    { "STRING_BUILDER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 44, -1, -1 },
-    { "STRING_BUFFER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 45, 46, -1 },
-    { "STRING_BUFFER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 47, -1, -1 },
-    { "URL", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 48, 49, -1 },
-    { "URL_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 50, -1, -1 },
-    { "URI", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 51, 52, -1 },
-    { "URI_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 53, -1, -1 },
-    { "INET_ADDRESS", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 54, 55, -1 },
-    { "INET_ADDRESS_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 56, -1, -1 },
-    { "UUID", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 57, 58, -1 },
-    { "UUID_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 59, -1, -1 },
-    { "TIMESTAMP_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 60, -1, -1 },
-    { "CALENDAR", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 61, 62, -1 },
-    { "CALENDAR_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 63, -1, -1 },
-    { "LOCALE", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 64, 65, -1 },
-    { "LOCALE_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 66, -1, -1 },
-    { "JSON_ELEMENT", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 67, 68, -1 },
-    { "JSON_ELEMENT_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 69, -1, -1 },
-    { "ENUM_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 70, -1, -1 },
+    { "CLASS", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 11, 12, -1 },
+    { "CLASS_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 13, -1, -1 },
+    { "BIT_SET", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 14, 15, -1 },
+    { "BIT_SET_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 16, -1, -1 },
+    { "BOOLEAN", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 17, 18, -1 },
+    { "BOOLEAN_AS_STRING", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 19, 18, -1 },
+    { "BOOLEAN_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 20, -1, -1 },
+    { "BYTE", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 21, 22, -1 },
+    { "BYTE_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 23, -1, -1 },
+    { "SHORT", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 24, 22, -1 },
+    { "SHORT_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 25, -1, -1 },
+    { "INTEGER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 26, 22, -1 },
+    { "INTEGER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 27, -1, -1 },
+    { "ATOMIC_INTEGER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 28, 29, -1 },
+    { "ATOMIC_INTEGER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 30, -1, -1 },
+    { "ATOMIC_BOOLEAN", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 31, 32, -1 },
+    { "ATOMIC_BOOLEAN_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 33, -1, -1 },
+    { "ATOMIC_INTEGER_ARRAY", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 34, 35, -1 },
+    { "ATOMIC_INTEGER_ARRAY_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 36, -1, -1 },
+    { "LONG", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 37, 22, -1 },
+    { "FLOAT", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 38, 22, -1 },
+    { "DOUBLE", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 39, 22, -1 },
+    { "NUMBER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 40, 22, -1 },
+    { "NUMBER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 41, -1, -1 },
+    { "CHARACTER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 42, 43, -1 },
+    { "CHARACTER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 44, -1, -1 },
+    { "STRING", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 45, 46, -1 },
+    { "BIG_DECIMAL", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 47, 48, -1 },
+    { "BIG_INTEGER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 49, 50, -1 },
+    { "STRING_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 51, -1, -1 },
+    { "STRING_BUILDER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 52, 53, -1 },
+    { "STRING_BUILDER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 54, -1, -1 },
+    { "STRING_BUFFER", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 55, 56, -1 },
+    { "STRING_BUFFER_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 57, -1, -1 },
+    { "URL", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 58, 59, -1 },
+    { "URL_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 60, -1, -1 },
+    { "URI", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 61, 62, -1 },
+    { "URI_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 63, -1, -1 },
+    { "INET_ADDRESS", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 64, 65, -1 },
+    { "INET_ADDRESS_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 66, -1, -1 },
+    { "UUID", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 67, 68, -1 },
+    { "UUID_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 69, -1, -1 },
+    { "CURRENCY", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 70, 71, -1 },
+    { "CURRENCY_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 72, -1, -1 },
+    { "TIMESTAMP_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 73, -1, -1 },
+    { "CALENDAR", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 74, 75, -1 },
+    { "CALENDAR_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 76, -1, -1 },
+    { "LOCALE", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 77, 78, -1 },
+    { "LOCALE_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 79, -1, -1 },
+    { "JSON_ELEMENT", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x19, -1, 80, 81, -1 },
+    { "JSON_ELEMENT_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 82, -1, -1 },
+    { "ENUM_FACTORY", "LGsonTypeAdapterFactory;", .constantValue.asLong = 0, 0x19, -1, 83, -1, -1 },
   };
-  static const void *ptrTable[] = { "newFactory", "LGsonTypeToken;LGsonTypeAdapter;", "<TT:Ljava/lang/Object;>(Lcom/google/gson/reflect/TypeToken<TTT;>;Lcom/google/gson/TypeAdapter<TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "LIOSClass;LGsonTypeAdapter;", "<TT:Ljava/lang/Object;>(Ljava/lang/Class<TTT;>;Lcom/google/gson/TypeAdapter<TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "LIOSClass;LIOSClass;LGsonTypeAdapter;", "<TT:Ljava/lang/Object;>(Ljava/lang/Class<TTT;>;Ljava/lang/Class<TTT;>;Lcom/google/gson/TypeAdapter<-TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "newFactoryForMultipleTypes", "<TT:Ljava/lang/Object;>(Ljava/lang/Class<TTT;>;Ljava/lang/Class<+TTT;>;Lcom/google/gson/TypeAdapter<-TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "newTypeHierarchyFactory", &GsonTypeAdapters_CLASS, "Lcom/google/gson/TypeAdapter<Ljava/lang/Class;>;", &GsonTypeAdapters_CLASS_FACTORY, &GsonTypeAdapters_BIT_SET, "Lcom/google/gson/TypeAdapter<Ljava/util/BitSet;>;", &GsonTypeAdapters_BIT_SET_FACTORY, &GsonTypeAdapters_BOOLEAN, "Lcom/google/gson/TypeAdapter<Ljava/lang/Boolean;>;", &GsonTypeAdapters_BOOLEAN_AS_STRING, &GsonTypeAdapters_BOOLEAN_FACTORY, &GsonTypeAdapters_BYTE, "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;", &GsonTypeAdapters_BYTE_FACTORY, &GsonTypeAdapters_SHORT, &GsonTypeAdapters_SHORT_FACTORY, &GsonTypeAdapters_INTEGER, &GsonTypeAdapters_INTEGER_FACTORY, &GsonTypeAdapters_LONG, &GsonTypeAdapters_FLOAT, &GsonTypeAdapters_DOUBLE, &GsonTypeAdapters_NUMBER, &GsonTypeAdapters_NUMBER_FACTORY, &GsonTypeAdapters_CHARACTER, "Lcom/google/gson/TypeAdapter<Ljava/lang/Character;>;", &GsonTypeAdapters_CHARACTER_FACTORY, &GsonTypeAdapters_STRING, "Lcom/google/gson/TypeAdapter<Ljava/lang/String;>;", &GsonTypeAdapters_BIG_DECIMAL, "Lcom/google/gson/TypeAdapter<Ljava/math/BigDecimal;>;", &GsonTypeAdapters_BIG_INTEGER, "Lcom/google/gson/TypeAdapter<Ljava/math/BigInteger;>;", &GsonTypeAdapters_STRING_FACTORY, &GsonTypeAdapters_STRING_BUILDER, "Lcom/google/gson/TypeAdapter<Ljava/lang/StringBuilder;>;", &GsonTypeAdapters_STRING_BUILDER_FACTORY, &GsonTypeAdapters_STRING_BUFFER, "Lcom/google/gson/TypeAdapter<Ljava/lang/StringBuffer;>;", &GsonTypeAdapters_STRING_BUFFER_FACTORY, &GsonTypeAdapters_URL, "Lcom/google/gson/TypeAdapter<Ljava/net/URL;>;", &GsonTypeAdapters_URL_FACTORY, &GsonTypeAdapters_URI, "Lcom/google/gson/TypeAdapter<Ljava/net/URI;>;", &GsonTypeAdapters_URI_FACTORY, &GsonTypeAdapters_INET_ADDRESS, "Lcom/google/gson/TypeAdapter<Ljava/net/InetAddress;>;", &GsonTypeAdapters_INET_ADDRESS_FACTORY, &GsonTypeAdapters_UUID, "Lcom/google/gson/TypeAdapter<Ljava/util/UUID;>;", &GsonTypeAdapters_UUID_FACTORY, &GsonTypeAdapters_TIMESTAMP_FACTORY, &GsonTypeAdapters_CALENDAR, "Lcom/google/gson/TypeAdapter<Ljava/util/Calendar;>;", &GsonTypeAdapters_CALENDAR_FACTORY, &GsonTypeAdapters_LOCALE, "Lcom/google/gson/TypeAdapter<Ljava/util/Locale;>;", &GsonTypeAdapters_LOCALE_FACTORY, &GsonTypeAdapters_JSON_ELEMENT, "Lcom/google/gson/TypeAdapter<Lcom/google/gson/JsonElement;>;", &GsonTypeAdapters_JSON_ELEMENT_FACTORY, &GsonTypeAdapters_ENUM_FACTORY, "LGsonTypeAdapters_EnumTypeAdapter;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters = { "TypeAdapters", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 6, 44, -1, 71, -1, -1, -1 };
+  static const void *ptrTable[] = { "newFactory", "LGsonTypeToken;LGsonTypeAdapter;", "<TT:Ljava/lang/Object;>(Lcom/google/gson/reflect/TypeToken<TTT;>;Lcom/google/gson/TypeAdapter<TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "LIOSClass;LGsonTypeAdapter;", "<TT:Ljava/lang/Object;>(Ljava/lang/Class<TTT;>;Lcom/google/gson/TypeAdapter<TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "LIOSClass;LIOSClass;LGsonTypeAdapter;", "<TT:Ljava/lang/Object;>(Ljava/lang/Class<TTT;>;Ljava/lang/Class<TTT;>;Lcom/google/gson/TypeAdapter<-TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "newFactoryForMultipleTypes", "<TT:Ljava/lang/Object;>(Ljava/lang/Class<TTT;>;Ljava/lang/Class<+TTT;>;Lcom/google/gson/TypeAdapter<-TTT;>;)Lcom/google/gson/TypeAdapterFactory;", "newTypeHierarchyFactory", "<T1:Ljava/lang/Object;>(Ljava/lang/Class<TT1;>;Lcom/google/gson/TypeAdapter<TT1;>;)Lcom/google/gson/TypeAdapterFactory;", &GsonTypeAdapters_CLASS, "Lcom/google/gson/TypeAdapter<Ljava/lang/Class;>;", &GsonTypeAdapters_CLASS_FACTORY, &GsonTypeAdapters_BIT_SET, "Lcom/google/gson/TypeAdapter<Ljava/util/BitSet;>;", &GsonTypeAdapters_BIT_SET_FACTORY, &GsonTypeAdapters_BOOLEAN, "Lcom/google/gson/TypeAdapter<Ljava/lang/Boolean;>;", &GsonTypeAdapters_BOOLEAN_AS_STRING, &GsonTypeAdapters_BOOLEAN_FACTORY, &GsonTypeAdapters_BYTE, "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;", &GsonTypeAdapters_BYTE_FACTORY, &GsonTypeAdapters_SHORT, &GsonTypeAdapters_SHORT_FACTORY, &GsonTypeAdapters_INTEGER, &GsonTypeAdapters_INTEGER_FACTORY, &GsonTypeAdapters_ATOMIC_INTEGER, "Lcom/google/gson/TypeAdapter<Ljava/util/concurrent/atomic/AtomicInteger;>;", &GsonTypeAdapters_ATOMIC_INTEGER_FACTORY, &GsonTypeAdapters_ATOMIC_BOOLEAN, "Lcom/google/gson/TypeAdapter<Ljava/util/concurrent/atomic/AtomicBoolean;>;", &GsonTypeAdapters_ATOMIC_BOOLEAN_FACTORY, &GsonTypeAdapters_ATOMIC_INTEGER_ARRAY, "Lcom/google/gson/TypeAdapter<Ljava/util/concurrent/atomic/AtomicIntegerArray;>;", &GsonTypeAdapters_ATOMIC_INTEGER_ARRAY_FACTORY, &GsonTypeAdapters_LONG, &GsonTypeAdapters_FLOAT, &GsonTypeAdapters_DOUBLE, &GsonTypeAdapters_NUMBER, &GsonTypeAdapters_NUMBER_FACTORY, &GsonTypeAdapters_CHARACTER, "Lcom/google/gson/TypeAdapter<Ljava/lang/Character;>;", &GsonTypeAdapters_CHARACTER_FACTORY, &GsonTypeAdapters_STRING, "Lcom/google/gson/TypeAdapter<Ljava/lang/String;>;", &GsonTypeAdapters_BIG_DECIMAL, "Lcom/google/gson/TypeAdapter<Ljava/math/BigDecimal;>;", &GsonTypeAdapters_BIG_INTEGER, "Lcom/google/gson/TypeAdapter<Ljava/math/BigInteger;>;", &GsonTypeAdapters_STRING_FACTORY, &GsonTypeAdapters_STRING_BUILDER, "Lcom/google/gson/TypeAdapter<Ljava/lang/StringBuilder;>;", &GsonTypeAdapters_STRING_BUILDER_FACTORY, &GsonTypeAdapters_STRING_BUFFER, "Lcom/google/gson/TypeAdapter<Ljava/lang/StringBuffer;>;", &GsonTypeAdapters_STRING_BUFFER_FACTORY, &GsonTypeAdapters_URL, "Lcom/google/gson/TypeAdapter<Ljava/net/URL;>;", &GsonTypeAdapters_URL_FACTORY, &GsonTypeAdapters_URI, "Lcom/google/gson/TypeAdapter<Ljava/net/URI;>;", &GsonTypeAdapters_URI_FACTORY, &GsonTypeAdapters_INET_ADDRESS, "Lcom/google/gson/TypeAdapter<Ljava/net/InetAddress;>;", &GsonTypeAdapters_INET_ADDRESS_FACTORY, &GsonTypeAdapters_UUID, "Lcom/google/gson/TypeAdapter<Ljava/util/UUID;>;", &GsonTypeAdapters_UUID_FACTORY, &GsonTypeAdapters_CURRENCY, "Lcom/google/gson/TypeAdapter<Ljava/util/Currency;>;", &GsonTypeAdapters_CURRENCY_FACTORY, &GsonTypeAdapters_TIMESTAMP_FACTORY, &GsonTypeAdapters_CALENDAR, "Lcom/google/gson/TypeAdapter<Ljava/util/Calendar;>;", &GsonTypeAdapters_CALENDAR_FACTORY, &GsonTypeAdapters_LOCALE, "Lcom/google/gson/TypeAdapter<Ljava/util/Locale;>;", &GsonTypeAdapters_LOCALE_FACTORY, &GsonTypeAdapters_JSON_ELEMENT, "Lcom/google/gson/TypeAdapter<Lcom/google/gson/JsonElement;>;", &GsonTypeAdapters_JSON_ELEMENT_FACTORY, &GsonTypeAdapters_ENUM_FACTORY, "LGsonTypeAdapters_EnumTypeAdapter;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters = { "TypeAdapters", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x11, 6, 52, -1, 84, -1, -1, -1 };
   return &_GsonTypeAdapters;
 }
 
 + (void)initialize {
   if (self == [GsonTypeAdapters class]) {
-    GsonTypeAdapters_CLASS = new_GsonTypeAdapters_1_init();
+    GsonTypeAdapters_CLASS = [new_GsonTypeAdapters_1_init() nullSafe];
     GsonTypeAdapters_CLASS_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(IOSClass_class_(), GsonTypeAdapters_CLASS);
-    GsonTypeAdapters_BIT_SET = new_GsonTypeAdapters_2_init();
+    GsonTypeAdapters_BIT_SET = [new_GsonTypeAdapters_2_init() nullSafe];
     GsonTypeAdapters_BIT_SET_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilBitSet_class_(), GsonTypeAdapters_BIT_SET);
     GsonTypeAdapters_BOOLEAN = new_GsonTypeAdapters_3_init();
     GsonTypeAdapters_BOOLEAN_AS_STRING = new_GsonTypeAdapters_4_init();
@@ -1259,37 +1437,45 @@ J2OBJC_IGNORE_DESIGNATED_END
     GsonTypeAdapters_SHORT_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withIOSClass_withGsonTypeAdapter_([IOSClass shortClass], JavaLangShort_class_(), GsonTypeAdapters_SHORT);
     GsonTypeAdapters_INTEGER = new_GsonTypeAdapters_7_init();
     GsonTypeAdapters_INTEGER_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withIOSClass_withGsonTypeAdapter_([IOSClass intClass], JavaLangInteger_class_(), GsonTypeAdapters_INTEGER);
-    GsonTypeAdapters_LONG = new_GsonTypeAdapters_8_init();
-    GsonTypeAdapters_FLOAT = new_GsonTypeAdapters_9_init();
-    GsonTypeAdapters_DOUBLE = new_GsonTypeAdapters_10_init();
-    GsonTypeAdapters_NUMBER = new_GsonTypeAdapters_11_init();
+    GsonTypeAdapters_ATOMIC_INTEGER = [new_GsonTypeAdapters_8_init() nullSafe];
+    GsonTypeAdapters_ATOMIC_INTEGER_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilConcurrentAtomicAtomicInteger_class_(), GsonTypeAdapters_ATOMIC_INTEGER);
+    GsonTypeAdapters_ATOMIC_BOOLEAN = [new_GsonTypeAdapters_9_init() nullSafe];
+    GsonTypeAdapters_ATOMIC_BOOLEAN_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilConcurrentAtomicAtomicBoolean_class_(), GsonTypeAdapters_ATOMIC_BOOLEAN);
+    GsonTypeAdapters_ATOMIC_INTEGER_ARRAY = [new_GsonTypeAdapters_10_init() nullSafe];
+    GsonTypeAdapters_ATOMIC_INTEGER_ARRAY_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilConcurrentAtomicAtomicIntegerArray_class_(), GsonTypeAdapters_ATOMIC_INTEGER_ARRAY);
+    GsonTypeAdapters_LONG = new_GsonTypeAdapters_11_init();
+    GsonTypeAdapters_FLOAT = new_GsonTypeAdapters_12_init();
+    GsonTypeAdapters_DOUBLE = new_GsonTypeAdapters_13_init();
+    GsonTypeAdapters_NUMBER = new_GsonTypeAdapters_14_init();
     GsonTypeAdapters_NUMBER_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(NSNumber_class_(), GsonTypeAdapters_NUMBER);
-    GsonTypeAdapters_CHARACTER = new_GsonTypeAdapters_12_init();
+    GsonTypeAdapters_CHARACTER = new_GsonTypeAdapters_15_init();
     GsonTypeAdapters_CHARACTER_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withIOSClass_withGsonTypeAdapter_([IOSClass charClass], JavaLangCharacter_class_(), GsonTypeAdapters_CHARACTER);
-    GsonTypeAdapters_STRING = new_GsonTypeAdapters_13_init();
-    GsonTypeAdapters_BIG_DECIMAL = new_GsonTypeAdapters_14_init();
-    GsonTypeAdapters_BIG_INTEGER = new_GsonTypeAdapters_15_init();
+    GsonTypeAdapters_STRING = new_GsonTypeAdapters_16_init();
+    GsonTypeAdapters_BIG_DECIMAL = new_GsonTypeAdapters_17_init();
+    GsonTypeAdapters_BIG_INTEGER = new_GsonTypeAdapters_18_init();
     GsonTypeAdapters_STRING_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(NSString_class_(), GsonTypeAdapters_STRING);
-    GsonTypeAdapters_STRING_BUILDER = new_GsonTypeAdapters_16_init();
+    GsonTypeAdapters_STRING_BUILDER = new_GsonTypeAdapters_19_init();
     GsonTypeAdapters_STRING_BUILDER_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaLangStringBuilder_class_(), GsonTypeAdapters_STRING_BUILDER);
-    GsonTypeAdapters_STRING_BUFFER = new_GsonTypeAdapters_17_init();
+    GsonTypeAdapters_STRING_BUFFER = new_GsonTypeAdapters_20_init();
     GsonTypeAdapters_STRING_BUFFER_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaLangStringBuffer_class_(), GsonTypeAdapters_STRING_BUFFER);
-    GsonTypeAdapters_URL = new_GsonTypeAdapters_18_init();
+    GsonTypeAdapters_URL = new_GsonTypeAdapters_21_init();
     GsonTypeAdapters_URL_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaNetURL_class_(), GsonTypeAdapters_URL);
-    GsonTypeAdapters_URI = new_GsonTypeAdapters_19_init();
+    GsonTypeAdapters_URI = new_GsonTypeAdapters_22_init();
     GsonTypeAdapters_URI_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaNetURI_class_(), GsonTypeAdapters_URI);
-    GsonTypeAdapters_INET_ADDRESS = new_GsonTypeAdapters_20_init();
+    GsonTypeAdapters_INET_ADDRESS = new_GsonTypeAdapters_23_init();
     GsonTypeAdapters_INET_ADDRESS_FACTORY = GsonTypeAdapters_newTypeHierarchyFactoryWithIOSClass_withGsonTypeAdapter_(JavaNetInetAddress_class_(), GsonTypeAdapters_INET_ADDRESS);
-    GsonTypeAdapters_UUID = new_GsonTypeAdapters_21_init();
+    GsonTypeAdapters_UUID = new_GsonTypeAdapters_24_init();
     GsonTypeAdapters_UUID_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilUUID_class_(), GsonTypeAdapters_UUID);
-    GsonTypeAdapters_TIMESTAMP_FACTORY = new_GsonTypeAdapters_22_init();
-    GsonTypeAdapters_CALENDAR = new_GsonTypeAdapters_23_init();
+    GsonTypeAdapters_CURRENCY = [new_GsonTypeAdapters_25_init() nullSafe];
+    GsonTypeAdapters_CURRENCY_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilCurrency_class_(), GsonTypeAdapters_CURRENCY);
+    GsonTypeAdapters_TIMESTAMP_FACTORY = new_GsonTypeAdapters_26_init();
+    GsonTypeAdapters_CALENDAR = new_GsonTypeAdapters_27_init();
     GsonTypeAdapters_CALENDAR_FACTORY = GsonTypeAdapters_newFactoryForMultipleTypesWithIOSClass_withIOSClass_withGsonTypeAdapter_(JavaUtilCalendar_class_(), JavaUtilGregorianCalendar_class_(), GsonTypeAdapters_CALENDAR);
-    GsonTypeAdapters_LOCALE = new_GsonTypeAdapters_24_init();
+    GsonTypeAdapters_LOCALE = new_GsonTypeAdapters_28_init();
     GsonTypeAdapters_LOCALE_FACTORY = GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(JavaUtilLocale_class_(), GsonTypeAdapters_LOCALE);
-    GsonTypeAdapters_JSON_ELEMENT = new_GsonTypeAdapters_25_init();
+    GsonTypeAdapters_JSON_ELEMENT = new_GsonTypeAdapters_29_init();
     GsonTypeAdapters_JSON_ELEMENT_FACTORY = GsonTypeAdapters_newTypeHierarchyFactoryWithIOSClass_withGsonTypeAdapter_(GsonJsonElement_class_(), GsonTypeAdapters_JSON_ELEMENT);
-    GsonTypeAdapters_ENUM_FACTORY = new_GsonTypeAdapters_26_init();
+    GsonTypeAdapters_ENUM_FACTORY = new_GsonTypeAdapters_30_init();
     J2OBJC_SET_INITIALIZED(GsonTypeAdapters)
   }
 }
@@ -1298,6 +1484,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void GsonTypeAdapters_init(GsonTypeAdapters *self) {
   NSObject_init(self);
+  @throw new_JavaLangUnsupportedOperationException_init();
 }
 
 GsonTypeAdapters *new_GsonTypeAdapters_init() {
@@ -1310,27 +1497,27 @@ GsonTypeAdapters *create_GsonTypeAdapters_init() {
 
 id<GsonTypeAdapterFactory> GsonTypeAdapters_newFactoryWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *type, GsonTypeAdapter *typeAdapter) {
   GsonTypeAdapters_initialize();
-  return new_GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(type, typeAdapter);
+  return new_GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(type, typeAdapter);
 }
 
 id<GsonTypeAdapterFactory> GsonTypeAdapters_newFactoryWithIOSClass_withGsonTypeAdapter_(IOSClass *type, GsonTypeAdapter *typeAdapter) {
   GsonTypeAdapters_initialize();
-  return new_GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(type, typeAdapter);
+  return new_GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(type, typeAdapter);
 }
 
 id<GsonTypeAdapterFactory> GsonTypeAdapters_newFactoryWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *unboxed, IOSClass *boxed, GsonTypeAdapter *typeAdapter) {
   GsonTypeAdapters_initialize();
-  return new_GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(unboxed, boxed, typeAdapter);
+  return new_GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(unboxed, boxed, typeAdapter);
 }
 
 id<GsonTypeAdapterFactory> GsonTypeAdapters_newFactoryForMultipleTypesWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *base, IOSClass *sub, GsonTypeAdapter *typeAdapter) {
   GsonTypeAdapters_initialize();
-  return new_GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(base, sub, typeAdapter);
+  return new_GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(base, sub, typeAdapter);
 }
 
 id<GsonTypeAdapterFactory> GsonTypeAdapters_newTypeHierarchyFactoryWithIOSClass_withGsonTypeAdapter_(IOSClass *clazz, GsonTypeAdapter *typeAdapter) {
   GsonTypeAdapters_initialize();
-  return new_GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(clazz, typeAdapter);
+  return new_GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(clazz, typeAdapter);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTypeAdapters)
@@ -1346,22 +1533,11 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
                          withId:(IOSClass *)value {
-  if (value == nil) {
-    (void) [((GsonJsonWriter *) nil_chk(outArg)) nullValue];
-  }
-  else {
-    @throw new_JavaLangUnsupportedOperationException_initWithNSString_(JreStrcat("$$$", @"Attempted to serialize java.lang.Class: ", [value getName], @". Forgot to register a type adapter?"));
-  }
+  @throw new_JavaLangUnsupportedOperationException_initWithNSString_(JreStrcat("$$$", @"Attempted to serialize java.lang.Class: ", [((IOSClass *) nil_chk(value)) getName], @". Forgot to register a type adapter?"));
 }
 
 - (IOSClass *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
-    [inArg nextNull];
-    return nil;
-  }
-  else {
-    @throw new_JavaLangUnsupportedOperationException_initWithNSString_(@"Attempted to deserialize a java.lang.Class. Forgot to register a type adapter?");
-  }
+  @throw new_JavaLangUnsupportedOperationException_initWithNSString_(@"Attempted to deserialize a java.lang.Class. Forgot to register a type adapter?");
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -1405,12 +1581,8 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (JavaUtilBitSet *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
-    [inArg nextNull];
-    return nil;
-  }
   JavaUtilBitSet *bitset = new_JavaUtilBitSet_init();
-  [inArg beginArray];
+  [((GsonJsonReader *) nil_chk(inArg)) beginArray];
   jint i = 0;
   GsonJsonToken *tokenType = [inArg peek];
   while (tokenType != JreLoadEnum(GsonJsonToken, END_ARRAY)) {
@@ -1449,12 +1621,8 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
                          withId:(JavaUtilBitSet *)src {
-  if (src == nil) {
-    (void) [((GsonJsonWriter *) nil_chk(outArg)) nullValue];
-    return;
-  }
   (void) [((GsonJsonWriter *) nil_chk(outArg)) beginArray];
-  for (jint i = 0; i < [src length]; i++) {
+  for (jint i = 0, length = [((JavaUtilBitSet *) nil_chk(src)) length]; i < length; i++) {
     jint value = ([src getWithInt:i]) ? 1 : 0;
     (void) [outArg valueWithLong:value];
   }
@@ -1502,11 +1670,12 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (JavaLangBoolean *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
+  GsonJsonToken *peek = [((GsonJsonReader *) nil_chk(inArg)) peek];
+  if (peek == JreLoadEnum(GsonJsonToken, NULL)) {
     [inArg nextNull];
     return nil;
   }
-  else if ([inArg peek] == JreLoadEnum(GsonJsonToken, STRING)) {
+  else if (peek == JreLoadEnum(GsonJsonToken, STRING)) {
     return JavaLangBoolean_valueOfWithBoolean_(JavaLangBoolean_parseBooleanWithNSString_([inArg nextString]));
   }
   return JavaLangBoolean_valueOfWithBoolean_([inArg nextBoolean]);
@@ -1514,11 +1683,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
                          withId:(JavaLangBoolean *)value {
-  if (value == nil) {
-    (void) [((GsonJsonWriter *) nil_chk(outArg)) nullValue];
-    return;
-  }
-  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithBoolean:[value booleanValue]];
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithJavaLangBoolean:value];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -1789,13 +1954,9 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
-    [inArg nextNull];
-    return nil;
-  }
+- (JavaUtilConcurrentAtomicAtomicInteger *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
   @try {
-    return JavaLangLong_valueOfWithLong_([inArg nextLong]);
+    return new_JavaUtilConcurrentAtomicAtomicInteger_initWithInt_([((GsonJsonReader *) nil_chk(inArg)) nextInt]);
   }
   @catch (JavaLangNumberFormatException *e) {
     @throw new_GsonJsonSyntaxException_initWithJavaLangThrowable_(e);
@@ -1803,14 +1964,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
-                         withId:(NSNumber *)value {
-  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSNumber:value];
+                         withId:(JavaUtilConcurrentAtomicAtomicInteger *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithLong:[((JavaUtilConcurrentAtomicAtomicInteger *) nil_chk(value)) get]];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LNSNumber;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "LJavaUtilConcurrentAtomicAtomicInteger;", 0x1, 0, 1, 2, -1, -1, -1 },
     { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -1819,7 +1980,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSNumber;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;" };
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilConcurrentAtomicAtomicInteger;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/concurrent/atomic/AtomicInteger;>;" };
   static const J2ObjcClassInfo _GsonTypeAdapters_8 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
   return &_GsonTypeAdapters_8;
 }
@@ -1847,23 +2008,19 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
-    [inArg nextNull];
-    return nil;
-  }
-  return JavaLangFloat_valueOfWithFloat_((jfloat) [inArg nextDouble]);
+- (JavaUtilConcurrentAtomicAtomicBoolean *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  return new_JavaUtilConcurrentAtomicAtomicBoolean_initWithBoolean_([((GsonJsonReader *) nil_chk(inArg)) nextBoolean]);
 }
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
-                         withId:(NSNumber *)value {
-  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSNumber:value];
+                         withId:(JavaUtilConcurrentAtomicAtomicBoolean *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithBoolean:[((JavaUtilConcurrentAtomicAtomicBoolean *) nil_chk(value)) get]];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LNSNumber;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "LJavaUtilConcurrentAtomicAtomicBoolean;", 0x1, 0, 1, 2, -1, -1, -1 },
     { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -1872,7 +2029,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSNumber;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;" };
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilConcurrentAtomicAtomicBoolean;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/concurrent/atomic/AtomicBoolean;>;" };
   static const J2ObjcClassInfo _GsonTypeAdapters_9 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
   return &_GsonTypeAdapters_9;
 }
@@ -1900,23 +2057,40 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
-    [inArg nextNull];
-    return nil;
+- (JavaUtilConcurrentAtomicAtomicIntegerArray *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  id<JavaUtilList> list = new_JavaUtilArrayList_init();
+  [((GsonJsonReader *) nil_chk(inArg)) beginArray];
+  while ([inArg hasNext]) {
+    @try {
+      jint integer = [inArg nextInt];
+      [list addWithId:JavaLangInteger_valueOfWithInt_(integer)];
+    }
+    @catch (JavaLangNumberFormatException *e) {
+      @throw new_GsonJsonSyntaxException_initWithJavaLangThrowable_(e);
+    }
   }
-  return JavaLangDouble_valueOfWithDouble_([inArg nextDouble]);
+  [inArg endArray];
+  jint length = [list size];
+  JavaUtilConcurrentAtomicAtomicIntegerArray *array = new_JavaUtilConcurrentAtomicAtomicIntegerArray_initWithInt_(length);
+  for (jint i = 0; i < length; ++i) {
+    [array setWithInt:i withInt:[((JavaLangInteger *) nil_chk([list getWithInt:i])) intValue]];
+  }
+  return array;
 }
 
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
-                         withId:(NSNumber *)value {
-  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSNumber:value];
+                         withId:(JavaUtilConcurrentAtomicAtomicIntegerArray *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) beginArray];
+  for (jint i = 0, length = [((JavaUtilConcurrentAtomicAtomicIntegerArray *) nil_chk(value)) length]; i < length; i++) {
+    (void) [outArg valueWithLong:[value getWithInt:i]];
+  }
+  (void) [outArg endArray];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
-    { NULL, "LNSNumber;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "LJavaUtilConcurrentAtomicAtomicIntegerArray;", 0x1, 0, 1, 2, -1, -1, -1 },
     { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
   };
   #pragma clang diagnostic push
@@ -1925,7 +2099,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSNumber;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;" };
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilConcurrentAtomicAtomicIntegerArray;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/concurrent/atomic/AtomicIntegerArray;>;" };
   static const J2ObjcClassInfo _GsonTypeAdapters_10 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
   return &_GsonTypeAdapters_10;
 }
@@ -1954,15 +2128,15 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
-  GsonJsonToken *jsonToken = [((GsonJsonReader *) nil_chk(inArg)) peek];
-  switch ([jsonToken ordinal]) {
-    case GsonJsonToken_Enum_NULL:
+  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
     [inArg nextNull];
     return nil;
-    case GsonJsonToken_Enum_NUMBER:
-    return new_GsonLazilyParsedNumber_initWithNSString_([inArg nextString]);
-    default:
-    @throw new_GsonJsonSyntaxException_initWithNSString_(JreStrcat("$@", @"Expecting number, got: ", jsonToken));
+  }
+  @try {
+    return JavaLangLong_valueOfWithLong_([inArg nextLong]);
+  }
+  @catch (JavaLangNumberFormatException *e) {
+    @throw new_GsonJsonSyntaxException_initWithJavaLangThrowable_(e);
   }
 }
 
@@ -2011,6 +2185,171 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
+- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
+    [inArg nextNull];
+    return nil;
+  }
+  return JavaLangFloat_valueOfWithFloat_((jfloat) [inArg nextDouble]);
+}
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(NSNumber *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSNumber:value];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSNumber;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(readWithGsonJsonReader:);
+  methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSNumber;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_12 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_12;
+}
+
+@end
+
+void GsonTypeAdapters_12_init(GsonTypeAdapters_12 *self) {
+  GsonTypeAdapter_init(self);
+}
+
+GsonTypeAdapters_12 *new_GsonTypeAdapters_12_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_12, init)
+}
+
+GsonTypeAdapters_12 *create_GsonTypeAdapters_12_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_12, init)
+}
+
+@implementation GsonTypeAdapters_13
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  GsonTypeAdapters_13_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
+- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
+    [inArg nextNull];
+    return nil;
+  }
+  return JavaLangDouble_valueOfWithDouble_([inArg nextDouble]);
+}
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(NSNumber *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSNumber:value];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSNumber;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(readWithGsonJsonReader:);
+  methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSNumber;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_13 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_13;
+}
+
+@end
+
+void GsonTypeAdapters_13_init(GsonTypeAdapters_13 *self) {
+  GsonTypeAdapter_init(self);
+}
+
+GsonTypeAdapters_13 *new_GsonTypeAdapters_13_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_13, init)
+}
+
+GsonTypeAdapters_13 *create_GsonTypeAdapters_13_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_13, init)
+}
+
+@implementation GsonTypeAdapters_14
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  GsonTypeAdapters_14_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
+- (NSNumber *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  GsonJsonToken *jsonToken = [((GsonJsonReader *) nil_chk(inArg)) peek];
+  switch ([jsonToken ordinal]) {
+    case GsonJsonToken_Enum_NULL:
+    [inArg nextNull];
+    return nil;
+    case GsonJsonToken_Enum_NUMBER:
+    case GsonJsonToken_Enum_STRING:
+    return new_GsonLazilyParsedNumber_initWithNSString_([inArg nextString]);
+    default:
+    @throw new_GsonJsonSyntaxException_initWithNSString_(JreStrcat("$@", @"Expecting number, got: ", jsonToken));
+  }
+}
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(NSNumber *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSNumber:value];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSNumber;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(readWithGsonJsonReader:);
+  methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSNumber;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Number;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_14 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_14;
+}
+
+@end
+
+void GsonTypeAdapters_14_init(GsonTypeAdapters_14 *self) {
+  GsonTypeAdapter_init(self);
+}
+
+GsonTypeAdapters_14 *new_GsonTypeAdapters_14_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_14, init)
+}
+
+GsonTypeAdapters_14 *create_GsonTypeAdapters_14_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_14, init)
+}
+
+@implementation GsonTypeAdapters_15
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  GsonTypeAdapters_15_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
 - (JavaLangCharacter *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
   if ([((GsonJsonReader *) nil_chk(inArg)) peek] == JreLoadEnum(GsonJsonToken, NULL)) {
     [inArg nextNull];
@@ -2041,29 +2380,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaLangCharacter;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/Character;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_12 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_12;
+  static const J2ObjcClassInfo _GsonTypeAdapters_15 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_15;
 }
 
 @end
 
-void GsonTypeAdapters_12_init(GsonTypeAdapters_12 *self) {
+void GsonTypeAdapters_15_init(GsonTypeAdapters_15 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_12 *new_GsonTypeAdapters_12_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_12, init)
+GsonTypeAdapters_15 *new_GsonTypeAdapters_15_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_15, init)
 }
 
-GsonTypeAdapters_12 *create_GsonTypeAdapters_12_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_12, init)
+GsonTypeAdapters_15 *create_GsonTypeAdapters_15_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_15, init)
 }
 
-@implementation GsonTypeAdapters_13
+@implementation GsonTypeAdapters_16
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_13_init(self);
+  GsonTypeAdapters_16_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2098,29 +2437,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LNSString;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/String;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_13 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_13;
+  static const J2ObjcClassInfo _GsonTypeAdapters_16 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_16;
 }
 
 @end
 
-void GsonTypeAdapters_13_init(GsonTypeAdapters_13 *self) {
+void GsonTypeAdapters_16_init(GsonTypeAdapters_16 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_13 *new_GsonTypeAdapters_13_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_13, init)
+GsonTypeAdapters_16 *new_GsonTypeAdapters_16_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_16, init)
 }
 
-GsonTypeAdapters_13 *create_GsonTypeAdapters_13_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_13, init)
+GsonTypeAdapters_16 *create_GsonTypeAdapters_16_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_16, init)
 }
 
-@implementation GsonTypeAdapters_14
+@implementation GsonTypeAdapters_17
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_14_init(self);
+  GsonTypeAdapters_17_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2156,29 +2495,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaMathBigDecimal;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/math/BigDecimal;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_14 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_14;
+  static const J2ObjcClassInfo _GsonTypeAdapters_17 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_17;
 }
 
 @end
 
-void GsonTypeAdapters_14_init(GsonTypeAdapters_14 *self) {
+void GsonTypeAdapters_17_init(GsonTypeAdapters_17 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_14 *new_GsonTypeAdapters_14_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_14, init)
+GsonTypeAdapters_17 *new_GsonTypeAdapters_17_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_17, init)
 }
 
-GsonTypeAdapters_14 *create_GsonTypeAdapters_14_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_14, init)
+GsonTypeAdapters_17 *create_GsonTypeAdapters_17_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_17, init)
 }
 
-@implementation GsonTypeAdapters_15
+@implementation GsonTypeAdapters_18
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_15_init(self);
+  GsonTypeAdapters_18_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2214,29 +2553,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaMathBigInteger;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/math/BigInteger;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_15 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_15;
+  static const J2ObjcClassInfo _GsonTypeAdapters_18 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_18;
 }
 
 @end
 
-void GsonTypeAdapters_15_init(GsonTypeAdapters_15 *self) {
+void GsonTypeAdapters_18_init(GsonTypeAdapters_18 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_15 *new_GsonTypeAdapters_15_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_15, init)
+GsonTypeAdapters_18 *new_GsonTypeAdapters_18_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_18, init)
 }
 
-GsonTypeAdapters_15 *create_GsonTypeAdapters_15_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_15, init)
+GsonTypeAdapters_18 *create_GsonTypeAdapters_18_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_18, init)
 }
 
-@implementation GsonTypeAdapters_16
+@implementation GsonTypeAdapters_19
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_16_init(self);
+  GsonTypeAdapters_19_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2267,29 +2606,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaLangStringBuilder;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/StringBuilder;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_16 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_16;
+  static const J2ObjcClassInfo _GsonTypeAdapters_19 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_19;
 }
 
 @end
 
-void GsonTypeAdapters_16_init(GsonTypeAdapters_16 *self) {
+void GsonTypeAdapters_19_init(GsonTypeAdapters_19 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_16 *new_GsonTypeAdapters_16_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_16, init)
+GsonTypeAdapters_19 *new_GsonTypeAdapters_19_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_19, init)
 }
 
-GsonTypeAdapters_16 *create_GsonTypeAdapters_16_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_16, init)
+GsonTypeAdapters_19 *create_GsonTypeAdapters_19_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_19, init)
 }
 
-@implementation GsonTypeAdapters_17
+@implementation GsonTypeAdapters_20
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_17_init(self);
+  GsonTypeAdapters_20_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2320,29 +2659,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaLangStringBuffer;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/lang/StringBuffer;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_17 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_17;
+  static const J2ObjcClassInfo _GsonTypeAdapters_20 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_20;
 }
 
 @end
 
-void GsonTypeAdapters_17_init(GsonTypeAdapters_17 *self) {
+void GsonTypeAdapters_20_init(GsonTypeAdapters_20 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_17 *new_GsonTypeAdapters_17_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_17, init)
+GsonTypeAdapters_20 *new_GsonTypeAdapters_20_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_20, init)
 }
 
-GsonTypeAdapters_17 *create_GsonTypeAdapters_17_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_17, init)
+GsonTypeAdapters_20 *create_GsonTypeAdapters_20_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_20, init)
 }
 
-@implementation GsonTypeAdapters_18
+@implementation GsonTypeAdapters_21
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_18_init(self);
+  GsonTypeAdapters_21_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2374,29 +2713,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaNetURL;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/net/URL;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_18 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_18;
+  static const J2ObjcClassInfo _GsonTypeAdapters_21 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_21;
 }
 
 @end
 
-void GsonTypeAdapters_18_init(GsonTypeAdapters_18 *self) {
+void GsonTypeAdapters_21_init(GsonTypeAdapters_21 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_18 *new_GsonTypeAdapters_18_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_18, init)
+GsonTypeAdapters_21 *new_GsonTypeAdapters_21_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_21, init)
 }
 
-GsonTypeAdapters_18 *create_GsonTypeAdapters_18_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_18, init)
+GsonTypeAdapters_21 *create_GsonTypeAdapters_21_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_21, init)
 }
 
-@implementation GsonTypeAdapters_19
+@implementation GsonTypeAdapters_22
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_19_init(self);
+  GsonTypeAdapters_22_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2433,29 +2772,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaNetURI;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/net/URI;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_19 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_19;
+  static const J2ObjcClassInfo _GsonTypeAdapters_22 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_22;
 }
 
 @end
 
-void GsonTypeAdapters_19_init(GsonTypeAdapters_19 *self) {
+void GsonTypeAdapters_22_init(GsonTypeAdapters_22 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_19 *new_GsonTypeAdapters_19_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_19, init)
+GsonTypeAdapters_22 *new_GsonTypeAdapters_22_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_22, init)
 }
 
-GsonTypeAdapters_19 *create_GsonTypeAdapters_19_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_19, init)
+GsonTypeAdapters_22 *create_GsonTypeAdapters_22_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_22, init)
 }
 
-@implementation GsonTypeAdapters_20
+@implementation GsonTypeAdapters_23
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_20_init(self);
+  GsonTypeAdapters_23_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2486,29 +2825,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaNetInetAddress;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/net/InetAddress;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_20 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_20;
+  static const J2ObjcClassInfo _GsonTypeAdapters_23 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_23;
 }
 
 @end
 
-void GsonTypeAdapters_20_init(GsonTypeAdapters_20 *self) {
+void GsonTypeAdapters_23_init(GsonTypeAdapters_23 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_20 *new_GsonTypeAdapters_20_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_20, init)
+GsonTypeAdapters_23 *new_GsonTypeAdapters_23_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_23, init)
 }
 
-GsonTypeAdapters_20 *create_GsonTypeAdapters_20_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_20, init)
+GsonTypeAdapters_23 *create_GsonTypeAdapters_23_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_23, init)
 }
 
-@implementation GsonTypeAdapters_21
+@implementation GsonTypeAdapters_24
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_21_init(self);
+  GsonTypeAdapters_24_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2539,29 +2878,78 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilUUID;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/UUID;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_21 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_21;
+  static const J2ObjcClassInfo _GsonTypeAdapters_24 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_24;
 }
 
 @end
 
-void GsonTypeAdapters_21_init(GsonTypeAdapters_21 *self) {
+void GsonTypeAdapters_24_init(GsonTypeAdapters_24 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_21 *new_GsonTypeAdapters_21_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_21, init)
+GsonTypeAdapters_24 *new_GsonTypeAdapters_24_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_24, init)
 }
 
-GsonTypeAdapters_21 *create_GsonTypeAdapters_21_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_21, init)
+GsonTypeAdapters_24 *create_GsonTypeAdapters_24_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_24, init)
 }
 
-@implementation GsonTypeAdapters_22
+@implementation GsonTypeAdapters_25
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_22_init(self);
+  GsonTypeAdapters_25_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
+- (JavaUtilCurrency *)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  return JavaUtilCurrency_getInstanceWithNSString_([((GsonJsonReader *) nil_chk(inArg)) nextString]);
+}
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(JavaUtilCurrency *)value {
+  (void) [((GsonJsonWriter *) nil_chk(outArg)) valueWithNSString:[((JavaUtilCurrency *) nil_chk(value)) getCurrencyCode]];
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LJavaUtilCurrency;", 0x1, 0, 1, 2, -1, -1, -1 },
+    { NULL, "V", 0x1, 3, 4, 2, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(readWithGsonJsonReader:);
+  methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilCurrency;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/Currency;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_25 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_25;
+}
+
+@end
+
+void GsonTypeAdapters_25_init(GsonTypeAdapters_25 *self) {
+  GsonTypeAdapter_init(self);
+}
+
+GsonTypeAdapters_25 *new_GsonTypeAdapters_25_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_25, init)
+}
+
+GsonTypeAdapters_25 *create_GsonTypeAdapters_25_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_25, init)
+}
+
+@implementation GsonTypeAdapters_26
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  GsonTypeAdapters_26_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2572,7 +2960,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     return nil;
   }
   GsonTypeAdapter *dateTypeAdapter = [((GsonGson *) nil_chk(gson)) getAdapterWithIOSClass:JavaUtilDate_class_()];
-  return new_GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(dateTypeAdapter);
+  return new_GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(dateTypeAdapter);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -2586,28 +2974,28 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "LGsonTypeAdapters;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_22 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 2, 0, 3, -1, -1, -1, -1 };
-  return &_GsonTypeAdapters_22;
+  static const J2ObjcClassInfo _GsonTypeAdapters_26 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 2, 0, 3, -1, -1, -1, -1 };
+  return &_GsonTypeAdapters_26;
 }
 
 @end
 
-void GsonTypeAdapters_22_init(GsonTypeAdapters_22 *self) {
+void GsonTypeAdapters_26_init(GsonTypeAdapters_26 *self) {
   NSObject_init(self);
 }
 
-GsonTypeAdapters_22 *new_GsonTypeAdapters_22_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_22, init)
+GsonTypeAdapters_26 *new_GsonTypeAdapters_26_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_26, init)
 }
 
-GsonTypeAdapters_22 *create_GsonTypeAdapters_22_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_22, init)
+GsonTypeAdapters_26 *create_GsonTypeAdapters_26_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_26, init)
 }
 
-@implementation GsonTypeAdapters_22_1
+@implementation GsonTypeAdapters_26_1
 
 - (instancetype)initWithGsonTypeAdapter:(GsonTypeAdapter *)capture$0 {
-  GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(self, capture$0);
+  GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(self, capture$0);
   return self;
 }
 
@@ -2636,31 +3024,31 @@ GsonTypeAdapters_22 *create_GsonTypeAdapters_22_init() {
   static const J2ObjcFieldInfo fields[] = {
     { "val$dateTypeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 5, -1 },
   };
-  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaSqlTimestamp;", "Lcom/google/gson/TypeAdapter<Ljava/util/Date;>;", "LGsonTypeAdapters_22;", "createWithGsonGson:withGsonTypeToken:", "Lcom/google/gson/TypeAdapter<Ljava/sql/Timestamp;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_22_1 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 1, 6, -1, 7, 8, -1 };
-  return &_GsonTypeAdapters_22_1;
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaSqlTimestamp;", "Lcom/google/gson/TypeAdapter<Ljava/util/Date;>;", "LGsonTypeAdapters_26;", "createWithGsonGson:withGsonTypeToken:", "Lcom/google/gson/TypeAdapter<Ljava/sql/Timestamp;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_26_1 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 1, 6, -1, 7, 8, -1 };
+  return &_GsonTypeAdapters_26_1;
 }
 
 @end
 
-void GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(GsonTypeAdapters_22_1 *self, GsonTypeAdapter *capture$0) {
+void GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(GsonTypeAdapters_26_1 *self, GsonTypeAdapter *capture$0) {
   self->val$dateTypeAdapter_ = capture$0;
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_22_1 *new_GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0) {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_22_1, initWithGsonTypeAdapter_, capture$0)
+GsonTypeAdapters_26_1 *new_GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_26_1, initWithGsonTypeAdapter_, capture$0)
 }
 
-GsonTypeAdapters_22_1 *create_GsonTypeAdapters_22_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0) {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_22_1, initWithGsonTypeAdapter_, capture$0)
+GsonTypeAdapters_26_1 *create_GsonTypeAdapters_26_1_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$0) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_26_1, initWithGsonTypeAdapter_, capture$0)
 }
 
-@implementation GsonTypeAdapters_23
+@implementation GsonTypeAdapters_27
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_23_init(self);
+  GsonTypeAdapters_27_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2680,22 +3068,22 @@ J2OBJC_IGNORE_DESIGNATED_END
   while ([inArg peek] != JreLoadEnum(GsonJsonToken, END_OBJECT)) {
     NSString *name = [inArg nextName];
     jint value = [inArg nextInt];
-    if ([((NSString *) nil_chk(GsonTypeAdapters_23_YEAR)) isEqual:name]) {
+    if ([((NSString *) nil_chk(GsonTypeAdapters_27_YEAR)) isEqual:name]) {
       year = value;
     }
-    else if ([((NSString *) nil_chk(GsonTypeAdapters_23_MONTH)) isEqual:name]) {
+    else if ([((NSString *) nil_chk(GsonTypeAdapters_27_MONTH)) isEqual:name]) {
       month = value;
     }
-    else if ([((NSString *) nil_chk(GsonTypeAdapters_23_DAY_OF_MONTH)) isEqual:name]) {
+    else if ([((NSString *) nil_chk(GsonTypeAdapters_27_DAY_OF_MONTH)) isEqual:name]) {
       dayOfMonth = value;
     }
-    else if ([((NSString *) nil_chk(GsonTypeAdapters_23_HOUR_OF_DAY)) isEqual:name]) {
+    else if ([((NSString *) nil_chk(GsonTypeAdapters_27_HOUR_OF_DAY)) isEqual:name]) {
       hourOfDay = value;
     }
-    else if ([((NSString *) nil_chk(GsonTypeAdapters_23_MINUTE)) isEqual:name]) {
+    else if ([((NSString *) nil_chk(GsonTypeAdapters_27_MINUTE)) isEqual:name]) {
       minute = value;
     }
-    else if ([((NSString *) nil_chk(GsonTypeAdapters_23_SECOND)) isEqual:name]) {
+    else if ([((NSString *) nil_chk(GsonTypeAdapters_27_SECOND)) isEqual:name]) {
       second = value;
     }
   }
@@ -2710,17 +3098,17 @@ J2OBJC_IGNORE_DESIGNATED_END
     return;
   }
   (void) [((GsonJsonWriter *) nil_chk(outArg)) beginObject];
-  (void) [outArg nameWithNSString:GsonTypeAdapters_23_YEAR];
+  (void) [outArg nameWithNSString:GsonTypeAdapters_27_YEAR];
   (void) [outArg valueWithLong:[value getWithInt:JavaUtilCalendar_YEAR]];
-  (void) [outArg nameWithNSString:GsonTypeAdapters_23_MONTH];
+  (void) [outArg nameWithNSString:GsonTypeAdapters_27_MONTH];
   (void) [outArg valueWithLong:[value getWithInt:JavaUtilCalendar_MONTH]];
-  (void) [outArg nameWithNSString:GsonTypeAdapters_23_DAY_OF_MONTH];
+  (void) [outArg nameWithNSString:GsonTypeAdapters_27_DAY_OF_MONTH];
   (void) [outArg valueWithLong:[value getWithInt:JavaUtilCalendar_DAY_OF_MONTH]];
-  (void) [outArg nameWithNSString:GsonTypeAdapters_23_HOUR_OF_DAY];
+  (void) [outArg nameWithNSString:GsonTypeAdapters_27_HOUR_OF_DAY];
   (void) [outArg valueWithLong:[value getWithInt:JavaUtilCalendar_HOUR_OF_DAY]];
-  (void) [outArg nameWithNSString:GsonTypeAdapters_23_MINUTE];
+  (void) [outArg nameWithNSString:GsonTypeAdapters_27_MINUTE];
   (void) [outArg valueWithLong:[value getWithInt:JavaUtilCalendar_MINUTE]];
-  (void) [outArg nameWithNSString:GsonTypeAdapters_23_SECOND];
+  (void) [outArg nameWithNSString:GsonTypeAdapters_27_SECOND];
   (void) [outArg valueWithLong:[value getWithInt:JavaUtilCalendar_SECOND]];
   (void) [outArg endObject];
 }
@@ -2745,30 +3133,30 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "MINUTE", "LNSString;", .constantValue.asLong = 0, 0x1a, -1, 9, -1, -1 },
     { "SECOND", "LNSString;", .constantValue.asLong = 0, 0x1a, -1, 10, -1, -1 },
   };
-  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilCalendar;", &GsonTypeAdapters_23_YEAR, &GsonTypeAdapters_23_MONTH, &GsonTypeAdapters_23_DAY_OF_MONTH, &GsonTypeAdapters_23_HOUR_OF_DAY, &GsonTypeAdapters_23_MINUTE, &GsonTypeAdapters_23_SECOND, "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/Calendar;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_23 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 6, 11, -1, -1, 12, -1 };
-  return &_GsonTypeAdapters_23;
+  static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilCalendar;", &GsonTypeAdapters_27_YEAR, &GsonTypeAdapters_27_MONTH, &GsonTypeAdapters_27_DAY_OF_MONTH, &GsonTypeAdapters_27_HOUR_OF_DAY, &GsonTypeAdapters_27_MINUTE, &GsonTypeAdapters_27_SECOND, "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/Calendar;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_27 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 6, 11, -1, -1, 12, -1 };
+  return &_GsonTypeAdapters_27;
 }
 
 @end
 
-void GsonTypeAdapters_23_init(GsonTypeAdapters_23 *self) {
+void GsonTypeAdapters_27_init(GsonTypeAdapters_27 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_23 *new_GsonTypeAdapters_23_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_23, init)
+GsonTypeAdapters_27 *new_GsonTypeAdapters_27_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_27, init)
 }
 
-GsonTypeAdapters_23 *create_GsonTypeAdapters_23_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_23, init)
+GsonTypeAdapters_27 *create_GsonTypeAdapters_27_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_27, init)
 }
 
-@implementation GsonTypeAdapters_24
+@implementation GsonTypeAdapters_28
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_24_init(self);
+  GsonTypeAdapters_28_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2821,29 +3209,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LJavaUtilLocale;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Ljava/util/Locale;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_24 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_24;
+  static const J2ObjcClassInfo _GsonTypeAdapters_28 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_28;
 }
 
 @end
 
-void GsonTypeAdapters_24_init(GsonTypeAdapters_24 *self) {
+void GsonTypeAdapters_28_init(GsonTypeAdapters_28 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_24 *new_GsonTypeAdapters_24_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_24, init)
+GsonTypeAdapters_28 *new_GsonTypeAdapters_28_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_28, init)
 }
 
-GsonTypeAdapters_24 *create_GsonTypeAdapters_24_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_24, init)
+GsonTypeAdapters_28 *create_GsonTypeAdapters_28_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_28, init)
 }
 
-@implementation GsonTypeAdapters_25
+@implementation GsonTypeAdapters_29
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_25_init(self);
+  GsonTypeAdapters_29_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -2940,22 +3328,22 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "read", "LGsonJsonReader;", "LJavaIoIOException;", "write", "LGsonJsonWriter;LGsonJsonElement;", "LGsonTypeAdapters;", "Lcom/google/gson/TypeAdapter<Lcom/google/gson/JsonElement;>;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_25 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
-  return &_GsonTypeAdapters_25;
+  static const J2ObjcClassInfo _GsonTypeAdapters_29 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 3, 0, 5, -1, -1, 6, -1 };
+  return &_GsonTypeAdapters_29;
 }
 
 @end
 
-void GsonTypeAdapters_25_init(GsonTypeAdapters_25 *self) {
+void GsonTypeAdapters_29_init(GsonTypeAdapters_29 *self) {
   GsonTypeAdapter_init(self);
 }
 
-GsonTypeAdapters_25 *new_GsonTypeAdapters_25_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_25, init)
+GsonTypeAdapters_29 *new_GsonTypeAdapters_29_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_29, init)
 }
 
-GsonTypeAdapters_25 *create_GsonTypeAdapters_25_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_25, init)
+GsonTypeAdapters_29 *create_GsonTypeAdapters_29_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_29, init)
 }
 
 @implementation GsonTypeAdapters_EnumTypeAdapter
@@ -3016,6 +3404,15 @@ void GsonTypeAdapters_EnumTypeAdapter_initWithIOSClass_(GsonTypeAdapters_EnumTyp
         id<GsonSerializedName> annotation = ((id<GsonSerializedName>) [((JavaLangReflectField *) nil_chk([classOfT getField:name])) getAnnotationWithIOSClass:GsonSerializedName_class_()]);
         if (annotation != nil) {
           name = [annotation value];
+          {
+            IOSObjectArray *a__ = [annotation alternate];
+            NSString * const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
+            NSString * const *e__ = b__ + a__->size_;
+            while (b__ < e__) {
+              NSString *alternate = *b__++;
+              (void) [self->nameToConstant_ putWithId:alternate withId:constant];
+            }
+          }
         }
         (void) [self->nameToConstant_ putWithId:name withId:constant];
         (void) [self->constantToName_ putWithId:constant withId:name];
@@ -3023,7 +3420,7 @@ void GsonTypeAdapters_EnumTypeAdapter_initWithIOSClass_(GsonTypeAdapters_EnumTyp
     }
   }
   @catch (JavaLangNoSuchFieldException *e) {
-    @throw new_JavaLangAssertionError_init();
+    @throw new_JavaLangAssertionError_initWithId_(e);
   }
 }
 
@@ -3037,11 +3434,11 @@ GsonTypeAdapters_EnumTypeAdapter *create_GsonTypeAdapters_EnumTypeAdapter_initWi
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTypeAdapters_EnumTypeAdapter)
 
-@implementation GsonTypeAdapters_26
+@implementation GsonTypeAdapters_30
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
-  GsonTypeAdapters_26_init(self);
+  GsonTypeAdapters_30_init(self);
   return self;
 }
 J2OBJC_IGNORE_DESIGNATED_END
@@ -3069,29 +3466,29 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "LGsonTypeAdapters;" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_26 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 2, 0, 3, -1, -1, -1, -1 };
-  return &_GsonTypeAdapters_26;
+  static const J2ObjcClassInfo _GsonTypeAdapters_30 = { "", "com.google.gson.internal.bind", ptrTable, methods, NULL, 7, 0x8018, 2, 0, 3, -1, -1, -1, -1 };
+  return &_GsonTypeAdapters_30;
 }
 
 @end
 
-void GsonTypeAdapters_26_init(GsonTypeAdapters_26 *self) {
+void GsonTypeAdapters_30_init(GsonTypeAdapters_30 *self) {
   NSObject_init(self);
 }
 
-GsonTypeAdapters_26 *new_GsonTypeAdapters_26_init() {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_26, init)
+GsonTypeAdapters_30 *new_GsonTypeAdapters_30_init() {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_30, init)
 }
 
-GsonTypeAdapters_26 *create_GsonTypeAdapters_26_init() {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_26, init)
+GsonTypeAdapters_30 *create_GsonTypeAdapters_30_init() {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_30, init)
 }
 
-@implementation GsonTypeAdapters_27
+@implementation GsonTypeAdapters_31
 
 - (instancetype)initWithGsonTypeToken:(GsonTypeToken *)capture$0
                   withGsonTypeAdapter:(GsonTypeAdapter *)capture$1 {
-  GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(self, capture$0, capture$1);
+  GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(self, capture$0, capture$1);
   return self;
 }
 
@@ -3115,31 +3512,31 @@ GsonTypeAdapters_26 *create_GsonTypeAdapters_26_init() {
     { "val$typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 4, -1 },
   };
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "Lcom/google/gson/reflect/TypeToken<TTT;>;", "Lcom/google/gson/TypeAdapter<TTT;>;", "LGsonTypeAdapters;", "newFactoryWithGsonTypeToken:withGsonTypeAdapter:" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_27 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 2, 2, 5, -1, 6, -1, -1 };
-  return &_GsonTypeAdapters_27;
+  static const J2ObjcClassInfo _GsonTypeAdapters_31 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 2, 2, 5, -1, 6, -1, -1 };
+  return &_GsonTypeAdapters_31;
 }
 
 @end
 
-void GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeAdapters_27 *self, GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) {
+void GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeAdapters_31 *self, GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) {
   self->val$type_ = capture$0;
   self->val$typeAdapter_ = capture$1;
   NSObject_init(self);
 }
 
-GsonTypeAdapters_27 *new_GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_27, initWithGsonTypeToken_withGsonTypeAdapter_, capture$0, capture$1)
+GsonTypeAdapters_31 *new_GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_31, initWithGsonTypeToken_withGsonTypeAdapter_, capture$0, capture$1)
 }
 
-GsonTypeAdapters_27 *create_GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_27, initWithGsonTypeToken_withGsonTypeAdapter_, capture$0, capture$1)
+GsonTypeAdapters_31 *create_GsonTypeAdapters_31_initWithGsonTypeToken_withGsonTypeAdapter_(GsonTypeToken *capture$0, GsonTypeAdapter *capture$1) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_31, initWithGsonTypeToken_withGsonTypeAdapter_, capture$0, capture$1)
 }
 
-@implementation GsonTypeAdapters_28
+@implementation GsonTypeAdapters_32
 
 - (instancetype)initWithIOSClass:(IOSClass *)capture$0
              withGsonTypeAdapter:(GsonTypeAdapter *)capture$1 {
-  GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1);
+  GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1);
   return self;
 }
 
@@ -3169,32 +3566,32 @@ GsonTypeAdapters_27 *create_GsonTypeAdapters_27_initWithGsonTypeToken_withGsonTy
     { "val$typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 5, -1 },
   };
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "toString", "Ljava/lang/Class<TTT;>;", "Lcom/google/gson/TypeAdapter<TTT;>;", "LGsonTypeAdapters;", "newFactoryWithIOSClass:withGsonTypeAdapter:" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_28 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 2, 6, -1, 7, -1, -1 };
-  return &_GsonTypeAdapters_28;
+  static const J2ObjcClassInfo _GsonTypeAdapters_32 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 2, 6, -1, 7, -1, -1 };
+  return &_GsonTypeAdapters_32;
 }
 
 @end
 
-void GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_28 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1) {
+void GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_32 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1) {
   self->val$type_ = capture$0;
   self->val$typeAdapter_ = capture$1;
   NSObject_init(self);
 }
 
-GsonTypeAdapters_28 *new_GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_28, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
+GsonTypeAdapters_32 *new_GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_32, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
 }
 
-GsonTypeAdapters_28 *create_GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_28, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
+GsonTypeAdapters_32 *create_GsonTypeAdapters_32_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_32, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
 }
 
-@implementation GsonTypeAdapters_29
+@implementation GsonTypeAdapters_33
 
 - (instancetype)initWithIOSClass:(IOSClass *)capture$0
                     withIOSClass:(IOSClass *)capture$1
              withGsonTypeAdapter:(GsonTypeAdapter *)capture$2 {
-  GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1, capture$2);
+  GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1, capture$2);
   return self;
 }
 
@@ -3226,33 +3623,33 @@ GsonTypeAdapters_28 *create_GsonTypeAdapters_28_initWithIOSClass_withGsonTypeAda
     { "val$typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 5, -1 },
   };
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "toString", "Ljava/lang/Class<TTT;>;", "Lcom/google/gson/TypeAdapter<-TTT;>;", "LGsonTypeAdapters;", "newFactoryWithIOSClass:withIOSClass:withGsonTypeAdapter:" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_29 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 3, 6, -1, 7, -1, -1 };
-  return &_GsonTypeAdapters_29;
+  static const J2ObjcClassInfo _GsonTypeAdapters_33 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 3, 6, -1, 7, -1, -1 };
+  return &_GsonTypeAdapters_33;
 }
 
 @end
 
-void GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_29 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
+void GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_33 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
   self->val$unboxed_ = capture$0;
   self->val$boxed_ = capture$1;
   self->val$typeAdapter_ = capture$2;
   NSObject_init(self);
 }
 
-GsonTypeAdapters_29 *new_GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_29, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
+GsonTypeAdapters_33 *new_GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_33, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
 }
 
-GsonTypeAdapters_29 *create_GsonTypeAdapters_29_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_29, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
+GsonTypeAdapters_33 *create_GsonTypeAdapters_33_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_33, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
 }
 
-@implementation GsonTypeAdapters_30
+@implementation GsonTypeAdapters_34
 
 - (instancetype)initWithIOSClass:(IOSClass *)capture$0
                     withIOSClass:(IOSClass *)capture$1
              withGsonTypeAdapter:(GsonTypeAdapter *)capture$2 {
-  GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1, capture$2);
+  GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1, capture$2);
   return self;
 }
 
@@ -3284,38 +3681,42 @@ GsonTypeAdapters_29 *create_GsonTypeAdapters_29_initWithIOSClass_withIOSClass_wi
     { "val$typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 6, -1 },
   };
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "toString", "Ljava/lang/Class<TTT;>;", "Ljava/lang/Class<+TTT;>;", "Lcom/google/gson/TypeAdapter<-TTT;>;", "LGsonTypeAdapters;", "newFactoryForMultipleTypesWithIOSClass:withIOSClass:withGsonTypeAdapter:" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_30 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 3, 7, -1, 8, -1, -1 };
-  return &_GsonTypeAdapters_30;
+  static const J2ObjcClassInfo _GsonTypeAdapters_34 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 3, 7, -1, 8, -1, -1 };
+  return &_GsonTypeAdapters_34;
 }
 
 @end
 
-void GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_30 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
+void GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_34 *self, IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
   self->val$base_ = capture$0;
   self->val$sub_ = capture$1;
   self->val$typeAdapter_ = capture$2;
   NSObject_init(self);
 }
 
-GsonTypeAdapters_30 *new_GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_30, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
+GsonTypeAdapters_34 *new_GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_34, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
 }
 
-GsonTypeAdapters_30 *create_GsonTypeAdapters_30_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_30, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
+GsonTypeAdapters_34 *create_GsonTypeAdapters_34_initWithIOSClass_withIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, IOSClass *capture$1, GsonTypeAdapter *capture$2) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_34, initWithIOSClass_withIOSClass_withGsonTypeAdapter_, capture$0, capture$1, capture$2)
 }
 
-@implementation GsonTypeAdapters_31
+@implementation GsonTypeAdapters_35
 
 - (instancetype)initWithIOSClass:(IOSClass *)capture$0
              withGsonTypeAdapter:(GsonTypeAdapter *)capture$1 {
-  GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1);
+  GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(self, capture$0, capture$1);
   return self;
 }
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)typeToken {
-  return [((IOSClass *) nil_chk(val$clazz_)) isAssignableFrom:[((GsonTypeToken *) nil_chk(typeToken)) getRawType]] ? val$typeAdapter_ : nil;
+  IOSClass *requestedType = [((GsonTypeToken *) nil_chk(typeToken)) getRawType];
+  if (![((IOSClass *) nil_chk(val$clazz_)) isAssignableFrom:requestedType]) {
+    return nil;
+  }
+  return new_GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(self, requestedType);
 }
 
 - (NSString *)description {
@@ -3338,23 +3739,81 @@ GsonTypeAdapters_30 *create_GsonTypeAdapters_30_initWithIOSClass_withIOSClass_wi
     { "val$clazz_", "LIOSClass;", .constantValue.asLong = 0, 0x1012, -1, -1, 4, -1 },
     { "val$typeAdapter_", "LGsonTypeAdapter;", .constantValue.asLong = 0, 0x1012, -1, -1, 5, -1 },
   };
-  static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;", "toString", "Ljava/lang/Class<TTT;>;", "Lcom/google/gson/TypeAdapter<TTT;>;", "LGsonTypeAdapters;", "newTypeHierarchyFactoryWithIOSClass:withGsonTypeAdapter:" };
-  static const J2ObjcClassInfo _GsonTypeAdapters_31 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 2, 6, -1, 7, -1, -1 };
-  return &_GsonTypeAdapters_31;
+  static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T2:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT2;>;)Lcom/google/gson/TypeAdapter<TT2;>;", "toString", "Ljava/lang/Class<TT1;>;", "Lcom/google/gson/TypeAdapter<TT1;>;", "LGsonTypeAdapters;", "newTypeHierarchyFactoryWithIOSClass:withGsonTypeAdapter:" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_35 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 2, 6, -1, 7, -1, -1 };
+  return &_GsonTypeAdapters_35;
 }
 
 @end
 
-void GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_31 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1) {
+void GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(GsonTypeAdapters_35 *self, IOSClass *capture$0, GsonTypeAdapter *capture$1) {
   self->val$clazz_ = capture$0;
   self->val$typeAdapter_ = capture$1;
   NSObject_init(self);
 }
 
-GsonTypeAdapters_31 *new_GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
-  J2OBJC_NEW_IMPL(GsonTypeAdapters_31, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
+GsonTypeAdapters_35 *new_GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_35, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
 }
 
-GsonTypeAdapters_31 *create_GsonTypeAdapters_31_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
-  J2OBJC_CREATE_IMPL(GsonTypeAdapters_31, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
+GsonTypeAdapters_35 *create_GsonTypeAdapters_35_initWithIOSClass_withGsonTypeAdapter_(IOSClass *capture$0, GsonTypeAdapter *capture$1) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_35, initWithIOSClass_withGsonTypeAdapter_, capture$0, capture$1)
+}
+
+@implementation GsonTypeAdapters_35_1
+
+- (instancetype)initWithGsonTypeAdapters_35:(GsonTypeAdapters_35 *)outer$
+                               withIOSClass:(IOSClass *)capture$0 {
+  GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(self, outer$, capture$0);
+  return self;
+}
+
+- (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
+                         withId:(id)value {
+  [((GsonTypeAdapter *) nil_chk(this$0_->val$typeAdapter_)) writeWithGsonJsonWriter:outArg withId:value];
+}
+
+- (id)readWithGsonJsonReader:(GsonJsonReader *)inArg {
+  id result = [((GsonTypeAdapter *) nil_chk(this$0_->val$typeAdapter_)) readWithGsonJsonReader:inArg];
+  if (result != nil && ![((IOSClass *) nil_chk(val$requestedType_)) isInstance:result]) {
+    @throw new_GsonJsonSyntaxException_initWithNSString_(JreStrcat("$$$$", @"Expected a ", [((IOSClass *) nil_chk(val$requestedType_)) getName], @" but was ", [[result java_getClass] getName]));
+  }
+  return result;
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x1, 0, 1, 2, 3, -1, -1 },
+    { NULL, "LNSObject;", 0x1, 4, 5, 2, 6, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(initWithGsonTypeAdapters_35:withIOSClass:);
+  methods[1].selector = @selector(writeWithGsonJsonWriter:withId:);
+  methods[2].selector = @selector(readWithGsonJsonReader:);
+  #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "this$0_", "LGsonTypeAdapters_35;", .constantValue.asLong = 0, 0x1012, -1, -1, -1, -1 },
+    { "val$requestedType_", "LIOSClass;", .constantValue.asLong = 0, 0x1012, -1, -1, 7, -1 },
+  };
+  static const void *ptrTable[] = { "write", "LGsonJsonWriter;LNSObject;", "LJavaIoIOException;", "(Lcom/google/gson/stream/JsonWriter;TT1;)V", "read", "LGsonJsonReader;", "(Lcom/google/gson/stream/JsonReader;)TT1;", "Ljava/lang/Class<-TT2;>;", "LGsonTypeAdapters_35;", "createWithGsonGson:withGsonTypeToken:", "Lcom/google/gson/TypeAdapter<TT1;>;" };
+  static const J2ObjcClassInfo _GsonTypeAdapters_35_1 = { "", "com.google.gson.internal.bind", ptrTable, methods, fields, 7, 0x8018, 3, 2, 8, -1, 9, 10, -1 };
+  return &_GsonTypeAdapters_35_1;
+}
+
+@end
+
+void GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(GsonTypeAdapters_35_1 *self, GsonTypeAdapters_35 *outer$, IOSClass *capture$0) {
+  self->this$0_ = outer$;
+  self->val$requestedType_ = capture$0;
+  GsonTypeAdapter_init(self);
+}
+
+GsonTypeAdapters_35_1 *new_GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(GsonTypeAdapters_35 *outer$, IOSClass *capture$0) {
+  J2OBJC_NEW_IMPL(GsonTypeAdapters_35_1, initWithGsonTypeAdapters_35_withIOSClass_, outer$, capture$0)
+}
+
+GsonTypeAdapters_35_1 *create_GsonTypeAdapters_35_1_initWithGsonTypeAdapters_35_withIOSClass_(GsonTypeAdapters_35 *outer$, IOSClass *capture$0) {
+  J2OBJC_CREATE_IMPL(GsonTypeAdapters_35_1, initWithGsonTypeAdapters_35_withIOSClass_, outer$, capture$0)
 }

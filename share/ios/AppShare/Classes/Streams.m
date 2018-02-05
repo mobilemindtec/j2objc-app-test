@@ -22,11 +22,24 @@
 #include "java/lang/Appendable.h"
 #include "java/lang/CharSequence.h"
 #include "java/lang/NumberFormatException.h"
+#include "java/lang/UnsupportedOperationException.h"
 #include "java/util/stream/IntStream.h"
 
 @class GsonStreams_AppendableWriter_CurrentWrite;
 
 #pragma clang diagnostic ignored "-Wprotocol"
+
+@interface GsonStreams ()
+
+- (instancetype)init;
+
+@end
+
+__attribute__((unused)) static void GsonStreams_init(GsonStreams *self);
+
+__attribute__((unused)) static GsonStreams *new_GsonStreams_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonStreams *create_GsonStreams_init(void);
 
 @interface GsonStreams_AppendableWriter : JavaIoWriter {
  @public
@@ -113,7 +126,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, NULL, 0x2, -1, -1, -1, -1, -1, -1 },
     { NULL, "LGsonJsonElement;", 0x9, 0, 1, 2, -1, -1, -1 },
     { NULL, "V", 0x9, 3, 4, 5, -1, -1, -1 },
     { NULL, "LJavaIoWriter;", 0x9, 6, 7, -1, -1, -1, -1 },
@@ -134,6 +147,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void GsonStreams_init(GsonStreams *self) {
   NSObject_init(self);
+  @throw new_JavaLangUnsupportedOperationException_init();
 }
 
 GsonStreams *new_GsonStreams_init() {
@@ -207,7 +221,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonStreams)
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x2, -1, 0, -1, -1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
     { NULL, "V", 0x1, 1, 2, 3, -1, -1, -1 },
     { NULL, "V", 0x1, 1, 4, 3, -1, -1, -1 },
     { NULL, "V", 0x1, -1, -1, -1, -1, -1, -1 },

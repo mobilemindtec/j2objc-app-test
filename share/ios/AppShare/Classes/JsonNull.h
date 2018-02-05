@@ -28,13 +28,11 @@
 
 - (instancetype)init;
 
+- (GsonJsonNull *)deepCopy;
+
 - (jboolean)isEqual:(id)other;
 
 - (NSUInteger)hash;
-
-#pragma mark Package-Private
-
-- (GsonJsonNull *)deepCopy;
 
 @end
 

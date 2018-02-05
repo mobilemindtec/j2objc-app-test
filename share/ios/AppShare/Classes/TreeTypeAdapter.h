@@ -20,15 +20,27 @@
 #define INCLUDE_GsonTypeAdapter 1
 #include "TypeAdapter.h"
 
+@class GsonGson;
 @class GsonJsonReader;
 @class GsonJsonWriter;
 @class GsonTypeToken;
 @class IOSClass;
+@protocol GsonJsonDeserializer;
+@protocol GsonJsonSerializer;
 @protocol GsonTypeAdapterFactory;
 
-@interface GsonTreeTypeAdapter : GsonTypeAdapter
+@interface GsonTreeTypeAdapter : GsonTypeAdapter {
+ @public
+  GsonGson *gson_;
+}
 
 #pragma mark Public
+
+- (instancetype)initWithGsonJsonSerializer:(id<GsonJsonSerializer>)serializer
+                  withGsonJsonDeserializer:(id<GsonJsonDeserializer>)deserializer
+                              withGsonGson:(GsonGson *)gson
+                         withGsonTypeToken:(GsonTypeToken *)typeToken
+                withGsonTypeAdapterFactory:(id<GsonTypeAdapterFactory>)skipPast;
 
 + (id<GsonTypeAdapterFactory>)newFactoryWithGsonTypeToken:(GsonTypeToken *)exactType
                                                    withId:(id)typeAdapter OBJC_METHOD_FAMILY_NONE;
@@ -52,6 +64,14 @@
 
 J2OBJC_EMPTY_STATIC_INIT(GsonTreeTypeAdapter)
 
+J2OBJC_FIELD_SETTER(GsonTreeTypeAdapter, gson_, GsonGson *)
+
+FOUNDATION_EXPORT void GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(GsonTreeTypeAdapter *self, id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast);
+
+FOUNDATION_EXPORT GsonTreeTypeAdapter *new_GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT GsonTreeTypeAdapter *create_GsonTreeTypeAdapter_initWithGsonJsonSerializer_withGsonJsonDeserializer_withGsonGson_withGsonTypeToken_withGsonTypeAdapterFactory_(id<GsonJsonSerializer> serializer, id<GsonJsonDeserializer> deserializer, GsonGson *gson, GsonTypeToken *typeToken, id<GsonTypeAdapterFactory> skipPast);
+
 FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTreeTypeAdapter_newFactoryWithGsonTypeToken_withId_(GsonTypeToken *exactType, id typeAdapter);
 
 FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTreeTypeAdapter_newFactoryWithMatchRawTypeWithGsonTypeToken_withId_(GsonTypeToken *exactType, id typeAdapter);
@@ -60,7 +80,7 @@ FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonTreeTypeAdapter_newTypeHierarch
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter)
 
-@compatibility_alias ComGoogleGsonTreeTypeAdapter GsonTreeTypeAdapter;
+@compatibility_alias ComGoogleGsonInternalBindTreeTypeAdapter GsonTreeTypeAdapter;
 
 #endif
 

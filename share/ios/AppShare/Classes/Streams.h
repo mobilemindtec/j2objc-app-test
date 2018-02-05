@@ -26,8 +26,6 @@
 
 #pragma mark Public
 
-- (instancetype)init;
-
 + (GsonJsonElement *)parseWithGsonJsonReader:(GsonJsonReader *)reader;
 
 + (void)writeWithGsonJsonElement:(GsonJsonElement *)element
@@ -38,12 +36,6 @@
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonStreams)
-
-FOUNDATION_EXPORT void GsonStreams_init(GsonStreams *self);
-
-FOUNDATION_EXPORT GsonStreams *new_GsonStreams_init(void) NS_RETURNS_RETAINED;
-
-FOUNDATION_EXPORT GsonStreams *create_GsonStreams_init(void);
 
 FOUNDATION_EXPORT GsonJsonElement *GsonStreams_parseWithGsonJsonReader_(GsonJsonReader *reader);
 

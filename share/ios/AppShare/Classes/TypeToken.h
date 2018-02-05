@@ -17,6 +17,7 @@
 #define GsonTypeToken_
 
 @class IOSClass;
+@class IOSObjectArray;
 @protocol JavaLangReflectType;
 
 @interface GsonTypeToken : NSObject {
@@ -33,6 +34,11 @@
 + (GsonTypeToken *)getWithIOSClass:(IOSClass *)type;
 
 + (GsonTypeToken *)getWithJavaLangReflectType:(id<JavaLangReflectType>)type;
+
++ (GsonTypeToken *)getArrayWithJavaLangReflectType:(id<JavaLangReflectType>)componentType;
+
++ (GsonTypeToken *)getParameterizedWithJavaLangReflectType:(id<JavaLangReflectType>)rawType
+                              withJavaLangReflectTypeArray:(IOSObjectArray *)typeArguments;
 
 - (IOSClass *)getRawType;
 
@@ -82,6 +88,10 @@ FOUNDATION_EXPORT id<JavaLangReflectType> GsonTypeToken_getSuperclassTypeParamet
 FOUNDATION_EXPORT GsonTypeToken *GsonTypeToken_getWithJavaLangReflectType_(id<JavaLangReflectType> type);
 
 FOUNDATION_EXPORT GsonTypeToken *GsonTypeToken_getWithIOSClass_(IOSClass *type);
+
+FOUNDATION_EXPORT GsonTypeToken *GsonTypeToken_getParameterizedWithJavaLangReflectType_withJavaLangReflectTypeArray_(id<JavaLangReflectType> rawType, IOSObjectArray *typeArguments);
+
+FOUNDATION_EXPORT GsonTypeToken *GsonTypeToken_getArrayWithJavaLangReflectType_(id<JavaLangReflectType> componentType);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonTypeToken)
 

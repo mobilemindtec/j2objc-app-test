@@ -11,6 +11,7 @@
 #include "JsonIOException.h"
 #include "LinkedTreeMap.h"
 #include "ObjectConstructor.h"
+#include "ReflectionAccessor.h"
 #include "TypeToken.h"
 #include "UnsafeAllocator.h"
 #include "java/lang/AssertionError.h"
@@ -24,12 +25,12 @@
 #include "java/lang/reflect/InvocationTargetException.h"
 #include "java/lang/reflect/ParameterizedType.h"
 #include "java/lang/reflect/Type.h"
+#include "java/util/ArrayDeque.h"
 #include "java/util/ArrayList.h"
 #include "java/util/Collection.h"
 #include "java/util/EnumSet.h"
 #include "java/util/LinkedHashMap.h"
 #include "java/util/LinkedHashSet.h"
-#include "java/util/LinkedList.h"
 #include "java/util/Map.h"
 #include "java/util/Queue.h"
 #include "java/util/Set.h"
@@ -37,10 +38,15 @@
 #include "java/util/SortedSet.h"
 #include "java/util/TreeMap.h"
 #include "java/util/TreeSet.h"
+#include "java/util/concurrent/ConcurrentHashMap.h"
+#include "java/util/concurrent/ConcurrentMap.h"
+#include "java/util/concurrent/ConcurrentNavigableMap.h"
+#include "java/util/concurrent/ConcurrentSkipListMap.h"
 
 @interface GsonConstructorConstructor () {
  @public
   id<JavaUtilMap> instanceCreators_;
+  ComGoogleGsonInternalReflectReflectionAccessor *accessor_;
 }
 
 - (id<GsonObjectConstructor>)newDefaultConstructorWithIOSClass:(IOSClass *)rawType OBJC_METHOD_FAMILY_NONE;
@@ -54,6 +60,7 @@
 @end
 
 J2OBJC_FIELD_SETTER(GsonConstructorConstructor, instanceCreators_, id<JavaUtilMap>)
+J2OBJC_FIELD_SETTER(GsonConstructorConstructor, accessor_, ComGoogleGsonInternalReflectReflectionAccessor *)
 
 __attribute__((unused)) static id<GsonObjectConstructor> GsonConstructorConstructor_newDefaultConstructorWithIOSClass_(GsonConstructorConstructor *self, IOSClass *rawType);
 
@@ -253,7 +260,39 @@ __attribute__((unused)) static GsonConstructorConstructor_11 *new_GsonConstructo
 
 __attribute__((unused)) static GsonConstructorConstructor_11 *create_GsonConstructorConstructor_11_init(void);
 
-@interface GsonConstructorConstructor_12 : NSObject < GsonObjectConstructor > {
+@interface GsonConstructorConstructor_12 : NSObject < GsonObjectConstructor >
+
+- (instancetype)init;
+
+- (id)construct;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonConstructorConstructor_12)
+
+__attribute__((unused)) static void GsonConstructorConstructor_12_init(GsonConstructorConstructor_12 *self);
+
+__attribute__((unused)) static GsonConstructorConstructor_12 *new_GsonConstructorConstructor_12_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonConstructorConstructor_12 *create_GsonConstructorConstructor_12_init(void);
+
+@interface GsonConstructorConstructor_13 : NSObject < GsonObjectConstructor >
+
+- (instancetype)init;
+
+- (id)construct;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(GsonConstructorConstructor_13)
+
+__attribute__((unused)) static void GsonConstructorConstructor_13_init(GsonConstructorConstructor_13 *self);
+
+__attribute__((unused)) static GsonConstructorConstructor_13 *new_GsonConstructorConstructor_13_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static GsonConstructorConstructor_13 *create_GsonConstructorConstructor_13_init(void);
+
+@interface GsonConstructorConstructor_14 : NSObject < GsonObjectConstructor > {
  @public
   IOSClass *val$rawType_;
   id<JavaLangReflectType> val$type_;
@@ -267,15 +306,15 @@ __attribute__((unused)) static GsonConstructorConstructor_11 *create_GsonConstru
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(GsonConstructorConstructor_12)
+J2OBJC_EMPTY_STATIC_INIT(GsonConstructorConstructor_14)
 
-J2OBJC_FIELD_SETTER(GsonConstructorConstructor_12, unsafeAllocator_, GsonUnsafeAllocator *)
+J2OBJC_FIELD_SETTER(GsonConstructorConstructor_14, unsafeAllocator_, GsonUnsafeAllocator *)
 
-__attribute__((unused)) static void GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(GsonConstructorConstructor_12 *self, IOSClass *capture$0, id<JavaLangReflectType> capture$1);
+__attribute__((unused)) static void GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(GsonConstructorConstructor_14 *self, IOSClass *capture$0, id<JavaLangReflectType> capture$1);
 
-__attribute__((unused)) static GsonConstructorConstructor_12 *new_GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1) NS_RETURNS_RETAINED;
+__attribute__((unused)) static GsonConstructorConstructor_14 *new_GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1) NS_RETURNS_RETAINED;
 
-__attribute__((unused)) static GsonConstructorConstructor_12 *create_GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1);
+__attribute__((unused)) static GsonConstructorConstructor_14 *create_GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1);
 
 @implementation GsonConstructorConstructor
 
@@ -344,9 +383,10 @@ __attribute__((unused)) static GsonConstructorConstructor_12 *create_GsonConstru
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "instanceCreators_", "LJavaUtilMap;", .constantValue.asLong = 0, 0x12, -1, -1, 13, -1 },
+    { "accessor_", "LComGoogleGsonInternalReflectReflectionAccessor;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "LJavaUtilMap;", "(Ljava/util/Map<Ljava/lang/reflect/Type;Lcom/google/gson/InstanceCreator<*>;>;)V", "get", "LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/internal/ObjectConstructor<TT;>;", "newDefaultConstructor", "LIOSClass;", "<T:Ljava/lang/Object;>(Ljava/lang/Class<-TT;>;)Lcom/google/gson/internal/ObjectConstructor<TT;>;", "newDefaultImplementationConstructor", "LJavaLangReflectType;LIOSClass;", "<T:Ljava/lang/Object;>(Ljava/lang/reflect/Type;Ljava/lang/Class<-TT;>;)Lcom/google/gson/internal/ObjectConstructor<TT;>;", "newUnsafeAllocator", "toString", "Ljava/util/Map<Ljava/lang/reflect/Type;Lcom/google/gson/InstanceCreator<*>;>;" };
-  static const J2ObjcClassInfo _GsonConstructorConstructor = { "ConstructorConstructor", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x11, 6, 1, -1, -1, -1, -1, -1 };
+  static const J2ObjcClassInfo _GsonConstructorConstructor = { "ConstructorConstructor", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x11, 6, 2, -1, -1, -1, -1, -1 };
   return &_GsonConstructorConstructor;
 }
 
@@ -354,6 +394,7 @@ __attribute__((unused)) static GsonConstructorConstructor_12 *create_GsonConstru
 
 void GsonConstructorConstructor_initWithJavaUtilMap_(GsonConstructorConstructor *self, id<JavaUtilMap> instanceCreators) {
   NSObject_init(self);
+  self->accessor_ = ComGoogleGsonInternalReflectReflectionAccessor_getInstance();
   self->instanceCreators_ = instanceCreators;
 }
 
@@ -369,7 +410,7 @@ id<GsonObjectConstructor> GsonConstructorConstructor_newDefaultConstructorWithIO
   @try {
     JavaLangReflectConstructor *constructor = [((IOSClass *) nil_chk(rawType)) getDeclaredConstructor:[IOSObjectArray newArrayWithLength:0 type:IOSClass_class_()]];
     if (![((JavaLangReflectConstructor *) nil_chk(constructor)) isAccessible]) {
-      [constructor setAccessibleWithBoolean:true];
+      [((ComGoogleGsonInternalReflectReflectionAccessor *) nil_chk(self->accessor_)) makeAccessibleWithJavaLangReflectAccessibleObject:constructor];
     }
     return new_GsonConstructorConstructor_3_initWithJavaLangReflectConstructor_(constructor);
   }
@@ -397,21 +438,27 @@ id<GsonObjectConstructor> GsonConstructorConstructor_newDefaultImplementationCon
     }
   }
   if ([JavaUtilMap_class_() isAssignableFrom:rawType]) {
-    if ([JavaUtilSortedMap_class_() isAssignableFrom:rawType]) {
+    if ([JavaUtilConcurrentConcurrentNavigableMap_class_() isAssignableFrom:rawType]) {
       return new_GsonConstructorConstructor_9_init();
     }
-    else if ([JavaLangReflectParameterizedType_class_() isInstance:type] && !([NSString_class_() isAssignableFrom:[((GsonTypeToken *) nil_chk(GsonTypeToken_getWithJavaLangReflectType_(IOSObjectArray_Get(nil_chk([((id<JavaLangReflectParameterizedType>) nil_chk(((id<JavaLangReflectParameterizedType>) cast_check(type, JavaLangReflectParameterizedType_class_())))) getActualTypeArguments]), 0)))) getRawType]])) {
+    else if ([JavaUtilConcurrentConcurrentMap_class_() isAssignableFrom:rawType]) {
       return new_GsonConstructorConstructor_10_init();
     }
-    else {
+    else if ([JavaUtilSortedMap_class_() isAssignableFrom:rawType]) {
       return new_GsonConstructorConstructor_11_init();
+    }
+    else if ([JavaLangReflectParameterizedType_class_() isInstance:type] && !([NSString_class_() isAssignableFrom:[((GsonTypeToken *) nil_chk(GsonTypeToken_getWithJavaLangReflectType_(IOSObjectArray_Get(nil_chk([((id<JavaLangReflectParameterizedType>) nil_chk(((id<JavaLangReflectParameterizedType>) cast_check(type, JavaLangReflectParameterizedType_class_())))) getActualTypeArguments]), 0)))) getRawType]])) {
+      return new_GsonConstructorConstructor_12_init();
+    }
+    else {
+      return new_GsonConstructorConstructor_13_init();
     }
   }
   return nil;
 }
 
 id<GsonObjectConstructor> GsonConstructorConstructor_newUnsafeAllocatorWithJavaLangReflectType_withIOSClass_(GsonConstructorConstructor *self, id<JavaLangReflectType> type, IOSClass *rawType) {
-  return new_GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(rawType, type);
+  return new_GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(rawType, type);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonConstructorConstructor)
@@ -715,7 +762,7 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (id)construct {
-  return new_JavaUtilLinkedList_init();
+  return new_JavaUtilArrayDeque_init();
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -799,7 +846,7 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (id)construct {
-  return new_JavaUtilTreeMap_init();
+  return new_JavaUtilConcurrentConcurrentSkipListMap_init();
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -841,7 +888,7 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (id)construct {
-  return new_JavaUtilLinkedHashMap_init();
+  return new_JavaUtilConcurrentConcurrentHashMap_init();
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -883,7 +930,7 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 - (id)construct {
-  return new_GsonLinkedTreeMap_init();
+  return new_JavaUtilTreeMap_init();
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -917,9 +964,93 @@ GsonConstructorConstructor_11 *create_GsonConstructorConstructor_11_init() {
 
 @implementation GsonConstructorConstructor_12
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  GsonConstructorConstructor_12_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
+- (id)construct {
+  return new_JavaUtilLinkedHashMap_init();
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x1, -1, -1, -1, 0, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(construct);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "()TT;", "LGsonConstructorConstructor;", "newDefaultImplementationConstructorWithJavaLangReflectType:withIOSClass:", "Ljava/lang/Object;Lcom/google/gson/internal/ObjectConstructor<TT;>;" };
+  static const J2ObjcClassInfo _GsonConstructorConstructor_12 = { "", "com.google.gson.internal", ptrTable, methods, NULL, 7, 0x8018, 2, 0, 1, -1, 2, 3, -1 };
+  return &_GsonConstructorConstructor_12;
+}
+
+@end
+
+void GsonConstructorConstructor_12_init(GsonConstructorConstructor_12 *self) {
+  NSObject_init(self);
+}
+
+GsonConstructorConstructor_12 *new_GsonConstructorConstructor_12_init() {
+  J2OBJC_NEW_IMPL(GsonConstructorConstructor_12, init)
+}
+
+GsonConstructorConstructor_12 *create_GsonConstructorConstructor_12_init() {
+  J2OBJC_CREATE_IMPL(GsonConstructorConstructor_12, init)
+}
+
+@implementation GsonConstructorConstructor_13
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  GsonConstructorConstructor_13_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
+- (id)construct {
+  return new_GsonLinkedTreeMap_init();
+}
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+    { NULL, "LNSObject;", 0x1, -1, -1, -1, 0, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  methods[0].selector = @selector(init);
+  methods[1].selector = @selector(construct);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "()TT;", "LGsonConstructorConstructor;", "newDefaultImplementationConstructorWithJavaLangReflectType:withIOSClass:", "Ljava/lang/Object;Lcom/google/gson/internal/ObjectConstructor<TT;>;" };
+  static const J2ObjcClassInfo _GsonConstructorConstructor_13 = { "", "com.google.gson.internal", ptrTable, methods, NULL, 7, 0x8018, 2, 0, 1, -1, 2, 3, -1 };
+  return &_GsonConstructorConstructor_13;
+}
+
+@end
+
+void GsonConstructorConstructor_13_init(GsonConstructorConstructor_13 *self) {
+  NSObject_init(self);
+}
+
+GsonConstructorConstructor_13 *new_GsonConstructorConstructor_13_init() {
+  J2OBJC_NEW_IMPL(GsonConstructorConstructor_13, init)
+}
+
+GsonConstructorConstructor_13 *create_GsonConstructorConstructor_13_init() {
+  J2OBJC_CREATE_IMPL(GsonConstructorConstructor_13, init)
+}
+
+@implementation GsonConstructorConstructor_14
+
 - (instancetype)initWithIOSClass:(IOSClass *)capture$0
          withJavaLangReflectType:(id<JavaLangReflectType>)capture$1 {
-  GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(self, capture$0, capture$1);
+  GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(self, capture$0, capture$1);
   return self;
 }
 
@@ -929,7 +1060,7 @@ GsonConstructorConstructor_11 *create_GsonConstructorConstructor_11_init() {
     return newInstance;
   }
   @catch (JavaLangException *e) {
-    @throw new_JavaLangRuntimeException_initWithNSString_withJavaLangThrowable_((JreStrcat("$@$", @"Unable to invoke no-args constructor for ", val$type_, @". Register an InstanceCreator with Gson for this type may fix this problem.")), e);
+    @throw new_JavaLangRuntimeException_initWithNSString_withJavaLangThrowable_((JreStrcat("$@$", @"Unable to invoke no-args constructor for ", val$type_, @". Registering an InstanceCreator with Gson for this type may fix this problem.")), e);
   }
 }
 
@@ -949,23 +1080,23 @@ GsonConstructorConstructor_11 *create_GsonConstructorConstructor_11_init() {
     { "unsafeAllocator_", "LGsonUnsafeAllocator;", .constantValue.asLong = 0, 0x12, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { "()TT;", "Ljava/lang/Class<-TT;>;", "LGsonConstructorConstructor;", "newUnsafeAllocatorWithJavaLangReflectType:withIOSClass:", "Ljava/lang/Object;Lcom/google/gson/internal/ObjectConstructor<TT;>;" };
-  static const J2ObjcClassInfo _GsonConstructorConstructor_12 = { "", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x8018, 2, 3, 2, -1, 3, 4, -1 };
-  return &_GsonConstructorConstructor_12;
+  static const J2ObjcClassInfo _GsonConstructorConstructor_14 = { "", "com.google.gson.internal", ptrTable, methods, fields, 7, 0x8018, 2, 3, 2, -1, 3, 4, -1 };
+  return &_GsonConstructorConstructor_14;
 }
 
 @end
 
-void GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(GsonConstructorConstructor_12 *self, IOSClass *capture$0, id<JavaLangReflectType> capture$1) {
+void GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(GsonConstructorConstructor_14 *self, IOSClass *capture$0, id<JavaLangReflectType> capture$1) {
   self->val$rawType_ = capture$0;
   self->val$type_ = capture$1;
   NSObject_init(self);
   self->unsafeAllocator_ = GsonUnsafeAllocator_create();
 }
 
-GsonConstructorConstructor_12 *new_GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1) {
-  J2OBJC_NEW_IMPL(GsonConstructorConstructor_12, initWithIOSClass_withJavaLangReflectType_, capture$0, capture$1)
+GsonConstructorConstructor_14 *new_GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1) {
+  J2OBJC_NEW_IMPL(GsonConstructorConstructor_14, initWithIOSClass_withJavaLangReflectType_, capture$0, capture$1)
 }
 
-GsonConstructorConstructor_12 *create_GsonConstructorConstructor_12_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1) {
-  J2OBJC_CREATE_IMPL(GsonConstructorConstructor_12, initWithIOSClass_withJavaLangReflectType_, capture$0, capture$1)
+GsonConstructorConstructor_14 *create_GsonConstructorConstructor_14_initWithIOSClass_withJavaLangReflectType_(IOSClass *capture$0, id<JavaLangReflectType> capture$1) {
+  J2OBJC_CREATE_IMPL(GsonConstructorConstructor_14, initWithIOSClass_withJavaLangReflectType_, capture$0, capture$1)
 }

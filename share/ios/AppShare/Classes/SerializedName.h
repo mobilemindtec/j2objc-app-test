@@ -21,23 +21,26 @@
 #include "java/lang/annotation/Annotation.h"
 
 @class IOSClass;
+@class IOSObjectArray;
 
 @protocol GsonSerializedName < JavaLangAnnotationAnnotation >
 
 @property (readonly) NSString *value;
+@property (readonly) IOSObjectArray *alternate;
 
 @end
 
 @interface GsonSerializedName : NSObject < GsonSerializedName > {
  @public
   NSString *value_;
+  IOSObjectArray *alternate_;
 }
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(GsonSerializedName)
 
-FOUNDATION_EXPORT id<GsonSerializedName> create_GsonSerializedName(NSString *value);
+FOUNDATION_EXPORT id<GsonSerializedName> create_GsonSerializedName(IOSObjectArray *alternate, NSString *value);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonSerializedName)
 

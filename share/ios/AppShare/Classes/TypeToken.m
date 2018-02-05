@@ -164,6 +164,15 @@ J2OBJC_IGNORE_DESIGNATED_END
   return GsonTypeToken_getWithIOSClass_(type);
 }
 
++ (GsonTypeToken *)getParameterizedWithJavaLangReflectType:(id<JavaLangReflectType>)rawType
+                              withJavaLangReflectTypeArray:(IOSObjectArray *)typeArguments {
+  return GsonTypeToken_getParameterizedWithJavaLangReflectType_withJavaLangReflectTypeArray_(rawType, typeArguments);
+}
+
++ (GsonTypeToken *)getArrayWithJavaLangReflectType:(id<JavaLangReflectType>)componentType {
+  return GsonTypeToken_getArrayWithJavaLangReflectType_(componentType);
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x4, -1, -1, -1, -1, -1, -1 },
@@ -184,6 +193,8 @@ J2OBJC_IGNORE_DESIGNATED_END
     { NULL, "LNSString;", 0x11, 27, -1, -1, -1, -1, -1 },
     { NULL, "LGsonTypeToken;", 0x9, 28, 0, -1, 29, -1, -1 },
     { NULL, "LGsonTypeToken;", 0x9, 28, 2, -1, 30, -1, -1 },
+    { NULL, "LGsonTypeToken;", 0x89, 31, 32, -1, 33, -1, -1 },
+    { NULL, "LGsonTypeToken;", 0x9, 34, 0, -1, 29, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
@@ -205,14 +216,16 @@ J2OBJC_IGNORE_DESIGNATED_END
   methods[15].selector = @selector(description);
   methods[16].selector = @selector(getWithJavaLangReflectType:);
   methods[17].selector = @selector(getWithIOSClass:);
+  methods[18].selector = @selector(getParameterizedWithJavaLangReflectType:withJavaLangReflectTypeArray:);
+  methods[19].selector = @selector(getArrayWithJavaLangReflectType:);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
-    { "rawType_", "LIOSClass;", .constantValue.asLong = 0, 0x10, -1, -1, 31, -1 },
+    { "rawType_", "LIOSClass;", .constantValue.asLong = 0, 0x10, -1, -1, 35, -1 },
     { "type_", "LJavaLangReflectType;", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
     { "hashCode_", "I", .constantValue.asLong = 0, 0x10, -1, -1, -1, -1 },
   };
-  static const void *ptrTable[] = { "LJavaLangReflectType;", "getSuperclassTypeParameter", "LIOSClass;", "(Ljava/lang/Class<*>;)Ljava/lang/reflect/Type;", "()Ljava/lang/Class<-TT;>;", "isAssignableFrom", "(Ljava/lang/Class<*>;)Z", (void *)&GsonTypeToken__Annotations$0, (void *)&GsonTypeToken__Annotations$1, "LGsonTypeToken;", "(Lcom/google/gson/reflect/TypeToken<*>;)Z", (void *)&GsonTypeToken__Annotations$2, "LJavaLangReflectType;LJavaLangReflectGenericArrayType;", "LJavaLangReflectType;LJavaLangReflectParameterizedType;LJavaUtilMap;", "(Ljava/lang/reflect/Type;Ljava/lang/reflect/ParameterizedType;Ljava/util/Map<Ljava/lang/String;Ljava/lang/reflect/Type;>;)Z", "typeEquals", "LJavaLangReflectParameterizedType;LJavaLangReflectParameterizedType;LJavaUtilMap;", "(Ljava/lang/reflect/ParameterizedType;Ljava/lang/reflect/ParameterizedType;Ljava/util/Map<Ljava/lang/String;Ljava/lang/reflect/Type;>;)Z", "buildUnexpectedTypeError", "LJavaLangReflectType;[LIOSClass;", "(Ljava/lang/reflect/Type;[Ljava/lang/Class<*>;)Ljava/lang/AssertionError;", "matches", "LJavaLangReflectType;LJavaLangReflectType;LJavaUtilMap;", "(Ljava/lang/reflect/Type;Ljava/lang/reflect/Type;Ljava/util/Map<Ljava/lang/String;Ljava/lang/reflect/Type;>;)Z", "hashCode", "equals", "LNSObject;", "toString", "get", "(Ljava/lang/reflect/Type;)Lcom/google/gson/reflect/TypeToken<*>;", "<T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;)Lcom/google/gson/reflect/TypeToken<TT;>;", "Ljava/lang/Class<-TT;>;", "<T:Ljava/lang/Object;>Ljava/lang/Object;" };
-  static const J2ObjcClassInfo _GsonTypeToken = { "TypeToken", "com.google.gson.reflect", ptrTable, methods, fields, 7, 0x1, 18, 3, -1, -1, -1, 32, -1 };
+  static const void *ptrTable[] = { "LJavaLangReflectType;", "getSuperclassTypeParameter", "LIOSClass;", "(Ljava/lang/Class<*>;)Ljava/lang/reflect/Type;", "()Ljava/lang/Class<-TT;>;", "isAssignableFrom", "(Ljava/lang/Class<*>;)Z", (void *)&GsonTypeToken__Annotations$0, (void *)&GsonTypeToken__Annotations$1, "LGsonTypeToken;", "(Lcom/google/gson/reflect/TypeToken<*>;)Z", (void *)&GsonTypeToken__Annotations$2, "LJavaLangReflectType;LJavaLangReflectGenericArrayType;", "LJavaLangReflectType;LJavaLangReflectParameterizedType;LJavaUtilMap;", "(Ljava/lang/reflect/Type;Ljava/lang/reflect/ParameterizedType;Ljava/util/Map<Ljava/lang/String;Ljava/lang/reflect/Type;>;)Z", "typeEquals", "LJavaLangReflectParameterizedType;LJavaLangReflectParameterizedType;LJavaUtilMap;", "(Ljava/lang/reflect/ParameterizedType;Ljava/lang/reflect/ParameterizedType;Ljava/util/Map<Ljava/lang/String;Ljava/lang/reflect/Type;>;)Z", "buildUnexpectedTypeError", "LJavaLangReflectType;[LIOSClass;", "(Ljava/lang/reflect/Type;[Ljava/lang/Class<*>;)Ljava/lang/AssertionError;", "matches", "LJavaLangReflectType;LJavaLangReflectType;LJavaUtilMap;", "(Ljava/lang/reflect/Type;Ljava/lang/reflect/Type;Ljava/util/Map<Ljava/lang/String;Ljava/lang/reflect/Type;>;)Z", "hashCode", "equals", "LNSObject;", "toString", "get", "(Ljava/lang/reflect/Type;)Lcom/google/gson/reflect/TypeToken<*>;", "<T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;)Lcom/google/gson/reflect/TypeToken<TT;>;", "getParameterized", "LJavaLangReflectType;[LJavaLangReflectType;", "(Ljava/lang/reflect/Type;[Ljava/lang/reflect/Type;)Lcom/google/gson/reflect/TypeToken<*>;", "getArray", "Ljava/lang/Class<-TT;>;", "<T:Ljava/lang/Object;>Ljava/lang/Object;" };
+  static const J2ObjcClassInfo _GsonTypeToken = { "TypeToken", "com.google.gson.reflect", ptrTable, methods, fields, 7, 0x1, 20, 3, -1, -1, -1, 36, -1 };
   return &_GsonTypeToken;
 }
 
@@ -370,6 +383,16 @@ GsonTypeToken *GsonTypeToken_getWithJavaLangReflectType_(id<JavaLangReflectType>
 GsonTypeToken *GsonTypeToken_getWithIOSClass_(IOSClass *type) {
   GsonTypeToken_initialize();
   return new_GsonTypeToken_initWithJavaLangReflectType_(type);
+}
+
+GsonTypeToken *GsonTypeToken_getParameterizedWithJavaLangReflectType_withJavaLangReflectTypeArray_(id<JavaLangReflectType> rawType, IOSObjectArray *typeArguments) {
+  GsonTypeToken_initialize();
+  return new_GsonTypeToken_initWithJavaLangReflectType_(Gson_Gson_Types_newParameterizedTypeWithOwnerWithJavaLangReflectType_withJavaLangReflectType_withJavaLangReflectTypeArray_(nil, rawType, typeArguments));
+}
+
+GsonTypeToken *GsonTypeToken_getArrayWithJavaLangReflectType_(id<JavaLangReflectType> componentType) {
+  GsonTypeToken_initialize();
+  return new_GsonTypeToken_initWithJavaLangReflectType_(Gson_Gson_Types_arrayOfWithJavaLangReflectType_(componentType));
 }
 
 IOSObjectArray *GsonTypeToken__Annotations$0() {

@@ -23,7 +23,10 @@
 @class GsonJsonToken;
 @class JavaIoReader;
 
-@interface GsonJsonReader : NSObject < JavaIoCloseable >
+@interface GsonJsonReader : NSObject < JavaIoCloseable > {
+ @public
+  jint peeked_;
+}
 
 #pragma mark Public
 
@@ -66,6 +69,12 @@
 - (void)skipValue;
 
 - (NSString *)description;
+
+#pragma mark Package-Private
+
+- (jint)doPeek;
+
+- (NSString *)locationString;
 
 // Disallowed inherited constructors, do not use.
 

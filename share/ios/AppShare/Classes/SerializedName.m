@@ -8,6 +8,7 @@
 #include "J2ObjC_source.h"
 #include "SerializedName.h"
 #include "java/lang/annotation/Annotation.h"
+#include "java/lang/annotation/Documented.h"
 #include "java/lang/annotation/ElementType.h"
 #include "java/lang/annotation/Retention.h"
 #include "java/lang/annotation/RetentionPolicy.h"
@@ -18,41 +19,50 @@ __attribute__((unused)) static IOSObjectArray *GsonSerializedName__Annotations$0
 @implementation GsonSerializedName
 
 @synthesize value = value_;
+@synthesize alternate = alternate_;
+
++ (IOSObjectArray *)alternateDefault {
+  return [IOSObjectArray newArrayWithLength:0 type:NSString_class_()];
+}
 
 - (IOSClass *)annotationType {
   return GsonSerializedName_class_();
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"@com.google.gson.annotations.SerializedName(value=%@)", value_];
+  return [NSString stringWithFormat:@"@com.google.gson.annotations.SerializedName(value=%@, alternate=%@)", value_, alternate_];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "LNSString;", 0x401, -1, -1, -1, -1, -1, -1 },
+    { NULL, "[LNSString;", 0x401, -1, -1, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   methods[0].selector = @selector(value);
+  methods[1].selector = @selector(alternate);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
     { "value_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "alternate_", "[LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { (void *)&GsonSerializedName__Annotations$0 };
-  static const J2ObjcClassInfo _GsonSerializedName = { "SerializedName", "com.google.gson.annotations", ptrTable, methods, fields, 7, 0x2609, 1, 1, -1, -1, -1, -1, 0 };
+  static const J2ObjcClassInfo _GsonSerializedName = { "SerializedName", "com.google.gson.annotations", ptrTable, methods, fields, 7, 0x2609, 2, 2, -1, -1, -1, -1, 0 };
   return &_GsonSerializedName;
 }
 
 @end
 
-id<GsonSerializedName> create_GsonSerializedName(NSString *value) {
+id<GsonSerializedName> create_GsonSerializedName(IOSObjectArray *alternate, NSString *value) {
   GsonSerializedName *self = AUTORELEASE([[GsonSerializedName alloc] init]);
+  self->alternate_ = RETAIN_(alternate);
   self->value_ = RETAIN_(value);
   return self;
 }
 
 IOSObjectArray *GsonSerializedName__Annotations$0() {
-  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationRetention(JreLoadEnum(JavaLangAnnotationRetentionPolicy, RUNTIME)), create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, FIELD) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:2 type:JavaLangAnnotationAnnotation_class_()];
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationDocumented(), create_JavaLangAnnotationRetention(JreLoadEnum(JavaLangAnnotationRetentionPolicy, RUNTIME)), create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, FIELD), JreLoadEnum(JavaLangAnnotationElementType, METHOD) } count:2 type:JavaLangAnnotationElementType_class_()]) } count:3 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonSerializedName)

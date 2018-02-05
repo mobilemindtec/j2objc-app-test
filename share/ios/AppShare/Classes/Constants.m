@@ -4,55 +4,31 @@
 //
 
 #include "Constants.h"
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
+#include "java/lang/annotation/Annotation.h"
+#include "java/lang/annotation/ElementType.h"
+#include "java/lang/annotation/Target.h"
 
-NSString *AppConstants_SERVER_END_POINT = @"http://10.0.0.103:3000/api";
+@interface ComYahooSquidbAnnotationsConstants : NSObject
 
-@implementation AppConstants
+@end
 
-+ (NSString *)SERVER_END_POINT {
-  return AppConstants_SERVER_END_POINT;
-}
+__attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsConstants__Annotations$0(void);
 
-+ (void)setSERVER_END_POINT:(NSString *)value {
-  AppConstants_SERVER_END_POINT = value;
-}
-
-J2OBJC_IGNORE_DESIGNATED_BEGIN
-- (instancetype)init {
-  AppConstants_init(self);
-  return self;
-}
-J2OBJC_IGNORE_DESIGNATED_END
+@implementation ComYahooSquidbAnnotationsConstants
 
 + (const J2ObjcClassInfo *)__metadata {
-  static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
-  };
-  #pragma clang diagnostic push
-  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
-  methods[0].selector = @selector(init);
-  #pragma clang diagnostic pop
-  static const J2ObjcFieldInfo fields[] = {
-    { "SERVER_END_POINT", "LNSString;", .constantValue.asLong = 0, 0x9, -1, 0, -1, -1 },
-  };
-  static const void *ptrTable[] = { &AppConstants_SERVER_END_POINT };
-  static const J2ObjcClassInfo _AppConstants = { "Constants", "br.com.mobilemind.app.util", ptrTable, methods, fields, 7, 0x1, 1, 1, -1, -1, -1, -1, -1 };
-  return &_AppConstants;
+  static const void *ptrTable[] = { (void *)&ComYahooSquidbAnnotationsConstants__Annotations$0 };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsConstants = { "Constants", "com.yahoo.squidb.annotations", ptrTable, NULL, NULL, 7, 0x2609, 0, 0, -1, -1, -1, -1, 0 };
+  return &_ComYahooSquidbAnnotationsConstants;
 }
 
 @end
 
-void AppConstants_init(AppConstants *self) {
-  NSObject_init(self);
+IOSObjectArray *ComYahooSquidbAnnotationsConstants__Annotations$0() {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, TYPE) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
-AppConstants *new_AppConstants_init() {
-  J2OBJC_NEW_IMPL(AppConstants, init)
-}
-
-AppConstants *create_AppConstants_init() {
-  J2OBJC_CREATE_IMPL(AppConstants, init)
-}
-
-J2OBJC_CLASS_TYPE_LITERAL_SOURCE(AppConstants)
+J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsConstants)

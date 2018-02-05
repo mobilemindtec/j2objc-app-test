@@ -40,6 +40,8 @@
 
 - (void)endObject;
 
+- (NSString *)getPath;
+
 - (jboolean)hasNext;
 
 - (jboolean)nextBoolean;

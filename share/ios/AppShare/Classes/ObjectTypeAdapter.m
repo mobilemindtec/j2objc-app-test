@@ -26,17 +26,9 @@
   GsonGson *gson_;
 }
 
-- (instancetype)initWithGsonGson:(GsonGson *)gson;
-
 @end
 
 J2OBJC_FIELD_SETTER(GsonObjectTypeAdapter, gson_, GsonGson *)
-
-__attribute__((unused)) static void GsonObjectTypeAdapter_initWithGsonGson_(GsonObjectTypeAdapter *self, GsonGson *gson);
-
-__attribute__((unused)) static GsonObjectTypeAdapter *new_GsonObjectTypeAdapter_initWithGsonGson_(GsonGson *gson) NS_RETURNS_RETAINED;
-
-__attribute__((unused)) static GsonObjectTypeAdapter *create_GsonObjectTypeAdapter_initWithGsonGson_(GsonGson *gson);
 
 @interface GsonObjectTypeAdapter_1 : NSObject < GsonTypeAdapterFactory >
 
@@ -124,7 +116,7 @@ id<GsonTypeAdapterFactory> GsonObjectTypeAdapter_FACTORY;
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x2, -1, 0, -1, -1, -1, -1 },
+    { NULL, NULL, 0x0, -1, 0, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x1, 1, 2, 3, -1, -1, -1 },
     { NULL, "V", 0x1, 4, 5, 3, -1, -1, -1 },
   };

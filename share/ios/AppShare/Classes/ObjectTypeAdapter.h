@@ -20,6 +20,7 @@
 #define INCLUDE_GsonTypeAdapter 1
 #include "TypeAdapter.h"
 
+@class GsonGson;
 @class GsonJsonReader;
 @class GsonJsonWriter;
 @protocol GsonTypeAdapterFactory;
@@ -35,6 +36,10 @@
 - (void)writeWithGsonJsonWriter:(GsonJsonWriter *)outArg
                          withId:(id)value;
 
+#pragma mark Package-Private
+
+- (instancetype)initWithGsonGson:(GsonGson *)gson;
+
 // Disallowed inherited constructors, do not use.
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -47,6 +52,12 @@ inline id<GsonTypeAdapterFactory> GsonObjectTypeAdapter_get_FACTORY(void);
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT id<GsonTypeAdapterFactory> GsonObjectTypeAdapter_FACTORY;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(GsonObjectTypeAdapter, FACTORY, id<GsonTypeAdapterFactory>)
+
+FOUNDATION_EXPORT void GsonObjectTypeAdapter_initWithGsonGson_(GsonObjectTypeAdapter *self, GsonGson *gson);
+
+FOUNDATION_EXPORT GsonObjectTypeAdapter *new_GsonObjectTypeAdapter_initWithGsonGson_(GsonGson *gson) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT GsonObjectTypeAdapter *create_GsonObjectTypeAdapter_initWithGsonGson_(GsonGson *gson);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonObjectTypeAdapter)
 

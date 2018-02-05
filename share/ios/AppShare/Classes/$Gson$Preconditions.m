@@ -7,6 +7,19 @@
 #include "J2ObjC_source.h"
 #include "java/lang/IllegalArgumentException.h"
 #include "java/lang/NullPointerException.h"
+#include "java/lang/UnsupportedOperationException.h"
+
+@interface Gson_Gson_Preconditions ()
+
+- (instancetype)init;
+
+@end
+
+__attribute__((unused)) static void Gson_Gson_Preconditions_init(Gson_Gson_Preconditions *self);
+
+__attribute__((unused)) static Gson_Gson_Preconditions *new_Gson_Gson_Preconditions_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static Gson_Gson_Preconditions *create_Gson_Gson_Preconditions_init(void);
 
 @implementation Gson_Gson_Preconditions
 
@@ -27,7 +40,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
-    { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
+    { NULL, NULL, 0x2, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x9, 0, 1, -1, 2, -1, -1 },
     { NULL, "V", 0x9, 3, 4, -1, -1, -1, -1 },
   };
@@ -46,6 +59,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 void Gson_Gson_Preconditions_init(Gson_Gson_Preconditions *self) {
   NSObject_init(self);
+  @throw new_JavaLangUnsupportedOperationException_init();
 }
 
 Gson_Gson_Preconditions *new_Gson_Gson_Preconditions_init() {

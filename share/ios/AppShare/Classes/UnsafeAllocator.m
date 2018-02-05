@@ -14,6 +14,7 @@
 #include "java/lang/UnsupportedOperationException.h"
 #include "java/lang/reflect/Field.h"
 #include "java/lang/reflect/Method.h"
+#include "java/lang/reflect/Modifier.h"
 
 @interface GsonUnsafeAllocator_1 : GsonUnsafeAllocator {
  @public
@@ -111,20 +112,26 @@ J2OBJC_IGNORE_DESIGNATED_END
   return GsonUnsafeAllocator_create();
 }
 
++ (void)assertInstantiableWithIOSClass:(IOSClass *)c {
+  GsonUnsafeAllocator_assertInstantiableWithIOSClass_(c);
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x401, 0, 1, 2, 3, -1, -1 },
     { NULL, "LGsonUnsafeAllocator;", 0x9, -1, -1, -1, -1, -1, -1 },
+    { NULL, "V", 0x8, 4, 1, -1, 5, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(newInstanceWithIOSClass:);
   methods[2].selector = @selector(create);
+  methods[3].selector = @selector(assertInstantiableWithIOSClass:);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "newInstance", "LIOSClass;", "LJavaLangException;", "<T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;)TT;" };
-  static const J2ObjcClassInfo _GsonUnsafeAllocator = { "UnsafeAllocator", "com.google.gson.internal", ptrTable, methods, NULL, 7, 0x401, 3, 0, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "newInstance", "LIOSClass;", "LJavaLangException;", "<T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;)TT;", "assertInstantiable", "(Ljava/lang/Class<*>;)V" };
+  static const J2ObjcClassInfo _GsonUnsafeAllocator = { "UnsafeAllocator", "com.google.gson.internal", ptrTable, methods, NULL, 7, 0x401, 4, 0, -1, -1, -1, -1, -1 };
   return &_GsonUnsafeAllocator;
 }
 
@@ -166,6 +173,17 @@ GsonUnsafeAllocator *GsonUnsafeAllocator_create() {
   return new_GsonUnsafeAllocator_4_init();
 }
 
+void GsonUnsafeAllocator_assertInstantiableWithIOSClass_(IOSClass *c) {
+  GsonUnsafeAllocator_initialize();
+  jint modifiers = [((IOSClass *) nil_chk(c)) getModifiers];
+  if (JavaLangReflectModifier_isInterfaceWithInt_(modifiers)) {
+    @throw new_JavaLangUnsupportedOperationException_initWithNSString_(JreStrcat("$$", @"Interface can't be instantiated! Interface name: ", [c getName]));
+  }
+  if (JavaLangReflectModifier_isAbstractWithInt_(modifiers)) {
+    @throw new_JavaLangUnsupportedOperationException_initWithNSString_(JreStrcat("$$", @"Abstract class can't be instantiated! Class name: ", [c getName]));
+  }
+}
+
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonUnsafeAllocator)
 
 @implementation GsonUnsafeAllocator_1
@@ -177,6 +195,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonUnsafeAllocator)
 }
 
 - (id)newInstanceWithIOSClass:(IOSClass *)c {
+  GsonUnsafeAllocator_assertInstantiableWithIOSClass_(c);
   return [((JavaLangReflectMethod *) nil_chk(val$allocateInstance_)) invokeWithId:val$unsafe_ withNSObjectArray:[IOSObjectArray newArrayWithObjects:(id[]){ c } count:1 type:NSObject_class_()]];
 }
 
@@ -224,6 +243,7 @@ GsonUnsafeAllocator_1 *create_GsonUnsafeAllocator_1_initWithJavaLangReflectMetho
 }
 
 - (id)newInstanceWithIOSClass:(IOSClass *)c {
+  GsonUnsafeAllocator_assertInstantiableWithIOSClass_(c);
   return [((JavaLangReflectMethod *) nil_chk(val$newInstance_)) invokeWithId:nil withNSObjectArray:[IOSObjectArray newArrayWithObjects:(id[]){ c, JavaLangInteger_valueOfWithInt_(val$constructorId_) } count:2 type:NSObject_class_()]];
 }
 
@@ -270,6 +290,7 @@ GsonUnsafeAllocator_2 *create_GsonUnsafeAllocator_2_initWithJavaLangReflectMetho
 }
 
 - (id)newInstanceWithIOSClass:(IOSClass *)c {
+  GsonUnsafeAllocator_assertInstantiableWithIOSClass_(c);
   return [((JavaLangReflectMethod *) nil_chk(val$newInstance_)) invokeWithId:nil withNSObjectArray:[IOSObjectArray newArrayWithObjects:(id[]){ c, NSObject_class_() } count:2 type:NSObject_class_()]];
 }
 

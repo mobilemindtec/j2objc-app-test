@@ -30,6 +30,8 @@
 
 - (instancetype)init;
 
+- (GsonJsonElement *)deepCopy;
+
 - (JavaMathBigDecimal *)getAsBigDecimal;
 
 - (JavaMathBigInteger *)getAsBigInteger;
@@ -73,8 +75,6 @@
 - (NSString *)description;
 
 #pragma mark Package-Private
-
-- (GsonJsonElement *)deepCopy;
 
 - (JavaLangBoolean *)getAsBooleanWrapper;
 
