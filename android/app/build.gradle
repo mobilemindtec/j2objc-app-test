@@ -44,7 +44,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile fileTree(dir: '../../../libs/j2objc-json/build/libs', include: '*.jar')
+    compile fileTree(dir: '../../../libs/j2objc-gson/build/libs', include: '*.jar')
+    compile fileTree(dir: '../../../libs/j2objc-unit/share/build/libs', include: '*.jar')
+    compile fileTree(dir: '../../../libs/j2objc-unit/android/app/build/libs', include: '*.jar')
     compile fileTree(dir: '../../../libs/j2objc-app-base/build/libs', include: '*.jar')
     compile fileTree(dir: '../../share/build/libs', include: '*.jar')
 
