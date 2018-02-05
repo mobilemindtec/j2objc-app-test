@@ -19,7 +19,7 @@
 ### libraries
 
 * SquiDB - to persist data on SQLite https://github.com/mobilemindtec/squidb.git
-* GSon  - to prove JSON support https://github.com/mobilemindtec/j2objc-json.git
+* GSon  - to prove JSON support https://github.com/mobilemindtec/j2objc-gson.git
 * App Base  - to prove HTTP REST support and others tools https://github.com/mobilemindtec/j2objc-app-base.git
 * App Share - to save shared code used on IOS and Android
 
@@ -35,13 +35,17 @@ j2objc/ -> base folder
     share/ -> shared code written in java to share between ios and android using j2objc
   libs/ -> shared libs written in java to share between ios and android using j2objc
     quidb -> database manager lib
-    j2objc-json/ -> json manager lib
+    j2objc-gson/ -> json manager lib
     j2objc-app-base/ -> REST and another utils lib
 
 ```
 
-Install J2OBJC in `/opt/j2objc`. So you don't need change any script or configuration. If you install J2OBJC in another location, you will have change `share/ios/AppShare.podspec` to set a new location.
+Install J2OBJC in `/opt/j2objc`. So you don't need change any script or configuration. If you install J2OBJC in another location, you will have change `ios/J2objcApp/Podfile` to set a new location.
 
+If you need, change this line in `Podfile` and set yor J2ObjC install path:
+```
+config.build_settings['J2OBJC_HOME'] = '/opt/j2objc'
+```
 
 
 On a shell type:
@@ -52,7 +56,7 @@ $ cd j2objc
 $ mkdir libs
 $ cd libs
 
-$ git clone https://github.com/mobilemindtec/j2objc-json.git
+$ git clone https://github.com/mobilemindtec/j2objc-gson.git
 $ git clone https://github.com/mobilemindtec/j2objc-app-base.git
 $ git clone https://github.com/mobilemindtec/squidb.git
 
@@ -61,7 +65,7 @@ $ gradle build
 
 $ cd ..
 
-$ cd j2objc-json
+$ cd j2objc-gson
 $ gradle assemble
 
 $ cd ..
