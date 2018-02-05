@@ -4,8 +4,8 @@
 
 ## How to work
 
-* Put share code (java) into `j2objc-app-test/share` folder 
-* Run `gradle assemble` to convert code from java to Objective C and so run Android or IOS app. 
+* Put share code (java) into `j2objc-app-test/share` folder
+* Run `gradle assemble` to convert code from java to Objective C and so run Android or IOS app.
 * Native code Kotlin and Swift should be put into relatad project `j2objc-app-test/ios` or `j2objc-app-test/android`.
 
 ### frameworks and languages
@@ -20,6 +20,7 @@
 
 * SquiDB - to persist data on SQLite https://github.com/mobilemindtec/squidb.git
 * GSon  - to prove JSON support https://github.com/mobilemindtec/j2objc-gson.git
+* Test Unit  - to prove unit test support https://github.com/mobilemindtec/j2objc-unit.git
 * App Base  - to prove HTTP REST support and others tools https://github.com/mobilemindtec/j2objc-app-base.git
 * App Share - to save shared code used on IOS and Android
 
@@ -37,12 +38,12 @@ j2objc/ -> base folder
     quidb -> database manager lib
     j2objc-gson/ -> json manager lib
     j2objc-app-base/ -> REST and another utils lib
+    j2objc-unit/ -> test unit lib
 
 ```
 
-Install J2OBJC in `/opt/j2objc`. So you don't need change any script or configuration. If you install J2OBJC in another location, you will have change `ios/J2objcApp/Podfile` to set a new location.
+Install J2OBJC in `/opt/j2objc`. So you don't need change any script or configuration. If you install J2OBJC in another location, you will have change `ios/J2objcApp/Podfile` to set a new location. If you need, change this line in `Podfile` and set yor J2ObjC install path:
 
-If you need, change this line in `Podfile` and set yor J2ObjC install path:
 ```
 config.build_settings['J2OBJC_HOME'] = '/opt/j2objc'
 ```
@@ -57,6 +58,7 @@ $ mkdir libs
 $ cd libs
 
 $ git clone https://github.com/mobilemindtec/j2objc-gson.git
+$ git clone https://github.com/mobilemindtec/j2objc-unit.git
 $ git clone https://github.com/mobilemindtec/j2objc-app-base.git
 $ git clone https://github.com/mobilemindtec/squidb.git
 
@@ -69,6 +71,13 @@ $ cd j2objc-gson
 $ gradle assemble
 
 $ cd ..
+$ cd j2objc-unit/share
+$ gradle assemble
+
+$ cd ../android
+$ gradle exportLib
+
+$ cd ../../
 
 $ cd j2objc-app-base
 $ gradle assemble
@@ -139,10 +148,32 @@ Set *Other Linker Flags*
 
 `$(inherited) -ljre_emul -ljre_zip -l iconv -l z -framework Security`
 
-Change all Pod targets to architecture `arm64 armv7 armv7s` if need. `Podfile` there already is one script to do this.
+Change your pod file to this:
+
+```
+target 'YourNewApp' do
+  use_frameworks!
 
 
-** Ever you add a new Java class run `gradle assemble` or `./j2objc-compile.sh` in share project. After run `pod install` in 
+  pod 'AppShare', :path => '../../share/ios' # you share pod lib path
+
+  post_install do |installer_representation|
+      installer_representation.pods_project.targets.each do |target|
+          target.build_configurations.each do |config|
+              config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+              config.build_settings['VALID_ARCHITECTURES'] = 'arm64 armv7 armv7s'
+              config.build_settings['J2OBJC_HOME'] = '/opt/j2objc' # path to J2OBJC install
+          end
+      end
+  end
+
+end
+```
+
+So your project already done to make J2OBJC shared pod lib.
+
+
+** Ever you add a new Java class run `gradle assemble` or `./j2objc-compile.sh` in share project. After run `pod install` in
 `j2objc-app-test` to update xcode project with new files.
 
 Done. Now you can run android and ios apps.

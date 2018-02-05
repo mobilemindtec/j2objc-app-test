@@ -46,7 +46,7 @@ dependencies {
 
     compile fileTree(dir: '../../../libs/j2objc-gson/build/libs', include: '*.jar')
     compile fileTree(dir: '../../../libs/j2objc-unit/share/build/libs', include: '*.jar')
-    compile fileTree(dir: '../../../libs/j2objc-unit/android/app/build/libs', include: '*.jar')
+    compile fileTree(dir: '../../../libs/j2objc-unit/android/build/libs', include: '*.aar')
     compile fileTree(dir: '../../../libs/j2objc-app-base/build/libs', include: '*.jar')
     compile fileTree(dir: '../../share/build/libs', include: '*.jar')
 
