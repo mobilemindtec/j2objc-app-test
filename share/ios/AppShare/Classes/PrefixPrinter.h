@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/PrefixPrinter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef PrefixPrinter_H
+#define PrefixPrinter_H
 
-#pragma push_macro("INCLUDE_ALL_PrefixPrinter")
-#ifdef RESTRICT_PrefixPrinter
-#define INCLUDE_ALL_PrefixPrinter 0
-#else
-#define INCLUDE_ALL_PrefixPrinter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_PrefixPrinter
 
-#if !defined (ComYahooAndroidSqlitePrefixPrinter_) && (INCLUDE_ALL_PrefixPrinter || defined(INCLUDE_ComYahooAndroidSqlitePrefixPrinter))
-#define ComYahooAndroidSqlitePrefixPrinter_
-
-#define RESTRICT_Printer 1
-#define INCLUDE_ComYahooAndroidSqlitePrinter 1
+#include "J2ObjC_header.h"
 #include "Printer.h"
 
 @interface ComYahooAndroidSqlitePrefixPrinter : NSObject < ComYahooAndroidSqlitePrinter >
@@ -31,7 +26,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -41,6 +36,8 @@ FOUNDATION_EXPORT id<ComYahooAndroidSqlitePrinter> ComYahooAndroidSqlitePrefixPr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqlitePrefixPrinter)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_PrefixPrinter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // PrefixPrinter_H

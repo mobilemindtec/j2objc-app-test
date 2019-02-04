@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/Criterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Criterion_H
+#define Criterion_H
 
-#pragma push_macro("INCLUDE_ALL_Criterion")
-#ifdef RESTRICT_Criterion
-#define INCLUDE_ALL_Criterion 0
-#else
-#define INCLUDE_ALL_Criterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Criterion
 
-#if !defined (ComYahooSquidbSqlCriterion_) && (INCLUDE_ALL_Criterion || defined(INCLUDE_ComYahooSquidbSqlCriterion))
-#define ComYahooSquidbSqlCriterion_
-
-#define RESTRICT_CompilableWithArguments 1
-#define INCLUDE_ComYahooSquidbSqlCompilableWithArguments 1
 #include "CompilableWithArguments.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlOperator;
 @class ComYahooSquidbSqlQuery;
@@ -33,7 +28,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_;
+- (instancetype __nonnull)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_;
 
 - (ComYahooSquidbSqlCriterion *)and__WithComYahooSquidbSqlCriterion:(ComYahooSquidbSqlCriterion *)criterion;
 
@@ -100,6 +95,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCriterion *ComYahooSquidbSqlCriterion_literal
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Criterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Criterion_H

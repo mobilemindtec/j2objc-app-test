@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Insert.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Insert_H
+#define Insert_H
 
-#pragma push_macro("INCLUDE_ALL_Insert")
-#ifdef RESTRICT_Insert
-#define INCLUDE_ALL_Insert 0
-#else
-#define INCLUDE_ALL_Insert 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Insert
 
-#if !defined (ComYahooSquidbSqlInsert_) && (INCLUDE_ALL_Insert || defined(INCLUDE_ComYahooSquidbSqlInsert))
-#define ComYahooSquidbSqlInsert_
-
-#define RESTRICT_TableStatement 1
-#define INCLUDE_ComYahooSquidbSqlTableStatement 1
+#include "J2ObjC_header.h"
 #include "TableStatement.h"
 
 @class ComYahooSquidbDataValuesStorage;
@@ -25,12 +20,12 @@
 @class ComYahooSquidbSqlSqlBuilder;
 @class ComYahooSquidbSqlSqlTable;
 @class ComYahooSquidbSqlTable;
-@class ComYahooSquidbSqlTableStatement_ConflictAlgorithm;
 @class ComYahooSquidbSqlView;
 @class ComYahooSquidbUtilityVersionCode;
 @class IOSObjectArray;
 
 @interface ComYahooSquidbSqlInsert : ComYahooSquidbSqlTableStatement
+@property (readonly, class) ComYahooSquidbUtilityVersionCode *SQLITE_VERSION_MULTI_ROW_INSERT NS_SWIFT_NAME(SQLITE_VERSION_MULTI_ROW_INSERT);
 
 + (ComYahooSquidbUtilityVersionCode *)SQLITE_VERSION_MULTI_ROW_INSERT;
 
@@ -65,7 +60,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -82,6 +77,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlInsert *ComYahooSquidbSqlInsert_intoWithComYa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlInsert)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Insert")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Insert_H

@@ -39,8 +39,6 @@ __attribute__((unused)) static SGDBAppDatabase *new_SGDBAppDatabase_init(void) N
 
 __attribute__((unused)) static SGDBAppDatabase *create_SGDBAppDatabase_init(void);
 
-J2OBJC_INITIALIZED_DEFN(SGDBAppDatabase)
-
 @implementation SGDBAppDatabase
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -95,6 +93,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(getInstance);
   methods[2].selector = @selector(getName);
@@ -111,13 +110,6 @@ J2OBJC_IGNORE_DESIGNATED_END
   static const void *ptrTable[] = { "onUpgrade", "LComYahooSquidbDataISQLiteDatabase;II", "createOpenHelper", "LNSString;LComYahooSquidbDataSquidDatabase_OpenHelperDelegate;I", &SGDBAppDatabase_DB_NAME, &SGDBAppDatabase_instance };
   static const J2ObjcClassInfo _SGDBAppDatabase = { "AppDatabase", "br.com.mobilemind.app.database", ptrTable, methods, fields, 7, 0x1, 7, 3, -1, -1, -1, -1, -1 };
   return &_SGDBAppDatabase;
-}
-
-+ (void)initialize {
-  if (self == [SGDBAppDatabase class]) {
-    SGDBAppDatabase_instance = nil;
-    J2OBJC_SET_INITIALIZED(SGDBAppDatabase)
-  }
 }
 
 @end
@@ -147,3 +139,5 @@ SGDBAppDatabase *SGDBAppDatabase_getInstance() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SGDBAppDatabase)
+
+J2OBJC_NAME_MAPPING(SGDBAppDatabase, "br.com.mobilemind.app.database", "SGDB")

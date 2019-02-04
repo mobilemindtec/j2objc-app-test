@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Table.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Table_H
+#define Table_H
 
-#pragma push_macro("INCLUDE_ALL_Table")
-#ifdef RESTRICT_Table
-#define INCLUDE_ALL_Table 0
-#else
-#define INCLUDE_ALL_Table 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Table
 
-#if !defined (ComYahooSquidbSqlTable_) && (INCLUDE_ALL_Table || defined(INCLUDE_ComYahooSquidbSqlTable))
-#define ComYahooSquidbSqlTable_
-
-#define RESTRICT_SqlTable 1
-#define INCLUDE_ComYahooSquidbSqlSqlTable 1
+#include "J2ObjC_header.h"
 #include "SqlTable.h"
 
 @class ComYahooSquidbSqlCompileContext;
@@ -35,20 +30,20 @@
 
 #pragma mark Public
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)name;
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)name
-                    withNSString:(NSString *)databaseName;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)name
+                              withNSString:(NSString *)databaseName;
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)name
-                    withNSString:(NSString *)databaseName
-                    withNSString:(NSString *)tableConstraint;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)name
+                              withNSString:(NSString *)databaseName
+                              withNSString:(NSString *)tableConstraint;
 
 - (void)appendCreateTableSqlWithComYahooSquidbSqlCompileContext:(ComYahooSquidbSqlCompileContext *)compileContext
                                       withJavaLangStringBuilder:(JavaLangStringBuilder *)sql
@@ -105,6 +100,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlTable *create_ComYahooSquidbSqlTable_initWith
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlTable)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Table")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Table_H

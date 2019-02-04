@@ -100,6 +100,7 @@ __attribute__((unused)) static id GsonLazilyParsedNumber_writeReplace(GsonLazily
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:);
   methods[1].selector = @selector(intValue);
   methods[2].selector = @selector(longLongValue);
@@ -138,3 +139,5 @@ id GsonLazilyParsedNumber_writeReplace(GsonLazilyParsedNumber *self) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLazilyParsedNumber)
+
+J2OBJC_NAME_MAPPING(GsonLazilyParsedNumber, "com.google.gson.internal", "Gson")

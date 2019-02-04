@@ -51,6 +51,7 @@ J2OBJC_FIELD_SETTER(ComYahooSquidbIosSquidCursorFactory, sqlArgs_, IOSObjectArra
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSObjectArray:);
   methods[1].selector = @selector(newCursorWithComYahooAndroidSqliteSQLiteDatabase:withComYahooAndroidSqliteSQLiteCursorDriver:withNSString:withComYahooAndroidSqliteSQLiteQuery:);
   methods[2].selector = @selector(bindArgumentsToProgramWithComYahooAndroidSqliteSQLiteProgram:withNSObjectArray:);

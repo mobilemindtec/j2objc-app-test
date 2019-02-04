@@ -174,6 +174,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter_GsonContextImpl)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonJsonSerializer:withGsonJsonDeserializer:withGsonGson:withGsonTypeToken:withGsonTypeAdapterFactory:);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -239,6 +240,8 @@ id<GsonTypeAdapterFactory> GsonTreeTypeAdapter_newTypeHierarchyFactoryWithIOSCla
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter)
 
+J2OBJC_NAME_MAPPING(GsonTreeTypeAdapter, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonTreeTypeAdapter_SingleTypeFactory
 
 - (instancetype)initWithId:(id)typeAdapter
@@ -262,6 +265,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithId:withGsonTypeToken:withBoolean:withIOSClass:);
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop
@@ -329,6 +333,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTreeTypeAdapter_SingleTypeFactory)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonTreeTypeAdapter:);
   methods[1].selector = @selector(serializeWithId:);
   methods[2].selector = @selector(serializeWithId:withJavaLangReflectType:);

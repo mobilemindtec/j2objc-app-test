@@ -3,23 +3,19 @@
 //  source: ./build/j2objc/java/SQLiteDatabase.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteDatabase_H
+#define SQLiteDatabase_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteDatabase")
-#ifdef RESTRICT_SQLiteDatabase
-#define INCLUDE_ALL_SQLiteDatabase 0
-#else
-#define INCLUDE_ALL_SQLiteDatabase 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteDatabase
 
-#if !defined (ComYahooAndroidSqliteSQLiteDatabase_) && (INCLUDE_ALL_SQLiteDatabase || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDatabase))
-#define ComYahooAndroidSqliteSQLiteDatabase_
-
-#define RESTRICT_SQLiteClosable 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteClosable 1
+#include "J2ObjC_header.h"
 #include "SQLiteClosable.h"
 
+@class ComYahooAndroidSqliteSQLiteQuery;
 @class ComYahooAndroidSqliteSQLiteSession;
 @class ComYahooAndroidSqliteSQLiteStatement;
 @class ComYahooSquidbDataValuesStorage;
@@ -29,6 +25,7 @@
 @class JavaUtilLocale;
 @protocol ComYahooAndroidSqliteDatabaseErrorHandler;
 @protocol ComYahooAndroidSqlitePrinter;
+@protocol ComYahooAndroidSqliteSQLiteCursorDriver;
 @protocol ComYahooAndroidSqliteSQLiteDatabase_CursorFactory;
 @protocol ComYahooAndroidSqliteSQLiteDatabase_CustomFunction;
 @protocol ComYahooAndroidSqliteSQLiteTransactionListener;
@@ -37,6 +34,19 @@
 @protocol JavaUtilMap;
 
 @interface ComYahooAndroidSqliteSQLiteDatabase : ComYahooAndroidSqliteSQLiteClosable
+@property (readonly, class) jint CONFLICT_ROLLBACK NS_SWIFT_NAME(CONFLICT_ROLLBACK);
+@property (readonly, class) jint CONFLICT_ABORT NS_SWIFT_NAME(CONFLICT_ABORT);
+@property (readonly, class) jint CONFLICT_FAIL NS_SWIFT_NAME(CONFLICT_FAIL);
+@property (readonly, class) jint CONFLICT_IGNORE NS_SWIFT_NAME(CONFLICT_IGNORE);
+@property (readonly, class) jint CONFLICT_REPLACE NS_SWIFT_NAME(CONFLICT_REPLACE);
+@property (readonly, class) jint CONFLICT_NONE NS_SWIFT_NAME(CONFLICT_NONE);
+@property (readonly, class) jint SQLITE_MAX_LIKE_PATTERN_LENGTH NS_SWIFT_NAME(SQLITE_MAX_LIKE_PATTERN_LENGTH);
+@property (readonly, class) jint OPEN_READWRITE NS_SWIFT_NAME(OPEN_READWRITE);
+@property (readonly, class) jint OPEN_READONLY NS_SWIFT_NAME(OPEN_READONLY);
+@property (readonly, class) jint NO_LOCALIZED_COLLATORS NS_SWIFT_NAME(NO_LOCALIZED_COLLATORS);
+@property (readonly, class) jint CREATE_IF_NECESSARY NS_SWIFT_NAME(CREATE_IF_NECESSARY);
+@property (readonly, class) jint ENABLE_WRITE_AHEAD_LOGGING NS_SWIFT_NAME(ENABLE_WRITE_AHEAD_LOGGING);
+@property (readonly, class) jint MAX_SQL_CACHE_SIZE NS_SWIFT_NAME(MAX_SQL_CACHE_SIZE);
 
 + (jint)CONFLICT_ROLLBACK;
 
@@ -288,7 +298,7 @@ withComYahooSquidbDataValuesStorage:(ComYahooSquidbDataValuesStorage *)values
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -370,16 +380,6 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteSQLiteDatabase_dumpAllWithComYahooAn
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDatabase)
 
-#endif
-
-#if !defined (ComYahooAndroidSqliteSQLiteDatabase_CursorFactory_) && (INCLUDE_ALL_SQLiteDatabase || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDatabase_CursorFactory))
-#define ComYahooAndroidSqliteSQLiteDatabase_CursorFactory_
-
-@class ComYahooAndroidSqliteSQLiteDatabase;
-@class ComYahooAndroidSqliteSQLiteQuery;
-@protocol ComYahooAndroidSqliteSQLiteCursorDriver;
-@protocol ComYahooSquidbDataICursor;
-
 @protocol ComYahooAndroidSqliteSQLiteDatabase_CursorFactory < JavaObject >
 
 - (id<ComYahooSquidbDataICursor>)newCursorWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
@@ -393,13 +393,6 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooAndroidSqliteSQLiteDatabase_CursorFactory)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDatabase_CursorFactory)
 
-#endif
-
-#if !defined (ComYahooAndroidSqliteSQLiteDatabase_CustomFunction_) && (INCLUDE_ALL_SQLiteDatabase || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDatabase_CustomFunction))
-#define ComYahooAndroidSqliteSQLiteDatabase_CustomFunction_
-
-@class IOSObjectArray;
-
 @protocol ComYahooAndroidSqliteSQLiteDatabase_CustomFunction < JavaObject >
 
 - (void)callbackWithNSStringArray:(IOSObjectArray *)args;
@@ -410,6 +403,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooAndroidSqliteSQLiteDatabase_CustomFunction)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDatabase_CustomFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteDatabase")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteDatabase_H

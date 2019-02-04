@@ -94,6 +94,7 @@ withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithIOSClass:withComYahooSquidbSqlTable:withComYahooSquidbSqlPropertyArray:withComYahooSquidbSqlProperty:);
   methods[1].selector = @selector(saveWithComYahooSquidbDataTableModel:);
   methods[2].selector = @selector(delete__WithComYahooSquidbDataTableModel:);
@@ -134,3 +135,5 @@ AppBaseRepository *create_AppBaseRepository_initWithIOSClass_withComYahooSquidbS
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(AppBaseRepository)
+
+J2OBJC_NAME_MAPPING(AppBaseRepository, "br.com.mobilemind.app.repository", "App")

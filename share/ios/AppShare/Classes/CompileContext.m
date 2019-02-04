@@ -97,6 +97,7 @@ J2OBJC_FIELD_SETTER(ComYahooSquidbSqlCompileContext_Builder, extras_, id<JavaUti
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlCompileContext_Builder:);
   methods[1].selector = @selector(defaultContextForVersionCodeWithComYahooSquidbUtilityVersionCode:);
   methods[2].selector = @selector(getVersionCode);
@@ -177,6 +178,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlCompileContext)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbUtilityVersionCode:);
   methods[1].selector = @selector(build);
   methods[2].selector = @selector(setArgumentResolverWithComYahooSquidbSqlArgumentResolver:);

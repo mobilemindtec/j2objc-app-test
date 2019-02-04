@@ -4,13 +4,26 @@
 //
 
 #include "Beta.h"
+#include "IOSClass.h"
 #include "J2ObjC_source.h"
 
-@interface ComYahooSquidbBeta : NSObject
-
-@end
-
 @implementation ComYahooSquidbBeta
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbBeta_class_();
+}
+
+- (NSString *)description {
+  return @"@com.yahoo.squidb.Beta()";
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcClassInfo _ComYahooSquidbBeta = { "Beta", "com.yahoo.squidb", NULL, NULL, NULL, 7, 0x2609, 0, 0, -1, -1, -1, -1, -1 };
@@ -18,5 +31,10 @@
 }
 
 @end
+
+id<ComYahooSquidbBeta> create_ComYahooSquidbBeta() {
+  ComYahooSquidbBeta *self = AUTORELEASE([[ComYahooSquidbBeta alloc] init]);
+  return self;
+}
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbBeta)

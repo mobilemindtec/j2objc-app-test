@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Excluder.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Excluder_H
+#define Excluder_H
 
-#pragma push_macro("INCLUDE_ALL_Excluder")
-#ifdef RESTRICT_Excluder
-#define INCLUDE_ALL_Excluder 0
-#else
-#define INCLUDE_ALL_Excluder 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Excluder
 
-#if !defined (GsonExcluder_) && (INCLUDE_ALL_Excluder || defined(INCLUDE_GsonExcluder))
-#define GsonExcluder_
-
-#define RESTRICT_TypeAdapterFactory 1
-#define INCLUDE_GsonTypeAdapterFactory 1
+#include "J2ObjC_header.h"
 #include "TypeAdapterFactory.h"
 
 @class GsonGson;
@@ -29,12 +24,13 @@
 @protocol GsonExclusionStrategy;
 
 @interface GsonExcluder : NSObject < GsonTypeAdapterFactory, NSCopying >
+@property (readonly, class) GsonExcluder *DEFAULT NS_SWIFT_NAME(DEFAULT);
 
 + (GsonExcluder *)DEFAULT;
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)type;
@@ -80,6 +76,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonExcluder)
 
 @compatibility_alias ComGoogleGsonInternalExcluder GsonExcluder;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Excluder")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Excluder_H

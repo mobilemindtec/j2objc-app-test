@@ -236,6 +236,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(get);
   methods[2].selector = @selector(peek);
@@ -319,6 +320,8 @@ void GsonJsonTreeWriter_putWithGsonJsonElement_(GsonJsonTreeWriter *self, GsonJs
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonTreeWriter)
 
+J2OBJC_NAME_MAPPING(GsonJsonTreeWriter, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonJsonTreeWriter_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -351,6 +354,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(writeWithCharArray:withInt:withInt:);
   methods[2].selector = @selector(flush);

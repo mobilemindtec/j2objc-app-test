@@ -3,31 +3,45 @@
 //  source: ./build/j2objc/java/ModelMethod.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ModelMethod_H
+#define ModelMethod_H
 
-#pragma push_macro("INCLUDE_ALL_ModelMethod")
-#ifdef RESTRICT_ModelMethod
-#define INCLUDE_ALL_ModelMethod 0
-#else
-#define INCLUDE_ALL_ModelMethod 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ModelMethod
 
-#if !defined (ComYahooSquidbAnnotationsModelMethod_) && (INCLUDE_ALL_ModelMethod || defined(INCLUDE_ComYahooSquidbAnnotationsModelMethod))
-#define ComYahooSquidbAnnotationsModelMethod_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsModelMethod < JavaLangAnnotationAnnotation >
+
+@property (readonly) NSString *name;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsModelMethod : NSObject < ComYahooSquidbAnnotationsModelMethod > {
+ @public
+  NSString *name_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsModelMethod)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsModelMethod> create_ComYahooSquidbAnnotationsModelMethod(NSString *name);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsModelMethod)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ModelMethod")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ModelMethod_H

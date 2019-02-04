@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SubqueryTable.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SubqueryTable_H
+#define SubqueryTable_H
 
-#pragma push_macro("INCLUDE_ALL_SubqueryTable")
-#ifdef RESTRICT_SubqueryTable
-#define INCLUDE_ALL_SubqueryTable 0
-#else
-#define INCLUDE_ALL_SubqueryTable 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SubqueryTable
 
-#if !defined (ComYahooSquidbSqlSubqueryTable_) && (INCLUDE_ALL_SubqueryTable || defined(INCLUDE_ComYahooSquidbSqlSubqueryTable))
-#define ComYahooSquidbSqlSubqueryTable_
-
-#define RESTRICT_QueryTable 1
-#define INCLUDE_ComYahooSquidbSqlQueryTable 1
+#include "J2ObjC_header.h"
 #include "QueryTable.h"
 
 @class ComYahooSquidbSqlQuery;
@@ -51,11 +46,11 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithIOSClass:(IOSClass *)arg0
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
-                    withNSString:(NSString *)arg2
-                    withNSString:(NSString *)arg3
-      withComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)arg4 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)arg0
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
+                              withNSString:(NSString *)arg2
+                              withNSString:(NSString *)arg3
+                withComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)arg4 NS_UNAVAILABLE;
 
 @end
 
@@ -67,6 +62,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlSubqueryTable *ComYahooSquidbSqlSubqueryTable
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlSubqueryTable)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SubqueryTable")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SubqueryTable_H

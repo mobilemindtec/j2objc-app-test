@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/AbstractCursor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef AbstractCursor_H
+#define AbstractCursor_H
 
-#pragma push_macro("INCLUDE_ALL_AbstractCursor")
-#ifdef RESTRICT_AbstractCursor
-#define INCLUDE_ALL_AbstractCursor 0
-#else
-#define INCLUDE_ALL_AbstractCursor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_AbstractCursor
 
-#if !defined (ComYahooAndroidSqliteAbstractCursor_) && (INCLUDE_ALL_AbstractCursor || defined(INCLUDE_ComYahooAndroidSqliteAbstractCursor))
-#define ComYahooAndroidSqliteAbstractCursor_
-
-#define RESTRICT_ICursor 1
-#define INCLUDE_ComYahooSquidbDataICursor 1
 #include "ICursor.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteCursorWindow;
 @class IOSByteArray;
@@ -37,7 +32,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)close;
 
@@ -132,6 +127,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteAbstractCursor_init(ComYahooAndroidS
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteAbstractCursor)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_AbstractCursor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // AbstractCursor_H

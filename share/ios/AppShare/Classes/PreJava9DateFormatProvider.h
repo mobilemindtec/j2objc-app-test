@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/PreJava9DateFormatProvider.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef PreJava9DateFormatProvider_H
+#define PreJava9DateFormatProvider_H
 
-#pragma push_macro("INCLUDE_ALL_PreJava9DateFormatProvider")
-#ifdef RESTRICT_PreJava9DateFormatProvider
-#define INCLUDE_ALL_PreJava9DateFormatProvider 0
-#else
-#define INCLUDE_ALL_PreJava9DateFormatProvider 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_PreJava9DateFormatProvider
 
-#if !defined (GsonPreJava9DateFormatProvider_) && (INCLUDE_ALL_PreJava9DateFormatProvider || defined(INCLUDE_GsonPreJava9DateFormatProvider))
-#define GsonPreJava9DateFormatProvider_
+#include "J2ObjC_header.h"
 
 @class JavaTextDateFormat;
 
@@ -22,7 +20,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (JavaTextDateFormat *)getUSDateFormatWithInt:(jint)style;
 
@@ -47,6 +45,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonPreJava9DateFormatProvider)
 
 @compatibility_alias ComGoogleGsonInternalPreJava9DateFormatProvider GsonPreJava9DateFormatProvider;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_PreJava9DateFormatProvider")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // PreJava9DateFormatProvider_H

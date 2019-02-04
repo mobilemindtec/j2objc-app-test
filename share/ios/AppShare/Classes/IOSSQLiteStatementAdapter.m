@@ -94,6 +94,7 @@ J2OBJC_FIELD_SETTER(ComYahooSquidbIosIOSSQLiteStatementAdapter, statement_, ComY
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteStatement:);
   methods[1].selector = @selector(close);
   methods[2].selector = @selector(bindNullWithInt:);

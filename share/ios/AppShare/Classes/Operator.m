@@ -147,6 +147,7 @@ ComYahooSquidbSqlOperator *ComYahooSquidbSqlOperator_values_[21];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(getContrary);
   methods[1].selector = @selector(description);
   methods[2].selector = @selector(values);
@@ -184,27 +185,27 @@ ComYahooSquidbSqlOperator *ComYahooSquidbSqlOperator_values_[21];
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlOperator class]) {
-    JreEnum(ComYahooSquidbSqlOperator, eq) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"=", @"", 0);
-    JreEnum(ComYahooSquidbSqlOperator, neq) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"<>", @"", 1);
-    JreEnum(ComYahooSquidbSqlOperator, is) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" IS ", @"", 2);
-    JreEnum(ComYahooSquidbSqlOperator, isNot) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" IS NOT ", @"", 3);
-    JreEnum(ComYahooSquidbSqlOperator, gt) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@">", @"", 4);
-    JreEnum(ComYahooSquidbSqlOperator, lt) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"<", @"", 5);
-    JreEnum(ComYahooSquidbSqlOperator, gte) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@">=", @"", 6);
-    JreEnum(ComYahooSquidbSqlOperator, lte) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"<=", @"", 7);
-    JreEnum(ComYahooSquidbSqlOperator, and) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" AND ", @"", 8);
-    JreEnum(ComYahooSquidbSqlOperator, or) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" OR ", @"", 9);
-    JreEnum(ComYahooSquidbSqlOperator, not) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT ", @"", 10);
-    JreEnum(ComYahooSquidbSqlOperator, exists) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" EXISTS ", @"", 11);
-    JreEnum(ComYahooSquidbSqlOperator, like) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" LIKE ", @"", 12);
-    JreEnum(ComYahooSquidbSqlOperator, notLike) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT LIKE ", @"", 13);
-    JreEnum(ComYahooSquidbSqlOperator, in) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" IN ", @"", 14);
-    JreEnum(ComYahooSquidbSqlOperator, notIn) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT IN ", @"", 15);
-    JreEnum(ComYahooSquidbSqlOperator, between) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" BETWEEN ", @"", 16);
-    JreEnum(ComYahooSquidbSqlOperator, notBetween) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT BETWEEN ", @"", 17);
-    JreEnum(ComYahooSquidbSqlOperator, glob) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" GLOB ", @"", 18);
-    JreEnum(ComYahooSquidbSqlOperator, notGlob) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT GLOB ", @"", 19);
-    JreEnum(ComYahooSquidbSqlOperator, match) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" MATCH ", @"", 20);
+    JreEnum(ComYahooSquidbSqlOperator, eq) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"=", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlOperator, neq) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"<>", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlOperator, is) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" IS ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 2), 2);
+    JreEnum(ComYahooSquidbSqlOperator, isNot) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" IS NOT ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 3), 3);
+    JreEnum(ComYahooSquidbSqlOperator, gt) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@">", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 4), 4);
+    JreEnum(ComYahooSquidbSqlOperator, lt) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"<", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 5), 5);
+    JreEnum(ComYahooSquidbSqlOperator, gte) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@">=", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 6), 6);
+    JreEnum(ComYahooSquidbSqlOperator, lte) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@"<=", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 7), 7);
+    JreEnum(ComYahooSquidbSqlOperator, and) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" AND ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 8), 8);
+    JreEnum(ComYahooSquidbSqlOperator, or) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" OR ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 9), 9);
+    JreEnum(ComYahooSquidbSqlOperator, not) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 10), 10);
+    JreEnum(ComYahooSquidbSqlOperator, exists) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" EXISTS ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 11), 11);
+    JreEnum(ComYahooSquidbSqlOperator, like) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" LIKE ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 12), 12);
+    JreEnum(ComYahooSquidbSqlOperator, notLike) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT LIKE ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 13), 13);
+    JreEnum(ComYahooSquidbSqlOperator, in) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" IN ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 14), 14);
+    JreEnum(ComYahooSquidbSqlOperator, notIn) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT IN ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 15), 15);
+    JreEnum(ComYahooSquidbSqlOperator, between) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" BETWEEN ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 16), 16);
+    JreEnum(ComYahooSquidbSqlOperator, notBetween) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT BETWEEN ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 17), 17);
+    JreEnum(ComYahooSquidbSqlOperator, glob) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" GLOB ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 18), 18);
+    JreEnum(ComYahooSquidbSqlOperator, notGlob) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" NOT GLOB ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 19), 19);
+    JreEnum(ComYahooSquidbSqlOperator, match) = new_ComYahooSquidbSqlOperator_initWithNSString_withNSString_withInt_(@" MATCH ", JreEnumConstantName(ComYahooSquidbSqlOperator_class_(), 20), 20);
     ComYahooSquidbSqlOperator_contraryRegistry = new_JavaUtilHashMap_init();
     {
       (void) [ComYahooSquidbSqlOperator_contraryRegistry putWithId:JreEnum(ComYahooSquidbSqlOperator, eq) withId:JreEnum(ComYahooSquidbSqlOperator, neq)];

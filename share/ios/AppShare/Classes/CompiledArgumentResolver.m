@@ -182,6 +182,7 @@ J2OBJC_INITIALIZED_DEFN(ComYahooSquidbSqlCompiledArgumentResolver)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlSqlBuilder:);
   methods[1].selector = @selector(hasCollectionArgs);
   methods[2].selector = @selector(findCollectionArgs);
@@ -398,6 +399,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlCompiledArgumentResolver)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithInt:);
   methods[1].selector = @selector(removeEldestEntryWithJavaUtilMap_Entry:);
   #pragma clang diagnostic pop

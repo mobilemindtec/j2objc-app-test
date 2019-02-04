@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/VirtualTable.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef VirtualTable_H
+#define VirtualTable_H
 
-#pragma push_macro("INCLUDE_ALL_VirtualTable")
-#ifdef RESTRICT_VirtualTable
-#define INCLUDE_ALL_VirtualTable 0
-#else
-#define INCLUDE_ALL_VirtualTable 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_VirtualTable
 
-#if !defined (ComYahooSquidbSqlVirtualTable_) && (INCLUDE_ALL_VirtualTable || defined(INCLUDE_ComYahooSquidbSqlVirtualTable))
-#define ComYahooSquidbSqlVirtualTable_
-
-#define RESTRICT_Table 1
-#define INCLUDE_ComYahooSquidbSqlTable 1
+#include "J2ObjC_header.h"
 #include "Table.h"
 
 @class ComYahooSquidbSqlCompileContext;
@@ -31,11 +26,11 @@
 
 #pragma mark Public
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)name
-                    withNSString:(NSString *)databaseName
-                    withNSString:(NSString *)module;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)name
+                              withNSString:(NSString *)databaseName
+                              withNSString:(NSString *)module;
 
 - (void)appendCreateTableSqlWithComYahooSquidbSqlCompileContext:(ComYahooSquidbSqlCompileContext *)compileContext
                                       withJavaLangStringBuilder:(JavaLangStringBuilder *)sql
@@ -58,14 +53,14 @@ withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithIOSClass:(IOSClass *)arg0
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
-                    withNSString:(NSString *)arg2 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)arg0
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
+                              withNSString:(NSString *)arg2 NS_UNAVAILABLE;
 
-- (instancetype)initWithIOSClass:(IOSClass *)arg0
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
-                    withNSString:(NSString *)arg2
-                    withNSString:(NSString *)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)arg0
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
+                              withNSString:(NSString *)arg2
+                              withNSString:(NSString *)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -79,6 +74,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlVirtualTable *create_ComYahooSquidbSqlVirtual
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlVirtualTable)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_VirtualTable")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // VirtualTable_H

@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SqlStatement.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SqlStatement_H
+#define SqlStatement_H
 
-#pragma push_macro("INCLUDE_ALL_SqlStatement")
-#ifdef RESTRICT_SqlStatement
-#define INCLUDE_ALL_SqlStatement 0
-#else
-#define INCLUDE_ALL_SqlStatement 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SqlStatement
 
-#if !defined (ComYahooSquidbSqlSqlStatement_) && (INCLUDE_ALL_SqlStatement || defined(INCLUDE_ComYahooSquidbSqlSqlStatement))
-#define ComYahooSquidbSqlSqlStatement_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlCompileContext;
 @class ComYahooSquidbSqlCompiledStatement;
@@ -34,6 +32,11 @@
 @end
 
 @interface ComYahooSquidbSqlSqlStatement : NSObject
+@property (readonly, class) IOSObjectArray *EMPTY_ARGS NS_SWIFT_NAME(EMPTY_ARGS);
+@property (readonly, copy, class) NSString *REPLACEABLE_PARAMETER NS_SWIFT_NAME(REPLACEABLE_PARAMETER);
+@property (readonly, copy, class) NSString *REPLACEABLE_ARRAY_PARAMETER NS_SWIFT_NAME(REPLACEABLE_ARRAY_PARAMETER);
+@property (readonly, copy, class) NSString *REPLACEABLE_ARRAY_PARAMETER_REGEX NS_SWIFT_NAME(REPLACEABLE_ARRAY_PARAMETER_REGEX);
+@property (readonly, class) jint MAX_VARIABLE_NUMBER NS_SWIFT_NAME(MAX_VARIABLE_NUMBER);
 
 + (IOSObjectArray *)EMPTY_ARGS;
 
@@ -75,6 +78,8 @@ J2OBJC_STATIC_FIELD_CONSTANT(ComYahooSquidbSqlSqlStatement, MAX_VARIABLE_NUMBER,
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlSqlStatement)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SqlStatement")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SqlStatement_H

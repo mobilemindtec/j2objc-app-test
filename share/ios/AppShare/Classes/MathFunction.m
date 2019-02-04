@@ -39,6 +39,7 @@ J2OBJC_FIELD_SETTER(ComYahooSquidbSqlMathFunction, operator__, ComYahooSquidbSql
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlMathOperator:withNSObjectArray:);
   methods[1].selector = @selector(separator);
   #pragma clang diagnostic pop

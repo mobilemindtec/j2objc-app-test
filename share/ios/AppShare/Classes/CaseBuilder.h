@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/CaseBuilder.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CaseBuilder_H
+#define CaseBuilder_H
 
-#pragma push_macro("INCLUDE_ALL_CaseBuilder")
-#ifdef RESTRICT_CaseBuilder
-#define INCLUDE_ALL_CaseBuilder 0
-#else
-#define INCLUDE_ALL_CaseBuilder 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CaseBuilder
 
-#if !defined (ComYahooSquidbSqlCaseBuilder_) && (INCLUDE_ALL_CaseBuilder || defined(INCLUDE_ComYahooSquidbSqlCaseBuilder))
-#define ComYahooSquidbSqlCaseBuilder_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlFunction;
 
@@ -31,11 +29,11 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithId:(id)baseExpression;
+- (instancetype __nonnull)initWithId:(id)baseExpression;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -49,6 +47,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCaseBuilder *create_ComYahooSquidbSqlCaseBuil
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCaseBuilder)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CaseBuilder")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CaseBuilder_H

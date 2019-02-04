@@ -3,27 +3,17 @@
 //  source: ./build/j2objc/java/Order.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_Order")
-#ifdef RESTRICT_Order
-#define INCLUDE_ALL_Order 0
-#else
-#define INCLUDE_ALL_Order 1
-#endif
-#undef RESTRICT_Order
+#ifndef Order_H
+#define Order_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlOrder_) && (INCLUDE_ALL_Order || defined(INCLUDE_ComYahooSquidbSqlOrder))
-#define ComYahooSquidbSqlOrder_
-
-#define RESTRICT_CompilableWithArguments 1
-#define INCLUDE_ComYahooSquidbSqlCompilableWithArguments 1
 #include "CompilableWithArguments.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -51,7 +41,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -67,10 +57,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlOrder *ComYahooSquidbSqlOrder_fromExpressionW
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlOrder)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_Order")
+#endif // Order_H

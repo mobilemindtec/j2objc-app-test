@@ -11,13 +11,25 @@
 #include "java/lang/annotation/ElementType.h"
 #include "java/lang/annotation/Target.h"
 
-@interface ComYahooSquidbAnnotationsIgnore : NSObject
-
-@end
-
 __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsIgnore__Annotations$0(void);
 
 @implementation ComYahooSquidbAnnotationsIgnore
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsIgnore_class_();
+}
+
+- (NSString *)description {
+  return @"@com.yahoo.squidb.annotations.Ignore()";
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static const void *ptrTable[] = { (void *)&ComYahooSquidbAnnotationsIgnore__Annotations$0 };
@@ -26,6 +38,11 @@ __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsIgnore__
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsIgnore> create_ComYahooSquidbAnnotationsIgnore() {
+  ComYahooSquidbAnnotationsIgnore *self = AUTORELEASE([[ComYahooSquidbAnnotationsIgnore alloc] init]);
+  return self;
+}
 
 IOSObjectArray *ComYahooSquidbAnnotationsIgnore__Annotations$0() {
   return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, FIELD) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:1 type:JavaLangAnnotationAnnotation_class_()];

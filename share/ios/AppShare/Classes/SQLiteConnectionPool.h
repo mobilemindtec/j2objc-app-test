@@ -3,34 +3,29 @@
 //  source: ./build/j2objc/java/SQLiteConnectionPool.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_SQLiteConnectionPool")
-#ifdef RESTRICT_SQLiteConnectionPool
-#define INCLUDE_ALL_SQLiteConnectionPool 0
-#else
-#define INCLUDE_ALL_SQLiteConnectionPool 1
-#endif
-#undef RESTRICT_SQLiteConnectionPool
+#ifndef SQLiteConnectionPool_H
+#define SQLiteConnectionPool_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooAndroidSqliteSQLiteConnectionPool_) && (INCLUDE_ALL_SQLiteConnectionPool || defined(INCLUDE_ComYahooAndroidSqliteSQLiteConnectionPool))
-#define ComYahooAndroidSqliteSQLiteConnectionPool_
-
-#define RESTRICT_JavaIoCloseable 1
-#define INCLUDE_JavaIoCloseable 1
+#include "J2ObjC_header.h"
 #include "java/io/Closeable.h"
+#include "java/lang/Enum.h"
 
 @class ComYahooAndroidSqliteSQLiteConnection;
 @class ComYahooAndroidSqliteSQLiteDatabaseConfiguration;
+@class IOSObjectArray;
 @class JavaUtilArrayList;
 @protocol ComYahooAndroidSqlitePrinter;
 
 @interface ComYahooAndroidSqliteSQLiteConnectionPool : NSObject < JavaIoCloseable >
+@property (readonly, class) jint CONNECTION_FLAG_READ_ONLY NS_SWIFT_NAME(CONNECTION_FLAG_READ_ONLY);
+@property (readonly, class) jint CONNECTION_FLAG_PRIMARY_CONNECTION_AFFINITY NS_SWIFT_NAME(CONNECTION_FLAG_PRIMARY_CONNECTION_AFFINITY);
+@property (readonly, class) jint CONNECTION_FLAG_INTERACTIVE NS_SWIFT_NAME(CONNECTION_FLAG_INTERACTIVE);
 
 + (jint)CONNECTION_FLAG_READ_ONLY;
 
@@ -71,7 +66,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -93,17 +88,6 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteConnectionPool *ComYahooAndroidSqli
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteConnectionPool)
 
-#endif
-
-#if !defined (ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_) && (INCLUDE_ALL_SQLiteConnectionPool || defined(INCLUDE_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus))
-#define ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
-#include "java/lang/Enum.h"
-
-@class IOSObjectArray;
-
 typedef NS_ENUM(NSUInteger, ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_Enum) {
   ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_Enum_NORMAL = 0,
   ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_Enum_RECONFIGURE = 1,
@@ -112,6 +96,9 @@ typedef NS_ENUM(NSUInteger, ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredCo
 
 @interface ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus *NORMAL NS_SWIFT_NAME(NORMAL);
+@property (readonly, class, nonnull) ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus *RECONFIGURE NS_SWIFT_NAME(RECONFIGURE);
+@property (readonly, class, nonnull) ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus *DISCARD NS_SWIFT_NAME(DISCARD);
 + (ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus * __nonnull)NORMAL;
 
 + (ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus * __nonnull)RECONFIGURE;
@@ -152,10 +139,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionSt
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_SQLiteConnectionPool")
+#endif // SQLiteConnectionPool_H

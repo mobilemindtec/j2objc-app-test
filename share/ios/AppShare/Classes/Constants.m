@@ -11,13 +11,25 @@
 #include "java/lang/annotation/ElementType.h"
 #include "java/lang/annotation/Target.h"
 
-@interface ComYahooSquidbAnnotationsConstants : NSObject
-
-@end
-
 __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsConstants__Annotations$0(void);
 
 @implementation ComYahooSquidbAnnotationsConstants
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsConstants_class_();
+}
+
+- (NSString *)description {
+  return @"@com.yahoo.squidb.annotations.Constants()";
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static const void *ptrTable[] = { (void *)&ComYahooSquidbAnnotationsConstants__Annotations$0 };
@@ -26,6 +38,11 @@ __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsConstant
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsConstants> create_ComYahooSquidbAnnotationsConstants() {
+  ComYahooSquidbAnnotationsConstants *self = AUTORELEASE([[ComYahooSquidbAnnotationsConstants alloc] init]);
+  return self;
+}
 
 IOSObjectArray *ComYahooSquidbAnnotationsConstants__Annotations$0() {
   return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, TYPE) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:1 type:JavaLangAnnotationAnnotation_class_()];

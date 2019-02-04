@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/IOSOpenHelperCreator.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef IOSOpenHelperCreator_H
+#define IOSOpenHelperCreator_H
 
-#pragma push_macro("INCLUDE_ALL_IOSOpenHelperCreator")
-#ifdef RESTRICT_IOSOpenHelperCreator
-#define INCLUDE_ALL_IOSOpenHelperCreator 0
-#else
-#define INCLUDE_ALL_IOSOpenHelperCreator 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_IOSOpenHelperCreator
 
-#if !defined (SGDBIOSOpenHelperCreator_) && (INCLUDE_ALL_IOSOpenHelperCreator || defined(INCLUDE_SGDBIOSOpenHelperCreator))
-#define SGDBIOSOpenHelperCreator_
-
-#define RESTRICT_OpenHelperCreator 1
-#define INCLUDE_SGDBOpenHelperCreator 1
+#include "J2ObjC_header.h"
 #include "OpenHelperCreator.h"
 
 @class ComYahooSquidbDataSquidDatabase_OpenHelperDelegate;
@@ -27,7 +22,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 #pragma mark Protected
 
@@ -49,6 +44,8 @@ J2OBJC_TYPE_LITERAL_HEADER(SGDBIOSOpenHelperCreator)
 
 @compatibility_alias BrComMobilemindAppIosIOSOpenHelperCreator SGDBIOSOpenHelperCreator;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_IOSOpenHelperCreator")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // IOSOpenHelperCreator_H

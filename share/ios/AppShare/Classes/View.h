@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/View.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef View_H
+#define View_H
 
-#pragma push_macro("INCLUDE_ALL_View")
-#ifdef RESTRICT_View
-#define INCLUDE_ALL_View 0
-#else
-#define INCLUDE_ALL_View 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_View
 
-#if !defined (ComYahooSquidbSqlView_) && (INCLUDE_ALL_View || defined(INCLUDE_ComYahooSquidbSqlView))
-#define ComYahooSquidbSqlView_
-
-#define RESTRICT_QueryTable 1
-#define INCLUDE_ComYahooSquidbSqlQueryTable 1
+#include "J2ObjC_header.h"
 #include "QueryTable.h"
 
 @class ComYahooSquidbSqlCompileContext;
@@ -60,11 +55,11 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithIOSClass:(IOSClass *)arg0
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
-                    withNSString:(NSString *)arg2
-                    withNSString:(NSString *)arg3
-      withComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)arg4 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)arg0
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg1
+                              withNSString:(NSString *)arg2
+                              withNSString:(NSString *)arg3
+                withComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)arg4 NS_UNAVAILABLE;
 
 @end
 
@@ -80,6 +75,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlView *ComYahooSquidbSqlView_temporaryFromQuer
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlView)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_View")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // View_H

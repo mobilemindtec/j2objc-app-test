@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/InstanceCreator.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef InstanceCreator_H
+#define InstanceCreator_H
 
-#pragma push_macro("INCLUDE_ALL_InstanceCreator")
-#ifdef RESTRICT_InstanceCreator
-#define INCLUDE_ALL_InstanceCreator 0
-#else
-#define INCLUDE_ALL_InstanceCreator 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_InstanceCreator
 
-#if !defined (GsonInstanceCreator_) && (INCLUDE_ALL_InstanceCreator || defined(INCLUDE_GsonInstanceCreator))
-#define GsonInstanceCreator_
+#include "J2ObjC_header.h"
 
 @protocol JavaLangReflectType;
 
@@ -30,6 +28,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonInstanceCreator)
 
 #define ComGoogleGsonInstanceCreator GsonInstanceCreator
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_InstanceCreator")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // InstanceCreator_H

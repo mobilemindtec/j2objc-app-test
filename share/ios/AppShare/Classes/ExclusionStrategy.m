@@ -19,6 +19,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(shouldSkipFieldWithGsonFieldAttributes:);
   methods[1].selector = @selector(shouldSkipClassWithIOSClass:);
   #pragma clang diagnostic pop
@@ -30,3 +31,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonExclusionStrategy)
+
+J2OBJC_NAME_MAPPING(GsonExclusionStrategy, "com.google.gson", "Gson")

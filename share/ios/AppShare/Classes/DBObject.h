@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/DBObject.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DBObject_H
+#define DBObject_H
 
-#pragma push_macro("INCLUDE_ALL_DBObject")
-#ifdef RESTRICT_DBObject
-#define INCLUDE_ALL_DBObject 0
-#else
-#define INCLUDE_ALL_DBObject 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DBObject
 
-#if !defined (ComYahooSquidbSqlDBObject_) && (INCLUDE_ALL_DBObject || defined(INCLUDE_ComYahooSquidbSqlDBObject))
-#define ComYahooSquidbSqlDBObject_
-
-#define RESTRICT_CompilableWithArguments 1
-#define INCLUDE_ComYahooSquidbSqlCompilableWithArguments 1
 #include "CompilableWithArguments.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlSqlBuilder;
 
@@ -51,10 +46,10 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithNSString:(NSString *)expression;
+- (instancetype __nonnull)initWithNSString:(NSString *)expression;
 
-- (instancetype)initWithNSString:(NSString *)expression
-                    withNSString:(NSString *)qualifier;
+- (instancetype __nonnull)initWithNSString:(NSString *)expression
+                              withNSString:(NSString *)qualifier;
 
 - (void)appendQualifiedExpressionWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder
                                                      withBoolean:(jboolean)forSqlValidation;
@@ -80,6 +75,8 @@ FOUNDATION_EXPORT void ComYahooSquidbSqlDBObject_initWithNSString_withNSString_(
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlDBObject)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DBObject")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DBObject_H

@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ConstructorConstructor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ConstructorConstructor_H
+#define ConstructorConstructor_H
 
-#pragma push_macro("INCLUDE_ALL_ConstructorConstructor")
-#ifdef RESTRICT_ConstructorConstructor
-#define INCLUDE_ALL_ConstructorConstructor 0
-#else
-#define INCLUDE_ALL_ConstructorConstructor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ConstructorConstructor
 
-#if !defined (GsonConstructorConstructor_) && (INCLUDE_ALL_ConstructorConstructor || defined(INCLUDE_GsonConstructorConstructor))
-#define GsonConstructorConstructor_
+#include "J2ObjC_header.h"
 
 @class GsonTypeToken;
 @protocol GsonObjectConstructor;
@@ -24,7 +22,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)instanceCreators;
+- (instancetype __nonnull)initWithJavaUtilMap:(id<JavaUtilMap>)instanceCreators;
 
 - (id<GsonObjectConstructor>)getWithGsonTypeToken:(GsonTypeToken *)typeToken;
 
@@ -32,7 +30,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -48,6 +46,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonConstructorConstructor)
 
 @compatibility_alias ComGoogleGsonInternalConstructorConstructor GsonConstructorConstructor;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ConstructorConstructor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ConstructorConstructor_H

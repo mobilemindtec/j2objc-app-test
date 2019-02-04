@@ -126,6 +126,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(get);
   methods[1].selector = @selector(setEnabledWithBoolean:);
   methods[2].selector = @selector(setReporterWithComYahooAndroidSqliteCloseGuard_Reporter:);
@@ -204,6 +205,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooAndroidSqliteCloseGuard)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(reportWithNSString:withJavaLangThrowable:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "report", "LNSString;LJavaLangThrowable;", "LComYahooAndroidSqliteCloseGuard;" };
@@ -236,6 +238,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(reportWithNSString:withJavaLangThrowable:);
   #pragma clang diagnostic pop

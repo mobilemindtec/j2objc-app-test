@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ContentProviderQueryBuilder.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ContentProviderQueryBuilder_H
+#define ContentProviderQueryBuilder_H
 
-#pragma push_macro("INCLUDE_ALL_ContentProviderQueryBuilder")
-#ifdef RESTRICT_ContentProviderQueryBuilder
-#define INCLUDE_ALL_ContentProviderQueryBuilder 0
-#else
-#define INCLUDE_ALL_ContentProviderQueryBuilder 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ContentProviderQueryBuilder
 
-#if !defined (ComYahooSquidbUtilityContentProviderQueryBuilder_) && (INCLUDE_ALL_ContentProviderQueryBuilder || defined(INCLUDE_ComYahooSquidbUtilityContentProviderQueryBuilder))
-#define ComYahooSquidbUtilityContentProviderQueryBuilder_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlQuery;
 @class ComYahooSquidbSqlSqlTable;
@@ -25,10 +23,10 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                         withComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)dataSource;
+- (instancetype __nonnull)initWithComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                                   withComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)dataSource;
 
 - (ComYahooSquidbSqlQuery *)buildWithNSStringArray:(IOSObjectArray *)projection
                                       withNSString:(NSString *)selection
@@ -61,6 +59,8 @@ FOUNDATION_EXPORT ComYahooSquidbUtilityContentProviderQueryBuilder *create_ComYa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilityContentProviderQueryBuilder)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ContentProviderQueryBuilder")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ContentProviderQueryBuilder_H

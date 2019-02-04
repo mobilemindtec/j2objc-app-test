@@ -91,6 +91,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(compileWithComYahooSquidbUtilityVersionCode:);
   methods[2].selector = @selector(compileWithComYahooSquidbSqlCompileContext:);
@@ -188,6 +189,7 @@ ComYahooSquidbSqlTableStatement_ConflictAlgorithm *ComYahooSquidbSqlTableStateme
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -206,12 +208,12 @@ ComYahooSquidbSqlTableStatement_ConflictAlgorithm *ComYahooSquidbSqlTableStateme
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlTableStatement_ConflictAlgorithm class]) {
-    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, NONE) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, ROLLBACK) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, ABORT) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(@"", 2);
-    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, FAIL) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(@"", 3);
-    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, IGNORE) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(@"", 4);
-    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, REPLACE) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(@"", 5);
+    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, NONE) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTableStatement_ConflictAlgorithm_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, ROLLBACK) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTableStatement_ConflictAlgorithm_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, ABORT) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTableStatement_ConflictAlgorithm_class_(), 2), 2);
+    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, FAIL) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTableStatement_ConflictAlgorithm_class_(), 3), 3);
+    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, IGNORE) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTableStatement_ConflictAlgorithm_class_(), 4), 4);
+    JreEnum(ComYahooSquidbSqlTableStatement_ConflictAlgorithm, REPLACE) = new_ComYahooSquidbSqlTableStatement_ConflictAlgorithm_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTableStatement_ConflictAlgorithm_class_(), 5), 5);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlTableStatement_ConflictAlgorithm)
   }
 }

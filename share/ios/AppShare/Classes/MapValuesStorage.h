@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/MapValuesStorage.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef MapValuesStorage_H
+#define MapValuesStorage_H
 
-#pragma push_macro("INCLUDE_ALL_MapValuesStorage")
-#ifdef RESTRICT_MapValuesStorage
-#define INCLUDE_ALL_MapValuesStorage 0
-#else
-#define INCLUDE_ALL_MapValuesStorage 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_MapValuesStorage
 
-#if !defined (ComYahooSquidbDataMapValuesStorage_) && (INCLUDE_ALL_MapValuesStorage || defined(INCLUDE_ComYahooSquidbDataMapValuesStorage))
-#define ComYahooSquidbDataMapValuesStorage_
-
-#define RESTRICT_ValuesStorage 1
-#define INCLUDE_ComYahooSquidbDataValuesStorage 1
+#include "J2ObjC_header.h"
 #include "ValuesStorage.h"
 
 @class IOSByteArray;
@@ -35,9 +30,9 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)values;
+- (instancetype __nonnull)initWithJavaUtilMap:(id<JavaUtilMap>)values;
 
 - (jboolean)containsKeyWithNSString:(NSString *)key;
 
@@ -104,6 +99,8 @@ FOUNDATION_EXPORT ComYahooSquidbDataMapValuesStorage *create_ComYahooSquidbDataM
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataMapValuesStorage)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_MapValuesStorage")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // MapValuesStorage_H

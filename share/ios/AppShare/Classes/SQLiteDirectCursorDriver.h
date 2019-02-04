@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteDirectCursorDriver.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteDirectCursorDriver_H
+#define SQLiteDirectCursorDriver_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteDirectCursorDriver")
-#ifdef RESTRICT_SQLiteDirectCursorDriver
-#define INCLUDE_ALL_SQLiteDirectCursorDriver 0
-#else
-#define INCLUDE_ALL_SQLiteDirectCursorDriver 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteDirectCursorDriver
 
-#if !defined (ComYahooAndroidSqliteSQLiteDirectCursorDriver_) && (INCLUDE_ALL_SQLiteDirectCursorDriver || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDirectCursorDriver))
-#define ComYahooAndroidSqliteSQLiteDirectCursorDriver_
-
-#define RESTRICT_SQLiteCursorDriver 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteCursorDriver 1
+#include "J2ObjC_header.h"
 #include "SQLiteCursorDriver.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
@@ -29,9 +24,9 @@
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
-                                               withNSString:(NSString *)sql
-                                               withNSString:(NSString *)editTable;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
+                                                         withNSString:(NSString *)sql
+                                                         withNSString:(NSString *)editTable;
 
 - (void)cursorClosed;
 
@@ -48,7 +43,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -62,6 +57,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteDirectCursorDriver *create_ComYahoo
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDirectCursorDriver)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteDirectCursorDriver")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteDirectCursorDriver_H

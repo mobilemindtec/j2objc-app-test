@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Since.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Since_H
+#define Since_H
 
-#pragma push_macro("INCLUDE_ALL_Since")
-#ifdef RESTRICT_Since
-#define INCLUDE_ALL_Since 0
-#else
-#define INCLUDE_ALL_Since 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Since
 
-#if !defined (GsonSince_) && (INCLUDE_ALL_Since || defined(INCLUDE_GsonSince))
-#define GsonSince_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
 @class IOSClass;
@@ -25,6 +20,10 @@
 @protocol GsonSince < JavaLangAnnotationAnnotation >
 
 @property (readonly) jdouble value;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
 
 @end
 
@@ -43,6 +42,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonSince)
 
 #define ComGoogleGsonAnnotationsSince GsonSince
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Since")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Since_H

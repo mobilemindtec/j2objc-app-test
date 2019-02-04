@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/LikeCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef LikeCriterion_H
+#define LikeCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_LikeCriterion")
-#ifdef RESTRICT_LikeCriterion
-#define INCLUDE_ALL_LikeCriterion 0
-#else
-#define INCLUDE_ALL_LikeCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_LikeCriterion
 
-#if !defined (ComYahooSquidbSqlLikeCriterion_) && (INCLUDE_ALL_LikeCriterion || defined(INCLUDE_ComYahooSquidbSqlLikeCriterion))
-#define ComYahooSquidbSqlLikeCriterion_
-
-#define RESTRICT_BinaryCriterion 1
-#define INCLUDE_ComYahooSquidbSqlBinaryCriterion 1
 #include "BinaryCriterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlOperator;
@@ -35,16 +30,16 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                                        withId:(id)value
-                                      withChar:(jchar)escape;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                                                  withId:(id)value
+                                                withChar:(jchar)escape;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)arg0
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg1
-                                        withId:(id)arg2 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)arg0
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg1
+                                                  withId:(id)arg2 NS_UNAVAILABLE;
 
 @end
 
@@ -58,6 +53,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlLikeCriterion *create_ComYahooSquidbSqlLikeCr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlLikeCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_LikeCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // LikeCriterion_H

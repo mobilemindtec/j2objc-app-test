@@ -3,26 +3,16 @@
 //  source: ./build/j2objc/java/Operator.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_Operator")
-#ifdef RESTRICT_Operator
-#define INCLUDE_ALL_Operator 0
-#else
-#define INCLUDE_ALL_Operator 1
-#endif
-#undef RESTRICT_Operator
+#ifndef Operator_H
+#define Operator_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlOperator_) && (INCLUDE_ALL_Operator || defined(INCLUDE_ComYahooSquidbSqlOperator))
-#define ComYahooSquidbSqlOperator_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
+#include "J2ObjC_header.h"
 #include "java/lang/Enum.h"
 
 @class IOSObjectArray;
@@ -53,6 +43,27 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlOperator_Enum) {
 
 @interface ComYahooSquidbSqlOperator : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *eq NS_SWIFT_NAME(eq);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *neq NS_SWIFT_NAME(neq);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *is NS_SWIFT_NAME(is);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *isNot NS_SWIFT_NAME(isNot);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *gt NS_SWIFT_NAME(gt);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *lt NS_SWIFT_NAME(lt);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *gte NS_SWIFT_NAME(gte);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *lte NS_SWIFT_NAME(lte);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *and_ NS_SWIFT_NAME(and_);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *or_ NS_SWIFT_NAME(or_);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *not_ NS_SWIFT_NAME(not_);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *exists NS_SWIFT_NAME(exists);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *like NS_SWIFT_NAME(like);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *notLike NS_SWIFT_NAME(notLike);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *in NS_SWIFT_NAME(in);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *notIn NS_SWIFT_NAME(notIn);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *between NS_SWIFT_NAME(between);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *notBetween NS_SWIFT_NAME(notBetween);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *glob NS_SWIFT_NAME(glob);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *notGlob NS_SWIFT_NAME(notGlob);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOperator *match NS_SWIFT_NAME(match);
 + (ComYahooSquidbSqlOperator * __nonnull)eq;
 
 + (ComYahooSquidbSqlOperator * __nonnull)neq;
@@ -187,10 +198,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlOperator *ComYahooSquidbSqlOperator_fromOrdin
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlOperator)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_Operator")
+#endif // Operator_H

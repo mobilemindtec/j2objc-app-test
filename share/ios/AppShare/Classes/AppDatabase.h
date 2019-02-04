@@ -3,24 +3,18 @@
 //  source: ./build/j2objc/java/AppDatabase.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef AppDatabase_H
+#define AppDatabase_H
 
-#pragma push_macro("INCLUDE_ALL_AppDatabase")
-#ifdef RESTRICT_AppDatabase
-#define INCLUDE_ALL_AppDatabase 0
-#else
-#define INCLUDE_ALL_AppDatabase 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_AppDatabase
 
-#if !defined (SGDBAppDatabase_) && (INCLUDE_ALL_AppDatabase || defined(INCLUDE_SGDBAppDatabase))
-#define SGDBAppDatabase_
-
-#define RESTRICT_SquidDatabase 1
-#define INCLUDE_ComYahooSquidbDataSquidDatabase 1
+#include "J2ObjC_header.h"
 #include "SquidDatabase.h"
 
-@class ComYahooSquidbDataSquidDatabase_OpenHelperDelegate;
 @class IOSObjectArray;
 @protocol ComYahooSquidbDataISQLiteDatabase;
 @protocol ComYahooSquidbDataISQLiteOpenHelper;
@@ -49,7 +43,7 @@
 
 @end
 
-J2OBJC_STATIC_INIT(SGDBAppDatabase)
+J2OBJC_EMPTY_STATIC_INIT(SGDBAppDatabase)
 
 FOUNDATION_EXPORT SGDBAppDatabase *SGDBAppDatabase_getInstance(void);
 
@@ -57,6 +51,8 @@ J2OBJC_TYPE_LITERAL_HEADER(SGDBAppDatabase)
 
 @compatibility_alias BrComMobilemindAppDatabaseAppDatabase SGDBAppDatabase;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_AppDatabase")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // AppDatabase_H

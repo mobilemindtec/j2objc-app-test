@@ -107,6 +107,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(deserializeToDateWithNSString:);
@@ -170,6 +171,8 @@ JavaUtilDate *GsonDateTypeAdapter_deserializeToDateWithNSString_(GsonDateTypeAda
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonDateTypeAdapter)
 
+J2OBJC_NAME_MAPPING(GsonDateTypeAdapter, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonDateTypeAdapter_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -191,6 +194,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop

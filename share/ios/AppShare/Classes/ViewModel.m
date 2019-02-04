@@ -160,6 +160,7 @@ withComYahooSquidbDataViewModel_TableMappingVisitors:(ComYahooSquidbDataViewMode
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(getTableMappingVisitors);
   methods[2].selector = @selector(mapToModelWithComYahooSquidbDataAbstractModel:);
@@ -379,6 +380,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbDataViewModel)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlPropertyArray:withJavaUtilMap:);
   methods[1].selector = @selector(mapWithComYahooSquidbDataViewModel:withComYahooSquidbDataAbstractModel:);
   methods[2].selector = @selector(visitIntegerWithComYahooSquidbSqlProperty:withId:withId:);
@@ -470,6 +472,7 @@ withComYahooSquidbDataViewModel_TableModelMappingVisitor:(ComYahooSquidbDataView
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(putWithIOSClass:withNSString:withComYahooSquidbDataViewModel_TableModelMappingVisitor:);
   methods[2].selector = @selector(getWithIOSClass:withNSString:);

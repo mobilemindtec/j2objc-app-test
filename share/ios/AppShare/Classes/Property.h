@@ -3,48 +3,24 @@
 //  source: ./build/j2objc/java/Property.java
 //
 
+#ifndef Property_H
+#define Property_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
+#include "Field.h"
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_Property")
-#ifdef RESTRICT_Property
-#define INCLUDE_ALL_Property 0
-#else
-#define INCLUDE_ALL_Property 1
-#endif
-#undef RESTRICT_Property
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_EnumProperty
-#define INCLUDE_ComYahooSquidbSqlProperty_StringProperty 1
-#endif
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_BlobProperty
-#define INCLUDE_ComYahooSquidbSqlProperty 1
-#endif
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_BooleanProperty
-#define INCLUDE_ComYahooSquidbSqlProperty 1
-#endif
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_LongProperty
-#define INCLUDE_ComYahooSquidbSqlProperty 1
-#endif
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_DoubleProperty
-#define INCLUDE_ComYahooSquidbSqlProperty 1
-#endif
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_StringProperty
-#define INCLUDE_ComYahooSquidbSqlProperty 1
-#endif
-#ifdef INCLUDE_ComYahooSquidbSqlProperty_IntegerProperty
-#define INCLUDE_ComYahooSquidbSqlProperty 1
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty))
-#define ComYahooSquidbSqlProperty_
-
-#define RESTRICT_Field 1
-#define INCLUDE_ComYahooSquidbSqlField 1
-#include "Field.h"
-
+@class ComYahooSquidbSqlCriterion;
 @class ComYahooSquidbSqlFunction;
 @class ComYahooSquidbSqlSqlBuilder;
 @class ComYahooSquidbSqlSqlTable;
 @class ComYahooSquidbSqlTableModelName;
+@class JavaLangEnum;
 @protocol ComYahooSquidbSqlProperty_PropertyVisitor;
 @protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
 
@@ -86,20 +62,20 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)alias;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)alias;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)columnName;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)columnName;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)columnName
-                                           withNSString:(NSString *)columnDef;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)columnName
+                                                     withNSString:(NSString *)columnDef;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)columnName
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)columnName
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (void)appendQualifiedExpressionWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder
                                                      withBoolean:(jboolean)forSqlValidation;
@@ -122,13 +98,6 @@ FOUNDATION_EXPORT void ComYahooSquidbSqlProperty_initWithComYahooSquidbSqlTableM
 FOUNDATION_EXPORT void ComYahooSquidbSqlProperty_initWithComYahooSquidbSqlFunction_withNSString_(ComYahooSquidbSqlProperty *self, ComYahooSquidbSqlFunction *function, NSString *alias);
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty)
-
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_PropertyVisitor_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_PropertyVisitor))
-#define ComYahooSquidbSqlProperty_PropertyVisitor_
-
-@class ComYahooSquidbSqlProperty;
 
 @protocol ComYahooSquidbSqlProperty_PropertyVisitor < JavaObject >
 
@@ -155,13 +124,6 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty)
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbSqlProperty_PropertyVisitor)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_PropertyVisitor)
-
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_PropertyWritingVisitor_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_PropertyWritingVisitor))
-#define ComYahooSquidbSqlProperty_PropertyWritingVisitor_
-
-@class ComYahooSquidbSqlProperty;
 
 @protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor < JavaObject >
 
@@ -195,36 +157,24 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbSqlProperty_PropertyWritingVisitor)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_PropertyWritingVisitor)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_IntegerProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_IntegerProperty))
-#define ComYahooSquidbSqlProperty_IntegerProperty_
-
-@class ComYahooSquidbSqlField;
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@protocol ComYahooSquidbSqlProperty_PropertyVisitor;
-@protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
-
 @interface ComYahooSquidbSqlProperty_IntegerProperty : ComYahooSquidbSqlProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)alias;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)alias;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (id)acceptWithComYahooSquidbSqlProperty_PropertyVisitor:(id<ComYahooSquidbSqlProperty_PropertyVisitor>)visitor
                                                    withId:(id)data;
@@ -293,36 +243,24 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_IntegerProperty *ComYahooSquidbSqlPr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_IntegerProperty)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_StringProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_StringProperty))
-#define ComYahooSquidbSqlProperty_StringProperty_
-
-@class ComYahooSquidbSqlCriterion;
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@protocol ComYahooSquidbSqlProperty_PropertyVisitor;
-@protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
-
 @interface ComYahooSquidbSqlProperty_StringProperty : ComYahooSquidbSqlProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)alias;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)alias;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (id)acceptWithComYahooSquidbSqlProperty_PropertyVisitor:(id<ComYahooSquidbSqlProperty_PropertyVisitor>)visitor
                                                    withId:(id)data;
@@ -388,35 +326,24 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_StringProperty *ComYahooSquidbSqlPro
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_StringProperty)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_DoubleProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_DoubleProperty))
-#define ComYahooSquidbSqlProperty_DoubleProperty_
-
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@protocol ComYahooSquidbSqlProperty_PropertyVisitor;
-@protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
-
 @interface ComYahooSquidbSqlProperty_DoubleProperty : ComYahooSquidbSqlProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)selectAs;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)selectAs;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (id)acceptWithComYahooSquidbSqlProperty_PropertyVisitor:(id<ComYahooSquidbSqlProperty_PropertyVisitor>)visitor
                                                    withId:(id)data;
@@ -476,35 +403,24 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_DoubleProperty *ComYahooSquidbSqlPro
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_DoubleProperty)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_LongProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_LongProperty))
-#define ComYahooSquidbSqlProperty_LongProperty_
-
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@protocol ComYahooSquidbSqlProperty_PropertyVisitor;
-@protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
-
 @interface ComYahooSquidbSqlProperty_LongProperty : ComYahooSquidbSqlProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)selectAs;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)selectAs;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (id)acceptWithComYahooSquidbSqlProperty_PropertyVisitor:(id<ComYahooSquidbSqlProperty_PropertyVisitor>)visitor
                                                    withId:(id)data;
@@ -564,36 +480,24 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_LongProperty *ComYahooSquidbSqlPrope
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_LongProperty)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_BooleanProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_BooleanProperty))
-#define ComYahooSquidbSqlProperty_BooleanProperty_
-
-@class ComYahooSquidbSqlCriterion;
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@protocol ComYahooSquidbSqlProperty_PropertyVisitor;
-@protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
-
 @interface ComYahooSquidbSqlProperty_BooleanProperty : ComYahooSquidbSqlProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)selectAs;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)selectAs;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (id)acceptWithComYahooSquidbSqlProperty_PropertyVisitor:(id<ComYahooSquidbSqlProperty_PropertyVisitor>)visitor
                                                    withId:(id)data;
@@ -661,32 +565,21 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_BooleanProperty *ComYahooSquidbSqlPr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_BooleanProperty)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_BlobProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_BlobProperty))
-#define ComYahooSquidbSqlProperty_BlobProperty_
-
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@protocol ComYahooSquidbSqlProperty_PropertyVisitor;
-@protocol ComYahooSquidbSqlProperty_PropertyWritingVisitor;
-
 @interface ComYahooSquidbSqlProperty_BlobProperty : ComYahooSquidbSqlProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (id)acceptWithComYahooSquidbSqlProperty_PropertyVisitor:(id<ComYahooSquidbSqlProperty_PropertyVisitor>)visitor
                                                    withId:(id)data;
@@ -708,8 +601,8 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_BooleanProperty)
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)arg0
-                                     withNSString:(NSString *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)arg0
+                                               withNSString:(NSString *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -735,34 +628,24 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_BlobProperty *create_ComYahooSquidbS
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_BlobProperty)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlProperty_EnumProperty_) && (INCLUDE_ALL_Property || defined(INCLUDE_ComYahooSquidbSqlProperty_EnumProperty))
-#define ComYahooSquidbSqlProperty_EnumProperty_
-
-@class ComYahooSquidbSqlFunction;
-@class ComYahooSquidbSqlSqlTable;
-@class ComYahooSquidbSqlTableModelName;
-@class JavaLangEnum;
-
 @interface ComYahooSquidbSqlProperty_EnumProperty : ComYahooSquidbSqlProperty_StringProperty
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
-                                     withNSString:(NSString *)alias;
+- (instancetype __nonnull)initWithComYahooSquidbSqlFunction:(ComYahooSquidbSqlFunction *)function
+                                               withNSString:(NSString *)alias;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)columnDefinition;
 
-- (instancetype)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
-                                           withNSString:(NSString *)name
-                                           withNSString:(NSString *)alias
-                                           withNSString:(NSString *)columnDefinition;
+- (instancetype __nonnull)initWithComYahooSquidbSqlTableModelName:(ComYahooSquidbSqlTableModelName *)tableModelName
+                                                     withNSString:(NSString *)name
+                                                     withNSString:(NSString *)alias
+                                                     withNSString:(NSString *)columnDefinition;
 
 - (ComYahooSquidbSqlProperty_EnumProperty *)asWithComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)newTable
                                                                withNSString:(NSString *)columnAlias;
@@ -810,6 +693,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty_EnumProperty *ComYahooSquidbSqlPrope
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlProperty_EnumProperty)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Property")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Property_H

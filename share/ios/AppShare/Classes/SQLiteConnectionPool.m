@@ -568,6 +568,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteConnectionPool_ConnectionW
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabaseConfiguration:);
   methods[1].selector = @selector(java_finalize);
   methods[2].selector = @selector(openWithComYahooAndroidSqliteSQLiteDatabaseConfiguration:);
@@ -1129,6 +1130,7 @@ ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus *ComYahooAndr
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -1144,9 +1146,9 @@ ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus *ComYahooAndr
 
 + (void)initialize {
   if (self == [ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus class]) {
-    JreEnum(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus, NORMAL) = new_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus, RECONFIGURE) = new_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus, DISCARD) = new_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_initWithNSString_withInt_(@"", 2);
+    JreEnum(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus, NORMAL) = new_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_initWithNSString_withInt_(JreEnumConstantName(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_class_(), 0), 0);
+    JreEnum(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus, RECONFIGURE) = new_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_initWithNSString_withInt_(JreEnumConstantName(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_class_(), 1), 1);
+    JreEnum(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus, DISCARD) = new_ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_initWithNSString_withInt_(JreEnumConstantName(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus_class_(), 2), 2);
     J2OBJC_SET_INITIALIZED(ComYahooAndroidSqliteSQLiteConnectionPool_AcquiredConnectionStatus)
   }
 }
@@ -1203,6 +1205,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {

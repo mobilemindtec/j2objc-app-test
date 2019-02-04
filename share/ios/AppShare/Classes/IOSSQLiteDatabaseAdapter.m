@@ -309,6 +309,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbIosIOSSQLiteDatabaseAdapter_SQLiteTrans
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabase:);
   methods[1].selector = @selector(beginTransaction);
   methods[2].selector = @selector(beginTransactionNonExclusive);
@@ -405,6 +406,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbIosIOSSQLiteDatabaseAdapter)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbDataSquidTransactionListener:);
   methods[1].selector = @selector(onBegin);
   methods[2].selector = @selector(onCommit);

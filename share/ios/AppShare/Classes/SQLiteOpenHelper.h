@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteOpenHelper.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteOpenHelper_H
+#define SQLiteOpenHelper_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteOpenHelper")
-#ifdef RESTRICT_SQLiteOpenHelper
-#define INCLUDE_ALL_SQLiteOpenHelper 0
-#else
-#define INCLUDE_ALL_SQLiteOpenHelper 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteOpenHelper
 
-#if !defined (ComYahooAndroidSqliteSQLiteOpenHelper_) && (INCLUDE_ALL_SQLiteOpenHelper || defined(INCLUDE_ComYahooAndroidSqliteSQLiteOpenHelper))
-#define ComYahooAndroidSqliteSQLiteOpenHelper_
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
 @class JavaIoFile;
@@ -25,15 +23,15 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)path
-                    withNSString:(NSString *)name
+- (instancetype __nonnull)initWithNSString:(NSString *)path
+                              withNSString:(NSString *)name
 withComYahooAndroidSqliteSQLiteDatabase_CursorFactory:(id<ComYahooAndroidSqliteSQLiteDatabase_CursorFactory>)factory
-                         withInt:(jint)version_;
+                                   withInt:(jint)version_;
 
-- (instancetype)initWithNSString:(NSString *)path
-                    withNSString:(NSString *)name
+- (instancetype __nonnull)initWithNSString:(NSString *)path
+                              withNSString:(NSString *)name
 withComYahooAndroidSqliteSQLiteDatabase_CursorFactory:(id<ComYahooAndroidSqliteSQLiteDatabase_CursorFactory>)factory
-                         withInt:(jint)version_
+                                   withInt:(jint)version_
 withComYahooAndroidSqliteDatabaseErrorHandler:(id<ComYahooAndroidSqliteDatabaseErrorHandler>)errorHandler;
 
 - (void)close;
@@ -72,6 +70,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteSQLiteOpenHelper_initWithNSString_wi
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteOpenHelper)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteOpenHelper")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteOpenHelper_H

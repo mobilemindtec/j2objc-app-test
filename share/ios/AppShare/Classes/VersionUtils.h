@@ -3,24 +3,22 @@
 //  source: ./build/j2objc/java/VersionUtils.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef VersionUtils_H
+#define VersionUtils_H
 
-#pragma push_macro("INCLUDE_ALL_VersionUtils")
-#ifdef RESTRICT_VersionUtils
-#define INCLUDE_ALL_VersionUtils 0
-#else
-#define INCLUDE_ALL_VersionUtils 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_VersionUtils
 
-#if !defined (ComGoogleGsonUtilVersionUtils_) && (INCLUDE_ALL_VersionUtils || defined(INCLUDE_ComGoogleGsonUtilVersionUtils))
-#define ComGoogleGsonUtilVersionUtils_
+#include "J2ObjC_header.h"
 
 @interface ComGoogleGsonUtilVersionUtils : NSObject
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (jint)getMajorJavaVersion;
 
@@ -42,6 +40,8 @@ FOUNDATION_EXPORT jboolean ComGoogleGsonUtilVersionUtils_isJava9OrLater(void);
 
 J2OBJC_TYPE_LITERAL_HEADER(ComGoogleGsonUtilVersionUtils)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_VersionUtils")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // VersionUtils_H

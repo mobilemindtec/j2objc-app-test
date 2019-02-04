@@ -3,23 +3,26 @@
 //  source: ./build/j2objc/java/SQLiteDebug.java
 //
 
+#ifndef SQLiteDebug_H
+#define SQLiteDebug_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_SQLiteDebug")
-#ifdef RESTRICT_SQLiteDebug
-#define INCLUDE_ALL_SQLiteDebug 0
-#else
-#define INCLUDE_ALL_SQLiteDebug 1
-#endif
-#undef RESTRICT_SQLiteDebug
-
-#if !defined (ComYahooAndroidSqliteSQLiteDebug_) && (INCLUDE_ALL_SQLiteDebug || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDebug))
-#define ComYahooAndroidSqliteSQLiteDebug_
-
 @class IOSObjectArray;
+@class JavaUtilArrayList;
 @protocol ComYahooAndroidSqlitePrinter;
 
 @interface ComYahooAndroidSqliteSQLiteDebug : NSObject
+@property (readonly, class) jboolean DEBUG_SQL_LOG NS_SWIFT_NAME(DEBUG_SQL_LOG);
+@property (readonly, class) jboolean DEBUG_SQL_STATEMENTS NS_SWIFT_NAME(DEBUG_SQL_STATEMENTS);
+@property (readonly, class) jboolean DEBUG_SQL_TIME NS_SWIFT_NAME(DEBUG_SQL_TIME);
+@property (readonly, class) jboolean DEBUG_LOG_SLOW_QUERIES NS_SWIFT_NAME(DEBUG_LOG_SLOW_QUERIES);
 
 + (jboolean)DEBUG_SQL_LOG;
 
@@ -62,13 +65,6 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteSQLiteDebug_dumpWithComYahooAndroidS
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDebug)
 
-#endif
-
-#if !defined (ComYahooAndroidSqliteSQLiteDebug_PagerStats_) && (INCLUDE_ALL_SQLiteDebug || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDebug_PagerStats))
-#define ComYahooAndroidSqliteSQLiteDebug_PagerStats_
-
-@class JavaUtilArrayList;
-
 @interface ComYahooAndroidSqliteSQLiteDebug_PagerStats : NSObject {
  @public
   jint memoryUsed_;
@@ -79,7 +75,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDebug)
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -95,11 +91,6 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteDebug_PagerStats *create_ComYahooAn
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDebug_PagerStats)
 
-#endif
-
-#if !defined (ComYahooAndroidSqliteSQLiteDebug_DbStats_) && (INCLUDE_ALL_SQLiteDebug || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDebug_DbStats))
-#define ComYahooAndroidSqliteSQLiteDebug_DbStats_
-
 @interface ComYahooAndroidSqliteSQLiteDebug_DbStats : NSObject {
  @public
   NSString *dbName_;
@@ -111,17 +102,17 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDebug_PagerStats)
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)dbName
-                        withLong:(jlong)pageCount
-                        withLong:(jlong)pageSize
-                         withInt:(jint)lookaside
-                         withInt:(jint)hits
-                         withInt:(jint)misses
-                         withInt:(jint)cachesize;
+- (instancetype __nonnull)initWithNSString:(NSString *)dbName
+                                  withLong:(jlong)pageCount
+                                  withLong:(jlong)pageSize
+                                   withInt:(jint)lookaside
+                                   withInt:(jint)hits
+                                   withInt:(jint)misses
+                                   withInt:(jint)cachesize;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -138,6 +129,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteDebug_DbStats *create_ComYahooAndro
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDebug_DbStats)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteDebug")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteDebug_H

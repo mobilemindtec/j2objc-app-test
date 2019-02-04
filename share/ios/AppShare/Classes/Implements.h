@@ -3,48 +3,75 @@
 //  source: ./build/j2objc/java/Implements.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Implements_H
+#define Implements_H
 
-#pragma push_macro("INCLUDE_ALL_Implements")
-#ifdef RESTRICT_Implements
-#define INCLUDE_ALL_Implements 0
-#else
-#define INCLUDE_ALL_Implements 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Implements
 
-#if !defined (ComYahooSquidbAnnotationsImplements_) && (INCLUDE_ALL_Implements || defined(INCLUDE_ComYahooSquidbAnnotationsImplements))
-#define ComYahooSquidbAnnotationsImplements_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+@class IOSObjectArray;
+
 @protocol ComYahooSquidbAnnotationsImplements < JavaLangAnnotationAnnotation >
+
+@property (readonly) IOSObjectArray *interfaceClasses;
+@property (readonly) IOSObjectArray *interfaceDefinitions;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsImplements : NSObject < ComYahooSquidbAnnotationsImplements > {
+ @public
+  IOSObjectArray *interfaceClasses_;
+  IOSObjectArray *interfaceDefinitions_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsImplements)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsImplements> create_ComYahooSquidbAnnotationsImplements(IOSObjectArray *interfaceClasses, IOSObjectArray *interfaceDefinitions);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsImplements)
 
-#endif
-
-#if !defined (ComYahooSquidbAnnotationsImplements_InterfaceSpec_) && (INCLUDE_ALL_Implements || defined(INCLUDE_ComYahooSquidbAnnotationsImplements_InterfaceSpec))
-#define ComYahooSquidbAnnotationsImplements_InterfaceSpec_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
-#include "java/lang/annotation/Annotation.h"
-
 @protocol ComYahooSquidbAnnotationsImplements_InterfaceSpec < JavaLangAnnotationAnnotation >
+
+@property (readonly) IOSClass *interfaceClass;
+@property (readonly) IOSObjectArray *interfaceTypeArgs;
+@property (readonly) IOSObjectArray *interfaceTypeArgNames;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsImplements_InterfaceSpec : NSObject < ComYahooSquidbAnnotationsImplements_InterfaceSpec > {
+ @public
+  IOSClass *interfaceClass_;
+  IOSObjectArray *interfaceTypeArgs_;
+  IOSObjectArray *interfaceTypeArgNames_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsImplements_InterfaceSpec)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsImplements_InterfaceSpec> create_ComYahooSquidbAnnotationsImplements_InterfaceSpec(IOSClass *interfaceClass, IOSObjectArray *interfaceTypeArgNames, IOSObjectArray *interfaceTypeArgs);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsImplements_InterfaceSpec)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Implements")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Implements_H

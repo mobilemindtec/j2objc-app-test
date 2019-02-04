@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/CollectionTypeAdapterFactory.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CollectionTypeAdapterFactory_H
+#define CollectionTypeAdapterFactory_H
 
-#pragma push_macro("INCLUDE_ALL_CollectionTypeAdapterFactory")
-#ifdef RESTRICT_CollectionTypeAdapterFactory
-#define INCLUDE_ALL_CollectionTypeAdapterFactory 0
-#else
-#define INCLUDE_ALL_CollectionTypeAdapterFactory 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CollectionTypeAdapterFactory
 
-#if !defined (GsonCollectionTypeAdapterFactory_) && (INCLUDE_ALL_CollectionTypeAdapterFactory || defined(INCLUDE_GsonCollectionTypeAdapterFactory))
-#define GsonCollectionTypeAdapterFactory_
-
-#define RESTRICT_TypeAdapterFactory 1
-#define INCLUDE_GsonTypeAdapterFactory 1
+#include "J2ObjC_header.h"
 #include "TypeAdapterFactory.h"
 
 @class GsonConstructorConstructor;
@@ -29,14 +24,14 @@
 
 #pragma mark Public
 
-- (instancetype)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor;
+- (instancetype __nonnull)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor;
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)typeToken;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -52,6 +47,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonCollectionTypeAdapterFactory)
 
 @compatibility_alias ComGoogleGsonInternalBindCollectionTypeAdapterFactory GsonCollectionTypeAdapterFactory;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CollectionTypeAdapterFactory")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CollectionTypeAdapterFactory_H

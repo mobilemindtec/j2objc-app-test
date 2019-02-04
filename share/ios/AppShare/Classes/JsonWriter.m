@@ -348,6 +348,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonWriter)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaIoWriter:);
   methods[1].selector = @selector(setIndentWithNSString:);
   methods[2].selector = @selector(setLenientWithBoolean:);
@@ -585,3 +586,5 @@ void GsonJsonWriter_beforeValue(GsonJsonWriter *self) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonWriter)
+
+J2OBJC_NAME_MAPPING(GsonJsonWriter, "com.google.gson.stream", "Gson")

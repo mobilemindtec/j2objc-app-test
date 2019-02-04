@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/StaleDataException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef StaleDataException_H
+#define StaleDataException_H
 
-#pragma push_macro("INCLUDE_ALL_StaleDataException")
-#ifdef RESTRICT_StaleDataException
-#define INCLUDE_ALL_StaleDataException 0
-#else
-#define INCLUDE_ALL_StaleDataException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_StaleDataException
 
-#if !defined (ComYahooAndroidSqliteStaleDataException_) && (INCLUDE_ALL_StaleDataException || defined(INCLUDE_ComYahooAndroidSqliteStaleDataException))
-#define ComYahooAndroidSqliteStaleDataException_
-
-#define RESTRICT_JavaLangRuntimeException 1
-#define INCLUDE_JavaLangRuntimeException 1
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
 @class JavaLangThrowable;
@@ -26,21 +21,21 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)description_;
+- (instancetype __nonnull)initWithNSString:(NSString *)description_;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1
-                     withBoolean:(jboolean)arg2
-                     withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1
+                               withBoolean:(jboolean)arg2
+                               withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -60,6 +55,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteStaleDataException *create_ComYahooAndroi
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteStaleDataException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_StaleDataException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // StaleDataException_H

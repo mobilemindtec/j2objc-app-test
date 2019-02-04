@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/UserRepository.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef UserRepository_H
+#define UserRepository_H
 
-#pragma push_macro("INCLUDE_ALL_UserRepository")
-#ifdef RESTRICT_UserRepository
-#define INCLUDE_ALL_UserRepository 0
-#else
-#define INCLUDE_ALL_UserRepository 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_UserRepository
 
-#if !defined (AppUserRepository_) && (INCLUDE_ALL_UserRepository || defined(INCLUDE_AppUserRepository))
-#define AppUserRepository_
-
-#define RESTRICT_BaseRepository 1
-#define INCLUDE_AppBaseRepository 1
 #include "BaseRepository.h"
+#include "J2ObjC_header.h"
 
 @class AppUser;
 @class ComYahooSquidbSqlProperty;
@@ -31,7 +26,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (jboolean)exists;
 
@@ -41,10 +36,10 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithIOSClass:(IOSClass *)arg0
-      withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)arg1
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg2
-   withComYahooSquidbSqlProperty:(ComYahooSquidbSqlProperty *)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)arg0
+                withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)arg1
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)arg2
+             withComYahooSquidbSqlProperty:(ComYahooSquidbSqlProperty *)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -60,6 +55,8 @@ J2OBJC_TYPE_LITERAL_HEADER(AppUserRepository)
 
 @compatibility_alias BrComMobilemindAppRepositoryUserRepository AppUserRepository;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_UserRepository")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // UserRepository_H

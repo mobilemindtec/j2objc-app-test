@@ -3,31 +3,45 @@
 //  source: ./build/j2objc/java/PrimaryKey.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef PrimaryKey_H
+#define PrimaryKey_H
 
-#pragma push_macro("INCLUDE_ALL_PrimaryKey")
-#ifdef RESTRICT_PrimaryKey
-#define INCLUDE_ALL_PrimaryKey 0
-#else
-#define INCLUDE_ALL_PrimaryKey 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_PrimaryKey
 
-#if !defined (ComYahooSquidbAnnotationsPrimaryKey_) && (INCLUDE_ALL_PrimaryKey || defined(INCLUDE_ComYahooSquidbAnnotationsPrimaryKey))
-#define ComYahooSquidbAnnotationsPrimaryKey_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsPrimaryKey < JavaLangAnnotationAnnotation >
+
+@property (readonly) jboolean autoincrement;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsPrimaryKey : NSObject < ComYahooSquidbAnnotationsPrimaryKey > {
+ @public
+  jboolean autoincrement_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsPrimaryKey)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsPrimaryKey> create_ComYahooSquidbAnnotationsPrimaryKey(jboolean autoincrement);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsPrimaryKey)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_PrimaryKey")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // PrimaryKey_H

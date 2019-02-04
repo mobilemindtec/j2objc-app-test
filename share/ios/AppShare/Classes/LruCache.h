@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/LruCache.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef LruCache_H
+#define LruCache_H
 
-#pragma push_macro("INCLUDE_ALL_LruCache")
-#ifdef RESTRICT_LruCache
-#define INCLUDE_ALL_LruCache 0
-#else
-#define INCLUDE_ALL_LruCache 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_LruCache
 
-#if !defined (ComYahooAndroidSqliteLruCache_) && (INCLUDE_ALL_LruCache || defined(INCLUDE_ComYahooAndroidSqliteLruCache))
-#define ComYahooAndroidSqliteLruCache_
+#include "J2ObjC_header.h"
 
 @protocol JavaUtilMap;
 
@@ -22,7 +20,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithInt:(jint)maxSize;
+- (instancetype __nonnull)initWithInt:(jint)maxSize;
 
 - (jint)createCount;
 
@@ -69,7 +67,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -83,6 +81,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteLruCache *create_ComYahooAndroidSqliteLru
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteLruCache)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_LruCache")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // LruCache_H

@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLException_H
+#define SQLException_H
 
-#pragma push_macro("INCLUDE_ALL_SQLException")
-#ifdef RESTRICT_SQLException
-#define INCLUDE_ALL_SQLException 0
-#else
-#define INCLUDE_ALL_SQLException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLException
 
-#if !defined (ComYahooAndroidSqliteSQLException_) && (INCLUDE_ALL_SQLException || defined(INCLUDE_ComYahooAndroidSqliteSQLException))
-#define ComYahooAndroidSqliteSQLException_
-
-#define RESTRICT_JavaLangRuntimeException 1
-#define INCLUDE_JavaLangRuntimeException 1
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
 @class JavaLangThrowable;
@@ -26,21 +21,21 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)error;
+- (instancetype __nonnull)initWithNSString:(NSString *)error;
 
-- (instancetype)initWithNSString:(NSString *)error
-           withJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype __nonnull)initWithNSString:(NSString *)error
+                     withJavaLangThrowable:(JavaLangThrowable *)cause;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1
-                     withBoolean:(jboolean)arg2
-                     withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1
+                               withBoolean:(jboolean)arg2
+                               withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -66,6 +61,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLException *create_ComYahooAndroidSqlit
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLException_H

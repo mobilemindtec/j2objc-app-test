@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonAdapterAnnotationTypeAdapterFactory.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonAdapterAnnotationTypeAdapterFactory_H
+#define JsonAdapterAnnotationTypeAdapterFactory_H
 
-#pragma push_macro("INCLUDE_ALL_JsonAdapterAnnotationTypeAdapterFactory")
-#ifdef RESTRICT_JsonAdapterAnnotationTypeAdapterFactory
-#define INCLUDE_ALL_JsonAdapterAnnotationTypeAdapterFactory 0
-#else
-#define INCLUDE_ALL_JsonAdapterAnnotationTypeAdapterFactory 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonAdapterAnnotationTypeAdapterFactory
 
-#if !defined (GsonJsonAdapterAnnotationTypeAdapterFactory_) && (INCLUDE_ALL_JsonAdapterAnnotationTypeAdapterFactory || defined(INCLUDE_GsonJsonAdapterAnnotationTypeAdapterFactory))
-#define GsonJsonAdapterAnnotationTypeAdapterFactory_
-
-#define RESTRICT_TypeAdapterFactory 1
-#define INCLUDE_GsonTypeAdapterFactory 1
+#include "J2ObjC_header.h"
 #include "TypeAdapterFactory.h"
 
 @class GsonConstructorConstructor;
@@ -30,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor;
+- (instancetype __nonnull)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor;
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)targetType;
@@ -44,7 +39,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -60,6 +55,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonAdapterAnnotationTypeAdapterFactory)
 
 @compatibility_alias ComGoogleGsonInternalBindJsonAdapterAnnotationTypeAdapterFactory GsonJsonAdapterAnnotationTypeAdapterFactory;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonAdapterAnnotationTypeAdapterFactory")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonAdapterAnnotationTypeAdapterFactory_H

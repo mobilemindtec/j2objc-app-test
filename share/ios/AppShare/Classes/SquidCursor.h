@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/SquidCursor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SquidCursor_H
+#define SquidCursor_H
 
-#pragma push_macro("INCLUDE_ALL_SquidCursor")
-#ifdef RESTRICT_SquidCursor
-#define INCLUDE_ALL_SquidCursor 0
-#else
-#define INCLUDE_ALL_SquidCursor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SquidCursor
 
-#if !defined (ComYahooSquidbDataSquidCursor_) && (INCLUDE_ALL_SquidCursor || defined(INCLUDE_ComYahooSquidbDataSquidCursor))
-#define ComYahooSquidbDataSquidCursor_
-
-#define RESTRICT_ICursor 1
-#define INCLUDE_ComYahooSquidbDataICursor 1
 #include "ICursor.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlProperty;
 @class IOSByteArray;
@@ -30,12 +25,12 @@
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbDataICursor:(id<ComYahooSquidbDataICursor>)cursor
-                                     withIOSClass:(IOSClass *)modelHint
-                                 withJavaUtilList:(id<JavaUtilList>)fields;
+- (instancetype __nonnull)initWithComYahooSquidbDataICursor:(id<ComYahooSquidbDataICursor>)cursor
+                                               withIOSClass:(IOSClass *)modelHint
+                                           withJavaUtilList:(id<JavaUtilList>)fields;
 
-- (instancetype)initWithComYahooSquidbDataICursor:(id<ComYahooSquidbDataICursor>)cursor
-                                 withJavaUtilList:(id<JavaUtilList>)fields;
+- (instancetype __nonnull)initWithComYahooSquidbDataICursor:(id<ComYahooSquidbDataICursor>)cursor
+                                           withJavaUtilList:(id<JavaUtilList>)fields;
 
 - (void)close;
 
@@ -103,7 +98,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -123,6 +118,8 @@ FOUNDATION_EXPORT ComYahooSquidbDataSquidCursor *create_ComYahooSquidbDataSquidC
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidCursor)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SquidCursor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SquidCursor_H

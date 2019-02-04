@@ -3,31 +3,40 @@
 //  source: ./build/j2objc/java/Ignore.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Ignore_H
+#define Ignore_H
 
-#pragma push_macro("INCLUDE_ALL_Ignore")
-#ifdef RESTRICT_Ignore
-#define INCLUDE_ALL_Ignore 0
-#else
-#define INCLUDE_ALL_Ignore 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Ignore
 
-#if !defined (ComYahooSquidbAnnotationsIgnore_) && (INCLUDE_ALL_Ignore || defined(INCLUDE_ComYahooSquidbAnnotationsIgnore))
-#define ComYahooSquidbAnnotationsIgnore_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsIgnore < JavaLangAnnotationAnnotation >
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsIgnore : NSObject < ComYahooSquidbAnnotationsIgnore >
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsIgnore)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsIgnore> create_ComYahooSquidbAnnotationsIgnore(void);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsIgnore)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Ignore")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Ignore_H

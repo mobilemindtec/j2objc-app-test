@@ -43,23 +43,29 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
-#s.source_files = '*.{h,m}'
-    s.resources = '*.{png}'
-    s.requires_arc = true
+  #s.source_files = '*.{h,m}'
+  s.resources = '*.{png}'
+  s.requires_arc = true
 
-    s.pod_target_xcconfig = {
-      "OTHER_LDFLAGS" => "-ljre_emul -ljre_zip -l iconv -l z -framework Security",
-      "FRAMEWORK_SEARCH_PATHS" => "\"$J2OBJC_HOME/framework\"",
-      "LIBRARY_SEARCH_PATHS" => "\"$J2OBJC_HOME/lib\"",
-      "HEADER_SEARCH_PATHS" => "\"$J2OBJC_HOME/include\"",
-    }
+  s.pod_target_xcconfig = {
+    "OTHER_LDFLAGS" => "-ljre_emul -ljre_zip -liconv -lz -lguava -ljavax_inject -ljsr305 -framework Security",
+    "FRAMEWORK_SEARCH_PATHS" => "\"$J2OBJC_HOME/frameworks\"",
+    "LIBRARY_SEARCH_PATHS" => "\"$J2OBJC_HOME/lib\"",
+    "HEADER_SEARCH_PATHS" => "\"$J2OBJC_HOME/include/\"/** \"${PODS_ROOT}/Headers/Public/SquiDB\" \"${PODS_ROOT}/Headers/Public/J2ObjCUnit\" \"${PODS_ROOT}/Headers/Public/J2ObjCGson\" \"${PODS_ROOT}/Headers/Public/J2ObjCAppBase\"",
+    "ALWAYS_SEARCH_USER_PATHS" => "YES"
+    #"VALID_ARCHITECTURES" => "arm64 armv7 armv7s"
+  }
 
-    s.dependency 'sqlite3', '3.21.0'
+  s.dependency 'sqlite3', '3.21.0'
+  #s.dependency 'SquiDB'
+  #s.dependency 'J2ObjCUnit'
+  #s.dependency 'J2ObjCGson'
+  #s.dependency 'J2ObjCAppBase'
 
-    #s.xcconfig = {
-    #  "FRAMEWORK_SEARCH_PATHS": "\"${J2OBJC}/framework\"",
-    #  "LIBRARY_SEARCH_PATHS": "\"$(PODS_ROOT)/lib\"",
-    #  "HEADER_SEARCH_PATHS": "\"${J2OBJC}/include\"",
-    #}
+  #s.xcconfig = {
+  #  "FRAMEWORK_SEARCH_PATHS": "\"${J2OBJC}/frameworks\"",
+  #  "LIBRARY_SEARCH_PATHS": "\"$(PODS_ROOT)/lib\"",
+  #  "HEADER_SEARCH_PATHS": "\"${J2OBJC}/include\"",
+  #}
 
 end

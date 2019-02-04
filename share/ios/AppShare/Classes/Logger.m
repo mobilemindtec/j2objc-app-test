@@ -139,6 +139,7 @@ withJavaLangThrowable:(JavaLangThrowable *)t {
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(setLoggerWithComYahooSquidbUtilityLogger:);
   methods[2].selector = @selector(isLoggableWithNSString:withComYahooSquidbUtilityLogger_Level:);
@@ -308,6 +309,7 @@ ComYahooSquidbUtilityLogger_Level *ComYahooSquidbUtilityLogger_Level_values_[5];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -325,11 +327,11 @@ ComYahooSquidbUtilityLogger_Level *ComYahooSquidbUtilityLogger_Level_values_[5];
 
 + (void)initialize {
   if (self == [ComYahooSquidbUtilityLogger_Level class]) {
-    JreEnum(ComYahooSquidbUtilityLogger_Level, ASSERT) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooSquidbUtilityLogger_Level, ERROR) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooSquidbUtilityLogger_Level, WARN) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(@"", 2);
-    JreEnum(ComYahooSquidbUtilityLogger_Level, DEBUG) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(@"", 3);
-    JreEnum(ComYahooSquidbUtilityLogger_Level, INFO) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(@"", 4);
+    JreEnum(ComYahooSquidbUtilityLogger_Level, ASSERT) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbUtilityLogger_Level_class_(), 0), 0);
+    JreEnum(ComYahooSquidbUtilityLogger_Level, ERROR) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbUtilityLogger_Level_class_(), 1), 1);
+    JreEnum(ComYahooSquidbUtilityLogger_Level, WARN) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbUtilityLogger_Level_class_(), 2), 2);
+    JreEnum(ComYahooSquidbUtilityLogger_Level, DEBUG) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbUtilityLogger_Level_class_(), 3), 3);
+    JreEnum(ComYahooSquidbUtilityLogger_Level, INFO) = new_ComYahooSquidbUtilityLogger_Level_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbUtilityLogger_Level_class_(), 4), 4);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbUtilityLogger_Level)
   }
 }
@@ -414,6 +416,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(logWithComYahooSquidbUtilityLogger_Level:withNSString:withNSString:withJavaLangThrowable:);
   #pragma clang diagnostic pop

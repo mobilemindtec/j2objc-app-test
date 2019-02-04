@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/FieldAttributes.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef FieldAttributes_H
+#define FieldAttributes_H
 
-#pragma push_macro("INCLUDE_ALL_FieldAttributes")
-#ifdef RESTRICT_FieldAttributes
-#define INCLUDE_ALL_FieldAttributes 0
-#else
-#define INCLUDE_ALL_FieldAttributes 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_FieldAttributes
 
-#if !defined (GsonFieldAttributes_) && (INCLUDE_ALL_FieldAttributes || defined(INCLUDE_GsonFieldAttributes))
-#define GsonFieldAttributes_
+#include "J2ObjC_header.h"
 
 @class IOSClass;
 @class JavaLangReflectField;
@@ -26,7 +24,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaLangReflectField:(JavaLangReflectField *)f;
+- (instancetype __nonnull)initWithJavaLangReflectField:(JavaLangReflectField *)f;
 
 - (id<JavaLangAnnotationAnnotation>)getAnnotationWithIOSClass:(IOSClass *)annotation;
 
@@ -50,7 +48,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -66,6 +64,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonFieldAttributes)
 
 @compatibility_alias ComGoogleGsonFieldAttributes GsonFieldAttributes;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_FieldAttributes")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // FieldAttributes_H

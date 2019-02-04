@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ISQLiteOpenHelper.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ISQLiteOpenHelper_H
+#define ISQLiteOpenHelper_H
 
-#pragma push_macro("INCLUDE_ALL_ISQLiteOpenHelper")
-#ifdef RESTRICT_ISQLiteOpenHelper
-#define INCLUDE_ALL_ISQLiteOpenHelper 0
-#else
-#define INCLUDE_ALL_ISQLiteOpenHelper 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ISQLiteOpenHelper
 
-#if !defined (ComYahooSquidbDataISQLiteOpenHelper_) && (INCLUDE_ALL_ISQLiteOpenHelper || defined(INCLUDE_ComYahooSquidbDataISQLiteOpenHelper))
-#define ComYahooSquidbDataISQLiteOpenHelper_
+#include "J2ObjC_header.h"
 
 @protocol ComYahooSquidbDataISQLiteDatabase;
 
@@ -34,6 +32,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbDataISQLiteOpenHelper)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataISQLiteOpenHelper)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ISQLiteOpenHelper")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ISQLiteOpenHelper_H

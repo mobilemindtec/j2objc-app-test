@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/QueryFunction.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef QueryFunction_H
+#define QueryFunction_H
 
-#pragma push_macro("INCLUDE_ALL_QueryFunction")
-#ifdef RESTRICT_QueryFunction
-#define INCLUDE_ALL_QueryFunction 0
-#else
-#define INCLUDE_ALL_QueryFunction 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_QueryFunction
 
-#if !defined (ComYahooSquidbSqlQueryFunction_) && (INCLUDE_ALL_QueryFunction || defined(INCLUDE_ComYahooSquidbSqlQueryFunction))
-#define ComYahooSquidbSqlQueryFunction_
-
-#define RESTRICT_Function 1
-#define INCLUDE_ComYahooSquidbSqlFunction 1
 #include "Function.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlQuery;
@@ -37,13 +32,13 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)query;
+- (instancetype __nonnull)initWithComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)query;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -57,6 +52,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlQueryFunction *create_ComYahooSquidbSqlQueryF
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlQueryFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_QueryFunction")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // QueryFunction_H

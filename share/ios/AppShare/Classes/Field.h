@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/Field.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Field_H
+#define Field_H
 
-#pragma push_macro("INCLUDE_ALL_Field")
-#ifdef RESTRICT_Field
-#define INCLUDE_ALL_Field 0
-#else
-#define INCLUDE_ALL_Field 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Field
 
-#if !defined (ComYahooSquidbSqlField_) && (INCLUDE_ALL_Field || defined(INCLUDE_ComYahooSquidbSqlField))
-#define ComYahooSquidbSqlField_
-
-#define RESTRICT_DBObject 1
-#define INCLUDE_ComYahooSquidbSqlDBObject 1
 #include "DBObject.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlCriterion;
 @class ComYahooSquidbSqlOrder;
@@ -27,6 +22,7 @@
 @protocol JavaUtilCollection;
 
 @interface ComYahooSquidbSqlField : ComYahooSquidbSqlDBObject
+@property (readonly, class) ComYahooSquidbSqlField *NULL_ NS_SWIFT_NAME(NULL_);
 
 + (ComYahooSquidbSqlField *)NULL_;
 
@@ -103,10 +99,10 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithNSString:(NSString *)expression;
+- (instancetype __nonnull)initWithNSString:(NSString *)expression;
 
-- (instancetype)initWithNSString:(NSString *)expression
-                    withNSString:(NSString *)qualifier;
+- (instancetype __nonnull)initWithNSString:(NSString *)expression
+                              withNSString:(NSString *)qualifier;
 
 @end
 
@@ -135,6 +131,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlField *ComYahooSquidbSqlField_fieldWithNSStri
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlField)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Field")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Field_H

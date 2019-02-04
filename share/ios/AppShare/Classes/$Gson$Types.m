@@ -315,6 +315,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(newParameterizedTypeWithOwnerWithJavaLangReflectType:withJavaLangReflectType:withJavaLangReflectTypeArray:);
   methods[2].selector = @selector(arrayOfWithJavaLangReflectType:);
@@ -694,6 +695,8 @@ void Gson_Gson_Types_checkNotPrimitiveWithJavaLangReflectType_(id<JavaLangReflec
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(Gson_Gson_Types)
 
+J2OBJC_NAME_MAPPING(Gson_Gson_Types, "com.google.gson.internal", "Gson")
+
 @implementation Gson_Gson_Types_ParameterizedTypeImpl
 
 - (instancetype)initWithJavaLangReflectType:(id<JavaLangReflectType>)ownerType
@@ -752,6 +755,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(Gson_Gson_Types)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectType:withJavaLangReflectType:withJavaLangReflectTypeArray:);
   methods[1].selector = @selector(getActualTypeArguments);
   methods[2].selector = @selector(getRawType);
@@ -837,6 +841,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(Gson_Gson_Types_ParameterizedTypeImpl)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectType:);
   methods[1].selector = @selector(getGenericComponentType);
   methods[2].selector = @selector(isEqual:);
@@ -920,6 +925,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(Gson_Gson_Types_GenericArrayTypeImpl)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectTypeArray:withJavaLangReflectTypeArray:);
   methods[1].selector = @selector(getUpperBounds);
   methods[2].selector = @selector(getLowerBounds);

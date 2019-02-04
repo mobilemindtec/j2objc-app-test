@@ -3,28 +3,23 @@
 //  source: ./build/j2objc/java/SQLiteClosable.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteClosable_H
+#define SQLiteClosable_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteClosable")
-#ifdef RESTRICT_SQLiteClosable
-#define INCLUDE_ALL_SQLiteClosable 0
-#else
-#define INCLUDE_ALL_SQLiteClosable 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteClosable
 
-#if !defined (ComYahooAndroidSqliteSQLiteClosable_) && (INCLUDE_ALL_SQLiteClosable || defined(INCLUDE_ComYahooAndroidSqliteSQLiteClosable))
-#define ComYahooAndroidSqliteSQLiteClosable_
-
-#define RESTRICT_JavaIoCloseable 1
-#define INCLUDE_JavaIoCloseable 1
+#include "J2ObjC_header.h"
 #include "java/io/Closeable.h"
 
 @interface ComYahooAndroidSqliteSQLiteClosable : NSObject < JavaIoCloseable >
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)acquireReference;
 
@@ -48,6 +43,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteSQLiteClosable_init(ComYahooAndroidS
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteClosable)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteClosable")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteClosable_H

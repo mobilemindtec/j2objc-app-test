@@ -3,19 +3,18 @@
 //  source: ./build/j2objc/java/CloseGuard.java
 //
 
+#ifndef CloseGuard_H
+#define CloseGuard_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_CloseGuard")
-#ifdef RESTRICT_CloseGuard
-#define INCLUDE_ALL_CloseGuard 0
-#else
-#define INCLUDE_ALL_CloseGuard 1
-#endif
-#undef RESTRICT_CloseGuard
-
-#if !defined (ComYahooAndroidSqliteCloseGuard_) && (INCLUDE_ALL_CloseGuard || defined(INCLUDE_ComYahooAndroidSqliteCloseGuard))
-#define ComYahooAndroidSqliteCloseGuard_
-
+@class JavaLangThrowable;
 @protocol ComYahooAndroidSqliteCloseGuard_Reporter;
 
 @interface ComYahooAndroidSqliteCloseGuard : NSObject
@@ -50,13 +49,6 @@ FOUNDATION_EXPORT id<ComYahooAndroidSqliteCloseGuard_Reporter> ComYahooAndroidSq
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteCloseGuard)
 
-#endif
-
-#if !defined (ComYahooAndroidSqliteCloseGuard_Reporter_) && (INCLUDE_ALL_CloseGuard || defined(INCLUDE_ComYahooAndroidSqliteCloseGuard_Reporter))
-#define ComYahooAndroidSqliteCloseGuard_Reporter_
-
-@class JavaLangThrowable;
-
 @protocol ComYahooAndroidSqliteCloseGuard_Reporter < JavaObject >
 
 - (void)reportWithNSString:(NSString *)message
@@ -68,6 +60,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooAndroidSqliteCloseGuard_Reporter)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteCloseGuard_Reporter)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CloseGuard")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CloseGuard_H

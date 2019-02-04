@@ -18,6 +18,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "create", "LGsonGson;LGsonTypeToken;", "<T:Ljava/lang/Object;>(Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken<TT;>;)Lcom/google/gson/TypeAdapter<TT;>;" };
@@ -28,3 +29,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonTypeAdapterFactory)
+
+J2OBJC_NAME_MAPPING(GsonTypeAdapterFactory, "com.google.gson", "Gson")

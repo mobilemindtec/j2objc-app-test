@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteCantOpenDatabaseException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteCantOpenDatabaseException_H
+#define SQLiteCantOpenDatabaseException_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteCantOpenDatabaseException")
-#ifdef RESTRICT_SQLiteCantOpenDatabaseException
-#define INCLUDE_ALL_SQLiteCantOpenDatabaseException 0
-#else
-#define INCLUDE_ALL_SQLiteCantOpenDatabaseException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteCantOpenDatabaseException
 
-#if !defined (ComYahooAndroidSqliteSQLiteCantOpenDatabaseException_) && (INCLUDE_ALL_SQLiteCantOpenDatabaseException || defined(INCLUDE_ComYahooAndroidSqliteSQLiteCantOpenDatabaseException))
-#define ComYahooAndroidSqliteSQLiteCantOpenDatabaseException_
-
-#define RESTRICT_SQLiteException 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteException 1
+#include "J2ObjC_header.h"
 #include "SQLiteException.h"
 
 @class JavaLangThrowable;
@@ -26,14 +21,14 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)error;
+- (instancetype __nonnull)initWithNSString:(NSString *)error;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -53,6 +48,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteCantOpenDatabaseException *create_C
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteCantOpenDatabaseException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteCantOpenDatabaseException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteCantOpenDatabaseException_H

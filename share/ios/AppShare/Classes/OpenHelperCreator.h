@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/OpenHelperCreator.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef OpenHelperCreator_H
+#define OpenHelperCreator_H
 
-#pragma push_macro("INCLUDE_ALL_OpenHelperCreator")
-#ifdef RESTRICT_OpenHelperCreator
-#define INCLUDE_ALL_OpenHelperCreator 0
-#else
-#define INCLUDE_ALL_OpenHelperCreator 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_OpenHelperCreator
 
-#if !defined (SGDBOpenHelperCreator_) && (INCLUDE_ALL_OpenHelperCreator || defined(INCLUDE_SGDBOpenHelperCreator))
-#define SGDBOpenHelperCreator_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbDataSquidDatabase_OpenHelperDelegate;
 @protocol ComYahooSquidbDataISQLiteOpenHelper;
@@ -23,7 +21,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (SGDBOpenHelperCreator *)getCreator;
 
@@ -49,6 +47,8 @@ J2OBJC_TYPE_LITERAL_HEADER(SGDBOpenHelperCreator)
 
 @compatibility_alias BrComMobilemindAppDatabaseOpenHelperCreator SGDBOpenHelperCreator;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_OpenHelperCreator")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // OpenHelperCreator_H

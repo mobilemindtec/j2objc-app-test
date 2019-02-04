@@ -3,46 +3,42 @@
 //  source: ./build/j2objc/java/JsonParseException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonParseException_H
+#define JsonParseException_H
 
-#pragma push_macro("INCLUDE_ALL_JsonParseException")
-#ifdef RESTRICT_JsonParseException
-#define INCLUDE_ALL_JsonParseException 0
-#else
-#define INCLUDE_ALL_JsonParseException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonParseException
 
-#if !defined (GsonJsonParseException_) && (INCLUDE_ALL_JsonParseException || defined(INCLUDE_GsonJsonParseException))
-#define GsonJsonParseException_
-
-#define RESTRICT_JavaLangRuntimeException 1
-#define INCLUDE_JavaLangRuntimeException 1
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
 @class JavaLangThrowable;
 
 @interface GsonJsonParseException : JavaLangRuntimeException
+@property (readonly, class) jlong serialVersionUID NS_SWIFT_NAME(serialVersionUID);
 
 + (jlong)serialVersionUID;
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)msg;
+- (instancetype __nonnull)initWithNSString:(NSString *)msg;
 
-- (instancetype)initWithNSString:(NSString *)msg
-           withJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype __nonnull)initWithNSString:(NSString *)msg
+                     withJavaLangThrowable:(JavaLangThrowable *)cause;
 
-- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype __nonnull)initWithJavaLangThrowable:(JavaLangThrowable *)cause;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1
-                     withBoolean:(jboolean)arg2
-                     withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1
+                               withBoolean:(jboolean)arg2
+                               withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -74,6 +70,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonParseException)
 
 @compatibility_alias ComGoogleGsonJsonParseException GsonJsonParseException;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonParseException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonParseException_H

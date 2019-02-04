@@ -3,28 +3,23 @@
 //  source: ./build/j2objc/java/DefaultArgumentResolver.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DefaultArgumentResolver_H
+#define DefaultArgumentResolver_H
 
-#pragma push_macro("INCLUDE_ALL_DefaultArgumentResolver")
-#ifdef RESTRICT_DefaultArgumentResolver
-#define INCLUDE_ALL_DefaultArgumentResolver 0
-#else
-#define INCLUDE_ALL_DefaultArgumentResolver 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DefaultArgumentResolver
 
-#if !defined (ComYahooSquidbSqlDefaultArgumentResolver_) && (INCLUDE_ALL_DefaultArgumentResolver || defined(INCLUDE_ComYahooSquidbSqlDefaultArgumentResolver))
-#define ComYahooSquidbSqlDefaultArgumentResolver_
-
-#define RESTRICT_ArgumentResolver 1
-#define INCLUDE_ComYahooSquidbSqlArgumentResolver 1
 #include "ArgumentResolver.h"
+#include "J2ObjC_header.h"
 
 @interface ComYahooSquidbSqlDefaultArgumentResolver : NSObject < ComYahooSquidbSqlArgumentResolver >
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (id)resolveArgumentWithId:(id)arg;
 
@@ -46,6 +41,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlDefaultArgumentResolver *create_ComYahooSquid
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlDefaultArgumentResolver)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DefaultArgumentResolver")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DefaultArgumentResolver_H

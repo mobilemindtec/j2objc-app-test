@@ -453,6 +453,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithJavaUtilComparator:);
   methods[2].selector = @selector(size);
@@ -706,6 +707,8 @@ id GsonLinkedHashTreeMap_writeReplace(GsonLinkedHashTreeMap *self) {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedHashTreeMap)
 
+J2OBJC_NAME_MAPPING(GsonLinkedHashTreeMap, "com.google.gson.internal", "Gson")
+
 @implementation GsonLinkedHashTreeMap_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -756,6 +759,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(compareWithId:withId:);
   #pragma clang diagnostic pop
@@ -861,6 +865,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithGsonLinkedHashTreeMap_Node:withId:withInt:withGsonLinkedHashTreeMap_Node:withGsonLinkedHashTreeMap_Node:);
   methods[2].selector = @selector(getKey);
@@ -969,6 +974,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(resetWithGsonLinkedHashTreeMap_Node:);
   methods[2].selector = @selector(next);
@@ -1075,6 +1081,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(resetWithInt:);
   methods[2].selector = @selector(addWithGsonLinkedHashTreeMap_Node:);
@@ -1144,6 +1151,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedHashTreeMap_AvlBuilder)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedHashTreeMap:);
   methods[1].selector = @selector(hasNext);
   methods[2].selector = @selector(nextNode);
@@ -1220,7 +1228,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedHashTreeMap_LinkedTreeMapIterator)
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
-  return JreDefaultFastEnumeration(self, state, stackbuf, len);
+  return JreDefaultFastEnumeration(self, state, stackbuf);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -1234,6 +1242,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedHashTreeMap_LinkedTreeMapIterator)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedHashTreeMap:);
   methods[1].selector = @selector(size);
   methods[2].selector = @selector(iterator);
@@ -1284,6 +1293,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedHashTreeMap_EntrySet)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedHashTreeMap_EntrySet:);
   methods[1].selector = @selector(next);
   #pragma clang diagnostic pop
@@ -1334,7 +1344,7 @@ GsonLinkedHashTreeMap_EntrySet_1 *create_GsonLinkedHashTreeMap_EntrySet_1_initWi
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
-  return JreDefaultFastEnumeration(self, state, stackbuf, len);
+  return JreDefaultFastEnumeration(self, state, stackbuf);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -1348,6 +1358,7 @@ GsonLinkedHashTreeMap_EntrySet_1 *create_GsonLinkedHashTreeMap_EntrySet_1_initWi
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedHashTreeMap:);
   methods[1].selector = @selector(size);
   methods[2].selector = @selector(iterator);
@@ -1398,6 +1409,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedHashTreeMap_KeySet)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedHashTreeMap_KeySet:);
   methods[1].selector = @selector(next);
   #pragma clang diagnostic pop

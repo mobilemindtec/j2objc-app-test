@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/DistinctArgumentFunction.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DistinctArgumentFunction_H
+#define DistinctArgumentFunction_H
 
-#pragma push_macro("INCLUDE_ALL_DistinctArgumentFunction")
-#ifdef RESTRICT_DistinctArgumentFunction
-#define INCLUDE_ALL_DistinctArgumentFunction 0
-#else
-#define INCLUDE_ALL_DistinctArgumentFunction 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DistinctArgumentFunction
 
-#if !defined (ComYahooSquidbSqlDistinctArgumentFunction_) && (INCLUDE_ALL_DistinctArgumentFunction || defined(INCLUDE_ComYahooSquidbSqlDistinctArgumentFunction))
-#define ComYahooSquidbSqlDistinctArgumentFunction_
-
-#define RESTRICT_ArgumentFunction 1
-#define INCLUDE_ComYahooSquidbSqlArgumentFunction 1
 #include "ArgumentFunction.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -28,8 +23,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)functionName
-                          withId:(id)argument;
+- (instancetype __nonnull)initWithNSString:(NSString *)functionName
+                                    withId:(id)argument;
 
 - (ComYahooSquidbSqlField *)asWithNSString:(NSString *)arg0;
 
@@ -41,8 +36,8 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0
-               withNSObjectArray:(IOSObjectArray *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                         withNSObjectArray:(IOSObjectArray *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -56,6 +51,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlDistinctArgumentFunction *create_ComYahooSqui
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlDistinctArgumentFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DistinctArgumentFunction")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DistinctArgumentFunction_H

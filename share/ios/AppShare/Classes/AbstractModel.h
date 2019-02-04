@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/AbstractModel.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef AbstractModel_H
+#define AbstractModel_H
 
-#pragma push_macro("INCLUDE_ALL_AbstractModel")
-#ifdef RESTRICT_AbstractModel
-#define INCLUDE_ALL_AbstractModel 0
-#else
-#define INCLUDE_ALL_AbstractModel 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_AbstractModel
 
-#if !defined (ComYahooSquidbDataAbstractModel_) && (INCLUDE_ALL_AbstractModel || defined(INCLUDE_ComYahooSquidbDataAbstractModel))
-#define ComYahooSquidbDataAbstractModel_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbDataSquidCursor;
 @class ComYahooSquidbDataValuesStorage;
@@ -33,7 +31,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (jboolean)checkAndClearTransitoryWithNSString:(NSString *)key;
 
@@ -127,6 +125,8 @@ FOUNDATION_EXPORT void ComYahooSquidbDataAbstractModel_init(ComYahooSquidbDataAb
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataAbstractModel)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_AbstractModel")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // AbstractModel_H

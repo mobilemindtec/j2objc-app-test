@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/JsonElement.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonElement_H
+#define JsonElement_H
 
-#pragma push_macro("INCLUDE_ALL_JsonElement")
-#ifdef RESTRICT_JsonElement
-#define INCLUDE_ALL_JsonElement 0
-#else
-#define INCLUDE_ALL_JsonElement 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonElement
 
-#if !defined (GsonJsonElement_) && (INCLUDE_ALL_JsonElement || defined(INCLUDE_GsonJsonElement))
-#define GsonJsonElement_
+#include "J2ObjC_header.h"
 
 @class GsonJsonArray;
 @class GsonJsonNull;
@@ -28,7 +26,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonJsonElement *)deepCopy;
 
@@ -88,6 +86,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonElement)
 
 @compatibility_alias ComGoogleGsonJsonElement GsonJsonElement;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonElement")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonElement_H

@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteQuery.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteQuery_H
+#define SQLiteQuery_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteQuery")
-#ifdef RESTRICT_SQLiteQuery
-#define INCLUDE_ALL_SQLiteQuery 0
-#else
-#define INCLUDE_ALL_SQLiteQuery 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteQuery
 
-#if !defined (ComYahooAndroidSqliteSQLiteQuery_) && (INCLUDE_ALL_SQLiteQuery || defined(INCLUDE_ComYahooAndroidSqliteSQLiteQuery))
-#define ComYahooAndroidSqliteSQLiteQuery_
-
-#define RESTRICT_SQLiteProgram 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteProgram 1
+#include "J2ObjC_header.h"
 #include "SQLiteProgram.h"
 
 @class ComYahooAndroidSqliteCursorWindow;
@@ -32,8 +27,8 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
-                                               withNSString:(NSString *)query;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
+                                                         withNSString:(NSString *)query;
 
 - (jint)fillWindowWithComYahooAndroidSqliteCursorWindow:(ComYahooAndroidSqliteCursorWindow *)window
                                                 withInt:(jint)startPos
@@ -42,9 +37,9 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)arg0
-                                               withNSString:(NSString *)arg1
-                                          withNSObjectArray:(IOSObjectArray *)arg2 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)arg0
+                                                         withNSString:(NSString *)arg1
+                                                    withNSObjectArray:(IOSObjectArray *)arg2 NS_UNAVAILABLE;
 
 @end
 
@@ -58,6 +53,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteQuery *create_ComYahooAndroidSqlite
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteQuery)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteQuery")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteQuery_H

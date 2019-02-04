@@ -61,6 +61,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(getCount);
   methods[1].selector = @selector(getPosition);
   methods[2].selector = @selector(moveWithInt:);

@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/TypeToken.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TypeToken_H
+#define TypeToken_H
 
-#pragma push_macro("INCLUDE_ALL_TypeToken")
-#ifdef RESTRICT_TypeToken
-#define INCLUDE_ALL_TypeToken 0
-#else
-#define INCLUDE_ALL_TypeToken 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TypeToken
 
-#if !defined (GsonTypeToken_) && (INCLUDE_ALL_TypeToken || defined(INCLUDE_GsonTypeToken))
-#define GsonTypeToken_
+#include "J2ObjC_header.h"
 
 @class IOSClass;
 @class IOSObjectArray;
@@ -56,11 +54,11 @@
 
 #pragma mark Protected
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 #pragma mark Package-Private
 
-- (instancetype)initWithJavaLangReflectType:(id<JavaLangReflectType>)type;
+- (instancetype __nonnull)initWithJavaLangReflectType:(id<JavaLangReflectType>)type;
 
 + (id<JavaLangReflectType>)getSuperclassTypeParameterWithIOSClass:(IOSClass *)subclass;
 
@@ -97,6 +95,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTypeToken)
 
 @compatibility_alias ComGoogleGsonReflectTypeToken GsonTypeToken;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TypeToken")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TypeToken_H

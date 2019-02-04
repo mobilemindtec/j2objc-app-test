@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/CursorWindow.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CursorWindow_H
+#define CursorWindow_H
 
-#pragma push_macro("INCLUDE_ALL_CursorWindow")
-#ifdef RESTRICT_CursorWindow
-#define INCLUDE_ALL_CursorWindow 0
-#else
-#define INCLUDE_ALL_CursorWindow 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CursorWindow
 
-#if !defined (ComYahooAndroidSqliteCursorWindow_) && (INCLUDE_ALL_CursorWindow || defined(INCLUDE_ComYahooAndroidSqliteCursorWindow))
-#define ComYahooAndroidSqliteCursorWindow_
-
-#define RESTRICT_SQLiteClosable 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteClosable 1
+#include "J2ObjC_header.h"
 #include "SQLiteClosable.h"
 
 @class IOSByteArray;
@@ -29,9 +24,9 @@
 
 #pragma mark Public
 
-- (instancetype)initWithBoolean:(jboolean)localWindow;
+- (instancetype __nonnull)initWithBoolean:(jboolean)localWindow;
 
-- (instancetype)initWithNSString:(NSString *)name;
+- (instancetype __nonnull)initWithNSString:(NSString *)name;
 
 - (jboolean)allocRow OBJC_METHOD_FAMILY_NONE;
 
@@ -117,7 +112,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -139,6 +134,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteCursorWindow *create_ComYahooAndroidSqlit
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteCursorWindow)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CursorWindow")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CursorWindow_H

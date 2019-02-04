@@ -3,37 +3,30 @@
 //  source: ./build/j2objc/java/Logger.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_Logger")
-#ifdef RESTRICT_Logger
-#define INCLUDE_ALL_Logger 0
-#else
-#define INCLUDE_ALL_Logger 1
-#endif
-#undef RESTRICT_Logger
-#ifdef INCLUDE_ComYahooSquidbUtilityLogger_DefaultLogger
-#define INCLUDE_ComYahooSquidbUtilityLogger 1
-#endif
+#ifndef Logger_H
+#define Logger_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbUtilityLogger_) && (INCLUDE_ALL_Logger || defined(INCLUDE_ComYahooSquidbUtilityLogger))
-#define ComYahooSquidbUtilityLogger_
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
 
 @class ComYahooSquidbUtilityLogger_Level;
+@class IOSObjectArray;
 @class JavaLangThrowable;
 
 @interface ComYahooSquidbUtilityLogger : NSObject
+@property (readonly, copy, class) NSString *LOG_TAG NS_SWIFT_NAME(LOG_TAG);
 
 + (NSString *)LOG_TAG;
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (void)dWithNSString:(NSString *)tag
          withNSString:(NSString *)message;
@@ -121,17 +114,6 @@ FOUNDATION_EXPORT void ComYahooSquidbUtilityLogger_wtfWithNSString_withNSString_
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilityLogger)
 
-#endif
-
-#if !defined (ComYahooSquidbUtilityLogger_Level_) && (INCLUDE_ALL_Logger || defined(INCLUDE_ComYahooSquidbUtilityLogger_Level))
-#define ComYahooSquidbUtilityLogger_Level_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
-#include "java/lang/Enum.h"
-
-@class IOSObjectArray;
-
 typedef NS_ENUM(NSUInteger, ComYahooSquidbUtilityLogger_Level_Enum) {
   ComYahooSquidbUtilityLogger_Level_Enum_ASSERT = 0,
   ComYahooSquidbUtilityLogger_Level_Enum_ERROR = 1,
@@ -142,6 +124,11 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbUtilityLogger_Level_Enum) {
 
 @interface ComYahooSquidbUtilityLogger_Level : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbUtilityLogger_Level *ASSERT NS_SWIFT_NAME(ASSERT);
+@property (readonly, class, nonnull) ComYahooSquidbUtilityLogger_Level *ERROR NS_SWIFT_NAME(ERROR);
+@property (readonly, class, nonnull) ComYahooSquidbUtilityLogger_Level *WARN NS_SWIFT_NAME(WARN);
+@property (readonly, class, nonnull) ComYahooSquidbUtilityLogger_Level *DEBUG_ NS_SWIFT_NAME(DEBUG_);
+@property (readonly, class, nonnull) ComYahooSquidbUtilityLogger_Level *INFO NS_SWIFT_NAME(INFO);
 + (ComYahooSquidbUtilityLogger_Level * __nonnull)ASSERT;
 
 + (ComYahooSquidbUtilityLogger_Level * __nonnull)ERROR;
@@ -192,19 +179,11 @@ FOUNDATION_EXPORT ComYahooSquidbUtilityLogger_Level *ComYahooSquidbUtilityLogger
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilityLogger_Level)
 
-#endif
-
-#if !defined (ComYahooSquidbUtilityLogger_DefaultLogger_) && (INCLUDE_ALL_Logger || defined(INCLUDE_ComYahooSquidbUtilityLogger_DefaultLogger))
-#define ComYahooSquidbUtilityLogger_DefaultLogger_
-
-@class ComYahooSquidbUtilityLogger_Level;
-@class JavaLangThrowable;
-
 @interface ComYahooSquidbUtilityLogger_DefaultLogger : ComYahooSquidbUtilityLogger
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)logWithComYahooSquidbUtilityLogger_Level:(ComYahooSquidbUtilityLogger_Level *)level
                                     withNSString:(NSString *)tag
@@ -223,10 +202,8 @@ FOUNDATION_EXPORT ComYahooSquidbUtilityLogger_DefaultLogger *create_ComYahooSqui
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilityLogger_DefaultLogger)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_Logger")
+#endif // Logger_H

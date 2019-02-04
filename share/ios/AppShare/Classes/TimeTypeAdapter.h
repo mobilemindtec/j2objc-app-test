@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/TimeTypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TimeTypeAdapter_H
+#define TimeTypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_TimeTypeAdapter")
-#ifdef RESTRICT_TimeTypeAdapter
-#define INCLUDE_ALL_TimeTypeAdapter 0
-#else
-#define INCLUDE_ALL_TimeTypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TimeTypeAdapter
 
-#if !defined (GsonTimeTypeAdapter_) && (INCLUDE_ALL_TimeTypeAdapter || defined(INCLUDE_GsonTimeTypeAdapter))
-#define GsonTimeTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonJsonElement;
@@ -28,12 +23,13 @@
 @protocol GsonTypeAdapterFactory;
 
 @interface GsonTimeTypeAdapter : GsonTypeAdapter
+@property (readonly, class) id<GsonTypeAdapterFactory> FACTORY NS_SWIFT_NAME(FACTORY);
 
 + (id<GsonTypeAdapterFactory>)FACTORY;
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (JavaSqlTime *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
@@ -65,6 +61,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTimeTypeAdapter)
 
 @compatibility_alias ComGoogleGsonInternalBindTimeTypeAdapter GsonTimeTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TimeTypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TimeTypeAdapter_H

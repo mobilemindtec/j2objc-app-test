@@ -3,35 +3,30 @@
 //  source: ./build/j2objc/java/CursorIndexOutOfBoundsException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CursorIndexOutOfBoundsException_H
+#define CursorIndexOutOfBoundsException_H
 
-#pragma push_macro("INCLUDE_ALL_CursorIndexOutOfBoundsException")
-#ifdef RESTRICT_CursorIndexOutOfBoundsException
-#define INCLUDE_ALL_CursorIndexOutOfBoundsException 0
-#else
-#define INCLUDE_ALL_CursorIndexOutOfBoundsException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CursorIndexOutOfBoundsException
 
-#if !defined (ComYahooAndroidSqliteCursorIndexOutOfBoundsException_) && (INCLUDE_ALL_CursorIndexOutOfBoundsException || defined(INCLUDE_ComYahooAndroidSqliteCursorIndexOutOfBoundsException))
-#define ComYahooAndroidSqliteCursorIndexOutOfBoundsException_
-
-#define RESTRICT_JavaLangIndexOutOfBoundsException 1
-#define INCLUDE_JavaLangIndexOutOfBoundsException 1
+#include "J2ObjC_header.h"
 #include "java/lang/IndexOutOfBoundsException.h"
 
 @interface ComYahooAndroidSqliteCursorIndexOutOfBoundsException : JavaLangIndexOutOfBoundsException
 
 #pragma mark Public
 
-- (instancetype)initWithInt:(jint)index
-                    withInt:(jint)size;
+- (instancetype __nonnull)initWithInt:(jint)index
+                              withInt:(jint)size;
 
-- (instancetype)initWithNSString:(NSString *)message;
+- (instancetype __nonnull)initWithNSString:(NSString *)message;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -51,6 +46,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteCursorIndexOutOfBoundsException *create_C
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteCursorIndexOutOfBoundsException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CursorIndexOutOfBoundsException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CursorIndexOutOfBoundsException_H

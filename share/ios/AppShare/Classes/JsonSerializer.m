@@ -18,6 +18,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(serializeWithId:withJavaLangReflectType:withGsonJsonSerializationContext:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "serialize", "LNSObject;LJavaLangReflectType;LGsonJsonSerializationContext;", "(TT;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;", "<T:Ljava/lang/Object;>Ljava/lang/Object;" };
@@ -28,3 +29,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonJsonSerializer)
+
+J2OBJC_NAME_MAPPING(GsonJsonSerializer, "com.google.gson", "Gson")

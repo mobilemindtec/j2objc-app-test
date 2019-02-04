@@ -3,26 +3,16 @@
 //  source: ./build/j2objc/java/JsonToken.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_JsonToken")
-#ifdef RESTRICT_JsonToken
-#define INCLUDE_ALL_JsonToken 0
-#else
-#define INCLUDE_ALL_JsonToken 1
-#endif
-#undef RESTRICT_JsonToken
+#ifndef JsonToken_H
+#define JsonToken_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (GsonJsonToken_) && (INCLUDE_ALL_JsonToken || defined(INCLUDE_GsonJsonToken))
-#define GsonJsonToken_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
+#include "J2ObjC_header.h"
 #include "java/lang/Enum.h"
 
 @class IOSObjectArray;
@@ -42,6 +32,16 @@ typedef NS_ENUM(NSUInteger, GsonJsonToken_Enum) {
 
 @interface GsonJsonToken : JavaLangEnum
 
+@property (readonly, class, nonnull) GsonJsonToken *BEGIN_ARRAY NS_SWIFT_NAME(BEGIN_ARRAY);
+@property (readonly, class, nonnull) GsonJsonToken *END_ARRAY NS_SWIFT_NAME(END_ARRAY);
+@property (readonly, class, nonnull) GsonJsonToken *BEGIN_OBJECT NS_SWIFT_NAME(BEGIN_OBJECT);
+@property (readonly, class, nonnull) GsonJsonToken *END_OBJECT NS_SWIFT_NAME(END_OBJECT);
+@property (readonly, class, nonnull) GsonJsonToken *NAME NS_SWIFT_NAME(NAME);
+@property (readonly, class, nonnull) GsonJsonToken *STRING NS_SWIFT_NAME(STRING);
+@property (readonly, class, nonnull) GsonJsonToken *NUMBER NS_SWIFT_NAME(NUMBER);
+@property (readonly, class, nonnull) GsonJsonToken *BOOLEAN NS_SWIFT_NAME(BOOLEAN);
+@property (readonly, class, nonnull) GsonJsonToken *NULL_ NS_SWIFT_NAME(NULL_);
+@property (readonly, class, nonnull) GsonJsonToken *END_DOCUMENT NS_SWIFT_NAME(END_DOCUMENT);
 + (GsonJsonToken * __nonnull)BEGIN_ARRAY;
 
 + (GsonJsonToken * __nonnull)END_ARRAY;
@@ -119,10 +119,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonToken)
 
 @compatibility_alias ComGoogleGsonStreamJsonToken GsonJsonToken;
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_JsonToken")
+#endif // JsonToken_H

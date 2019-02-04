@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonAdapter_H
+#define JsonAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_JsonAdapter")
-#ifdef RESTRICT_JsonAdapter
-#define INCLUDE_ALL_JsonAdapter 0
-#else
-#define INCLUDE_ALL_JsonAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonAdapter
 
-#if !defined (GsonJsonAdapter_) && (INCLUDE_ALL_JsonAdapter || defined(INCLUDE_GsonJsonAdapter))
-#define GsonJsonAdapter_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
 @class IOSClass;
@@ -26,6 +21,10 @@
 
 @property (readonly) IOSClass *value;
 @property (readonly) jboolean nullSafe;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
 
 @end
 
@@ -45,6 +44,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonAdapter)
 
 #define ComGoogleGsonAnnotationsJsonAdapter GsonJsonAdapter
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonAdapter_H

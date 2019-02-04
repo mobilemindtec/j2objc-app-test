@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/CompileContext.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CompileContext_H
+#define CompileContext_H
 
-#pragma push_macro("INCLUDE_ALL_CompileContext")
-#ifdef RESTRICT_CompileContext
-#define INCLUDE_ALL_CompileContext 0
-#else
-#define INCLUDE_ALL_CompileContext 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CompileContext
 
-#if !defined (ComYahooSquidbSqlCompileContext_) && (INCLUDE_ALL_CompileContext || defined(INCLUDE_ComYahooSquidbSqlCompileContext))
-#define ComYahooSquidbSqlCompileContext_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbUtilityVersionCode;
 @protocol ComYahooSquidbSqlArgumentResolver;
@@ -40,7 +38,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -50,20 +48,11 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCompileContext *ComYahooSquidbSqlCompileConte
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompileContext)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlCompileContext_Builder_) && (INCLUDE_ALL_CompileContext || defined(INCLUDE_ComYahooSquidbSqlCompileContext_Builder))
-#define ComYahooSquidbSqlCompileContext_Builder_
-
-@class ComYahooSquidbSqlCompileContext;
-@class ComYahooSquidbUtilityVersionCode;
-@protocol ComYahooSquidbSqlArgumentResolver;
-
 @interface ComYahooSquidbSqlCompileContext_Builder : NSObject
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbUtilityVersionCode:(ComYahooSquidbUtilityVersionCode *)versionCode;
+- (instancetype __nonnull)initWithComYahooSquidbUtilityVersionCode:(ComYahooSquidbUtilityVersionCode *)versionCode;
 
 - (ComYahooSquidbSqlCompileContext *)build;
 
@@ -76,7 +65,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompileContext)
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -90,6 +79,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCompileContext_Builder *create_ComYahooSquidb
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompileContext_Builder)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CompileContext")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CompileContext_H

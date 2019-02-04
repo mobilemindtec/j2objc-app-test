@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/GsonBuilder.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef GsonBuilder_H
+#define GsonBuilder_H
 
-#pragma push_macro("INCLUDE_ALL_GsonBuilder")
-#ifdef RESTRICT_GsonBuilder
-#define INCLUDE_ALL_GsonBuilder 0
-#else
-#define INCLUDE_ALL_GsonBuilder 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_GsonBuilder
 
-#if !defined (GsonGsonBuilder_) && (INCLUDE_ALL_GsonBuilder || defined(INCLUDE_GsonGsonBuilder))
-#define GsonGsonBuilder_
+#include "J2ObjC_header.h"
 
 @class GsonFieldNamingPolicy;
 @class GsonGson;
@@ -31,7 +29,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonGsonBuilder *)addDeserializationExclusionStrategyWithGsonExclusionStrategy:(id<GsonExclusionStrategy>)strategy;
 
@@ -86,7 +84,7 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonGson:(GsonGson *)gson;
+- (instancetype __nonnull)initWithGsonGson:(GsonGson *)gson;
 
 @end
 
@@ -108,6 +106,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonGsonBuilder)
 
 @compatibility_alias ComGoogleGsonGsonBuilder GsonGsonBuilder;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_GsonBuilder")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // GsonBuilder_H

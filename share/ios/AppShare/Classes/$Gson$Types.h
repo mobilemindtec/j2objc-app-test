@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/$Gson$Types.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef $Gson$Types_H
+#define $Gson$Types_H
 
-#pragma push_macro("INCLUDE_ALL_$Gson$Types")
-#ifdef RESTRICT_$Gson$Types
-#define INCLUDE_ALL_$Gson$Types 0
-#else
-#define INCLUDE_ALL_$Gson$Types 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_$Gson$Types
 
-#if !defined (Gson_Gson_Types_) && (INCLUDE_ALL_$Gson$Types || defined(INCLUDE_Gson_Gson_Types))
-#define Gson_Gson_Types_
+#include "J2ObjC_header.h"
 
 @class IOSClass;
 @class IOSObjectArray;
@@ -25,6 +23,7 @@
 @protocol JavaLangReflectWildcardType;
 
 @interface Gson_Gson_Types : NSObject
+@property (readonly, class) IOSObjectArray *EMPTY_TYPE_ARRAY NS_SWIFT_NAME(EMPTY_TYPE_ARRAY);
 
 + (IOSObjectArray *)EMPTY_TYPE_ARRAY;
 
@@ -131,6 +130,8 @@ J2OBJC_TYPE_LITERAL_HEADER(Gson_Gson_Types)
 
 @compatibility_alias ComGoogleGsonInternal$Gson$Types Gson_Gson_Types;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_$Gson$Types")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // $Gson$Types_H

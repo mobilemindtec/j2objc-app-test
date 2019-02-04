@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ValuesStorage.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ValuesStorage_H
+#define ValuesStorage_H
 
-#pragma push_macro("INCLUDE_ALL_ValuesStorage")
-#ifdef RESTRICT_ValuesStorage
-#define INCLUDE_ALL_ValuesStorage 0
-#else
-#define INCLUDE_ALL_ValuesStorage 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ValuesStorage
 
-#if !defined (ComYahooSquidbDataValuesStorage_) && (INCLUDE_ALL_ValuesStorage || defined(INCLUDE_ComYahooSquidbDataValuesStorage))
-#define ComYahooSquidbDataValuesStorage_
+#include "J2ObjC_header.h"
 
 @class IOSByteArray;
 @class JavaLangBoolean;
@@ -30,7 +28,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (jboolean)containsKeyWithNSString:(NSString *)key;
 
@@ -91,6 +89,8 @@ FOUNDATION_EXPORT void ComYahooSquidbDataValuesStorage_init(ComYahooSquidbDataVa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataValuesStorage)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ValuesStorage")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ValuesStorage_H

@@ -98,6 +98,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonCollectionTypeAdapterFactory_Adapter)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonConstructorConstructor:);
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop
@@ -125,6 +126,8 @@ GsonCollectionTypeAdapterFactory *create_GsonCollectionTypeAdapterFactory_initWi
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonCollectionTypeAdapterFactory)
+
+J2OBJC_NAME_MAPPING(GsonCollectionTypeAdapterFactory, "com.google.gson.internal.bind", "Gson")
 
 @implementation GsonCollectionTypeAdapterFactory_Adapter
 
@@ -172,6 +175,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonCollectionTypeAdapterFactory)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonGson:withJavaLangReflectType:withGsonTypeAdapter:withGsonObjectConstructor:);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);

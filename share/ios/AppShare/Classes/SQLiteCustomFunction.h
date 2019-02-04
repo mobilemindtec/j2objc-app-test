@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteCustomFunction.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteCustomFunction_H
+#define SQLiteCustomFunction_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteCustomFunction")
-#ifdef RESTRICT_SQLiteCustomFunction
-#define INCLUDE_ALL_SQLiteCustomFunction 0
-#else
-#define INCLUDE_ALL_SQLiteCustomFunction 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteCustomFunction
 
-#if !defined (ComYahooAndroidSqliteSQLiteCustomFunction_) && (INCLUDE_ALL_SQLiteCustomFunction || defined(INCLUDE_ComYahooAndroidSqliteSQLiteCustomFunction))
-#define ComYahooAndroidSqliteSQLiteCustomFunction_
+#include "J2ObjC_header.h"
 
 @protocol ComYahooAndroidSqliteSQLiteDatabase_CustomFunction;
 
@@ -27,13 +25,13 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)name
-                         withInt:(jint)numArgs
+- (instancetype __nonnull)initWithNSString:(NSString *)name
+                                   withInt:(jint)numArgs
 withComYahooAndroidSqliteSQLiteDatabase_CustomFunction:(id<ComYahooAndroidSqliteSQLiteDatabase_CustomFunction>)callback;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -50,6 +48,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteCustomFunction *create_ComYahooAndr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteCustomFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteCustomFunction")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteCustomFunction_H

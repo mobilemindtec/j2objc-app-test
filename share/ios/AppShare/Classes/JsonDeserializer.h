@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/JsonDeserializer.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonDeserializer_H
+#define JsonDeserializer_H
 
-#pragma push_macro("INCLUDE_ALL_JsonDeserializer")
-#ifdef RESTRICT_JsonDeserializer
-#define INCLUDE_ALL_JsonDeserializer 0
-#else
-#define INCLUDE_ALL_JsonDeserializer 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonDeserializer
 
-#if !defined (GsonJsonDeserializer_) && (INCLUDE_ALL_JsonDeserializer || defined(INCLUDE_GsonJsonDeserializer))
-#define GsonJsonDeserializer_
+#include "J2ObjC_header.h"
 
 @class GsonJsonElement;
 @protocol GsonJsonDeserializationContext;
@@ -34,6 +32,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonDeserializer)
 
 #define ComGoogleGsonJsonDeserializer GsonJsonDeserializer
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonDeserializer")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonDeserializer_H

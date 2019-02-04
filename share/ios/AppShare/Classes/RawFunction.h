@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/RawFunction.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef RawFunction_H
+#define RawFunction_H
 
-#pragma push_macro("INCLUDE_ALL_RawFunction")
-#ifdef RESTRICT_RawFunction
-#define INCLUDE_ALL_RawFunction 0
-#else
-#define INCLUDE_ALL_RawFunction 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_RawFunction
 
-#if !defined (ComYahooSquidbSqlRawFunction_) && (INCLUDE_ALL_RawFunction || defined(INCLUDE_ComYahooSquidbSqlRawFunction))
-#define ComYahooSquidbSqlRawFunction_
-
-#define RESTRICT_Function 1
-#define INCLUDE_ComYahooSquidbSqlFunction 1
 #include "Function.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -27,7 +22,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)expression;
+- (instancetype __nonnull)initWithNSString:(NSString *)expression;
 
 - (ComYahooSquidbSqlField *)asWithNSString:(NSString *)arg0;
 
@@ -40,7 +35,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -54,6 +49,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlRawFunction *create_ComYahooSquidbSqlRawFunct
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlRawFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_RawFunction")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // RawFunction_H

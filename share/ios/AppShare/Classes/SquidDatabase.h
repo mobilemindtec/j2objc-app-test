@@ -3,18 +3,17 @@
 //  source: ./build/j2objc/java/SquidDatabase.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SquidDatabase_H
+#define SquidDatabase_H
 
-#pragma push_macro("INCLUDE_ALL_SquidDatabase")
-#ifdef RESTRICT_SquidDatabase
-#define INCLUDE_ALL_SquidDatabase 0
-#else
-#define INCLUDE_ALL_SquidDatabase 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SquidDatabase
 
-#if !defined (ComYahooSquidbDataSquidDatabase_) && (INCLUDE_ALL_SquidDatabase || defined(INCLUDE_ComYahooSquidbDataSquidDatabase))
-#define ComYahooSquidbDataSquidDatabase_
+#include "J2ObjC_header.h"
+#include "java/lang/RuntimeException.h"
 
 @class ComYahooSquidbDataAbstractModel;
 @class ComYahooSquidbDataDataChangedNotifier;
@@ -52,7 +51,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (jboolean)areDataChangedNotificationsEnabled;
 
@@ -299,13 +298,6 @@ FOUNDATION_EXPORT void ComYahooSquidbDataSquidDatabase_init(ComYahooSquidbDataSq
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidDatabase)
 
-#endif
-
-#if !defined (ComYahooSquidbDataSquidDatabase_OpenHelperDelegate_) && (INCLUDE_ALL_SquidDatabase || defined(INCLUDE_ComYahooSquidbDataSquidDatabase_OpenHelperDelegate))
-#define ComYahooSquidbDataSquidDatabase_OpenHelperDelegate_
-
-@protocol ComYahooSquidbDataISQLiteDatabase;
-
 @interface ComYahooSquidbDataSquidDatabase_OpenHelperDelegate : NSObject
 
 #pragma mark Public
@@ -326,24 +318,13 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidDatabase)
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbDataSquidDatabase_OpenHelperDelegate)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidDatabase_OpenHelperDelegate)
-
-#endif
-
-#if !defined (ComYahooSquidbDataSquidDatabase_MigrationFailedException_) && (INCLUDE_ALL_SquidDatabase || defined(INCLUDE_ComYahooSquidbDataSquidDatabase_MigrationFailedException))
-#define ComYahooSquidbDataSquidDatabase_MigrationFailedException_
-
-#define RESTRICT_JavaLangRuntimeException 1
-#define INCLUDE_JavaLangRuntimeException 1
-#include "java/lang/RuntimeException.h"
-
-@class JavaLangThrowable;
 
 @interface ComYahooSquidbDataSquidDatabase_MigrationFailedException : JavaLangRuntimeException {
  @public
@@ -354,30 +335,30 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidDatabase_OpenHelperDelegate)
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)dbName
-                         withInt:(jint)oldVersion
-                         withInt:(jint)newVersion;
+- (instancetype __nonnull)initWithNSString:(NSString *)dbName
+                                   withInt:(jint)oldVersion
+                                   withInt:(jint)newVersion;
 
-- (instancetype)initWithNSString:(NSString *)dbName
-                         withInt:(jint)oldVersion
-                         withInt:(jint)newVersion
-           withJavaLangThrowable:(JavaLangThrowable *)throwable;
+- (instancetype __nonnull)initWithNSString:(NSString *)dbName
+                                   withInt:(jint)oldVersion
+                                   withInt:(jint)newVersion
+                     withJavaLangThrowable:(JavaLangThrowable *)throwable;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1
-                     withBoolean:(jboolean)arg2
-                     withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1
+                               withBoolean:(jboolean)arg2
+                               withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -399,6 +380,8 @@ FOUNDATION_EXPORT ComYahooSquidbDataSquidDatabase_MigrationFailedException *crea
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidDatabase_MigrationFailedException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SquidDatabase")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SquidDatabase_H

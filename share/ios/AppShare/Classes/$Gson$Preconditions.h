@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/$Gson$Preconditions.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef $Gson$Preconditions_H
+#define $Gson$Preconditions_H
 
-#pragma push_macro("INCLUDE_ALL_$Gson$Preconditions")
-#ifdef RESTRICT_$Gson$Preconditions
-#define INCLUDE_ALL_$Gson$Preconditions 0
-#else
-#define INCLUDE_ALL_$Gson$Preconditions 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_$Gson$Preconditions
 
-#if !defined (Gson_Gson_Preconditions_) && (INCLUDE_ALL_$Gson$Preconditions || defined(INCLUDE_Gson_Gson_Preconditions))
-#define Gson_Gson_Preconditions_
+#include "J2ObjC_header.h"
 
 @interface Gson_Gson_Preconditions : NSObject
 
@@ -36,6 +34,8 @@ J2OBJC_TYPE_LITERAL_HEADER(Gson_Gson_Preconditions)
 
 @compatibility_alias ComGoogleGsonInternal$Gson$Preconditions Gson_Gson_Preconditions;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_$Gson$Preconditions")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // $Gson$Preconditions_H

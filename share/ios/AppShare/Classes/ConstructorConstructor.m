@@ -374,6 +374,7 @@ __attribute__((unused)) static GsonConstructorConstructor_14 *create_GsonConstru
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaUtilMap:);
   methods[1].selector = @selector(getWithGsonTypeToken:);
   methods[2].selector = @selector(newDefaultConstructorWithIOSClass:);
@@ -463,6 +464,8 @@ id<GsonObjectConstructor> GsonConstructorConstructor_newUnsafeAllocatorWithJavaL
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonConstructorConstructor)
 
+J2OBJC_NAME_MAPPING(GsonConstructorConstructor, "com.google.gson.internal", "Gson")
+
 @implementation GsonConstructorConstructor_1
 
 - (instancetype)initWithGsonInstanceCreator:(id<GsonInstanceCreator>)capture$0
@@ -482,6 +485,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonConstructorConstructor)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonInstanceCreator:withJavaLangReflectType:);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -529,6 +533,7 @@ GsonConstructorConstructor_1 *create_GsonConstructorConstructor_1_initWithGsonIn
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonInstanceCreator:withJavaLangReflectType:);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -587,6 +592,7 @@ GsonConstructorConstructor_2 *create_GsonConstructorConstructor_2_initWithGsonIn
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectConstructor:);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -633,6 +639,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -684,6 +691,7 @@ GsonConstructorConstructor_4 *create_GsonConstructorConstructor_4_init() {
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectType:);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -730,6 +738,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -772,6 +781,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -814,6 +824,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -856,6 +867,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -898,6 +910,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -940,6 +953,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -982,6 +996,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -1024,6 +1039,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop
@@ -1071,6 +1087,7 @@ GsonConstructorConstructor_13 *create_GsonConstructorConstructor_13_init() {
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithIOSClass:withJavaLangReflectType:);
   methods[1].selector = @selector(construct);
   #pragma clang diagnostic pop

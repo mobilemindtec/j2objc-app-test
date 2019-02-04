@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonTreeReader.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonTreeReader_H
+#define JsonTreeReader_H
 
-#pragma push_macro("INCLUDE_ALL_JsonTreeReader")
-#ifdef RESTRICT_JsonTreeReader
-#define INCLUDE_ALL_JsonTreeReader 0
-#else
-#define INCLUDE_ALL_JsonTreeReader 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonTreeReader
 
-#if !defined (GsonJsonTreeReader_) && (INCLUDE_ALL_JsonTreeReader || defined(INCLUDE_GsonJsonTreeReader))
-#define GsonJsonTreeReader_
-
-#define RESTRICT_JsonReader 1
-#define INCLUDE_GsonJsonReader 1
+#include "J2ObjC_header.h"
 #include "JsonReader.h"
 
 @class GsonJsonElement;
@@ -28,7 +23,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithGsonJsonElement:(GsonJsonElement *)element;
+- (instancetype __nonnull)initWithGsonJsonElement:(GsonJsonElement *)element;
 
 - (void)beginArray;
 
@@ -68,7 +63,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithJavaIoReader:(JavaIoReader *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaIoReader:(JavaIoReader *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -84,6 +79,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonTreeReader)
 
 @compatibility_alias ComGoogleGsonInternalBindJsonTreeReader GsonJsonTreeReader;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonTreeReader")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonTreeReader_H

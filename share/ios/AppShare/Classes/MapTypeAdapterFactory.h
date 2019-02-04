@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/MapTypeAdapterFactory.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef MapTypeAdapterFactory_H
+#define MapTypeAdapterFactory_H
 
-#pragma push_macro("INCLUDE_ALL_MapTypeAdapterFactory")
-#ifdef RESTRICT_MapTypeAdapterFactory
-#define INCLUDE_ALL_MapTypeAdapterFactory 0
-#else
-#define INCLUDE_ALL_MapTypeAdapterFactory 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_MapTypeAdapterFactory
 
-#if !defined (GsonMapTypeAdapterFactory_) && (INCLUDE_ALL_MapTypeAdapterFactory || defined(INCLUDE_GsonMapTypeAdapterFactory))
-#define GsonMapTypeAdapterFactory_
-
-#define RESTRICT_TypeAdapterFactory 1
-#define INCLUDE_GsonTypeAdapterFactory 1
+#include "J2ObjC_header.h"
 #include "TypeAdapterFactory.h"
 
 @class GsonConstructorConstructor;
@@ -32,15 +27,15 @@
 
 #pragma mark Public
 
-- (instancetype)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
-                                       withBoolean:(jboolean)complexMapKeySerialization;
+- (instancetype __nonnull)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
+                                                 withBoolean:(jboolean)complexMapKeySerialization;
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)typeToken;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -56,6 +51,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonMapTypeAdapterFactory)
 
 @compatibility_alias ComGoogleGsonInternalBindMapTypeAdapterFactory GsonMapTypeAdapterFactory;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_MapTypeAdapterFactory")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // MapTypeAdapterFactory_H

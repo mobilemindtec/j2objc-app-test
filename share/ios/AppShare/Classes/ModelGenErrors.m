@@ -3,18 +3,30 @@
 //  source: ./build/j2objc/java/ModelGenErrors.java
 //
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "ModelGenErrors.h"
 
-@interface ComYahooSquidbAnnotationsModelGenErrors : NSObject
-
-@end
-
-@interface ComYahooSquidbAnnotationsModelGenErrors_ModelGenError : NSObject
-
-@end
-
 @implementation ComYahooSquidbAnnotationsModelGenErrors
+
+@synthesize value = value_;
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsModelGenErrors_class_();
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"@com.yahoo.squidb.annotations.ModelGenErrors(value=%@)", value_];
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
@@ -22,18 +34,52 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(value);
   #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "value_", "[LComYahooSquidbAnnotationsModelGenErrors_ModelGenError;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+  };
   static const void *ptrTable[] = { "LComYahooSquidbAnnotationsModelGenErrors_ModelGenError;" };
-  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsModelGenErrors = { "ModelGenErrors", "com.yahoo.squidb.annotations", ptrTable, methods, NULL, 7, 0x2609, 1, 0, -1, 0, -1, -1, -1 };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsModelGenErrors = { "ModelGenErrors", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 1, 1, -1, 0, -1, -1, -1 };
   return &_ComYahooSquidbAnnotationsModelGenErrors;
 }
 
 @end
 
+id<ComYahooSquidbAnnotationsModelGenErrors> create_ComYahooSquidbAnnotationsModelGenErrors(IOSObjectArray *value) {
+  ComYahooSquidbAnnotationsModelGenErrors *self = AUTORELEASE([[ComYahooSquidbAnnotationsModelGenErrors alloc] init]);
+  self->value_ = RETAIN_(value);
+  return self;
+}
+
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsModelGenErrors)
 
 @implementation ComYahooSquidbAnnotationsModelGenErrors_ModelGenError
+
+@synthesize specClass = specClass_;
+@synthesize element = element_;
+@synthesize message = message_;
+
++ (NSString *)elementDefault {
+  return @"";
+}
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsModelGenErrors_ModelGenError_class_();
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"@com.yahoo.squidb.annotations.ModelGenErrors$ModelGenError(specClass=%@, element=%@, message=%@)", specClass_, element_, message_];
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
@@ -43,15 +89,29 @@ J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsModelGenErrors)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(specClass);
   methods[1].selector = @selector(element);
   methods[2].selector = @selector(message);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "LComYahooSquidbAnnotationsModelGenErrors;" };
-  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsModelGenErrors_ModelGenError = { "ModelGenError", "com.yahoo.squidb.annotations", ptrTable, methods, NULL, 7, 0x2609, 3, 0, 0, -1, -1, -1, -1 };
+  static const J2ObjcFieldInfo fields[] = {
+    { "specClass_", "LIOSClass;", .constantValue.asLong = 0, 0x1000, -1, -1, 0, -1 },
+    { "element_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "message_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "Ljava/lang/Class<*>;", "LComYahooSquidbAnnotationsModelGenErrors;" };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsModelGenErrors_ModelGenError = { "ModelGenError", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 3, 3, 1, -1, -1, -1, -1 };
   return &_ComYahooSquidbAnnotationsModelGenErrors_ModelGenError;
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsModelGenErrors_ModelGenError> create_ComYahooSquidbAnnotationsModelGenErrors_ModelGenError(NSString *element, NSString *message, IOSClass *specClass) {
+  ComYahooSquidbAnnotationsModelGenErrors_ModelGenError *self = AUTORELEASE([[ComYahooSquidbAnnotationsModelGenErrors_ModelGenError alloc] init]);
+  self->element_ = RETAIN_(element);
+  self->message_ = RETAIN_(message);
+  self->specClass_ = RETAIN_(specClass);
+  return self;
+}
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsModelGenErrors_ModelGenError)

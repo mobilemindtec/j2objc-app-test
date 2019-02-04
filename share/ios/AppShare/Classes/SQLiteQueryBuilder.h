@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteQueryBuilder.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteQueryBuilder_H
+#define SQLiteQueryBuilder_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteQueryBuilder")
-#ifdef RESTRICT_SQLiteQueryBuilder
-#define INCLUDE_ALL_SQLiteQueryBuilder 0
-#else
-#define INCLUDE_ALL_SQLiteQueryBuilder 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteQueryBuilder
 
-#if !defined (ComYahooAndroidSqliteSQLiteQueryBuilder_) && (INCLUDE_ALL_SQLiteQueryBuilder || defined(INCLUDE_ComYahooAndroidSqliteSQLiteQueryBuilder))
-#define ComYahooAndroidSqliteSQLiteQueryBuilder_
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
 @class IOSObjectArray;
@@ -29,7 +27,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (void)appendColumnsWithJavaLangStringBuilder:(JavaLangStringBuilder *)s
                              withNSStringArray:(IOSObjectArray *)columns;
@@ -130,6 +128,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteSQLiteQueryBuilder_appendColumnsWith
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteQueryBuilder)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteQueryBuilder")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteQueryBuilder_H

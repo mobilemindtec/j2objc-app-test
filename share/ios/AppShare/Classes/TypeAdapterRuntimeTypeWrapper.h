@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/TypeAdapterRuntimeTypeWrapper.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TypeAdapterRuntimeTypeWrapper_H
+#define TypeAdapterRuntimeTypeWrapper_H
 
-#pragma push_macro("INCLUDE_ALL_TypeAdapterRuntimeTypeWrapper")
-#ifdef RESTRICT_TypeAdapterRuntimeTypeWrapper
-#define INCLUDE_ALL_TypeAdapterRuntimeTypeWrapper 0
-#else
-#define INCLUDE_ALL_TypeAdapterRuntimeTypeWrapper 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TypeAdapterRuntimeTypeWrapper
 
-#if !defined (GsonTypeAdapterRuntimeTypeWrapper_) && (INCLUDE_ALL_TypeAdapterRuntimeTypeWrapper || defined(INCLUDE_GsonTypeAdapterRuntimeTypeWrapper))
-#define GsonTypeAdapterRuntimeTypeWrapper_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonGson;
@@ -36,13 +31,13 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonGson:(GsonGson *)context
-             withGsonTypeAdapter:(GsonTypeAdapter *)delegate
-         withJavaLangReflectType:(id<JavaLangReflectType>)type;
+- (instancetype __nonnull)initWithGsonGson:(GsonGson *)context
+                       withGsonTypeAdapter:(GsonTypeAdapter *)delegate
+                   withJavaLangReflectType:(id<JavaLangReflectType>)type;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -58,6 +53,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTypeAdapterRuntimeTypeWrapper)
 
 @compatibility_alias ComGoogleGsonInternalBindTypeAdapterRuntimeTypeWrapper GsonTypeAdapterRuntimeTypeWrapper;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TypeAdapterRuntimeTypeWrapper")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TypeAdapterRuntimeTypeWrapper_H

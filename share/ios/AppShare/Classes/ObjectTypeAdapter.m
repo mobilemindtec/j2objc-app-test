@@ -122,6 +122,7 @@ id<GsonTypeAdapterFactory> GsonObjectTypeAdapter_FACTORY;
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonGson:);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -159,6 +160,8 @@ GsonObjectTypeAdapter *create_GsonObjectTypeAdapter_initWithGsonGson_(GsonGson *
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonObjectTypeAdapter)
 
+J2OBJC_NAME_MAPPING(GsonObjectTypeAdapter, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonObjectTypeAdapter_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -183,6 +186,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop

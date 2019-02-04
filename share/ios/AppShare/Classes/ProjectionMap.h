@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ProjectionMap.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ProjectionMap_H
+#define ProjectionMap_H
 
-#pragma push_macro("INCLUDE_ALL_ProjectionMap")
-#ifdef RESTRICT_ProjectionMap
-#define INCLUDE_ALL_ProjectionMap 0
-#else
-#define INCLUDE_ALL_ProjectionMap 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ProjectionMap
 
-#if !defined (ComYahooSquidbUtilityProjectionMap_) && (INCLUDE_ALL_ProjectionMap || defined(INCLUDE_ComYahooSquidbUtilityProjectionMap))
-#define ComYahooSquidbUtilityProjectionMap_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class IOSObjectArray;
@@ -24,9 +22,9 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithComYahooSquidbUtilityProjectionMap:(ComYahooSquidbUtilityProjectionMap *)other;
+- (instancetype __nonnull)initWithComYahooSquidbUtilityProjectionMap:(ComYahooSquidbUtilityProjectionMap *)other;
 
 - (ComYahooSquidbSqlField *)getWithNSString:(NSString *)key;
 
@@ -61,6 +59,8 @@ FOUNDATION_EXPORT ComYahooSquidbUtilityProjectionMap *create_ComYahooSquidbUtili
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilityProjectionMap)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ProjectionMap")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ProjectionMap_H

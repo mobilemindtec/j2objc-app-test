@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/DatabaseUtils.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DatabaseUtils_H
+#define DatabaseUtils_H
 
-#pragma push_macro("INCLUDE_ALL_DatabaseUtils")
-#ifdef RESTRICT_DatabaseUtils
-#define INCLUDE_ALL_DatabaseUtils 0
-#else
-#define INCLUDE_ALL_DatabaseUtils 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DatabaseUtils
 
-#if !defined (ComYahooAndroidSqliteDatabaseUtils_) && (INCLUDE_ALL_DatabaseUtils || defined(INCLUDE_ComYahooAndroidSqliteDatabaseUtils))
-#define ComYahooAndroidSqliteDatabaseUtils_
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteCursorWindow;
 @class ComYahooAndroidSqliteSQLiteDatabase;
@@ -25,6 +23,16 @@
 @protocol ComYahooSquidbDataICursor;
 
 @interface ComYahooAndroidSqliteDatabaseUtils : NSObject
+@property (readonly, class) jint STATEMENT_SELECT NS_SWIFT_NAME(STATEMENT_SELECT);
+@property (readonly, class) jint STATEMENT_UPDATE NS_SWIFT_NAME(STATEMENT_UPDATE);
+@property (readonly, class) jint STATEMENT_ATTACH NS_SWIFT_NAME(STATEMENT_ATTACH);
+@property (readonly, class) jint STATEMENT_BEGIN NS_SWIFT_NAME(STATEMENT_BEGIN);
+@property (readonly, class) jint STATEMENT_COMMIT NS_SWIFT_NAME(STATEMENT_COMMIT);
+@property (readonly, class) jint STATEMENT_ABORT NS_SWIFT_NAME(STATEMENT_ABORT);
+@property (readonly, class) jint STATEMENT_PRAGMA NS_SWIFT_NAME(STATEMENT_PRAGMA);
+@property (readonly, class) jint STATEMENT_DDL NS_SWIFT_NAME(STATEMENT_DDL);
+@property (readonly, class) jint STATEMENT_UNPREPARED NS_SWIFT_NAME(STATEMENT_UNPREPARED);
+@property (readonly, class) jint STATEMENT_OTHER NS_SWIFT_NAME(STATEMENT_OTHER);
 
 + (jint)STATEMENT_SELECT;
 
@@ -48,7 +56,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (void)appendEscapedSQLStringWithJavaLangStringBuilder:(JavaLangStringBuilder *)sb
                                            withNSString:(NSString *)sqlString;
@@ -147,6 +155,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteDatabaseUtils_bindObjectToProgramWit
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteDatabaseUtils)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DatabaseUtils")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DatabaseUtils_H

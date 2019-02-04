@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteDiskIOException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteDiskIOException_H
+#define SQLiteDiskIOException_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteDiskIOException")
-#ifdef RESTRICT_SQLiteDiskIOException
-#define INCLUDE_ALL_SQLiteDiskIOException 0
-#else
-#define INCLUDE_ALL_SQLiteDiskIOException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteDiskIOException
 
-#if !defined (ComYahooAndroidSqliteSQLiteDiskIOException_) && (INCLUDE_ALL_SQLiteDiskIOException || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDiskIOException))
-#define ComYahooAndroidSqliteSQLiteDiskIOException_
-
-#define RESTRICT_SQLiteException 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteException 1
+#include "J2ObjC_header.h"
 #include "SQLiteException.h"
 
 @class JavaLangThrowable;
@@ -26,14 +21,14 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)error;
+- (instancetype __nonnull)initWithNSString:(NSString *)error;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -53,6 +48,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteDiskIOException *create_ComYahooAnd
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDiskIOException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteDiskIOException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteDiskIOException_H

@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteException_H
+#define SQLiteException_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteException")
-#ifdef RESTRICT_SQLiteException
-#define INCLUDE_ALL_SQLiteException 0
-#else
-#define INCLUDE_ALL_SQLiteException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteException
 
-#if !defined (ComYahooAndroidSqliteSQLiteException_) && (INCLUDE_ALL_SQLiteException || defined(INCLUDE_ComYahooAndroidSqliteSQLiteException))
-#define ComYahooAndroidSqliteSQLiteException_
-
-#define RESTRICT_SQLException 1
-#define INCLUDE_ComYahooAndroidSqliteSQLException 1
+#include "J2ObjC_header.h"
 #include "SQLException.h"
 
 @class JavaLangThrowable;
@@ -26,12 +21,12 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)error;
+- (instancetype __nonnull)initWithNSString:(NSString *)error;
 
-- (instancetype)initWithNSString:(NSString *)error
-           withJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype __nonnull)initWithNSString:(NSString *)error
+                     withJavaLangThrowable:(JavaLangThrowable *)cause;
 
 @end
 
@@ -57,6 +52,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteException *create_ComYahooAndroidSq
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteException_H

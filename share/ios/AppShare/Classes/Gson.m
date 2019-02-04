@@ -677,6 +677,7 @@ withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithGsonExcluder:withGsonFieldNamingStrategy:withJavaUtilMap:withBoolean:withBoolean:withBoolean:withBoolean:withBoolean:withBoolean:withBoolean:withGsonLongSerializationPolicy:withNSString:withInt:withInt:withJavaUtilList:withJavaUtilList:withJavaUtilList:);
   methods[2].selector = @selector(newBuilder);
@@ -906,6 +907,8 @@ void GsonGson_assertFullConsumptionWithId_withGsonJsonReader_(id obj, GsonJsonRe
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonGson)
 
+J2OBJC_NAME_MAPPING(GsonGson, "com.google.gson", "Gson")
+
 @implementation GsonGson_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -942,6 +945,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -1001,6 +1005,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -1058,6 +1063,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -1106,6 +1112,7 @@ GsonGson_3 *create_GsonGson_3_init() {
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonTypeAdapter:);
   methods[1].selector = @selector(writeWithGsonJsonWriter:withId:);
   methods[2].selector = @selector(readWithGsonJsonReader:);
@@ -1173,6 +1180,7 @@ GsonGson_4 *create_GsonGson_4_initWithGsonTypeAdapter_(GsonTypeAdapter *capture$
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonTypeAdapter:);
   methods[1].selector = @selector(writeWithGsonJsonWriter:withId:);
   methods[2].selector = @selector(readWithGsonJsonReader:);
@@ -1240,6 +1248,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(setDelegateWithGsonTypeAdapter:);
   methods[2].selector = @selector(readWithGsonJsonReader:);

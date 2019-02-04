@@ -3,27 +3,17 @@
 //  source: ./build/j2objc/java/CompoundSelect.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_CompoundSelect")
-#ifdef RESTRICT_CompoundSelect
-#define INCLUDE_ALL_CompoundSelect 0
-#else
-#define INCLUDE_ALL_CompoundSelect 1
-#endif
-#undef RESTRICT_CompoundSelect
+#ifndef CompoundSelect_H
+#define CompoundSelect_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlCompoundSelect_) && (INCLUDE_ALL_CompoundSelect || defined(INCLUDE_ComYahooSquidbSqlCompoundSelect))
-#define ComYahooSquidbSqlCompoundSelect_
-
-#define RESTRICT_CompilableWithArguments 1
-#define INCLUDE_ComYahooSquidbSqlCompilableWithArguments 1
 #include "CompilableWithArguments.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlQuery;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -50,7 +40,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -68,10 +58,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCompoundSelect *ComYahooSquidbSqlCompoundSele
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompoundSelect)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_CompoundSelect")
+#endif // CompoundSelect_H

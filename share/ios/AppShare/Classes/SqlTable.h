@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/SqlTable.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SqlTable_H
+#define SqlTable_H
 
-#pragma push_macro("INCLUDE_ALL_SqlTable")
-#ifdef RESTRICT_SqlTable
-#define INCLUDE_ALL_SqlTable 0
-#else
-#define INCLUDE_ALL_SqlTable 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SqlTable
 
-#if !defined (ComYahooSquidbSqlSqlTable_) && (INCLUDE_ALL_SqlTable || defined(INCLUDE_ComYahooSquidbSqlSqlTable))
-#define ComYahooSquidbSqlSqlTable_
-
-#define RESTRICT_DBObject 1
-#define INCLUDE_ComYahooSquidbSqlDBObject 1
 #include "DBObject.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class IOSClass;
@@ -47,14 +42,14 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)expression;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)expression;
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)expression
-                    withNSString:(NSString *)qualifier;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)expression
+                              withNSString:(NSString *)qualifier;
 
 - (IOSObjectArray *)allFields;
 
@@ -74,6 +69,8 @@ FOUNDATION_EXPORT void ComYahooSquidbSqlSqlTable_initWithIOSClass_withComYahooSq
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlSqlTable)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SqlTable")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SqlTable_H

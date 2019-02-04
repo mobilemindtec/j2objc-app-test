@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/Function.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Function_H
+#define Function_H
 
-#pragma push_macro("INCLUDE_ALL_Function")
-#ifdef RESTRICT_Function
-#define INCLUDE_ALL_Function 0
-#else
-#define INCLUDE_ALL_Function 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Function
 
-#if !defined (ComYahooSquidbSqlFunction_) && (INCLUDE_ALL_Function || defined(INCLUDE_ComYahooSquidbSqlFunction))
-#define ComYahooSquidbSqlFunction_
-
-#define RESTRICT_Field 1
-#define INCLUDE_ComYahooSquidbSqlField 1
 #include "Field.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlCaseBuilder;
 @class ComYahooSquidbSqlCompileContext;
@@ -29,6 +24,8 @@
 @class IOSObjectArray;
 
 @interface ComYahooSquidbSqlFunction : ComYahooSquidbSqlField
+@property (readonly, class) ComYahooSquidbSqlFunction *TRUE_ NS_SWIFT_NAME(TRUE_);
+@property (readonly, class) ComYahooSquidbSqlFunction *FALSE_ NS_SWIFT_NAME(FALSE_);
 
 + (ComYahooSquidbSqlFunction *)TRUE_;
 
@@ -36,7 +33,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (ComYahooSquidbSqlFunction *)absWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)field;
 
@@ -128,7 +125,7 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithNSString:(NSString *)expression;
+- (instancetype __nonnull)initWithNSString:(NSString *)expression;
 
 - (void)appendFunctionExpressionWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder
                                                     withBoolean:(jboolean)forSqlValidation;
@@ -228,6 +225,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlFunction *ComYahooSquidbSqlFunction_bitwiseOr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Function")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Function_H

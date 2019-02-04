@@ -3,22 +3,21 @@
 //  source: ./build/j2objc/java/JsonReaderInternalAccess.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonReaderInternalAccess_H
+#define JsonReaderInternalAccess_H
 
-#pragma push_macro("INCLUDE_ALL_JsonReaderInternalAccess")
-#ifdef RESTRICT_JsonReaderInternalAccess
-#define INCLUDE_ALL_JsonReaderInternalAccess 0
-#else
-#define INCLUDE_ALL_JsonReaderInternalAccess 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonReaderInternalAccess
 
-#if !defined (GsonJsonReaderInternalAccess_) && (INCLUDE_ALL_JsonReaderInternalAccess || defined(INCLUDE_GsonJsonReaderInternalAccess))
-#define GsonJsonReaderInternalAccess_
+#include "J2ObjC_header.h"
 
 @class GsonJsonReader;
 
 @interface GsonJsonReaderInternalAccess : NSObject
+@property (class) GsonJsonReaderInternalAccess *INSTANCE NS_SWIFT_NAME(INSTANCE);
 
 + (GsonJsonReaderInternalAccess *)INSTANCE;
 
@@ -26,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)promoteNameToValueWithGsonJsonReader:(GsonJsonReader *)reader;
 
@@ -46,6 +45,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonReaderInternalAccess)
 
 @compatibility_alias ComGoogleGsonInternalJsonReaderInternalAccess GsonJsonReaderInternalAccess;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonReaderInternalAccess")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonReaderInternalAccess_H

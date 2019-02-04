@@ -115,6 +115,11 @@ $ cd share
 $ gradle init --type java-library
 ```
 
+Add *User-Defined Settings*
+
+Name: `J2OBJC_HOME`
+Value: `/opt/j2objc` or another path
+
 Set *User Header Search Paths*
 
 `"../../share/ios/AppShare/Classes/"`
@@ -127,26 +132,10 @@ Set *Swift Compiler General* >  *Objective C Bridging Header*
 
 `j2objcApp-Bridging-Header.h`
 
-Set *Framework Search Paths*
-
-`${J2OBJC_HOME}/frameworks $PODS_CONFIGURATION_BUILD_DIR/**`
-
-Set *Library Search Paths*
-
-`${J2OBJC_HOME}/lib`
-
 Set *Header Search Paths:*
 
 `${J2OBJC_HOME}/include`
 
-Add *User-Defined Settings*
-
-Name: `J2OBJC_HOME`
-Value: `/opt/j2objc` or another path
-
-Set *Other Linker Flags*
-
-`$(inherited) -ljre_emul -ljre_zip -l iconv -l z -framework Security`
 
 Change your pod file to this:
 
@@ -160,9 +149,8 @@ target 'YourNewApp' do
   post_install do |installer_representation|
       installer_representation.pods_project.targets.each do |target|
           target.build_configurations.each do |config|
-              config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-              config.build_settings['VALID_ARCHITECTURES'] = 'arm64 armv7 armv7s'
-              config.build_settings['J2OBJC_HOME'] = '/opt/j2objc' # path to J2OBJC install
+            config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
+            config.build_settings['J2OBJC_HOME'] = '/opt/j2objc' # path to J2OBJC install
           end
       end
   end
@@ -173,7 +161,10 @@ end
 So your project already done to make J2OBJC shared pod lib.
 
 
-** Ever you add a new Java class run `gradle assemble` or `./j2objc-compile.sh` in share project. After run `pod install` in
+### Ever you add a new Java class run `gradle assemble` or `./j2objc-compile.sh` in share project. After run `pod install` in
 `j2objc-app-test` to update xcode project with new files.
 
+
 Done. Now you can run android and ios apps.
+
+### Error x86_b4 not found - Check configuration "Build Active Architecture Only", shoud by yes to debug.

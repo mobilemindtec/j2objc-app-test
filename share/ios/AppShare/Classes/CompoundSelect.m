@@ -45,6 +45,10 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlCompoundSelect_CompoundSelectOperat
   NSString *expression_;
 }
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator *UNION NS_SWIFT_NAME(UNION);
+@property (readonly, class, nonnull) ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator *UNION_ALL NS_SWIFT_NAME(UNION_ALL);
+@property (readonly, class, nonnull) ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator *INTERSECT NS_SWIFT_NAME(INTERSECT);
+@property (readonly, class, nonnull) ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator *EXCEPT NS_SWIFT_NAME(EXCEPT);
 - (NSString *)description;
 
 + (IOSObjectArray *)values;
@@ -127,6 +131,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperato
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlCompoundSelect_CompoundSelectOperator:withComYahooSquidbSqlQuery:);
   methods[1].selector = @selector(union__WithComYahooSquidbSqlQuery:);
   methods[2].selector = @selector(unionAllWithComYahooSquidbSqlQuery:);
@@ -227,6 +232,7 @@ ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator *ComYahooSquidbSqlCompoun
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(description);
   methods[1].selector = @selector(values);
   methods[2].selector = @selector(valueOfWithNSString:);
@@ -245,10 +251,10 @@ ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator *ComYahooSquidbSqlCompoun
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator class]) {
-    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, UNION) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"UNION", @"", 0);
-    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, UNION_ALL) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"UNION ALL", @"", 1);
-    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, INTERSECT) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"INTERSECT", @"", 2);
-    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, EXCEPT) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"EXCEPT", @"", 3);
+    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, UNION) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"UNION", JreEnumConstantName(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, UNION_ALL) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"UNION ALL", JreEnumConstantName(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, INTERSECT) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"INTERSECT", JreEnumConstantName(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_class_(), 2), 2);
+    JreEnum(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator, EXCEPT) = new_ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_initWithNSString_withNSString_withInt_(@"EXCEPT", JreEnumConstantName(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator_class_(), 3), 3);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlCompoundSelect_CompoundSelectOperator)
   }
 }

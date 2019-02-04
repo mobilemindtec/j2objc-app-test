@@ -130,6 +130,7 @@ __attribute__((unused)) static IOSObjectArray *ComYahooSquidbSqlSqlBuilder__Anno
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlCompileContext:withBoolean:);
   methods[1].selector = @selector(getSqlString);
   methods[2].selector = @selector(getBoundArguments);

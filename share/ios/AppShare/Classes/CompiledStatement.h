@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/CompiledStatement.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CompiledStatement_H
+#define CompiledStatement_H
 
-#pragma push_macro("INCLUDE_ALL_CompiledStatement")
-#ifdef RESTRICT_CompiledStatement
-#define INCLUDE_ALL_CompiledStatement 0
-#else
-#define INCLUDE_ALL_CompiledStatement 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CompiledStatement
 
-#if !defined (ComYahooSquidbSqlCompiledStatement_) && (INCLUDE_ALL_CompiledStatement || defined(INCLUDE_ComYahooSquidbSqlCompiledStatement))
-#define ComYahooSquidbSqlCompiledStatement_
+#include "J2ObjC_header.h"
 
 @class IOSObjectArray;
 
@@ -27,13 +25,13 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)sql
-               withNSObjectArray:(IOSObjectArray *)args
-                     withBoolean:(jboolean)needsValidation;
+- (instancetype __nonnull)initWithNSString:(NSString *)sql
+                         withNSObjectArray:(IOSObjectArray *)args
+                               withBoolean:(jboolean)needsValidation;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -50,6 +48,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCompiledStatement *create_ComYahooSquidbSqlCo
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompiledStatement)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CompiledStatement")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CompiledStatement_H

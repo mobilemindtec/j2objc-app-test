@@ -123,6 +123,9 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlTrigger_TriggerType_Enum) {
   NSString *name_TriggerType_;
 }
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlTrigger_TriggerType *BEFORE NS_SWIFT_NAME(BEFORE);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTrigger_TriggerType *AFTER NS_SWIFT_NAME(AFTER);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTrigger_TriggerType *INSTEAD NS_SWIFT_NAME(INSTEAD);
 + (IOSObjectArray *)values;
 
 + (ComYahooSquidbSqlTrigger_TriggerType *)valueOfWithNSString:(NSString *)name;
@@ -167,6 +170,9 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlTrigger_TriggerEvent_Enum) {
 
 @interface ComYahooSquidbSqlTrigger_TriggerEvent : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlTrigger_TriggerEvent *DELETE NS_SWIFT_NAME(DELETE);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTrigger_TriggerEvent *INSERT NS_SWIFT_NAME(INSERT);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTrigger_TriggerEvent *UPDATE NS_SWIFT_NAME(UPDATE);
 + (IOSObjectArray *)values;
 
 + (ComYahooSquidbSqlTrigger_TriggerEvent *)valueOfWithNSString:(NSString *)name;
@@ -388,6 +394,7 @@ withComYahooSquidbSqlTrigger_TriggerType:(ComYahooSquidbSqlTrigger_TriggerType *
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withComYahooSquidbSqlTrigger_TriggerType:);
   methods[1].selector = @selector(beforeWithNSString:);
   methods[2].selector = @selector(afterWithNSString:);
@@ -634,6 +641,7 @@ ComYahooSquidbSqlTrigger_TriggerType *ComYahooSquidbSqlTrigger_TriggerType_value
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -650,9 +658,9 @@ ComYahooSquidbSqlTrigger_TriggerType *ComYahooSquidbSqlTrigger_TriggerType_value
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlTrigger_TriggerType class]) {
-    JreEnum(ComYahooSquidbSqlTrigger_TriggerType, BEFORE) = new_ComYahooSquidbSqlTrigger_TriggerType_initWithNSString_withNSString_withInt_(@"BEFORE", @"", 0);
-    JreEnum(ComYahooSquidbSqlTrigger_TriggerType, AFTER) = new_ComYahooSquidbSqlTrigger_TriggerType_initWithNSString_withNSString_withInt_(@"AFTER", @"", 1);
-    JreEnum(ComYahooSquidbSqlTrigger_TriggerType, INSTEAD) = new_ComYahooSquidbSqlTrigger_TriggerType_initWithNSString_withNSString_withInt_(@"INSTEAD OF", @"", 2);
+    JreEnum(ComYahooSquidbSqlTrigger_TriggerType, BEFORE) = new_ComYahooSquidbSqlTrigger_TriggerType_initWithNSString_withNSString_withInt_(@"BEFORE", JreEnumConstantName(ComYahooSquidbSqlTrigger_TriggerType_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlTrigger_TriggerType, AFTER) = new_ComYahooSquidbSqlTrigger_TriggerType_initWithNSString_withNSString_withInt_(@"AFTER", JreEnumConstantName(ComYahooSquidbSqlTrigger_TriggerType_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlTrigger_TriggerType, INSTEAD) = new_ComYahooSquidbSqlTrigger_TriggerType_initWithNSString_withNSString_withInt_(@"INSTEAD OF", JreEnumConstantName(ComYahooSquidbSqlTrigger_TriggerType_class_(), 2), 2);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlTrigger_TriggerType)
   }
 }
@@ -732,6 +740,7 @@ ComYahooSquidbSqlTrigger_TriggerEvent *ComYahooSquidbSqlTrigger_TriggerEvent_val
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -747,9 +756,9 @@ ComYahooSquidbSqlTrigger_TriggerEvent *ComYahooSquidbSqlTrigger_TriggerEvent_val
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlTrigger_TriggerEvent class]) {
-    JreEnum(ComYahooSquidbSqlTrigger_TriggerEvent, DELETE) = new_ComYahooSquidbSqlTrigger_TriggerEvent_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooSquidbSqlTrigger_TriggerEvent, INSERT) = new_ComYahooSquidbSqlTrigger_TriggerEvent_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooSquidbSqlTrigger_TriggerEvent, UPDATE) = new_ComYahooSquidbSqlTrigger_TriggerEvent_initWithNSString_withInt_(@"", 2);
+    JreEnum(ComYahooSquidbSqlTrigger_TriggerEvent, DELETE) = new_ComYahooSquidbSqlTrigger_TriggerEvent_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTrigger_TriggerEvent_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlTrigger_TriggerEvent, INSERT) = new_ComYahooSquidbSqlTrigger_TriggerEvent_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTrigger_TriggerEvent_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlTrigger_TriggerEvent, UPDATE) = new_ComYahooSquidbSqlTrigger_TriggerEvent_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlTrigger_TriggerEvent_class_(), 2), 2);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlTrigger_TriggerEvent)
   }
 }

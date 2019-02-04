@@ -3,31 +3,47 @@
 //  source: ./build/j2objc/java/InheritedModelSpec.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef InheritedModelSpec_H
+#define InheritedModelSpec_H
 
-#pragma push_macro("INCLUDE_ALL_InheritedModelSpec")
-#ifdef RESTRICT_InheritedModelSpec
-#define INCLUDE_ALL_InheritedModelSpec 0
-#else
-#define INCLUDE_ALL_InheritedModelSpec 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_InheritedModelSpec
 
-#if !defined (ComYahooSquidbAnnotationsInheritedModelSpec_) && (INCLUDE_ALL_InheritedModelSpec || defined(INCLUDE_ComYahooSquidbAnnotationsInheritedModelSpec))
-#define ComYahooSquidbAnnotationsInheritedModelSpec_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsInheritedModelSpec < JavaLangAnnotationAnnotation >
+
+@property (readonly) NSString *className__;
+@property (readonly) NSString *inheritsFrom;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsInheritedModelSpec : NSObject < ComYahooSquidbAnnotationsInheritedModelSpec > {
+ @public
+  NSString *className___;
+  NSString *inheritsFrom_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsInheritedModelSpec)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsInheritedModelSpec> create_ComYahooSquidbAnnotationsInheritedModelSpec(NSString *className__, NSString *inheritsFrom);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsInheritedModelSpec)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_InheritedModelSpec")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // InheritedModelSpec_H

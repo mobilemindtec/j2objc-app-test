@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/DateTypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DateTypeAdapter_H
+#define DateTypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_DateTypeAdapter")
-#ifdef RESTRICT_DateTypeAdapter
-#define INCLUDE_ALL_DateTypeAdapter 0
-#else
-#define INCLUDE_ALL_DateTypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DateTypeAdapter
 
-#if !defined (GsonDateTypeAdapter_) && (INCLUDE_ALL_DateTypeAdapter || defined(INCLUDE_GsonDateTypeAdapter))
-#define GsonDateTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonJsonElement;
@@ -28,12 +23,13 @@
 @protocol GsonTypeAdapterFactory;
 
 @interface GsonDateTypeAdapter : GsonTypeAdapter
+@property (readonly, class) id<GsonTypeAdapterFactory> FACTORY NS_SWIFT_NAME(FACTORY);
 
 + (id<GsonTypeAdapterFactory>)FACTORY;
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (JavaUtilDate *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
@@ -65,6 +61,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonDateTypeAdapter)
 
 @compatibility_alias ComGoogleGsonInternalBindDateTypeAdapter GsonDateTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DateTypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DateTypeAdapter_H

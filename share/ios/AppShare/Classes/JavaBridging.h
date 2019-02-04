@@ -3,24 +3,22 @@
 //  source: ./build/j2objc/java/JavaBridging.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JavaBridging_H
+#define JavaBridging_H
 
-#pragma push_macro("INCLUDE_ALL_JavaBridging")
-#ifdef RESTRICT_JavaBridging
-#define INCLUDE_ALL_JavaBridging 0
-#else
-#define INCLUDE_ALL_JavaBridging 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JavaBridging
 
-#if !defined (AppJavaBridging_) && (INCLUDE_ALL_JavaBridging || defined(INCLUDE_AppJavaBridging))
-#define AppJavaBridging_
+#include "J2ObjC_header.h"
 
 @interface AppJavaBridging : NSObject
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -36,6 +34,8 @@ J2OBJC_TYPE_LITERAL_HEADER(AppJavaBridging)
 
 @compatibility_alias BrComMobilemindAppJavaBridging AppJavaBridging;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JavaBridging")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JavaBridging_H

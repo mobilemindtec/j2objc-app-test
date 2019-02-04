@@ -3,28 +3,40 @@
 //  source: ./build/j2objc/java/ColumnSpec.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ColumnSpec_H
+#define ColumnSpec_H
 
-#pragma push_macro("INCLUDE_ALL_ColumnSpec")
-#ifdef RESTRICT_ColumnSpec
-#define INCLUDE_ALL_ColumnSpec 0
-#else
-#define INCLUDE_ALL_ColumnSpec 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ColumnSpec
 
-#if !defined (ComYahooSquidbAnnotationsColumnSpec_) && (INCLUDE_ALL_ColumnSpec || defined(INCLUDE_ComYahooSquidbAnnotationsColumnSpec))
-#define ComYahooSquidbAnnotationsColumnSpec_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
+
+@class IOSClass;
 
 @protocol ComYahooSquidbAnnotationsColumnSpec < JavaLangAnnotationAnnotation >
 
+@property (readonly) NSString *name;
+@property (readonly) NSString *constraints;
+@property (readonly) NSString *defaultValue;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
 @end
 
-@interface ComYahooSquidbAnnotationsColumnSpec : NSObject
+@interface ComYahooSquidbAnnotationsColumnSpec : NSObject < ComYahooSquidbAnnotationsColumnSpec > {
+ @public
+  NSString *name_;
+  NSString *constraints_;
+  NSString *defaultValue_;
+}
+@property (readonly, copy, class) NSString *DEFAULT_NONE NS_SWIFT_NAME(DEFAULT_NONE);
+@property (readonly, copy, class) NSString *DEFAULT_NULL NS_SWIFT_NAME(DEFAULT_NULL);
 
 + (NSString *)DEFAULT_NONE;
 
@@ -44,8 +56,12 @@ inline NSString *ComYahooSquidbAnnotationsColumnSpec_get_DEFAULT_NULL(void);
 FOUNDATION_EXPORT NSString *ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NULL;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(ComYahooSquidbAnnotationsColumnSpec, DEFAULT_NULL, NSString *)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsColumnSpec> create_ComYahooSquidbAnnotationsColumnSpec(NSString *constraints, NSString *defaultValue, NSString *name);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsColumnSpec)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ColumnSpec")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ColumnSpec_H

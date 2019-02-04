@@ -38,6 +38,7 @@ J2OBJC_STATIC_FIELD_CONSTANT(GsonJsonSyntaxException, serialVersionUID, jlong)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:);
   methods[1].selector = @selector(initWithNSString:withJavaLangThrowable:);
   methods[2].selector = @selector(initWithJavaLangThrowable:);
@@ -89,3 +90,5 @@ GsonJsonSyntaxException *create_GsonJsonSyntaxException_initWithJavaLangThrowabl
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonSyntaxException)
+
+J2OBJC_NAME_MAPPING(GsonJsonSyntaxException, "com.google.gson", "Gson")

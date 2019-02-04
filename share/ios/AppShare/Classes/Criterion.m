@@ -186,6 +186,7 @@ __attribute__((unused)) static ComYahooSquidbSqlCriterion_3 *create_ComYahooSqui
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlOperator:);
   methods[1].selector = @selector(and__WithComYahooSquidbSqlCriterion:withComYahooSquidbSqlCriterionArray:);
   methods[2].selector = @selector(and__WithJavaUtilList:);
@@ -285,6 +286,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlCriterion)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlQuery:withComYahooSquidbSqlOperator:);
   methods[1].selector = @selector(populateWithComYahooSquidbSqlSqlBuilder:withBoolean:);
   #pragma clang diagnostic pop
@@ -346,6 +348,7 @@ ComYahooSquidbSqlCriterion_1 *create_ComYahooSquidbSqlCriterion_1_initWithComYah
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withNSStringArray:withComYahooSquidbSqlOperator:);
   methods[1].selector = @selector(populateWithComYahooSquidbSqlSqlBuilder:withBoolean:);
   #pragma clang diagnostic pop
@@ -394,6 +397,7 @@ withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_ {
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithId:withComYahooSquidbSqlOperator:);
   methods[1].selector = @selector(populateWithComYahooSquidbSqlSqlBuilder:withBoolean:);
   #pragma clang diagnostic pop

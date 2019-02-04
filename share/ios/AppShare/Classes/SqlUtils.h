@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SqlUtils.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SqlUtils_H
+#define SqlUtils_H
 
-#pragma push_macro("INCLUDE_ALL_SqlUtils")
-#ifdef RESTRICT_SqlUtils
-#define INCLUDE_ALL_SqlUtils 0
-#else
-#define INCLUDE_ALL_SqlUtils 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SqlUtils
 
-#if !defined (ComYahooSquidbSqlSqlUtils_) && (INCLUDE_ALL_SqlUtils || defined(INCLUDE_ComYahooSquidbSqlSqlUtils))
-#define ComYahooSquidbSqlSqlUtils_
+#include "J2ObjC_header.h"
 
 @class IOSByteArray;
 @class JavaLangStringBuilder;
@@ -70,6 +68,8 @@ FOUNDATION_EXPORT NSString *ComYahooSquidbSqlSqlUtils_escapeLikePatternWithNSStr
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlSqlUtils)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SqlUtils")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SqlUtils_H

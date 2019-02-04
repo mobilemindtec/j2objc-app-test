@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteProgram.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteProgram_H
+#define SQLiteProgram_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteProgram")
-#ifdef RESTRICT_SQLiteProgram
-#define INCLUDE_ALL_SQLiteProgram 0
-#else
-#define INCLUDE_ALL_SQLiteProgram 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteProgram
 
-#if !defined (ComYahooAndroidSqliteSQLiteProgram_) && (INCLUDE_ALL_SQLiteProgram || defined(INCLUDE_ComYahooAndroidSqliteSQLiteProgram))
-#define ComYahooAndroidSqliteSQLiteProgram_
-
-#define RESTRICT_SQLiteClosable 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteClosable 1
+#include "J2ObjC_header.h"
 #include "SQLiteClosable.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
@@ -61,9 +56,9 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
-                                               withNSString:(NSString *)sql
-                                          withNSObjectArray:(IOSObjectArray *)bindArgs;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db
+                                                         withNSString:(NSString *)sql
+                                                    withNSObjectArray:(IOSObjectArray *)bindArgs;
 
 - (IOSObjectArray *)getBindArgs;
 
@@ -81,6 +76,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteSQLiteProgram_initWithComYahooAndroi
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteProgram)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteProgram")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteProgram_H

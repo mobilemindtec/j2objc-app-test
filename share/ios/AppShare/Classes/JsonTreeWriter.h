@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonTreeWriter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonTreeWriter_H
+#define JsonTreeWriter_H
 
-#pragma push_macro("INCLUDE_ALL_JsonTreeWriter")
-#ifdef RESTRICT_JsonTreeWriter
-#define INCLUDE_ALL_JsonTreeWriter 0
-#else
-#define INCLUDE_ALL_JsonTreeWriter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonTreeWriter
 
-#if !defined (GsonJsonTreeWriter_) && (INCLUDE_ALL_JsonTreeWriter || defined(INCLUDE_GsonJsonTreeWriter))
-#define GsonJsonTreeWriter_
-
-#define RESTRICT_JsonWriter 1
-#define INCLUDE_GsonJsonWriter 1
+#include "J2ObjC_header.h"
 #include "JsonWriter.h"
 
 @class GsonJsonElement;
@@ -28,7 +23,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonJsonWriter *)beginArray;
 
@@ -62,7 +57,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithJavaIoWriter:(JavaIoWriter *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaIoWriter:(JavaIoWriter *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -78,6 +73,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonTreeWriter)
 
 @compatibility_alias ComGoogleGsonInternalBindJsonTreeWriter GsonJsonTreeWriter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonTreeWriter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonTreeWriter_H

@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Until.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Until_H
+#define Until_H
 
-#pragma push_macro("INCLUDE_ALL_Until")
-#ifdef RESTRICT_Until
-#define INCLUDE_ALL_Until 0
-#else
-#define INCLUDE_ALL_Until 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Until
 
-#if !defined (GsonUntil_) && (INCLUDE_ALL_Until || defined(INCLUDE_GsonUntil))
-#define GsonUntil_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
 @class IOSClass;
@@ -25,6 +20,10 @@
 @protocol GsonUntil < JavaLangAnnotationAnnotation >
 
 @property (readonly) jdouble value;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
 
 @end
 
@@ -43,6 +42,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonUntil)
 
 #define ComGoogleGsonAnnotationsUntil GsonUntil
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Until")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Until_H

@@ -3,27 +3,17 @@
 //  source: ./build/j2objc/java/Join.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_Join")
-#ifdef RESTRICT_Join
-#define INCLUDE_ALL_Join 0
-#else
-#define INCLUDE_ALL_Join 1
-#endif
-#undef RESTRICT_Join
+#ifndef Join_H
+#define Join_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlJoin_) && (INCLUDE_ALL_Join || defined(INCLUDE_ComYahooSquidbSqlJoin))
-#define ComYahooSquidbSqlJoin_
-
-#define RESTRICT_CompilableWithArguments 1
-#define INCLUDE_ComYahooSquidbSqlCompilableWithArguments 1
 #include "CompilableWithArguments.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlSqlBuilder;
 @class ComYahooSquidbSqlSqlTable;
@@ -61,7 +51,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -83,10 +73,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlJoin *ComYahooSquidbSqlJoin_crossWithComYahoo
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlJoin)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_Join")
+#endif // Join_H

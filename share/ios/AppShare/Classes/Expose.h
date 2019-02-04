@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Expose.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Expose_H
+#define Expose_H
 
-#pragma push_macro("INCLUDE_ALL_Expose")
-#ifdef RESTRICT_Expose
-#define INCLUDE_ALL_Expose 0
-#else
-#define INCLUDE_ALL_Expose 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Expose
 
-#if !defined (GsonExpose_) && (INCLUDE_ALL_Expose || defined(INCLUDE_GsonExpose))
-#define GsonExpose_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
 @class IOSClass;
@@ -26,6 +21,10 @@
 
 @property (readonly) jboolean serialize;
 @property (readonly) jboolean deserialize;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
 
 @end
 
@@ -45,6 +44,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonExpose)
 
 #define ComGoogleGsonAnnotationsExpose GsonExpose
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Expose")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Expose_H

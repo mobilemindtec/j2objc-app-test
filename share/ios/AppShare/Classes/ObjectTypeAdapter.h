@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/ObjectTypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ObjectTypeAdapter_H
+#define ObjectTypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_ObjectTypeAdapter")
-#ifdef RESTRICT_ObjectTypeAdapter
-#define INCLUDE_ALL_ObjectTypeAdapter 0
-#else
-#define INCLUDE_ALL_ObjectTypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ObjectTypeAdapter
 
-#if !defined (GsonObjectTypeAdapter_) && (INCLUDE_ALL_ObjectTypeAdapter || defined(INCLUDE_GsonObjectTypeAdapter))
-#define GsonObjectTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonGson;
@@ -26,6 +21,7 @@
 @protocol GsonTypeAdapterFactory;
 
 @interface GsonObjectTypeAdapter : GsonTypeAdapter
+@property (readonly, class) id<GsonTypeAdapterFactory> FACTORY NS_SWIFT_NAME(FACTORY);
 
 + (id<GsonTypeAdapterFactory>)FACTORY;
 
@@ -38,11 +34,11 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonGson:(GsonGson *)gson;
+- (instancetype __nonnull)initWithGsonGson:(GsonGson *)gson;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -63,6 +59,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonObjectTypeAdapter)
 
 @compatibility_alias ComGoogleGsonInternalBindObjectTypeAdapter GsonObjectTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ObjectTypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ObjectTypeAdapter_H

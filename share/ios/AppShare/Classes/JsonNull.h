@@ -3,30 +3,26 @@
 //  source: ./build/j2objc/java/JsonNull.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonNull_H
+#define JsonNull_H
 
-#pragma push_macro("INCLUDE_ALL_JsonNull")
-#ifdef RESTRICT_JsonNull
-#define INCLUDE_ALL_JsonNull 0
-#else
-#define INCLUDE_ALL_JsonNull 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonNull
 
-#if !defined (GsonJsonNull_) && (INCLUDE_ALL_JsonNull || defined(INCLUDE_GsonJsonNull))
-#define GsonJsonNull_
-
-#define RESTRICT_JsonElement 1
-#define INCLUDE_GsonJsonElement 1
+#include "J2ObjC_header.h"
 #include "JsonElement.h"
 
 @interface GsonJsonNull : GsonJsonElement
+@property (readonly, class) GsonJsonNull *INSTANCE NS_SWIFT_NAME(INSTANCE);
 
 + (GsonJsonNull *)INSTANCE;
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonJsonNull *)deepCopy;
 
@@ -53,6 +49,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonNull)
 
 @compatibility_alias ComGoogleGsonJsonNull GsonJsonNull;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonNull")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonNull_H

@@ -3,26 +3,16 @@
 //  source: ./build/j2objc/java/MathOperator.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_MathOperator")
-#ifdef RESTRICT_MathOperator
-#define INCLUDE_ALL_MathOperator 0
-#else
-#define INCLUDE_ALL_MathOperator 1
-#endif
-#undef RESTRICT_MathOperator
+#ifndef MathOperator_H
+#define MathOperator_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlMathOperator_) && (INCLUDE_ALL_MathOperator || defined(INCLUDE_ComYahooSquidbSqlMathOperator))
-#define ComYahooSquidbSqlMathOperator_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
+#include "J2ObjC_header.h"
 #include "java/lang/Enum.h"
 
 @class IOSObjectArray;
@@ -39,6 +29,13 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlMathOperator_Enum) {
 
 @interface ComYahooSquidbSqlMathOperator : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *PLUS NS_SWIFT_NAME(PLUS);
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *MINUS NS_SWIFT_NAME(MINUS);
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *MULT NS_SWIFT_NAME(MULT);
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *DIVIDE NS_SWIFT_NAME(DIVIDE);
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *MODULO NS_SWIFT_NAME(MODULO);
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *BITWISE_AND NS_SWIFT_NAME(BITWISE_AND);
+@property (readonly, class, nonnull) ComYahooSquidbSqlMathOperator *BITWISE_OR NS_SWIFT_NAME(BITWISE_OR);
 + (ComYahooSquidbSqlMathOperator * __nonnull)PLUS;
 
 + (ComYahooSquidbSqlMathOperator * __nonnull)MINUS;
@@ -101,10 +98,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlMathOperator *ComYahooSquidbSqlMathOperator_f
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlMathOperator)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_MathOperator")
+#endif // MathOperator_H

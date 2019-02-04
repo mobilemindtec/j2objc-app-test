@@ -3,24 +3,18 @@
 //  source: ./build/j2objc/java/SquidCursorFactory.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SquidCursorFactory_H
+#define SquidCursorFactory_H
 
-#pragma push_macro("INCLUDE_ALL_SquidCursorFactory")
-#ifdef RESTRICT_SquidCursorFactory
-#define INCLUDE_ALL_SquidCursorFactory 0
-#else
-#define INCLUDE_ALL_SquidCursorFactory 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SquidCursorFactory
 
-#if !defined (ComYahooSquidbIosSquidCursorFactory_) && (INCLUDE_ALL_SquidCursorFactory || defined(INCLUDE_ComYahooSquidbIosSquidCursorFactory))
-#define ComYahooSquidbIosSquidCursorFactory_
-
-#define RESTRICT_SQLiteDatabase 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteDatabase_CursorFactory 1
+#include "J2ObjC_header.h"
 #include "SQLiteDatabase.h"
 
-@class ComYahooAndroidSqliteSQLiteDatabase;
 @class ComYahooAndroidSqliteSQLiteProgram;
 @class ComYahooAndroidSqliteSQLiteQuery;
 @class IOSObjectArray;
@@ -31,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSObjectArray:(IOSObjectArray *)sqlArgs;
+- (instancetype __nonnull)initWithNSObjectArray:(IOSObjectArray *)sqlArgs;
 
 + (void)bindArgumentsToProgramWithComYahooAndroidSqliteSQLiteProgram:(ComYahooAndroidSqliteSQLiteProgram *)program
                                                    withNSObjectArray:(IOSObjectArray *)sqlArgs;
@@ -43,7 +37,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -59,6 +53,8 @@ FOUNDATION_EXPORT void ComYahooSquidbIosSquidCursorFactory_bindArgumentsToProgra
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbIosSquidCursorFactory)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SquidCursorFactory")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SquidCursorFactory_H

@@ -3,31 +3,18 @@
 //  source: ./build/j2objc/java/FieldNamingPolicy.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_FieldNamingPolicy")
-#ifdef RESTRICT_FieldNamingPolicy
-#define INCLUDE_ALL_FieldNamingPolicy 0
-#else
-#define INCLUDE_ALL_FieldNamingPolicy 1
-#endif
-#undef RESTRICT_FieldNamingPolicy
+#ifndef FieldNamingPolicy_H
+#define FieldNamingPolicy_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (GsonFieldNamingPolicy_) && (INCLUDE_ALL_FieldNamingPolicy || defined(INCLUDE_GsonFieldNamingPolicy))
-#define GsonFieldNamingPolicy_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
-#include "java/lang/Enum.h"
-
-#define RESTRICT_FieldNamingStrategy 1
-#define INCLUDE_GsonFieldNamingStrategy 1
 #include "FieldNamingStrategy.h"
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
 
 @class IOSObjectArray;
 
@@ -41,6 +28,11 @@ typedef NS_ENUM(NSUInteger, GsonFieldNamingPolicy_Enum) {
 
 @interface GsonFieldNamingPolicy : JavaLangEnum < GsonFieldNamingStrategy >
 
+@property (readonly, class, nonnull) GsonFieldNamingPolicy *IDENTITY NS_SWIFT_NAME(IDENTITY);
+@property (readonly, class, nonnull) GsonFieldNamingPolicy *UPPER_CAMEL_CASE NS_SWIFT_NAME(UPPER_CAMEL_CASE);
+@property (readonly, class, nonnull) GsonFieldNamingPolicy *UPPER_CAMEL_CASE_WITH_SPACES NS_SWIFT_NAME(UPPER_CAMEL_CASE_WITH_SPACES);
+@property (readonly, class, nonnull) GsonFieldNamingPolicy *LOWER_CASE_WITH_UNDERSCORES NS_SWIFT_NAME(LOWER_CASE_WITH_UNDERSCORES);
+@property (readonly, class, nonnull) GsonFieldNamingPolicy *LOWER_CASE_WITH_DASHES NS_SWIFT_NAME(LOWER_CASE_WITH_DASHES);
 + (GsonFieldNamingPolicy * __nonnull)IDENTITY;
 
 + (GsonFieldNamingPolicy * __nonnull)UPPER_CAMEL_CASE;
@@ -102,10 +94,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonFieldNamingPolicy)
 
 @compatibility_alias ComGoogleGsonFieldNamingPolicy GsonFieldNamingPolicy;
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_FieldNamingPolicy")
+#endif // FieldNamingPolicy_H

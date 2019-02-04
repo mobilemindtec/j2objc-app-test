@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0FB92B13B3BAB8A382DA6921 /* Pods_j2objcApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966C8B7AFFF9AA18CCE19CFB /* Pods_j2objcApp.framework */; };
+		8C9B3DC021DD597500633621 /* MetroUI_Mac_App_Store.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C9B3DBF21DD597400633621 /* MetroUI_Mac_App_Store.png */; };
 		C187B1561FE8A4C700AAFC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C187B14F1FE8A4C700AAFC9B /* AppDelegate.swift */; };
 		C187B1571FE8A4C700AAFC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C187B1501FE8A4C700AAFC9B /* Assets.xcassets */; };
-		C187B1591FE8A4C700AAFC9B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C187B1521FE8A4C700AAFC9B /* Info.plist */; };
 		C187B15A1FE8A4C700AAFC9B /* j2objcApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C187B1531FE8A4C700AAFC9B /* j2objcApp.xcdatamodeld */; };
 		C187B15B1FE8A4C700AAFC9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C187B1551FE8A4C700AAFC9B /* ViewController.swift */; };
-		C1F7308E1FE97B6200AA1F47 /* MetroUI_Mac_App_Store.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F7308D1FE97B6200AA1F47 /* MetroUI_Mac_App_Store.png */; };
 		C1F730931FE9805900AA1F47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F7308F1FE9805900AA1F47 /* LaunchScreen.storyboard */; };
 		C1F730941FE9805900AA1F47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F730911FE9805900AA1F47 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -21,6 +20,7 @@
 /* Begin PBXFileReference section */
 		0D6768043161A2B90BA76945 /* Pods-j2objcApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-j2objcApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-j2objcApp/Pods-j2objcApp.debug.xcconfig"; sourceTree = "<group>"; };
 		10E0723348A3E4FECA4C0F30 /* Pods-j2objcApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-j2objcApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-j2objcApp/Pods-j2objcApp.release.xcconfig"; sourceTree = "<group>"; };
+		8C9B3DBF21DD597400633621 /* MetroUI_Mac_App_Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MetroUI_Mac_App_Store.png; sourceTree = "<group>"; };
 		966C8B7AFFF9AA18CCE19CFB /* Pods_j2objcApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_j2objcApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C187B14F1FE8A4C700AAFC9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = j2objcApp/AppDelegate.swift; sourceTree = "<group>"; };
 		C187B1501FE8A4C700AAFC9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = j2objcApp/Assets.xcassets; sourceTree = "<group>"; };
@@ -29,7 +29,6 @@
 		C187B1551FE8A4C700AAFC9B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = j2objcApp/ViewController.swift; sourceTree = "<group>"; };
 		C1B61B831FE74E7500524FE4 /* j2objcApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = j2objcApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B61D2E1FE77A5600524FE4 /* j2objcApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "j2objcApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		C1F7308D1FE97B6200AA1F47 /* MetroUI_Mac_App_Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetroUI_Mac_App_Store.png; path = ../../../../../Downloads/MetroUI_Mac_App_Store.png; sourceTree = "<group>"; };
 		C1F730901FE9805900AA1F47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = j2objcApp/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1F730921FE9805900AA1F47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = j2objcApp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,7 +105,7 @@
 		C1F7308C1FE97B4C00AA1F47 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C1F7308D1FE97B6200AA1F47 /* MetroUI_Mac_App_Store.png */,
+				8C9B3DBF21DD597400633621 /* MetroUI_Mac_App_Store.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -141,7 +140,6 @@
 				C1B61B801FE74E7500524FE4 /* Frameworks */,
 				C1B61B811FE74E7500524FE4 /* Resources */,
 				3117DE5F4B6A7A246B2E592B /* [CP] Embed Pods Frameworks */,
-				5A42B91B2BB664658ED57E66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -192,11 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1F7308E1FE97B6200AA1F47 /* MetroUI_Mac_App_Store.png in Resources */,
+				8C9B3DC021DD597500633621 /* MetroUI_Mac_App_Store.png in Resources */,
 				C1F730941FE9805900AA1F47 /* Main.storyboard in Resources */,
 				C1F730931FE9805900AA1F47 /* LaunchScreen.storyboard in Resources */,
 				C187B1571FE8A4C700AAFC9B /* Assets.xcassets in Resources */,
-				C187B1591FE8A4C700AAFC9B /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,21 +220,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-j2objcApp/Pods-j2objcApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A42B91B2BB664658ED57E66 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-j2objcApp/Pods-j2objcApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C0B18793A1AAE90BDC406024 /* [CP] Check Pods Manifest.lock */ = {
@@ -396,32 +378,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QVUFUDQE96;
 				FRAMEWORK_SEARCH_PATHS = (
-					"${J2OBJC_HOME}/frameworks",
 					"$PODS_CONFIGURATION_BUILD_DIR/**",
+					$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManagerSwift,
 				);
 				GIT_REPO_HOME = /Users/ricardobocchi/sources/repository;
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 				INFOPLIST_FILE = j2objcApp/Info.plist;
 				J2OBJC_HOME = /opt/j2objc;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "${J2OBJC_HOME}/lib";
-				NEW_SETTING = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ljre_emul",
-					"-ljre_zip",
-					"-l",
-					iconv,
-					"-l",
-					z,
-					"-framework",
-					Security,
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.mobilemind.j2objcApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "j2objcApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				USER_HEADER_SEARCH_PATHS = "\"../../share/ios/AppShare/Classes/\"";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -434,32 +406,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QVUFUDQE96;
 				FRAMEWORK_SEARCH_PATHS = (
-					"${J2OBJC_HOME}/frameworks",
 					"$PODS_CONFIGURATION_BUILD_DIR/**",
+					$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManagerSwift,
 				);
 				GIT_REPO_HOME = /Users/ricardobocchi/sources/repository;
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 				INFOPLIST_FILE = j2objcApp/Info.plist;
 				J2OBJC_HOME = /opt/j2objc;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "${J2OBJC_HOME}/lib";
-				NEW_SETTING = "";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ljre_emul",
-					"-ljre_zip",
-					"-l",
-					iconv,
-					"-l",
-					z,
-					"-framework",
-					Security,
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.mobilemind.j2objcApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "j2objcApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				USER_HEADER_SEARCH_PATHS = "\"../../share/ios/AppShare/Classes/\"";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

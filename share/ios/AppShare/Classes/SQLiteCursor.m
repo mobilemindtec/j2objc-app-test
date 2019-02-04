@@ -217,6 +217,7 @@ NSString *ComYahooAndroidSqliteSQLiteCursor_TAG = @"SQLiteCursor";
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabase:withComYahooAndroidSqliteSQLiteCursorDriver:withNSString:withComYahooAndroidSqliteSQLiteQuery:);
   methods[1].selector = @selector(initWithComYahooAndroidSqliteSQLiteCursorDriver:withNSString:withComYahooAndroidSqliteSQLiteQuery:);
   methods[2].selector = @selector(getDatabase);

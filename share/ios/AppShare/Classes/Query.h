@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Query.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Query_H
+#define Query_H
 
-#pragma push_macro("INCLUDE_ALL_Query")
-#ifdef RESTRICT_Query
-#define INCLUDE_ALL_Query 0
-#else
-#define INCLUDE_ALL_Query 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Query
 
-#if !defined (ComYahooSquidbSqlQuery_) && (INCLUDE_ALL_Query || defined(INCLUDE_ComYahooSquidbSqlQuery))
-#define ComYahooSquidbSqlQuery_
-
-#define RESTRICT_TableStatement 1
-#define INCLUDE_ComYahooSquidbSqlTableStatement 1
+#include "J2ObjC_header.h"
 #include "TableStatement.h"
 
 @class ComYahooSquidbSqlCriterion;
@@ -32,6 +27,8 @@
 @protocol JavaUtilList;
 
 @interface ComYahooSquidbSqlQuery : ComYahooSquidbSqlTableStatement
+@property (readonly, class) ComYahooSquidbSqlField *NO_LIMIT NS_SWIFT_NAME(NO_LIMIT);
+@property (readonly, class) ComYahooSquidbSqlField *NO_OFFSET NS_SWIFT_NAME(NO_OFFSET);
 
 + (ComYahooSquidbSqlField *)NO_LIMIT;
 
@@ -137,7 +134,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -167,6 +164,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlQuery *ComYahooSquidbSqlQuery_fromViewWithCom
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlQuery)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Query")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Query_H

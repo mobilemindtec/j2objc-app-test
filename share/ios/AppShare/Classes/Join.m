@@ -58,6 +58,9 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlJoin_JoinType_Enum) {
 
 @interface ComYahooSquidbSqlJoin_JoinType : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlJoin_JoinType *INNER NS_SWIFT_NAME(INNER);
+@property (readonly, class, nonnull) ComYahooSquidbSqlJoin_JoinType *LEFT NS_SWIFT_NAME(LEFT);
+@property (readonly, class, nonnull) ComYahooSquidbSqlJoin_JoinType *CROSS NS_SWIFT_NAME(CROSS);
 + (IOSObjectArray *)values;
 
 + (ComYahooSquidbSqlJoin_JoinType *)valueOfWithNSString:(NSString *)name;
@@ -178,6 +181,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlJoin_JoinType)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlSqlTable:withComYahooSquidbSqlJoin_JoinType:withComYahooSquidbSqlCriterionArray:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlSqlTable:withComYahooSquidbSqlJoin_JoinType:withComYahooSquidbSqlPropertyArray:);
   methods[2].selector = @selector(innerWithComYahooSquidbSqlSqlTable:withComYahooSquidbSqlCriterionArray:);
@@ -302,6 +306,7 @@ ComYahooSquidbSqlJoin_JoinType *ComYahooSquidbSqlJoin_JoinType_values_[3];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -317,9 +322,9 @@ ComYahooSquidbSqlJoin_JoinType *ComYahooSquidbSqlJoin_JoinType_values_[3];
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlJoin_JoinType class]) {
-    JreEnum(ComYahooSquidbSqlJoin_JoinType, INNER) = new_ComYahooSquidbSqlJoin_JoinType_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooSquidbSqlJoin_JoinType, LEFT) = new_ComYahooSquidbSqlJoin_JoinType_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooSquidbSqlJoin_JoinType, CROSS) = new_ComYahooSquidbSqlJoin_JoinType_initWithNSString_withInt_(@"", 2);
+    JreEnum(ComYahooSquidbSqlJoin_JoinType, INNER) = new_ComYahooSquidbSqlJoin_JoinType_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlJoin_JoinType_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlJoin_JoinType, LEFT) = new_ComYahooSquidbSqlJoin_JoinType_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlJoin_JoinType_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlJoin_JoinType, CROSS) = new_ComYahooSquidbSqlJoin_JoinType_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlJoin_JoinType_class_(), 2), 2);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlJoin_JoinType)
   }
 }

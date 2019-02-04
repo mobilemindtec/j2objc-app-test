@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/JsonSerializationContext.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonSerializationContext_H
+#define JsonSerializationContext_H
 
-#pragma push_macro("INCLUDE_ALL_JsonSerializationContext")
-#ifdef RESTRICT_JsonSerializationContext
-#define INCLUDE_ALL_JsonSerializationContext 0
-#else
-#define INCLUDE_ALL_JsonSerializationContext 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonSerializationContext
 
-#if !defined (GsonJsonSerializationContext_) && (INCLUDE_ALL_JsonSerializationContext || defined(INCLUDE_GsonJsonSerializationContext))
-#define GsonJsonSerializationContext_
+#include "J2ObjC_header.h"
 
 @class GsonJsonElement;
 @protocol JavaLangReflectType;
@@ -34,6 +32,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonSerializationContext)
 
 #define ComGoogleGsonJsonSerializationContext GsonJsonSerializationContext
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonSerializationContext")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonSerializationContext_H

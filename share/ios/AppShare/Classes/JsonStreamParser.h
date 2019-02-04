@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonStreamParser.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonStreamParser_H
+#define JsonStreamParser_H
 
-#pragma push_macro("INCLUDE_ALL_JsonStreamParser")
-#ifdef RESTRICT_JsonStreamParser
-#define INCLUDE_ALL_JsonStreamParser 0
-#else
-#define INCLUDE_ALL_JsonStreamParser 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonStreamParser
 
-#if !defined (GsonJsonStreamParser_) && (INCLUDE_ALL_JsonStreamParser || defined(INCLUDE_GsonJsonStreamParser))
-#define GsonJsonStreamParser_
-
-#define RESTRICT_JavaUtilIterator 1
-#define INCLUDE_JavaUtilIterator 1
+#include "J2ObjC_header.h"
 #include "java/util/Iterator.h"
 
 @class GsonJsonElement;
@@ -28,9 +23,9 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaIoReader:(JavaIoReader *)reader;
+- (instancetype __nonnull)initWithJavaIoReader:(JavaIoReader *)reader;
 
-- (instancetype)initWithNSString:(NSString *)json;
+- (instancetype __nonnull)initWithNSString:(NSString *)json;
 
 - (jboolean)hasNext;
 
@@ -40,7 +35,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -62,6 +57,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonStreamParser)
 
 @compatibility_alias ComGoogleGsonJsonStreamParser GsonJsonStreamParser;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonStreamParser")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonStreamParser_H

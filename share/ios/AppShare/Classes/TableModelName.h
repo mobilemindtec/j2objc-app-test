@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/TableModelName.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TableModelName_H
+#define TableModelName_H
 
-#pragma push_macro("INCLUDE_ALL_TableModelName")
-#ifdef RESTRICT_TableModelName
-#define INCLUDE_ALL_TableModelName 0
-#else
-#define INCLUDE_ALL_TableModelName 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TableModelName
 
-#if !defined (ComYahooSquidbSqlTableModelName_) && (INCLUDE_ALL_TableModelName || defined(INCLUDE_ComYahooSquidbSqlTableModelName))
-#define ComYahooSquidbSqlTableModelName_
+#include "J2ObjC_header.h"
 
 @class IOSClass;
 
@@ -26,8 +24,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-                    withNSString:(NSString *)tableName;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+                              withNSString:(NSString *)tableName;
 
 - (jboolean)isEqual:(id)o;
 
@@ -35,7 +33,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -52,6 +50,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlTableModelName *create_ComYahooSquidbSqlTable
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlTableModelName)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TableModelName")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TableModelName_H

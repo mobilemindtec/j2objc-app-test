@@ -185,6 +185,7 @@ J2OBJC_FIELD_SETTER(GsonReflectiveTypeAdapterFactory_Adapter, boundFields_, id<J
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonConstructorConstructor:withGsonFieldNamingStrategy:withGsonExcluder:withGsonJsonAdapterAnnotationTypeAdapterFactory:);
   methods[1].selector = @selector(excludeFieldWithJavaLangReflectField:withBoolean:);
   methods[2].selector = @selector(excludeFieldWithJavaLangReflectField:withBoolean:withGsonExcluder:);
@@ -310,6 +311,8 @@ id<JavaUtilMap> GsonReflectiveTypeAdapterFactory_getBoundFieldsWithGsonGson_with
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonReflectiveTypeAdapterFactory)
 
+J2OBJC_NAME_MAPPING(GsonReflectiveTypeAdapterFactory, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonReflectiveTypeAdapterFactory_BoundField
 
 - (instancetype)initWithNSString:(NSString *)name
@@ -346,6 +349,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonReflectiveTypeAdapterFactory)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withBoolean:withBoolean:);
   methods[1].selector = @selector(writeFieldWithId:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -417,6 +421,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonReflectiveTypeAdapterFactory_BoundField)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectField:withBoolean:withGsonTypeAdapter:withGsonGson:withGsonTypeToken:withBoolean:withNSString:withBoolean:withBoolean:);
   methods[1].selector = @selector(writeWithGsonJsonWriter:withId:);
   methods[2].selector = @selector(readWithGsonJsonReader:withId:);
@@ -521,6 +526,7 @@ GsonReflectiveTypeAdapterFactory_1 *create_GsonReflectiveTypeAdapterFactory_1_in
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonObjectConstructor:withJavaUtilMap:);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);

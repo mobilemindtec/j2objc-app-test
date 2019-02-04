@@ -11,13 +11,43 @@
 #include "java/lang/annotation/ElementType.h"
 #include "java/lang/annotation/Target.h"
 
-@interface ComYahooSquidbAnnotationsTableModelSpec : NSObject
-
-@end
-
 __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsTableModelSpec__Annotations$0(void);
 
 @implementation ComYahooSquidbAnnotationsTableModelSpec
+
+@synthesize className__ = className___;
+@synthesize tableName = tableName_;
+@synthesize tableConstraint = tableConstraint_;
+@synthesize virtualModule = virtualModule_;
+@synthesize noRowIdAlias = noRowIdAlias_;
+
++ (NSString *)tableConstraintDefault {
+  return @"";
+}
+
++ (NSString *)virtualModuleDefault {
+  return @"";
+}
+
++ (jboolean)noRowIdAliasDefault {
+  return false;
+}
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsTableModelSpec_class_();
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"@com.yahoo.squidb.annotations.TableModelSpec(className__=%@, tableName=%@, tableConstraint=%@, virtualModule=%@, noRowIdAlias=%d)", className___, tableName_, tableConstraint_, virtualModule_, noRowIdAlias_];
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
@@ -29,18 +59,36 @@ __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsTableMod
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(className);
   methods[1].selector = @selector(tableName);
   methods[2].selector = @selector(tableConstraint);
   methods[3].selector = @selector(virtualModule);
   methods[4].selector = @selector(noRowIdAlias);
   #pragma clang diagnostic pop
+  static const J2ObjcFieldInfo fields[] = {
+    { "className___", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "tableName_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "tableConstraint_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "virtualModule_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "noRowIdAlias_", "Z", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+  };
   static const void *ptrTable[] = { (void *)&ComYahooSquidbAnnotationsTableModelSpec__Annotations$0 };
-  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsTableModelSpec = { "TableModelSpec", "com.yahoo.squidb.annotations", ptrTable, methods, NULL, 7, 0x2609, 5, 0, -1, -1, -1, -1, 0 };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsTableModelSpec = { "TableModelSpec", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 5, 5, -1, -1, -1, -1, 0 };
   return &_ComYahooSquidbAnnotationsTableModelSpec;
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsTableModelSpec> create_ComYahooSquidbAnnotationsTableModelSpec(NSString *className__, jboolean noRowIdAlias, NSString *tableConstraint, NSString *tableName, NSString *virtualModule) {
+  ComYahooSquidbAnnotationsTableModelSpec *self = AUTORELEASE([[ComYahooSquidbAnnotationsTableModelSpec alloc] init]);
+  self->className___ = RETAIN_(className__);
+  self->noRowIdAlias_ = noRowIdAlias;
+  self->tableConstraint_ = RETAIN_(tableConstraint);
+  self->tableName_ = RETAIN_(tableName);
+  self->virtualModule_ = RETAIN_(virtualModule);
+  return self;
+}
 
 IOSObjectArray *ComYahooSquidbAnnotationsTableModelSpec__Annotations$0() {
   return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, TYPE) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:1 type:JavaLangAnnotationAnnotation_class_()];

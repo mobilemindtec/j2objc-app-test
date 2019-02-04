@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ISQLiteDatabase.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ISQLiteDatabase_H
+#define ISQLiteDatabase_H
 
-#pragma push_macro("INCLUDE_ALL_ISQLiteDatabase")
-#ifdef RESTRICT_ISQLiteDatabase
-#define INCLUDE_ALL_ISQLiteDatabase 0
-#else
-#define INCLUDE_ALL_ISQLiteDatabase 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ISQLiteDatabase
 
-#if !defined (ComYahooSquidbDataISQLiteDatabase_) && (INCLUDE_ALL_ISQLiteDatabase || defined(INCLUDE_ComYahooSquidbDataISQLiteDatabase))
-#define ComYahooSquidbDataISQLiteDatabase_
+#include "J2ObjC_header.h"
 
 @class IOSObjectArray;
 @protocol ComYahooSquidbDataICursor;
@@ -109,6 +107,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbDataISQLiteDatabase)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataISQLiteDatabase)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ISQLiteDatabase")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ISQLiteDatabase_H

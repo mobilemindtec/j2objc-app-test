@@ -55,6 +55,9 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlOrder_OrderType_Enum) {
 
 @interface ComYahooSquidbSqlOrder_OrderType : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlOrder_OrderType *DESC NS_SWIFT_NAME(DESC);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOrder_OrderType *ASC NS_SWIFT_NAME(ASC);
+@property (readonly, class, nonnull) ComYahooSquidbSqlOrder_OrderType *RAW NS_SWIFT_NAME(RAW);
 + (IOSObjectArray *)values;
 
 + (ComYahooSquidbSqlOrder_OrderType *)valueOfWithNSString:(NSString *)name;
@@ -155,6 +158,7 @@ withComYahooSquidbSqlOrder_OrderType:(ComYahooSquidbSqlOrder_OrderType *)orderTy
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithId:);
   methods[1].selector = @selector(initWithId:withComYahooSquidbSqlOrder_OrderType:);
   methods[2].selector = @selector(ascWithId:);
@@ -268,6 +272,7 @@ ComYahooSquidbSqlOrder_OrderType *ComYahooSquidbSqlOrder_OrderType_values_[3];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -283,9 +288,9 @@ ComYahooSquidbSqlOrder_OrderType *ComYahooSquidbSqlOrder_OrderType_values_[3];
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlOrder_OrderType class]) {
-    JreEnum(ComYahooSquidbSqlOrder_OrderType, DESC) = new_ComYahooSquidbSqlOrder_OrderType_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooSquidbSqlOrder_OrderType, ASC) = new_ComYahooSquidbSqlOrder_OrderType_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooSquidbSqlOrder_OrderType, RAW) = new_ComYahooSquidbSqlOrder_OrderType_initWithNSString_withInt_(@"", 2);
+    JreEnum(ComYahooSquidbSqlOrder_OrderType, DESC) = new_ComYahooSquidbSqlOrder_OrderType_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlOrder_OrderType_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlOrder_OrderType, ASC) = new_ComYahooSquidbSqlOrder_OrderType_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlOrder_OrderType_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlOrder_OrderType, RAW) = new_ComYahooSquidbSqlOrder_OrderType_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbSqlOrder_OrderType_class_(), 2), 2);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlOrder_OrderType)
   }
 }

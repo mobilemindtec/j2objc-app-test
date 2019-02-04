@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ExclusionStrategy.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ExclusionStrategy_H
+#define ExclusionStrategy_H
 
-#pragma push_macro("INCLUDE_ALL_ExclusionStrategy")
-#ifdef RESTRICT_ExclusionStrategy
-#define INCLUDE_ALL_ExclusionStrategy 0
-#else
-#define INCLUDE_ALL_ExclusionStrategy 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ExclusionStrategy
 
-#if !defined (GsonExclusionStrategy_) && (INCLUDE_ALL_ExclusionStrategy || defined(INCLUDE_GsonExclusionStrategy))
-#define GsonExclusionStrategy_
+#include "J2ObjC_header.h"
 
 @class GsonFieldAttributes;
 @class IOSClass;
@@ -33,6 +31,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonExclusionStrategy)
 
 #define ComGoogleGsonExclusionStrategy GsonExclusionStrategy
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ExclusionStrategy")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ExclusionStrategy_H

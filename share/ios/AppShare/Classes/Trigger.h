@@ -3,30 +3,17 @@
 //  source: ./build/j2objc/java/Trigger.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_Trigger")
-#ifdef RESTRICT_Trigger
-#define INCLUDE_ALL_Trigger 0
-#else
-#define INCLUDE_ALL_Trigger 1
-#endif
-#undef RESTRICT_Trigger
+#ifndef Trigger_H
+#define Trigger_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlTrigger_) && (INCLUDE_ALL_Trigger || defined(INCLUDE_ComYahooSquidbSqlTrigger))
-#define ComYahooSquidbSqlTrigger_
-
-#define RESTRICT_DBObject 1
-#define INCLUDE_ComYahooSquidbSqlDBObject 1
 #include "DBObject.h"
-
-#define RESTRICT_SqlStatement 1
-#define INCLUDE_ComYahooSquidbSqlSqlStatement 1
+#include "J2ObjC_header.h"
 #include "SqlStatement.h"
 
 @class ComYahooSquidbSqlCompileContext;
@@ -86,8 +73,8 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithNSString:(NSString *)name
-withComYahooSquidbSqlTrigger_TriggerType:(ComYahooSquidbSqlTrigger_TriggerType *)triggerType;
+- (instancetype __nonnull)initWithNSString:(NSString *)name
+  withComYahooSquidbSqlTrigger_TriggerType:(ComYahooSquidbSqlTrigger_TriggerType *)triggerType;
 
 #pragma mark Package-Private
 
@@ -96,10 +83,10 @@ withComYahooSquidbSqlTrigger_TriggerType:(ComYahooSquidbSqlTrigger_TriggerType *
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-                    withNSString:(NSString *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                              withNSString:(NSString *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -129,10 +116,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlProperty *ComYahooSquidbSqlTrigger_newValueOf
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlTrigger)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_Trigger")
+#endif // Trigger_H

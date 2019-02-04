@@ -86,6 +86,7 @@ J2OBJC_FIELD_SETTER(ComYahooAndroidSqliteSQLiteDirectCursorDriver, mQuery_, ComY
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabase:withNSString:withNSString:);
   methods[1].selector = @selector(queryWithComYahooAndroidSqliteSQLiteDatabase_CursorFactory:withNSStringArray:);
   methods[2].selector = @selector(cursorClosed);

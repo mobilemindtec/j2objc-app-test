@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonReader.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonReader_H
+#define JsonReader_H
 
-#pragma push_macro("INCLUDE_ALL_JsonReader")
-#ifdef RESTRICT_JsonReader
-#define INCLUDE_ALL_JsonReader 0
-#else
-#define INCLUDE_ALL_JsonReader 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonReader
 
-#if !defined (GsonJsonReader_) && (INCLUDE_ALL_JsonReader || defined(INCLUDE_GsonJsonReader))
-#define GsonJsonReader_
-
-#define RESTRICT_JavaIoCloseable 1
-#define INCLUDE_JavaIoCloseable 1
+#include "J2ObjC_header.h"
 #include "java/io/Closeable.h"
 
 @class GsonJsonToken;
@@ -30,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaIoReader:(JavaIoReader *)inArg;
+- (instancetype __nonnull)initWithJavaIoReader:(JavaIoReader *)inArg;
 
 - (void)beginArray;
 
@@ -78,7 +73,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -94,6 +89,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonReader)
 
 @compatibility_alias ComGoogleGsonStreamJsonReader GsonJsonReader;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonReader")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonReader_H

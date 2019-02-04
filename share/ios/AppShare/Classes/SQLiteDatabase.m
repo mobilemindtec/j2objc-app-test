@@ -1139,6 +1139,7 @@ withComYahooSquidbDataValuesStorage:(ComYahooSquidbDataValuesStorage *)values
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withInt:withComYahooAndroidSqliteSQLiteDatabase_CursorFactory:withComYahooAndroidSqliteDatabaseErrorHandler:);
   methods[1].selector = @selector(java_finalize);
   methods[2].selector = @selector(onAllReferencesReleased);
@@ -1577,6 +1578,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooAndroidSqliteSQLiteDatabase)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabase:);
   methods[1].selector = @selector(initialValue);
   #pragma clang diagnostic pop
@@ -1621,6 +1623,7 @@ ComYahooAndroidSqliteSQLiteDatabase_1 *create_ComYahooAndroidSqliteSQLiteDatabas
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:);
   methods[1].selector = @selector(acceptWithJavaIoFile:);
   #pragma clang diagnostic pop
@@ -1655,6 +1658,7 @@ ComYahooAndroidSqliteSQLiteDatabase_2 *create_ComYahooAndroidSqliteSQLiteDatabas
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(newCursorWithComYahooAndroidSqliteSQLiteDatabase:withComYahooAndroidSqliteSQLiteCursorDriver:withNSString:withComYahooAndroidSqliteSQLiteQuery:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "newCursor", "LComYahooAndroidSqliteSQLiteDatabase;LComYahooAndroidSqliteSQLiteCursorDriver;LNSString;LComYahooAndroidSqliteSQLiteQuery;", "LComYahooAndroidSqliteSQLiteDatabase;" };
@@ -1674,6 +1678,7 @@ J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooAndroidSqliteSQLiteDatabase_CursorF
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(callbackWithNSStringArray:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "callback", "[LNSString;", "LComYahooAndroidSqliteSQLiteDatabase;" };

@@ -195,6 +195,7 @@ __attribute__((unused)) static ComYahooSquidbSqlProperty_StringProperty *ComYaho
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -293,6 +294,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(visitIntegerWithComYahooSquidbSqlProperty:withId:);
   methods[1].selector = @selector(visitLongWithComYahooSquidbSqlProperty:withId:);
   methods[2].selector = @selector(visitDoubleWithComYahooSquidbSqlProperty:withId:);
@@ -322,6 +324,7 @@ J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_PropertyVisitor)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(visitIntegerWithComYahooSquidbSqlProperty:withId:withId:);
   methods[1].selector = @selector(visitLongWithComYahooSquidbSqlProperty:withId:withId:);
   methods[2].selector = @selector(visitDoubleWithComYahooSquidbSqlProperty:withId:withId:);
@@ -435,6 +438,7 @@ J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_PropertyWritingVi
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -629,6 +633,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_IntegerProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -810,6 +815,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_StringProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -976,6 +982,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_DoubleProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -1162,6 +1169,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_LongProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -1313,6 +1321,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_BooleanProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);
@@ -1435,6 +1444,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlProperty_BlobProperty)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:);
   methods[1].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:);
   methods[2].selector = @selector(initWithComYahooSquidbSqlTableModelName:withNSString:withNSString:withNSString:);

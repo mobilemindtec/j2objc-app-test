@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ObjectConstructor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ObjectConstructor_H
+#define ObjectConstructor_H
 
-#pragma push_macro("INCLUDE_ALL_ObjectConstructor")
-#ifdef RESTRICT_ObjectConstructor
-#define INCLUDE_ALL_ObjectConstructor 0
-#else
-#define INCLUDE_ALL_ObjectConstructor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ObjectConstructor
 
-#if !defined (GsonObjectConstructor_) && (INCLUDE_ALL_ObjectConstructor || defined(INCLUDE_GsonObjectConstructor))
-#define GsonObjectConstructor_
+#include "J2ObjC_header.h"
 
 @protocol GsonObjectConstructor < JavaObject >
 
@@ -28,6 +26,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonObjectConstructor)
 
 #define ComGoogleGsonInternalObjectConstructor GsonObjectConstructor
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ObjectConstructor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ObjectConstructor_H

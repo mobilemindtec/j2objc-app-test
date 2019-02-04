@@ -1463,6 +1463,7 @@ withComYahooSquidbDataDataChangedNotifier_DBOperation:(ComYahooSquidbDataDataCha
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(getName);
   methods[1].selector = @selector(getVersion);
   methods[2].selector = @selector(getTables);
@@ -2061,6 +2062,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbDataSquidDatabase)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaUtilSet:);
   methods[1].selector = @selector(initialValue);
   #pragma clang diagnostic pop
@@ -2132,6 +2134,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(beginTransaction);
   methods[2].selector = @selector(inTransaction);
@@ -2217,6 +2220,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initialValue);
   #pragma clang diagnostic pop
@@ -2370,6 +2374,7 @@ ComYahooSquidbDataSquidDatabase_2 *create_ComYahooSquidbDataSquidDatabase_2_init
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbDataSquidDatabase:);
   methods[1].selector = @selector(onCreateWithComYahooSquidbDataISQLiteDatabase:);
   methods[2].selector = @selector(onUpgradeWithComYahooSquidbDataISQLiteDatabase:withInt:withInt:);
@@ -2460,6 +2465,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(appendColumnDefinitionWithNSString:withComYahooSquidbSqlProperty:withJavaLangStringBuilder:);
   methods[2].selector = @selector(visitDoubleWithComYahooSquidbSqlProperty:withId:);
@@ -2513,6 +2519,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
@@ -2563,6 +2570,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbDataSquidDatabase_RecreateDuringM
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withInt:withInt:);
   methods[1].selector = @selector(initWithNSString:withInt:withInt:withJavaLangThrowable:);
   #pragma clang diagnostic pop
@@ -2628,6 +2636,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initialValue);
   #pragma clang diagnostic pop

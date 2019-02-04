@@ -3,26 +3,18 @@
 //  source: ./build/j2objc/java/IOSOpenHelper.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef IOSOpenHelper_H
+#define IOSOpenHelper_H
 
-#pragma push_macro("INCLUDE_ALL_IOSOpenHelper")
-#ifdef RESTRICT_IOSOpenHelper
-#define INCLUDE_ALL_IOSOpenHelper 0
-#else
-#define INCLUDE_ALL_IOSOpenHelper 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_IOSOpenHelper
 
-#if !defined (ComYahooSquidbIosIOSOpenHelper_) && (INCLUDE_ALL_IOSOpenHelper || defined(INCLUDE_ComYahooSquidbIosIOSOpenHelper))
-#define ComYahooSquidbIosIOSOpenHelper_
-
-#define RESTRICT_SQLiteOpenHelper 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteOpenHelper 1
-#include "SQLiteOpenHelper.h"
-
-#define RESTRICT_ISQLiteOpenHelper 1
-#define INCLUDE_ComYahooSquidbDataISQLiteOpenHelper 1
 #include "ISQLiteOpenHelper.h"
+#include "J2ObjC_header.h"
+#include "SQLiteOpenHelper.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
 @class ComYahooSquidbDataSquidDatabase_OpenHelperDelegate;
@@ -34,10 +26,10 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)path
-                    withNSString:(NSString *)name
+- (instancetype __nonnull)initWithNSString:(NSString *)path
+                              withNSString:(NSString *)name
 withComYahooSquidbDataSquidDatabase_OpenHelperDelegate:(ComYahooSquidbDataSquidDatabase_OpenHelperDelegate *)delegate
-                         withInt:(jint)version_;
+                                   withInt:(jint)version_;
 
 - (jboolean)deleteDatabase;
 
@@ -61,15 +53,15 @@ withComYahooSquidbDataSquidDatabase_OpenHelperDelegate:(ComYahooSquidbDataSquidD
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0
-                    withNSString:(NSString *)arg1
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                              withNSString:(NSString *)arg1
 withComYahooAndroidSqliteSQLiteDatabase_CursorFactory:(id<ComYahooAndroidSqliteSQLiteDatabase_CursorFactory>)arg2
-                         withInt:(jint)arg3 NS_UNAVAILABLE;
+                                   withInt:(jint)arg3 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-                    withNSString:(NSString *)arg1
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                              withNSString:(NSString *)arg1
 withComYahooAndroidSqliteSQLiteDatabase_CursorFactory:(id<ComYahooAndroidSqliteSQLiteDatabase_CursorFactory>)arg2
-                         withInt:(jint)arg3
+                                   withInt:(jint)arg3
 withComYahooAndroidSqliteDatabaseErrorHandler:(id<ComYahooAndroidSqliteDatabaseErrorHandler>)arg4 NS_UNAVAILABLE;
 
 @end
@@ -84,6 +76,8 @@ FOUNDATION_EXPORT ComYahooSquidbIosIOSOpenHelper *create_ComYahooSquidbIosIOSOpe
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbIosIOSOpenHelper)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_IOSOpenHelper")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // IOSOpenHelper_H

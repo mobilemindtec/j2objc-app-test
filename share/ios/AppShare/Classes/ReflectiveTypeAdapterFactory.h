@@ -3,40 +3,40 @@
 //  source: ./build/j2objc/java/ReflectiveTypeAdapterFactory.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ReflectiveTypeAdapterFactory_H
+#define ReflectiveTypeAdapterFactory_H
 
-#pragma push_macro("INCLUDE_ALL_ReflectiveTypeAdapterFactory")
-#ifdef RESTRICT_ReflectiveTypeAdapterFactory
-#define INCLUDE_ALL_ReflectiveTypeAdapterFactory 0
-#else
-#define INCLUDE_ALL_ReflectiveTypeAdapterFactory 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ReflectiveTypeAdapterFactory
 
-#if !defined (GsonReflectiveTypeAdapterFactory_) && (INCLUDE_ALL_ReflectiveTypeAdapterFactory || defined(INCLUDE_GsonReflectiveTypeAdapterFactory))
-#define GsonReflectiveTypeAdapterFactory_
-
-#define RESTRICT_TypeAdapterFactory 1
-#define INCLUDE_GsonTypeAdapterFactory 1
+#include "J2ObjC_header.h"
+#include "TypeAdapter.h"
 #include "TypeAdapterFactory.h"
 
 @class GsonConstructorConstructor;
 @class GsonExcluder;
 @class GsonGson;
 @class GsonJsonAdapterAnnotationTypeAdapterFactory;
+@class GsonJsonReader;
+@class GsonJsonWriter;
 @class GsonTypeAdapter;
 @class GsonTypeToken;
 @class JavaLangReflectField;
 @protocol GsonFieldNamingStrategy;
+@protocol GsonObjectConstructor;
+@protocol JavaUtilMap;
 
 @interface GsonReflectiveTypeAdapterFactory : NSObject < GsonTypeAdapterFactory >
 
 #pragma mark Public
 
-- (instancetype)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
-                       withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
-                                  withGsonExcluder:(GsonExcluder *)excluder
-   withGsonJsonAdapterAnnotationTypeAdapterFactory:(GsonJsonAdapterAnnotationTypeAdapterFactory *)jsonAdapterFactory;
+- (instancetype __nonnull)initWithGsonConstructorConstructor:(GsonConstructorConstructor *)constructorConstructor
+                                 withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingPolicy
+                                            withGsonExcluder:(GsonExcluder *)excluder
+             withGsonJsonAdapterAnnotationTypeAdapterFactory:(GsonJsonAdapterAnnotationTypeAdapterFactory *)jsonAdapterFactory;
 
 - (GsonTypeAdapter *)createWithGsonGson:(GsonGson *)gson
                       withGsonTypeToken:(GsonTypeToken *)type;
@@ -52,7 +52,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -70,14 +70,6 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory)
 
 @compatibility_alias ComGoogleGsonInternalBindReflectiveTypeAdapterFactory GsonReflectiveTypeAdapterFactory;
 
-#endif
-
-#if !defined (GsonReflectiveTypeAdapterFactory_BoundField_) && (INCLUDE_ALL_ReflectiveTypeAdapterFactory || defined(INCLUDE_GsonReflectiveTypeAdapterFactory_BoundField))
-#define GsonReflectiveTypeAdapterFactory_BoundField_
-
-@class GsonJsonReader;
-@class GsonJsonWriter;
-
 @interface GsonReflectiveTypeAdapterFactory_BoundField : NSObject {
  @public
   NSString *name_;
@@ -87,9 +79,9 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory)
 
 #pragma mark Protected
 
-- (instancetype)initWithNSString:(NSString *)name
-                     withBoolean:(jboolean)serialized
-                     withBoolean:(jboolean)deserialized;
+- (instancetype __nonnull)initWithNSString:(NSString *)name
+                               withBoolean:(jboolean)serialized
+                               withBoolean:(jboolean)deserialized;
 
 #pragma mark Package-Private
 
@@ -111,20 +103,6 @@ FOUNDATION_EXPORT void GsonReflectiveTypeAdapterFactory_BoundField_initWithNSStr
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_BoundField)
 
-#endif
-
-#if !defined (GsonReflectiveTypeAdapterFactory_Adapter_) && (INCLUDE_ALL_ReflectiveTypeAdapterFactory || defined(INCLUDE_GsonReflectiveTypeAdapterFactory_Adapter))
-#define GsonReflectiveTypeAdapterFactory_Adapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
-#include "TypeAdapter.h"
-
-@class GsonJsonReader;
-@class GsonJsonWriter;
-@protocol GsonObjectConstructor;
-@protocol JavaUtilMap;
-
 @interface GsonReflectiveTypeAdapterFactory_Adapter : GsonTypeAdapter
 
 #pragma mark Public
@@ -136,12 +114,12 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_BoundField)
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonObjectConstructor:(id<GsonObjectConstructor>)constructor
-                              withJavaUtilMap:(id<JavaUtilMap>)boundFields;
+- (instancetype __nonnull)initWithGsonObjectConstructor:(id<GsonObjectConstructor>)constructor
+                                        withJavaUtilMap:(id<JavaUtilMap>)boundFields;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -155,6 +133,8 @@ FOUNDATION_EXPORT GsonReflectiveTypeAdapterFactory_Adapter *create_GsonReflectiv
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonReflectiveTypeAdapterFactory_Adapter)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ReflectiveTypeAdapterFactory")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ReflectiveTypeAdapterFactory_H

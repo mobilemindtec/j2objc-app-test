@@ -45,6 +45,7 @@ J2OBJC_FIELD_SETTER(ComYahooSquidbSqlNegationCriterion, toNegate_, ComYahooSquid
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlCriterion:);
   methods[1].selector = @selector(populateWithComYahooSquidbSqlSqlBuilder:withBoolean:);
   methods[2].selector = @selector(negate);

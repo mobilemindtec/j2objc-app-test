@@ -52,6 +52,7 @@ __attribute__((unused)) static ComYahooAndroidSqlitePrefixPrinter *create_ComYah
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(createWithComYahooAndroidSqlitePrinter:withNSString:);
   methods[1].selector = @selector(initWithComYahooAndroidSqlitePrinter:withNSString:);
   methods[2].selector = @selector(printlnWithNSString:);

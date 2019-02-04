@@ -152,6 +152,7 @@ GsonFieldNamingPolicy *GsonFieldNamingPolicy_values_[5];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(separateCamelCaseWithNSString:withNSString:);
   methods[1].selector = @selector(upperCaseFirstLetterWithNSString:);
   methods[2].selector = @selector(modifyStringWithChar:withNSString:withInt:);
@@ -172,11 +173,11 @@ GsonFieldNamingPolicy *GsonFieldNamingPolicy_values_[5];
 
 + (void)initialize {
   if (self == [GsonFieldNamingPolicy class]) {
-    JreEnum(GsonFieldNamingPolicy, IDENTITY) = new_GsonFieldNamingPolicy_1_initWithNSString_withInt_(@"", 0);
-    JreEnum(GsonFieldNamingPolicy, UPPER_CAMEL_CASE) = new_GsonFieldNamingPolicy_2_initWithNSString_withInt_(@"", 1);
-    JreEnum(GsonFieldNamingPolicy, UPPER_CAMEL_CASE_WITH_SPACES) = new_GsonFieldNamingPolicy_3_initWithNSString_withInt_(@"", 2);
-    JreEnum(GsonFieldNamingPolicy, LOWER_CASE_WITH_UNDERSCORES) = new_GsonFieldNamingPolicy_4_initWithNSString_withInt_(@"", 3);
-    JreEnum(GsonFieldNamingPolicy, LOWER_CASE_WITH_DASHES) = new_GsonFieldNamingPolicy_5_initWithNSString_withInt_(@"", 4);
+    JreEnum(GsonFieldNamingPolicy, IDENTITY) = new_GsonFieldNamingPolicy_1_initWithNSString_withInt_(JreEnumConstantName(GsonFieldNamingPolicy_class_(), 0), 0);
+    JreEnum(GsonFieldNamingPolicy, UPPER_CAMEL_CASE) = new_GsonFieldNamingPolicy_2_initWithNSString_withInt_(JreEnumConstantName(GsonFieldNamingPolicy_class_(), 1), 1);
+    JreEnum(GsonFieldNamingPolicy, UPPER_CAMEL_CASE_WITH_SPACES) = new_GsonFieldNamingPolicy_3_initWithNSString_withInt_(JreEnumConstantName(GsonFieldNamingPolicy_class_(), 2), 2);
+    JreEnum(GsonFieldNamingPolicy, LOWER_CASE_WITH_UNDERSCORES) = new_GsonFieldNamingPolicy_4_initWithNSString_withInt_(JreEnumConstantName(GsonFieldNamingPolicy_class_(), 3), 3);
+    JreEnum(GsonFieldNamingPolicy, LOWER_CASE_WITH_DASHES) = new_GsonFieldNamingPolicy_5_initWithNSString_withInt_(JreEnumConstantName(GsonFieldNamingPolicy_class_(), 4), 4);
     J2OBJC_SET_INITIALIZED(GsonFieldNamingPolicy)
   }
 }
@@ -258,6 +259,8 @@ GsonFieldNamingPolicy *GsonFieldNamingPolicy_fromOrdinal(NSUInteger ordinal) {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonFieldNamingPolicy)
 
+J2OBJC_NAME_MAPPING(GsonFieldNamingPolicy, "com.google.gson", "Gson")
+
 @implementation GsonFieldNamingPolicy_1
 
 - (NSString *)translateNameWithJavaLangReflectField:(JavaLangReflectField *)f {
@@ -274,6 +277,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonFieldNamingPolicy)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(translateNameWithJavaLangReflectField:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "translateName", "LJavaLangReflectField;", "LGsonFieldNamingPolicy;" };
@@ -307,6 +311,7 @@ GsonFieldNamingPolicy_1 *new_GsonFieldNamingPolicy_1_initWithNSString_withInt_(N
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(translateNameWithJavaLangReflectField:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "translateName", "LJavaLangReflectField;", "LGsonFieldNamingPolicy;" };
@@ -340,6 +345,7 @@ GsonFieldNamingPolicy_2 *new_GsonFieldNamingPolicy_2_initWithNSString_withInt_(N
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(translateNameWithJavaLangReflectField:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "translateName", "LJavaLangReflectField;", "LGsonFieldNamingPolicy;" };
@@ -373,6 +379,7 @@ GsonFieldNamingPolicy_3 *new_GsonFieldNamingPolicy_3_initWithNSString_withInt_(N
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(translateNameWithJavaLangReflectField:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "translateName", "LJavaLangReflectField;", "LGsonFieldNamingPolicy;" };
@@ -406,6 +413,7 @@ GsonFieldNamingPolicy_4 *new_GsonFieldNamingPolicy_4_initWithNSString_withInt_(N
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(translateNameWithJavaLangReflectField:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "translateName", "LJavaLangReflectField;", "LGsonFieldNamingPolicy;" };

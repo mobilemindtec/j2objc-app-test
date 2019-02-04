@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/MathFunction.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef MathFunction_H
+#define MathFunction_H
 
-#pragma push_macro("INCLUDE_ALL_MathFunction")
-#ifdef RESTRICT_MathFunction
-#define INCLUDE_ALL_MathFunction 0
-#else
-#define INCLUDE_ALL_MathFunction 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_MathFunction
 
-#if !defined (ComYahooSquidbSqlMathFunction_) && (INCLUDE_ALL_MathFunction || defined(INCLUDE_ComYahooSquidbSqlMathFunction))
-#define ComYahooSquidbSqlMathFunction_
-
-#define RESTRICT_ArgumentFunction 1
-#define INCLUDE_ComYahooSquidbSqlArgumentFunction 1
 #include "ArgumentFunction.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlMathOperator;
@@ -36,13 +31,13 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlMathOperator:(ComYahooSquidbSqlMathOperator *)operator_
-                                    withNSObjectArray:(IOSObjectArray *)args;
+- (instancetype __nonnull)initWithComYahooSquidbSqlMathOperator:(ComYahooSquidbSqlMathOperator *)operator_
+                                              withNSObjectArray:(IOSObjectArray *)args;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0
-               withNSObjectArray:(IOSObjectArray *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                         withNSObjectArray:(IOSObjectArray *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -56,6 +51,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlMathFunction *create_ComYahooSquidbSqlMathFun
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlMathFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_MathFunction")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // MathFunction_H

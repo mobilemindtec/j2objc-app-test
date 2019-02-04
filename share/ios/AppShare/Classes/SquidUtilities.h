@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SquidUtilities.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SquidUtilities_H
+#define SquidUtilities_H
 
-#pragma push_macro("INCLUDE_ALL_SquidUtilities")
-#ifdef RESTRICT_SquidUtilities
-#define INCLUDE_ALL_SquidUtilities 0
-#else
-#define INCLUDE_ALL_SquidUtilities 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SquidUtilities
 
-#if !defined (ComYahooSquidbUtilitySquidUtilities_) && (INCLUDE_ALL_SquidUtilities || defined(INCLUDE_ComYahooSquidbUtilitySquidUtilities))
-#define ComYahooSquidbUtilitySquidUtilities_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbDataSquidDatabase;
 @class IOSObjectArray;
@@ -27,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (void)addAllWithJavaUtilCollection:(id<JavaUtilCollection>)collection
                    withNSObjectArray:(IOSObjectArray *)objects;
@@ -96,6 +94,8 @@ FOUNDATION_EXPORT void ComYahooSquidbUtilitySquidUtilities_copyFileWithJavaIoFil
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilitySquidUtilities)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SquidUtilities")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SquidUtilities_H

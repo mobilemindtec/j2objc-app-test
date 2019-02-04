@@ -3,33 +3,33 @@
 //  source: ./build/j2objc/java/ViewModel.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ViewModel_H
+#define ViewModel_H
 
-#pragma push_macro("INCLUDE_ALL_ViewModel")
-#ifdef RESTRICT_ViewModel
-#define INCLUDE_ALL_ViewModel 0
-#else
-#define INCLUDE_ALL_ViewModel 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ViewModel
 
-#if !defined (ComYahooSquidbDataViewModel_) && (INCLUDE_ALL_ViewModel || defined(INCLUDE_ComYahooSquidbDataViewModel))
-#define ComYahooSquidbDataViewModel_
-
-#define RESTRICT_AbstractModel 1
-#define INCLUDE_ComYahooSquidbDataAbstractModel 1
 #include "AbstractModel.h"
+#include "J2ObjC_header.h"
+#include "Property.h"
 
 @class ComYahooSquidbDataViewModel_TableMappingVisitors;
 @class ComYahooSquidbSqlSqlTable;
+@class IOSClass;
 @class IOSObjectArray;
+@class JavaLangVoid;
 @protocol JavaUtilList;
+@protocol JavaUtilMap;
+@protocol JavaUtilSet;
 
 @interface ComYahooSquidbDataViewModel : ComYahooSquidbDataAbstractModel
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (ComYahooSquidbDataAbstractModel *)mapToModelWithComYahooSquidbDataAbstractModel:(ComYahooSquidbDataAbstractModel *)dst;
 
@@ -63,28 +63,12 @@ FOUNDATION_EXPORT ComYahooSquidbDataViewModel_TableMappingVisitors *ComYahooSqui
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataViewModel)
 
-#endif
-
-#if !defined (ComYahooSquidbDataViewModel_TableModelMappingVisitor_) && (INCLUDE_ALL_ViewModel || defined(INCLUDE_ComYahooSquidbDataViewModel_TableModelMappingVisitor))
-#define ComYahooSquidbDataViewModel_TableModelMappingVisitor_
-
-#define RESTRICT_Property 1
-#define INCLUDE_ComYahooSquidbSqlProperty_PropertyWritingVisitor 1
-#include "Property.h"
-
-@class ComYahooSquidbDataAbstractModel;
-@class ComYahooSquidbDataViewModel;
-@class ComYahooSquidbSqlProperty;
-@class IOSObjectArray;
-@class JavaLangVoid;
-@protocol JavaUtilMap;
-
 @interface ComYahooSquidbDataViewModel_TableModelMappingVisitor : NSObject < ComYahooSquidbSqlProperty_PropertyWritingVisitor >
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlPropertyArray:(IOSObjectArray *)relevantProperties
-                                       withJavaUtilMap:(id<JavaUtilMap>)aliasedPropertyMap;
+- (instancetype __nonnull)initWithComYahooSquidbSqlPropertyArray:(IOSObjectArray *)relevantProperties
+                                                 withJavaUtilMap:(id<JavaUtilMap>)aliasedPropertyMap;
 
 - (ComYahooSquidbDataAbstractModel *)mapWithComYahooSquidbDataViewModel:(ComYahooSquidbDataViewModel *)src
                                     withComYahooSquidbDataAbstractModel:(ComYahooSquidbDataAbstractModel *)dst;
@@ -115,7 +99,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataViewModel)
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -129,15 +113,6 @@ FOUNDATION_EXPORT ComYahooSquidbDataViewModel_TableModelMappingVisitor *create_C
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataViewModel_TableModelMappingVisitor)
 
-#endif
-
-#if !defined (ComYahooSquidbDataViewModel_TableMappingVisitors_) && (INCLUDE_ALL_ViewModel || defined(INCLUDE_ComYahooSquidbDataViewModel_TableMappingVisitors))
-#define ComYahooSquidbDataViewModel_TableMappingVisitors_
-
-@class ComYahooSquidbDataViewModel_TableModelMappingVisitor;
-@class IOSClass;
-@protocol JavaUtilSet;
-
 @interface ComYahooSquidbDataViewModel_TableMappingVisitors : NSObject
 
 #pragma mark Public
@@ -149,7 +124,7 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataViewModel_TableModelMappingVisitor)
 
 #pragma mark Protected
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -163,6 +138,8 @@ FOUNDATION_EXPORT ComYahooSquidbDataViewModel_TableMappingVisitors *create_ComYa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataViewModel_TableMappingVisitors)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ViewModel")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ViewModel_H

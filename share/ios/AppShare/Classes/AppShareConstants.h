@@ -3,20 +3,19 @@
 //  source: ./build/j2objc/java/AppShareConstants.java
 //
 
+#ifndef AppShareConstants_H
+#define AppShareConstants_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_AppShareConstants")
-#ifdef RESTRICT_AppShareConstants
-#define INCLUDE_ALL_AppShareConstants 0
-#else
-#define INCLUDE_ALL_AppShareConstants 1
-#endif
-#undef RESTRICT_AppShareConstants
-
-#if !defined (AppAppShareConstants_) && (INCLUDE_ALL_AppShareConstants || defined(INCLUDE_AppAppShareConstants))
-#define AppAppShareConstants_
-
 @interface AppAppShareConstants : NSObject
+@property (copy, class) NSString *SERVER_END_POINT NS_SWIFT_NAME(SERVER_END_POINT);
 
 + (NSString *)SERVER_END_POINT;
 
@@ -24,7 +23,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -46,6 +45,8 @@ J2OBJC_TYPE_LITERAL_HEADER(AppAppShareConstants)
 
 @compatibility_alias BrComMobilemindAppUtilAppShareConstants AppAppShareConstants;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_AppShareConstants")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // AppShareConstants_H

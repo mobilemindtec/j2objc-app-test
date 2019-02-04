@@ -168,6 +168,7 @@ J2OBJC_INITIALIZED_DEFN(ComYahooAndroidSqliteSQLiteProgram)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabase:withNSString:withNSObjectArray:);
   methods[1].selector = @selector(getDatabase);
   methods[2].selector = @selector(getSql);

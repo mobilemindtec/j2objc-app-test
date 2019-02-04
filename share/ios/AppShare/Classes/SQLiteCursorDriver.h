@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteCursorDriver.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteCursorDriver_H
+#define SQLiteCursorDriver_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteCursorDriver")
-#ifdef RESTRICT_SQLiteCursorDriver
-#define INCLUDE_ALL_SQLiteCursorDriver 0
-#else
-#define INCLUDE_ALL_SQLiteCursorDriver 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteCursorDriver
 
-#if !defined (ComYahooAndroidSqliteSQLiteCursorDriver_) && (INCLUDE_ALL_SQLiteCursorDriver || defined(INCLUDE_ComYahooAndroidSqliteSQLiteCursorDriver))
-#define ComYahooAndroidSqliteSQLiteCursorDriver_
+#include "J2ObjC_header.h"
 
 @class IOSObjectArray;
 @protocol ComYahooAndroidSqliteSQLiteDatabase_CursorFactory;
@@ -39,6 +37,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooAndroidSqliteSQLiteCursorDriver)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteCursorDriver)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteCursorDriver")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteCursorDriver_H

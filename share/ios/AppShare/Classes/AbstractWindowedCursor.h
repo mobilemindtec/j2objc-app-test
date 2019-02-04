@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/AbstractWindowedCursor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef AbstractWindowedCursor_H
+#define AbstractWindowedCursor_H
 
-#pragma push_macro("INCLUDE_ALL_AbstractWindowedCursor")
-#ifdef RESTRICT_AbstractWindowedCursor
-#define INCLUDE_ALL_AbstractWindowedCursor 0
-#else
-#define INCLUDE_ALL_AbstractWindowedCursor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_AbstractWindowedCursor
 
-#if !defined (ComYahooAndroidSqliteAbstractWindowedCursor_) && (INCLUDE_ALL_AbstractWindowedCursor || defined(INCLUDE_ComYahooAndroidSqliteAbstractWindowedCursor))
-#define ComYahooAndroidSqliteAbstractWindowedCursor_
-
-#define RESTRICT_AbstractCursor 1
-#define INCLUDE_ComYahooAndroidSqliteAbstractCursor 1
 #include "AbstractCursor.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteCursorWindow;
 @class IOSByteArray;
@@ -30,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (IOSByteArray *)getBlobWithInt:(jint)columnIndex;
 
@@ -84,6 +79,8 @@ FOUNDATION_EXPORT void ComYahooAndroidSqliteAbstractWindowedCursor_init(ComYahoo
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteAbstractWindowedCursor)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_AbstractWindowedCursor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // AbstractWindowedCursor_H

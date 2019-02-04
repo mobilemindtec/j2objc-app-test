@@ -3,28 +3,26 @@
 //  source: ./build/j2objc/java/TableModel.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TableModel_H
+#define TableModel_H
 
-#pragma push_macro("INCLUDE_ALL_TableModel")
-#ifdef RESTRICT_TableModel
-#define INCLUDE_ALL_TableModel 0
-#else
-#define INCLUDE_ALL_TableModel 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TableModel
 
-#if !defined (ComYahooSquidbDataTableModel_) && (INCLUDE_ALL_TableModel || defined(INCLUDE_ComYahooSquidbDataTableModel))
-#define ComYahooSquidbDataTableModel_
-
-#define RESTRICT_AbstractModel 1
-#define INCLUDE_ComYahooSquidbDataAbstractModel 1
 #include "AbstractModel.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlProperty_LongProperty;
 @class ComYahooSquidbSqlTable;
 @protocol ComYahooSquidbDataISQLitePreparedStatement;
 
 @interface ComYahooSquidbDataTableModel : ComYahooSquidbDataAbstractModel
+@property (readonly, copy, class) NSString *DEFAULT_ID_COLUMN NS_SWIFT_NAME(DEFAULT_ID_COLUMN);
+@property (readonly, copy, class) NSString *ROWID NS_SWIFT_NAME(ROWID);
+@property (readonly, class) jlong NO_ID NS_SWIFT_NAME(NO_ID);
 
 + (NSString *)DEFAULT_ID_COLUMN;
 
@@ -34,7 +32,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (jlong)getId;
 
@@ -77,6 +75,8 @@ FOUNDATION_EXPORT void ComYahooSquidbDataTableModel_init(ComYahooSquidbDataTable
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataTableModel)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TableModel")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TableModel_H

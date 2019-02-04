@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ISO8601Utils.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ISO8601Utils_H
+#define ISO8601Utils_H
 
-#pragma push_macro("INCLUDE_ALL_ISO8601Utils")
-#ifdef RESTRICT_ISO8601Utils
-#define INCLUDE_ALL_ISO8601Utils 0
-#else
-#define INCLUDE_ALL_ISO8601Utils 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ISO8601Utils
 
-#if !defined (ComGoogleGsonInternalBindUtilISO8601Utils_) && (INCLUDE_ALL_ISO8601Utils || defined(INCLUDE_ComGoogleGsonInternalBindUtilISO8601Utils))
-#define ComGoogleGsonInternalBindUtilISO8601Utils_
+#include "J2ObjC_header.h"
 
 @class JavaTextParsePosition;
 @class JavaUtilDate;
@@ -24,7 +22,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 + (NSString *)formatWithJavaUtilDate:(JavaUtilDate *)date;
 
@@ -58,6 +56,8 @@ FOUNDATION_EXPORT JavaUtilDate *ComGoogleGsonInternalBindUtilISO8601Utils_parseW
 
 J2OBJC_TYPE_LITERAL_HEADER(ComGoogleGsonInternalBindUtilISO8601Utils)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ISO8601Utils")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ISO8601Utils_H

@@ -21,6 +21,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   #pragma clang diagnostic pop
   static const J2ObjcClassInfo _AppJavaBridging = { "JavaBridging", "br.com.mobilemind.app", NULL, methods, NULL, 7, 0x1, 1, 0, -1, -1, -1, -1, -1 };
@@ -42,3 +43,5 @@ AppJavaBridging *create_AppJavaBridging_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(AppJavaBridging)
+
+J2OBJC_NAME_MAPPING(AppJavaBridging, "br.com.mobilemind.app", "App")

@@ -3,23 +3,17 @@
 //  source: ./build/j2objc/java/DataChangedNotifier.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_DataChangedNotifier")
-#ifdef RESTRICT_DataChangedNotifier
-#define INCLUDE_ALL_DataChangedNotifier 0
-#else
-#define INCLUDE_ALL_DataChangedNotifier 1
-#endif
-#undef RESTRICT_DataChangedNotifier
+#ifndef DataChangedNotifier_H
+#define DataChangedNotifier_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbDataDataChangedNotifier_) && (INCLUDE_ALL_DataChangedNotifier || defined(INCLUDE_ComYahooSquidbDataDataChangedNotifier))
-#define ComYahooSquidbDataDataChangedNotifier_
+#include "J2ObjC_header.h"
+#include "java/lang/Enum.h"
 
 @class ComYahooSquidbDataAbstractModel;
 @class ComYahooSquidbDataDataChangedNotifier_DBOperation;
@@ -33,11 +27,11 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithJavaUtilCollection:(id<JavaUtilCollection>)tables;
+- (instancetype __nonnull)initWithJavaUtilCollection:(id<JavaUtilCollection>)tables;
 
-- (instancetype)initWithComYahooSquidbSqlSqlTableArray:(IOSObjectArray *)tables;
+- (instancetype __nonnull)initWithComYahooSquidbSqlSqlTableArray:(IOSObjectArray *)tables;
 
 - (void)setEnabledWithBoolean:(jboolean)enabled;
 
@@ -81,17 +75,6 @@ FOUNDATION_EXPORT void ComYahooSquidbDataDataChangedNotifier_initWithJavaUtilCol
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataDataChangedNotifier)
 
-#endif
-
-#if !defined (ComYahooSquidbDataDataChangedNotifier_DBOperation_) && (INCLUDE_ALL_DataChangedNotifier || defined(INCLUDE_ComYahooSquidbDataDataChangedNotifier_DBOperation))
-#define ComYahooSquidbDataDataChangedNotifier_DBOperation_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
-#include "java/lang/Enum.h"
-
-@class IOSObjectArray;
-
 typedef NS_ENUM(NSUInteger, ComYahooSquidbDataDataChangedNotifier_DBOperation_Enum) {
   ComYahooSquidbDataDataChangedNotifier_DBOperation_Enum_INSERT = 0,
   ComYahooSquidbDataDataChangedNotifier_DBOperation_Enum_UPDATE = 1,
@@ -100,6 +83,9 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbDataDataChangedNotifier_DBOperation_En
 
 @interface ComYahooSquidbDataDataChangedNotifier_DBOperation : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbDataDataChangedNotifier_DBOperation *INSERT NS_SWIFT_NAME(INSERT);
+@property (readonly, class, nonnull) ComYahooSquidbDataDataChangedNotifier_DBOperation *UPDATE NS_SWIFT_NAME(UPDATE);
+@property (readonly, class, nonnull) ComYahooSquidbDataDataChangedNotifier_DBOperation *DELETE NS_SWIFT_NAME(DELETE);
 + (ComYahooSquidbDataDataChangedNotifier_DBOperation * __nonnull)INSERT;
 
 + (ComYahooSquidbDataDataChangedNotifier_DBOperation * __nonnull)UPDATE;
@@ -140,10 +126,8 @@ FOUNDATION_EXPORT ComYahooSquidbDataDataChangedNotifier_DBOperation *ComYahooSqu
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataDataChangedNotifier_DBOperation)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_DataChangedNotifier")
+#endif // DataChangedNotifier_H

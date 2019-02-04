@@ -3,18 +3,17 @@
 //  source: ./build/j2objc/java/Gson.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Gson_H
+#define Gson_H
 
-#pragma push_macro("INCLUDE_ALL_Gson")
-#ifdef RESTRICT_Gson
-#define INCLUDE_ALL_Gson 0
-#else
-#define INCLUDE_ALL_Gson 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Gson
 
-#if !defined (GsonGson_) && (INCLUDE_ALL_Gson || defined(INCLUDE_GsonGson))
-#define GsonGson_
+#include "J2ObjC_header.h"
+#include "TypeAdapter.h"
 
 @class GsonExcluder;
 @class GsonGsonBuilder;
@@ -54,6 +53,13 @@
   id<JavaUtilList> builderFactories_;
   id<JavaUtilList> builderHierarchyFactories_;
 }
+@property (readonly, class) jboolean DEFAULT_JSON_NON_EXECUTABLE NS_SWIFT_NAME(DEFAULT_JSON_NON_EXECUTABLE);
+@property (readonly, class) jboolean DEFAULT_LENIENT NS_SWIFT_NAME(DEFAULT_LENIENT);
+@property (readonly, class) jboolean DEFAULT_PRETTY_PRINT NS_SWIFT_NAME(DEFAULT_PRETTY_PRINT);
+@property (readonly, class) jboolean DEFAULT_ESCAPE_HTML NS_SWIFT_NAME(DEFAULT_ESCAPE_HTML);
+@property (readonly, class) jboolean DEFAULT_SERIALIZE_NULLS NS_SWIFT_NAME(DEFAULT_SERIALIZE_NULLS);
+@property (readonly, class) jboolean DEFAULT_COMPLEX_MAP_KEYS NS_SWIFT_NAME(DEFAULT_COMPLEX_MAP_KEYS);
+@property (readonly, class) jboolean DEFAULT_SPECIALIZE_FLOAT_VALUES NS_SWIFT_NAME(DEFAULT_SPECIALIZE_FLOAT_VALUES);
 
 + (jboolean)DEFAULT_JSON_NON_EXECUTABLE;
 
@@ -71,7 +77,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonExcluder *)excluder;
 
@@ -148,23 +154,23 @@ withJavaLangReflectType:(id<JavaLangReflectType>)typeOfSrc
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonExcluder:(GsonExcluder *)excluder
-         withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingStrategy
-                     withJavaUtilMap:(id<JavaUtilMap>)instanceCreators
-                         withBoolean:(jboolean)serializeNulls
-                         withBoolean:(jboolean)complexMapKeySerialization
-                         withBoolean:(jboolean)generateNonExecutableGson
-                         withBoolean:(jboolean)htmlSafe
-                         withBoolean:(jboolean)prettyPrinting
-                         withBoolean:(jboolean)lenient
-                         withBoolean:(jboolean)serializeSpecialFloatingPointValues
-     withGsonLongSerializationPolicy:(GsonLongSerializationPolicy *)longSerializationPolicy
-                        withNSString:(NSString *)datePattern
-                             withInt:(jint)dateStyle
-                             withInt:(jint)timeStyle
-                    withJavaUtilList:(id<JavaUtilList>)builderFactories
-                    withJavaUtilList:(id<JavaUtilList>)builderHierarchyFactories
-                    withJavaUtilList:(id<JavaUtilList>)factoriesToBeAdded;
+- (instancetype __nonnull)initWithGsonExcluder:(GsonExcluder *)excluder
+                   withGsonFieldNamingStrategy:(id<GsonFieldNamingStrategy>)fieldNamingStrategy
+                               withJavaUtilMap:(id<JavaUtilMap>)instanceCreators
+                                   withBoolean:(jboolean)serializeNulls
+                                   withBoolean:(jboolean)complexMapKeySerialization
+                                   withBoolean:(jboolean)generateNonExecutableGson
+                                   withBoolean:(jboolean)htmlSafe
+                                   withBoolean:(jboolean)prettyPrinting
+                                   withBoolean:(jboolean)lenient
+                                   withBoolean:(jboolean)serializeSpecialFloatingPointValues
+               withGsonLongSerializationPolicy:(GsonLongSerializationPolicy *)longSerializationPolicy
+                                  withNSString:(NSString *)datePattern
+                                       withInt:(jint)dateStyle
+                                       withInt:(jint)timeStyle
+                              withJavaUtilList:(id<JavaUtilList>)builderFactories
+                              withJavaUtilList:(id<JavaUtilList>)builderHierarchyFactories
+                              withJavaUtilList:(id<JavaUtilList>)factoriesToBeAdded;
 
 + (void)checkValidFloatingPointWithDouble:(jdouble)value;
 
@@ -227,18 +233,6 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonGson)
 
 @compatibility_alias ComGoogleGsonGson GsonGson;
 
-#endif
-
-#if !defined (GsonGson_FutureTypeAdapter_) && (INCLUDE_ALL_Gson || defined(INCLUDE_GsonGson_FutureTypeAdapter))
-#define GsonGson_FutureTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
-#include "TypeAdapter.h"
-
-@class GsonJsonReader;
-@class GsonJsonWriter;
-
 @interface GsonGson_FutureTypeAdapter : GsonTypeAdapter
 
 #pragma mark Public
@@ -252,7 +246,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonGson)
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -266,6 +260,8 @@ FOUNDATION_EXPORT GsonGson_FutureTypeAdapter *create_GsonGson_FutureTypeAdapter_
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonGson_FutureTypeAdapter)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Gson")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Gson_H

@@ -3,25 +3,17 @@
 //  source: ./build/j2objc/java/JsonArray.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonArray_H
+#define JsonArray_H
 
-#pragma push_macro("INCLUDE_ALL_JsonArray")
-#ifdef RESTRICT_JsonArray
-#define INCLUDE_ALL_JsonArray 0
-#else
-#define INCLUDE_ALL_JsonArray 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonArray
 
-#if !defined (GsonJsonArray_) && (INCLUDE_ALL_JsonArray || defined(INCLUDE_GsonJsonArray))
-#define GsonJsonArray_
-
-#define RESTRICT_JsonElement 1
-#define INCLUDE_GsonJsonElement 1
+#include "J2ObjC_header.h"
 #include "JsonElement.h"
-
-#define RESTRICT_JavaLangIterable 1
-#define INCLUDE_JavaLangIterable 1
 #include "java/lang/Iterable.h"
 
 @class JavaLangBoolean;
@@ -36,9 +28,9 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithInt:(jint)capacity;
+- (instancetype __nonnull)initWithInt:(jint)capacity;
 
 - (void)addWithJavaLangBoolean:(JavaLangBoolean *)bool_;
 
@@ -119,6 +111,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonArray)
 
 @compatibility_alias ComGoogleGsonJsonArray GsonJsonArray;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonArray")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonArray_H

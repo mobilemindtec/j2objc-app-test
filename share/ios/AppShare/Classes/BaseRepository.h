@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/BaseRepository.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef BaseRepository_H
+#define BaseRepository_H
 
-#pragma push_macro("INCLUDE_ALL_BaseRepository")
-#ifdef RESTRICT_BaseRepository
-#define INCLUDE_ALL_BaseRepository 0
-#else
-#define INCLUDE_ALL_BaseRepository 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_BaseRepository
 
-#if !defined (AppBaseRepository_) && (INCLUDE_ALL_BaseRepository || defined(INCLUDE_AppBaseRepository))
-#define AppBaseRepository_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbDataTableModel;
 @class ComYahooSquidbSqlProperty;
@@ -46,14 +44,14 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithIOSClass:(IOSClass *)clazz
-      withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)table
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-   withComYahooSquidbSqlProperty:(ComYahooSquidbSqlProperty *)idProperty;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)clazz
+                withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)table
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+             withComYahooSquidbSqlProperty:(ComYahooSquidbSqlProperty *)idProperty;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -71,6 +69,8 @@ J2OBJC_TYPE_LITERAL_HEADER(AppBaseRepository)
 
 @compatibility_alias BrComMobilemindAppRepositoryBaseRepository AppBaseRepository;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_BaseRepository")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // BaseRepository_H

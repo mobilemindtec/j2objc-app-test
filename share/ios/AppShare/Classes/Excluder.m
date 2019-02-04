@@ -299,6 +299,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(java_clone);
   methods[2].selector = @selector(withVersionWithDouble:);
@@ -333,7 +334,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   return &_GsonExcluder;
 }
 
-- (id)copyWithZone:(NSZone * __nullable)zone {
+- (id)copyWithZone:(NSZone *)zone {
   return [self java_clone];
 }
 
@@ -424,6 +425,8 @@ jboolean GsonExcluder_isValidUntilWithGsonUntil_(GsonExcluder *self, id<GsonUnti
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonExcluder)
 
+J2OBJC_NAME_MAPPING(GsonExcluder, "com.google.gson.internal", "Gson")
+
 @implementation GsonExcluder_1
 
 - (instancetype)initWithGsonExcluder:(GsonExcluder *)outer$
@@ -465,6 +468,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonExcluder)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonExcluder:withBoolean:withBoolean:withGsonGson:withGsonTypeToken:);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);

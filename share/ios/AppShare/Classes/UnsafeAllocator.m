@@ -125,6 +125,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(newInstanceWithIOSClass:);
   methods[2].selector = @selector(create);
@@ -186,6 +187,8 @@ void GsonUnsafeAllocator_assertInstantiableWithIOSClass_(IOSClass *c) {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonUnsafeAllocator)
 
+J2OBJC_NAME_MAPPING(GsonUnsafeAllocator, "com.google.gson.internal", "Gson")
+
 @implementation GsonUnsafeAllocator_1
 
 - (instancetype)initWithJavaLangReflectMethod:(JavaLangReflectMethod *)capture$0
@@ -206,6 +209,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonUnsafeAllocator)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectMethod:withId:);
   methods[1].selector = @selector(newInstanceWithIOSClass:);
   #pragma clang diagnostic pop
@@ -254,6 +258,7 @@ GsonUnsafeAllocator_1 *create_GsonUnsafeAllocator_1_initWithJavaLangReflectMetho
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectMethod:withInt:);
   methods[1].selector = @selector(newInstanceWithIOSClass:);
   #pragma clang diagnostic pop
@@ -301,6 +306,7 @@ GsonUnsafeAllocator_2 *create_GsonUnsafeAllocator_2_initWithJavaLangReflectMetho
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangReflectMethod:);
   methods[1].selector = @selector(newInstanceWithIOSClass:);
   #pragma clang diagnostic pop
@@ -347,6 +353,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(newInstanceWithIOSClass:);
   #pragma clang diagnostic pop

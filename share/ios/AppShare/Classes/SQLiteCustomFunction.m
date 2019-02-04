@@ -37,6 +37,7 @@ withComYahooAndroidSqliteSQLiteDatabase_CustomFunction:(id<ComYahooAndroidSqlite
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:withInt:withComYahooAndroidSqliteSQLiteDatabase_CustomFunction:);
   methods[1].selector = @selector(dispatchCallbackWithNSStringArray:);
   #pragma clang diagnostic pop

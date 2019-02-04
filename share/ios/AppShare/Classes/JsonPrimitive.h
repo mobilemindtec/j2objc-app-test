@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonPrimitive.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonPrimitive_H
+#define JsonPrimitive_H
 
-#pragma push_macro("INCLUDE_ALL_JsonPrimitive")
-#ifdef RESTRICT_JsonPrimitive
-#define INCLUDE_ALL_JsonPrimitive 0
-#else
-#define INCLUDE_ALL_JsonPrimitive 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonPrimitive
 
-#if !defined (GsonJsonPrimitive_) && (INCLUDE_ALL_JsonPrimitive || defined(INCLUDE_GsonJsonPrimitive))
-#define GsonJsonPrimitive_
-
-#define RESTRICT_JsonElement 1
-#define INCLUDE_GsonJsonElement 1
+#include "J2ObjC_header.h"
 #include "JsonElement.h"
 
 @class JavaLangBoolean;
@@ -29,13 +24,13 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaLangBoolean:(JavaLangBoolean *)bool_;
+- (instancetype __nonnull)initWithJavaLangBoolean:(JavaLangBoolean *)bool_;
 
-- (instancetype)initWithJavaLangCharacter:(JavaLangCharacter *)c;
+- (instancetype __nonnull)initWithJavaLangCharacter:(JavaLangCharacter *)c;
 
-- (instancetype)initWithNSNumber:(NSNumber *)number;
+- (instancetype __nonnull)initWithNSNumber:(NSNumber *)number;
 
-- (instancetype)initWithNSString:(NSString *)string;
+- (instancetype __nonnull)initWithNSString:(NSString *)string;
 
 - (GsonJsonPrimitive *)deepCopy;
 
@@ -75,7 +70,7 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithId:(id)primitive;
+- (instancetype __nonnull)initWithId:(id)primitive;
 
 - (JavaLangBoolean *)getAsBooleanWrapper;
 
@@ -83,7 +78,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -123,6 +118,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonPrimitive)
 
 @compatibility_alias ComGoogleGsonJsonPrimitive GsonJsonPrimitive;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonPrimitive")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonPrimitive_H

@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/ArrayTypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ArrayTypeAdapter_H
+#define ArrayTypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_ArrayTypeAdapter")
-#ifdef RESTRICT_ArrayTypeAdapter
-#define INCLUDE_ALL_ArrayTypeAdapter 0
-#else
-#define INCLUDE_ALL_ArrayTypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ArrayTypeAdapter
 
-#if !defined (GsonArrayTypeAdapter_) && (INCLUDE_ALL_ArrayTypeAdapter || defined(INCLUDE_GsonArrayTypeAdapter))
-#define GsonArrayTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonGson;
@@ -27,14 +22,15 @@
 @protocol GsonTypeAdapterFactory;
 
 @interface GsonArrayTypeAdapter : GsonTypeAdapter
+@property (readonly, class) id<GsonTypeAdapterFactory> FACTORY NS_SWIFT_NAME(FACTORY);
 
 + (id<GsonTypeAdapterFactory>)FACTORY;
 
 #pragma mark Public
 
-- (instancetype)initWithGsonGson:(GsonGson *)context
-             withGsonTypeAdapter:(GsonTypeAdapter *)componentTypeAdapter
-                    withIOSClass:(IOSClass *)componentType;
+- (instancetype __nonnull)initWithGsonGson:(GsonGson *)context
+                       withGsonTypeAdapter:(GsonTypeAdapter *)componentTypeAdapter
+                              withIOSClass:(IOSClass *)componentType;
 
 - (id)readWithGsonJsonReader:(GsonJsonReader *)inArg;
 
@@ -43,7 +39,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -64,6 +60,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonArrayTypeAdapter)
 
 @compatibility_alias ComGoogleGsonInternalBindArrayTypeAdapter GsonArrayTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ArrayTypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ArrayTypeAdapter_H

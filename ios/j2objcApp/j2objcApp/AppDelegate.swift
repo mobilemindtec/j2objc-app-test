@@ -24,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // configure squidb
         let creator = SGDBIOSOpenHelperCreator()
-        SGDBOpenHelperCreator.setCreatorWith(creator!)
+        SGDBOpenHelperCreator.setCreatorWith(creator)
         
         
         // delete all users for test
         let userRepo = AppUserRepository()
-        userRepo?.deleteAll()
+        userRepo.deleteAll()
         
         return true
     }

@@ -3,24 +3,27 @@
 //  source: ./build/j2objc/java/AppUtil.java
 //
 
+#ifndef AppUtil_H
+#define AppUtil_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_AppUtil")
-#ifdef RESTRICT_AppUtil
-#define INCLUDE_ALL_AppUtil 0
-#else
-#define INCLUDE_ALL_AppUtil 1
-#endif
-#undef RESTRICT_AppUtil
-
-#if !defined (AppBaseAppUtil_) && (INCLUDE_ALL_AppUtil || defined(INCLUDE_AppBaseAppUtil))
-#define AppBaseAppUtil_
+@class IOSCharArray;
 
 @interface AppBaseAppUtil : NSObject
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
+
++ (NSString *)capitalizeStringWithNSString:(NSString *)string
+                             withCharArray:(IOSCharArray *)charList;
 
 + (jdouble)decimalFormatWithDouble:(jdouble)value;
 
@@ -60,10 +63,14 @@ FOUNDATION_EXPORT NSString *AppBaseAppUtil_formatMoneyStrWithDouble_(jdouble val
 
 FOUNDATION_EXPORT jdouble AppBaseAppUtil_parseMoneyWithNSString_(NSString *value);
 
+FOUNDATION_EXPORT NSString *AppBaseAppUtil_capitalizeStringWithNSString_withCharArray_(NSString *string, IOSCharArray *charList);
+
 J2OBJC_TYPE_LITERAL_HEADER(AppBaseAppUtil)
 
 @compatibility_alias BrComMobilemindJ2objcUtilAppUtil AppBaseAppUtil;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_AppUtil")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // AppUtil_H

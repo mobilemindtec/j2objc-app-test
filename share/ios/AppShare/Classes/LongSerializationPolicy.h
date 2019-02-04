@@ -3,26 +3,16 @@
 //  source: ./build/j2objc/java/LongSerializationPolicy.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_LongSerializationPolicy")
-#ifdef RESTRICT_LongSerializationPolicy
-#define INCLUDE_ALL_LongSerializationPolicy 0
-#else
-#define INCLUDE_ALL_LongSerializationPolicy 1
-#endif
-#undef RESTRICT_LongSerializationPolicy
+#ifndef LongSerializationPolicy_H
+#define LongSerializationPolicy_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (GsonLongSerializationPolicy_) && (INCLUDE_ALL_LongSerializationPolicy || defined(INCLUDE_GsonLongSerializationPolicy))
-#define GsonLongSerializationPolicy_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
+#include "J2ObjC_header.h"
 #include "java/lang/Enum.h"
 
 @class GsonJsonElement;
@@ -36,6 +26,8 @@ typedef NS_ENUM(NSUInteger, GsonLongSerializationPolicy_Enum) {
 
 @interface GsonLongSerializationPolicy : JavaLangEnum
 
+@property (readonly, class, nonnull) GsonLongSerializationPolicy *DEFAULT NS_SWIFT_NAME(DEFAULT);
+@property (readonly, class, nonnull) GsonLongSerializationPolicy *STRING NS_SWIFT_NAME(STRING);
 + (GsonLongSerializationPolicy * __nonnull)DEFAULT;
 
 + (GsonLongSerializationPolicy * __nonnull)STRING;
@@ -75,10 +67,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLongSerializationPolicy)
 
 @compatibility_alias ComGoogleGsonLongSerializationPolicy GsonLongSerializationPolicy;
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_LongSerializationPolicy")
+#endif // LongSerializationPolicy_H

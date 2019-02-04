@@ -189,6 +189,7 @@ __attribute__((unused)) static void ComYahooSquidbSqlUpdate_visitWhereWithComYah
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlSqlTable:);
   methods[1].selector = @selector(tableWithComYahooSquidbSqlTable:);
   methods[2].selector = @selector(tableWithComYahooSquidbSqlView:);

@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/FieldNamingStrategy.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef FieldNamingStrategy_H
+#define FieldNamingStrategy_H
 
-#pragma push_macro("INCLUDE_ALL_FieldNamingStrategy")
-#ifdef RESTRICT_FieldNamingStrategy
-#define INCLUDE_ALL_FieldNamingStrategy 0
-#else
-#define INCLUDE_ALL_FieldNamingStrategy 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_FieldNamingStrategy
 
-#if !defined (GsonFieldNamingStrategy_) && (INCLUDE_ALL_FieldNamingStrategy || defined(INCLUDE_GsonFieldNamingStrategy))
-#define GsonFieldNamingStrategy_
+#include "J2ObjC_header.h"
 
 @class JavaLangReflectField;
 
@@ -30,6 +28,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonFieldNamingStrategy)
 
 #define ComGoogleGsonFieldNamingStrategy GsonFieldNamingStrategy
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_FieldNamingStrategy")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // FieldNamingStrategy_H

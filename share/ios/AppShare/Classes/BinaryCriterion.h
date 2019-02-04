@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/BinaryCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef BinaryCriterion_H
+#define BinaryCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_BinaryCriterion")
-#ifdef RESTRICT_BinaryCriterion
-#define INCLUDE_ALL_BinaryCriterion 0
-#else
-#define INCLUDE_ALL_BinaryCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_BinaryCriterion
 
-#if !defined (ComYahooSquidbSqlBinaryCriterion_) && (INCLUDE_ALL_BinaryCriterion || defined(INCLUDE_ComYahooSquidbSqlBinaryCriterion))
-#define ComYahooSquidbSqlBinaryCriterion_
-
-#define RESTRICT_Criterion 1
-#define INCLUDE_ComYahooSquidbSqlCriterion 1
 #include "Criterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlOperator;
@@ -52,13 +47,13 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                                        withId:(id)value;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                                                  withId:(id)value;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -75,6 +70,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlBinaryCriterion *create_ComYahooSquidbSqlBina
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlBinaryCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_BinaryCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // BinaryCriterion_H

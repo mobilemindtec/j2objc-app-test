@@ -32,6 +32,14 @@ __attribute__((unused)) static IOSObjectArray *GsonJsonAdapter__Annotations$0(vo
   return [NSString stringWithFormat:@"@com.google.gson.annotations.JsonAdapter(value=%@, nullSafe=%d)", value_, nullSafe_];
 }
 
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "LIOSClass;", 0x401, -1, -1, -1, -1, -1, -1 },
@@ -39,6 +47,7 @@ __attribute__((unused)) static IOSObjectArray *GsonJsonAdapter__Annotations$0(vo
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(value);
   methods[1].selector = @selector(nullSafe);
   #pragma clang diagnostic pop
@@ -65,3 +74,5 @@ IOSObjectArray *GsonJsonAdapter__Annotations$0() {
 }
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonJsonAdapter)
+
+J2OBJC_NAME_MAPPING(GsonJsonAdapter, "com.google.gson.annotations", "Gson")

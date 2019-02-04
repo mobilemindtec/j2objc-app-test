@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/TypeAdapters.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TypeAdapters_H
+#define TypeAdapters_H
 
-#pragma push_macro("INCLUDE_ALL_TypeAdapters")
-#ifdef RESTRICT_TypeAdapters
-#define INCLUDE_ALL_TypeAdapters 0
-#else
-#define INCLUDE_ALL_TypeAdapters 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TypeAdapters
 
-#if !defined (GsonTypeAdapters_) && (INCLUDE_ALL_TypeAdapters || defined(INCLUDE_GsonTypeAdapters))
-#define GsonTypeAdapters_
+#include "J2ObjC_header.h"
 
 @class GsonTypeAdapter;
 @class GsonTypeToken;
@@ -22,6 +20,58 @@
 @protocol GsonTypeAdapterFactory;
 
 @interface GsonTypeAdapters : NSObject
+@property (readonly, class) GsonTypeAdapter *CLASS NS_SWIFT_NAME(CLASS);
+@property (readonly, class) id<GsonTypeAdapterFactory> CLASS_FACTORY NS_SWIFT_NAME(CLASS_FACTORY);
+@property (readonly, class) GsonTypeAdapter *BIT_SET NS_SWIFT_NAME(BIT_SET);
+@property (readonly, class) id<GsonTypeAdapterFactory> BIT_SET_FACTORY NS_SWIFT_NAME(BIT_SET_FACTORY);
+@property (readonly, class) GsonTypeAdapter *BOOLEAN NS_SWIFT_NAME(BOOLEAN);
+@property (readonly, class) GsonTypeAdapter *BOOLEAN_AS_STRING NS_SWIFT_NAME(BOOLEAN_AS_STRING);
+@property (readonly, class) id<GsonTypeAdapterFactory> BOOLEAN_FACTORY NS_SWIFT_NAME(BOOLEAN_FACTORY);
+@property (readonly, class) GsonTypeAdapter *BYTE NS_SWIFT_NAME(BYTE);
+@property (readonly, class) id<GsonTypeAdapterFactory> BYTE_FACTORY NS_SWIFT_NAME(BYTE_FACTORY);
+@property (readonly, class) GsonTypeAdapter *SHORT NS_SWIFT_NAME(SHORT);
+@property (readonly, class) id<GsonTypeAdapterFactory> SHORT_FACTORY NS_SWIFT_NAME(SHORT_FACTORY);
+@property (readonly, class) GsonTypeAdapter *INTEGER NS_SWIFT_NAME(INTEGER);
+@property (readonly, class) id<GsonTypeAdapterFactory> INTEGER_FACTORY NS_SWIFT_NAME(INTEGER_FACTORY);
+@property (readonly, class) GsonTypeAdapter *ATOMIC_INTEGER NS_SWIFT_NAME(ATOMIC_INTEGER);
+@property (readonly, class) id<GsonTypeAdapterFactory> ATOMIC_INTEGER_FACTORY NS_SWIFT_NAME(ATOMIC_INTEGER_FACTORY);
+@property (readonly, class) GsonTypeAdapter *ATOMIC_BOOLEAN NS_SWIFT_NAME(ATOMIC_BOOLEAN);
+@property (readonly, class) id<GsonTypeAdapterFactory> ATOMIC_BOOLEAN_FACTORY NS_SWIFT_NAME(ATOMIC_BOOLEAN_FACTORY);
+@property (readonly, class) GsonTypeAdapter *ATOMIC_INTEGER_ARRAY NS_SWIFT_NAME(ATOMIC_INTEGER_ARRAY);
+@property (readonly, class) id<GsonTypeAdapterFactory> ATOMIC_INTEGER_ARRAY_FACTORY NS_SWIFT_NAME(ATOMIC_INTEGER_ARRAY_FACTORY);
+@property (readonly, class) GsonTypeAdapter *LONG NS_SWIFT_NAME(LONG);
+@property (readonly, class) GsonTypeAdapter *FLOAT NS_SWIFT_NAME(FLOAT);
+@property (readonly, class) GsonTypeAdapter *DOUBLE NS_SWIFT_NAME(DOUBLE);
+@property (readonly, class) GsonTypeAdapter *NUMBER NS_SWIFT_NAME(NUMBER);
+@property (readonly, class) id<GsonTypeAdapterFactory> NUMBER_FACTORY NS_SWIFT_NAME(NUMBER_FACTORY);
+@property (readonly, class) GsonTypeAdapter *CHARACTER NS_SWIFT_NAME(CHARACTER);
+@property (readonly, class) id<GsonTypeAdapterFactory> CHARACTER_FACTORY NS_SWIFT_NAME(CHARACTER_FACTORY);
+@property (readonly, class) GsonTypeAdapter *STRING NS_SWIFT_NAME(STRING);
+@property (readonly, class) GsonTypeAdapter *BIG_DECIMAL NS_SWIFT_NAME(BIG_DECIMAL);
+@property (readonly, class) GsonTypeAdapter *BIG_INTEGER NS_SWIFT_NAME(BIG_INTEGER);
+@property (readonly, class) id<GsonTypeAdapterFactory> STRING_FACTORY NS_SWIFT_NAME(STRING_FACTORY);
+@property (readonly, class) GsonTypeAdapter *STRING_BUILDER NS_SWIFT_NAME(STRING_BUILDER);
+@property (readonly, class) id<GsonTypeAdapterFactory> STRING_BUILDER_FACTORY NS_SWIFT_NAME(STRING_BUILDER_FACTORY);
+@property (readonly, class) GsonTypeAdapter *STRING_BUFFER NS_SWIFT_NAME(STRING_BUFFER);
+@property (readonly, class) id<GsonTypeAdapterFactory> STRING_BUFFER_FACTORY NS_SWIFT_NAME(STRING_BUFFER_FACTORY);
+@property (readonly, class) GsonTypeAdapter *URL NS_SWIFT_NAME(URL);
+@property (readonly, class) id<GsonTypeAdapterFactory> URL_FACTORY NS_SWIFT_NAME(URL_FACTORY);
+@property (readonly, class) GsonTypeAdapter *URI NS_SWIFT_NAME(URI);
+@property (readonly, class) id<GsonTypeAdapterFactory> URI_FACTORY NS_SWIFT_NAME(URI_FACTORY);
+@property (readonly, class) GsonTypeAdapter *INET_ADDRESS NS_SWIFT_NAME(INET_ADDRESS);
+@property (readonly, class) id<GsonTypeAdapterFactory> INET_ADDRESS_FACTORY NS_SWIFT_NAME(INET_ADDRESS_FACTORY);
+@property (readonly, class) GsonTypeAdapter *UUID NS_SWIFT_NAME(UUID);
+@property (readonly, class) id<GsonTypeAdapterFactory> UUID_FACTORY NS_SWIFT_NAME(UUID_FACTORY);
+@property (readonly, class) GsonTypeAdapter *CURRENCY NS_SWIFT_NAME(CURRENCY);
+@property (readonly, class) id<GsonTypeAdapterFactory> CURRENCY_FACTORY NS_SWIFT_NAME(CURRENCY_FACTORY);
+@property (readonly, class) id<GsonTypeAdapterFactory> TIMESTAMP_FACTORY NS_SWIFT_NAME(TIMESTAMP_FACTORY);
+@property (readonly, class) GsonTypeAdapter *CALENDAR NS_SWIFT_NAME(CALENDAR);
+@property (readonly, class) id<GsonTypeAdapterFactory> CALENDAR_FACTORY NS_SWIFT_NAME(CALENDAR_FACTORY);
+@property (readonly, class) GsonTypeAdapter *LOCALE NS_SWIFT_NAME(LOCALE);
+@property (readonly, class) id<GsonTypeAdapterFactory> LOCALE_FACTORY NS_SWIFT_NAME(LOCALE_FACTORY);
+@property (readonly, class) GsonTypeAdapter *JSON_ELEMENT NS_SWIFT_NAME(JSON_ELEMENT);
+@property (readonly, class) id<GsonTypeAdapterFactory> JSON_ELEMENT_FACTORY NS_SWIFT_NAME(JSON_ELEMENT_FACTORY);
+@property (readonly, class) id<GsonTypeAdapterFactory> ENUM_FACTORY NS_SWIFT_NAME(ENUM_FACTORY);
 
 + (GsonTypeAdapter *)CLASS;
 
@@ -424,6 +474,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTypeAdapters)
 
 @compatibility_alias ComGoogleGsonInternalBindTypeAdapters GsonTypeAdapters;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TypeAdapters")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TypeAdapters_H

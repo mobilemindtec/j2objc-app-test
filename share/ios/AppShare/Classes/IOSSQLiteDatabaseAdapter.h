@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/IOSSQLiteDatabaseAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef IOSSQLiteDatabaseAdapter_H
+#define IOSSQLiteDatabaseAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_IOSSQLiteDatabaseAdapter")
-#ifdef RESTRICT_IOSSQLiteDatabaseAdapter
-#define INCLUDE_ALL_IOSSQLiteDatabaseAdapter 0
-#else
-#define INCLUDE_ALL_IOSSQLiteDatabaseAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_IOSSQLiteDatabaseAdapter
 
-#if !defined (ComYahooSquidbIosIOSSQLiteDatabaseAdapter_) && (INCLUDE_ALL_IOSSQLiteDatabaseAdapter || defined(INCLUDE_ComYahooSquidbIosIOSSQLiteDatabaseAdapter))
-#define ComYahooSquidbIosIOSSQLiteDatabaseAdapter_
-
-#define RESTRICT_ISQLiteDatabase 1
-#define INCLUDE_ComYahooSquidbDataISQLiteDatabase 1
 #include "ISQLiteDatabase.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
 @class IOSObjectArray;
@@ -30,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)db;
 
 - (void)beginTransaction;
 
@@ -116,7 +111,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -130,6 +125,8 @@ FOUNDATION_EXPORT ComYahooSquidbIosIOSSQLiteDatabaseAdapter *create_ComYahooSqui
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbIosIOSSQLiteDatabaseAdapter)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_IOSSQLiteDatabaseAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // IOSSQLiteDatabaseAdapter_H

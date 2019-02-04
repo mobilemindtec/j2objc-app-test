@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/BetweenCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef BetweenCriterion_H
+#define BetweenCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_BetweenCriterion")
-#ifdef RESTRICT_BetweenCriterion
-#define INCLUDE_ALL_BetweenCriterion 0
-#else
-#define INCLUDE_ALL_BetweenCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_BetweenCriterion
 
-#if !defined (ComYahooSquidbSqlBetweenCriterion_) && (INCLUDE_ALL_BetweenCriterion || defined(INCLUDE_ComYahooSquidbSqlBetweenCriterion))
-#define ComYahooSquidbSqlBetweenCriterion_
-
-#define RESTRICT_BinaryCriterion 1
-#define INCLUDE_ComYahooSquidbSqlBinaryCriterion 1
 #include "BinaryCriterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlOperator;
@@ -35,16 +30,16 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                                        withId:(id)lower
-                                        withId:(id)upper;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                                                  withId:(id)lower
+                                                  withId:(id)upper;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)arg0
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg1
-                                        withId:(id)arg2 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)arg0
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg1
+                                                  withId:(id)arg2 NS_UNAVAILABLE;
 
 @end
 
@@ -58,6 +53,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlBetweenCriterion *create_ComYahooSquidbSqlBet
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlBetweenCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_BetweenCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // BetweenCriterion_H

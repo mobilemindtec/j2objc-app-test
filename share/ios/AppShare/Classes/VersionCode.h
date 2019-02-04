@@ -3,24 +3,23 @@
 //  source: ./build/j2objc/java/VersionCode.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef VersionCode_H
+#define VersionCode_H
 
-#pragma push_macro("INCLUDE_ALL_VersionCode")
-#ifdef RESTRICT_VersionCode
-#define INCLUDE_ALL_VersionCode 0
-#else
-#define INCLUDE_ALL_VersionCode 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_VersionCode
 
-#if !defined (ComYahooSquidbUtilityVersionCode_) && (INCLUDE_ALL_VersionCode || defined(INCLUDE_ComYahooSquidbUtilityVersionCode))
-#define ComYahooSquidbUtilityVersionCode_
-
-#define RESTRICT_JavaLangComparable 1
-#define INCLUDE_JavaLangComparable 1
+#include "J2ObjC_header.h"
 #include "java/lang/Comparable.h"
 
 @interface ComYahooSquidbUtilityVersionCode : NSObject < JavaLangComparable >
+@property (readonly, class) ComYahooSquidbUtilityVersionCode *V3_7_4 NS_SWIFT_NAME(V3_7_4);
+@property (readonly, class) ComYahooSquidbUtilityVersionCode *V3_7_11 NS_SWIFT_NAME(V3_7_11);
+@property (readonly, class) ComYahooSquidbUtilityVersionCode *V3_8_3 NS_SWIFT_NAME(V3_8_3);
+@property (readonly, class) ComYahooSquidbUtilityVersionCode *LATEST NS_SWIFT_NAME(LATEST);
 
 + (ComYahooSquidbUtilityVersionCode *)V3_7_4;
 
@@ -32,16 +31,16 @@
 
 #pragma mark Public
 
-- (instancetype)initWithInt:(jint)major
-                    withInt:(jint)minor
-                    withInt:(jint)micro
-                    withInt:(jint)nano;
+- (instancetype __nonnull)initWithInt:(jint)major
+                              withInt:(jint)minor
+                              withInt:(jint)micro
+                              withInt:(jint)nano;
 
-- (instancetype)initWithInt:(jint)major
-                    withInt:(jint)minor
-                    withInt:(jint)micro
-                    withInt:(jint)nano
-               withNSString:(NSString *)trailing;
+- (instancetype __nonnull)initWithInt:(jint)major
+                              withInt:(jint)minor
+                              withInt:(jint)micro
+                              withInt:(jint)nano
+                         withNSString:(NSString *)trailing;
 
 - (jint)compareToWithId:(ComYahooSquidbUtilityVersionCode *)other;
 
@@ -73,7 +72,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -115,6 +114,8 @@ FOUNDATION_EXPORT ComYahooSquidbUtilityVersionCode *ComYahooSquidbUtilityVersion
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbUtilityVersionCode)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_VersionCode")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // VersionCode_H

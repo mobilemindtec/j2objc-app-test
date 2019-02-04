@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteTransactionListener.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteTransactionListener_H
+#define SQLiteTransactionListener_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteTransactionListener")
-#ifdef RESTRICT_SQLiteTransactionListener
-#define INCLUDE_ALL_SQLiteTransactionListener 0
-#else
-#define INCLUDE_ALL_SQLiteTransactionListener 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteTransactionListener
 
-#if !defined (ComYahooAndroidSqliteSQLiteTransactionListener_) && (INCLUDE_ALL_SQLiteTransactionListener || defined(INCLUDE_ComYahooAndroidSqliteSQLiteTransactionListener))
-#define ComYahooAndroidSqliteSQLiteTransactionListener_
+#include "J2ObjC_header.h"
 
 @protocol ComYahooAndroidSqliteSQLiteTransactionListener < JavaObject >
 
@@ -30,6 +28,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooAndroidSqliteSQLiteTransactionListener)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteTransactionListener)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteTransactionListener")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteTransactionListener_H

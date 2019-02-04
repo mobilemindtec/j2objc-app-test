@@ -96,6 +96,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(readWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonWriter:withId:);
@@ -133,6 +134,8 @@ GsonSqlDateTypeAdapter *create_GsonSqlDateTypeAdapter_init() {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonSqlDateTypeAdapter)
 
+J2OBJC_NAME_MAPPING(GsonSqlDateTypeAdapter, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonSqlDateTypeAdapter_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -154,6 +157,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(createWithGsonGson:withGsonTypeToken:);
   #pragma clang diagnostic pop

@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/DefaultDateTypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DefaultDateTypeAdapter_H
+#define DefaultDateTypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_DefaultDateTypeAdapter")
-#ifdef RESTRICT_DefaultDateTypeAdapter
-#define INCLUDE_ALL_DefaultDateTypeAdapter 0
-#else
-#define INCLUDE_ALL_DefaultDateTypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DefaultDateTypeAdapter
 
-#if !defined (GsonDefaultDateTypeAdapter_) && (INCLUDE_ALL_DefaultDateTypeAdapter || defined(INCLUDE_GsonDefaultDateTypeAdapter))
-#define GsonDefaultDateTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonJsonElement;
@@ -31,12 +26,12 @@
 
 #pragma mark Public
 
-- (instancetype)initWithIOSClass:(IOSClass *)dateType
-                         withInt:(jint)dateStyle
-                         withInt:(jint)timeStyle;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)dateType
+                                   withInt:(jint)dateStyle
+                                   withInt:(jint)timeStyle;
 
-- (instancetype)initWithInt:(jint)dateStyle
-                    withInt:(jint)timeStyle;
+- (instancetype __nonnull)initWithInt:(jint)dateStyle
+                              withInt:(jint)timeStyle;
 
 - (JavaUtilDate *)fromJsonTreeWithGsonJsonElement:(GsonJsonElement *)arg0;
 
@@ -53,17 +48,17 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithIOSClass:(IOSClass *)dateType;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)dateType;
 
-- (instancetype)initWithIOSClass:(IOSClass *)dateType
-                         withInt:(jint)style;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)dateType
+                                   withInt:(jint)style;
 
-- (instancetype)initWithIOSClass:(IOSClass *)dateType
-                    withNSString:(NSString *)datePattern;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)dateType
+                              withNSString:(NSString *)datePattern;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -103,6 +98,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonDefaultDateTypeAdapter)
 
 @compatibility_alias ComGoogleGsonDefaultDateTypeAdapter GsonDefaultDateTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DefaultDateTypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DefaultDateTypeAdapter_H

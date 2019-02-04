@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/ConjunctionCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ConjunctionCriterion_H
+#define ConjunctionCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_ConjunctionCriterion")
-#ifdef RESTRICT_ConjunctionCriterion
-#define INCLUDE_ALL_ConjunctionCriterion 0
-#else
-#define INCLUDE_ALL_ConjunctionCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ConjunctionCriterion
 
-#if !defined (ComYahooSquidbSqlConjunctionCriterion_) && (INCLUDE_ALL_ConjunctionCriterion || defined(INCLUDE_ComYahooSquidbSqlConjunctionCriterion))
-#define ComYahooSquidbSqlConjunctionCriterion_
-
-#define RESTRICT_Criterion 1
-#define INCLUDE_ComYahooSquidbSqlCriterion 1
 #include "Criterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlOperator;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -40,16 +35,16 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                   withComYahooSquidbSqlCriterion:(ComYahooSquidbSqlCriterion *)baseCriterion
-              withComYahooSquidbSqlCriterionArray:(IOSObjectArray *)additionalCriterions;
+- (instancetype __nonnull)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                             withComYahooSquidbSqlCriterion:(ComYahooSquidbSqlCriterion *)baseCriterion
+                        withComYahooSquidbSqlCriterionArray:(IOSObjectArray *)additionalCriterions;
 
-- (instancetype)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                                 withJavaUtilList:(id<JavaUtilList>)criterions;
+- (instancetype __nonnull)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                                           withJavaUtilList:(id<JavaUtilList>)criterions;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -69,6 +64,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlConjunctionCriterion *create_ComYahooSquidbSq
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlConjunctionCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ConjunctionCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ConjunctionCriterion_H

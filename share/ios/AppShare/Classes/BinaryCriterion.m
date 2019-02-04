@@ -65,6 +65,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlField:withComYahooSquidbSqlOperator:withId:);
   methods[1].selector = @selector(populateWithComYahooSquidbSqlSqlBuilder:withBoolean:);
   methods[2].selector = @selector(beforePopulateOperatorWithComYahooSquidbSqlSqlBuilder:withBoolean:);

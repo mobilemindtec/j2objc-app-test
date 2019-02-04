@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/OperationCanceledException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef OperationCanceledException_H
+#define OperationCanceledException_H
 
-#pragma push_macro("INCLUDE_ALL_OperationCanceledException")
-#ifdef RESTRICT_OperationCanceledException
-#define INCLUDE_ALL_OperationCanceledException 0
-#else
-#define INCLUDE_ALL_OperationCanceledException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_OperationCanceledException
 
-#if !defined (ComYahooAndroidSqliteOperationCanceledException_) && (INCLUDE_ALL_OperationCanceledException || defined(INCLUDE_ComYahooAndroidSqliteOperationCanceledException))
-#define ComYahooAndroidSqliteOperationCanceledException_
-
-#define RESTRICT_JavaLangRuntimeException 1
-#define INCLUDE_JavaLangRuntimeException 1
+#include "J2ObjC_header.h"
 #include "java/lang/RuntimeException.h"
 
 @class JavaLangThrowable;
@@ -26,21 +21,21 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)message;
+- (instancetype __nonnull)initWithNSString:(NSString *)message;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaLangThrowable:(JavaLangThrowable *)arg0 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1
-                     withBoolean:(jboolean)arg2
-                     withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1
+                               withBoolean:(jboolean)arg2
+                               withBoolean:(jboolean)arg3 NS_UNAVAILABLE;
 
 @end
 
@@ -60,6 +55,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteOperationCanceledException *create_ComYah
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteOperationCanceledException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_OperationCanceledException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // OperationCanceledException_H

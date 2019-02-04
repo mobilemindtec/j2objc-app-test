@@ -3,25 +3,17 @@
 //  source: ./build/j2objc/java/JsonWriter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonWriter_H
+#define JsonWriter_H
 
-#pragma push_macro("INCLUDE_ALL_JsonWriter")
-#ifdef RESTRICT_JsonWriter
-#define INCLUDE_ALL_JsonWriter 0
-#else
-#define INCLUDE_ALL_JsonWriter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonWriter
 
-#if !defined (GsonJsonWriter_) && (INCLUDE_ALL_JsonWriter || defined(INCLUDE_GsonJsonWriter))
-#define GsonJsonWriter_
-
-#define RESTRICT_JavaIoCloseable 1
-#define INCLUDE_JavaIoCloseable 1
+#include "J2ObjC_header.h"
 #include "java/io/Closeable.h"
-
-#define RESTRICT_JavaIoFlushable 1
-#define INCLUDE_JavaIoFlushable 1
 #include "java/io/Flushable.h"
 
 @class JavaIoWriter;
@@ -31,7 +23,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithJavaIoWriter:(JavaIoWriter *)outArg;
+- (instancetype __nonnull)initWithJavaIoWriter:(JavaIoWriter *)outArg;
 
 - (GsonJsonWriter *)beginArray;
 
@@ -79,7 +71,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -95,6 +87,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonWriter)
 
 @compatibility_alias ComGoogleGsonStreamJsonWriter GsonJsonWriter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonWriter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonWriter_H

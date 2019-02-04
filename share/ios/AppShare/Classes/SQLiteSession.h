@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteSession.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteSession_H
+#define SQLiteSession_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteSession")
-#ifdef RESTRICT_SQLiteSession
-#define INCLUDE_ALL_SQLiteSession 0
-#else
-#define INCLUDE_ALL_SQLiteSession 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteSession
 
-#if !defined (ComYahooAndroidSqliteSQLiteSession_) && (INCLUDE_ALL_SQLiteSession || defined(INCLUDE_ComYahooAndroidSqliteSQLiteSession))
-#define ComYahooAndroidSqliteSQLiteSession_
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteCursorWindow;
 @class ComYahooAndroidSqliteSQLiteConnectionPool;
@@ -23,6 +21,9 @@
 @protocol ComYahooAndroidSqliteSQLiteTransactionListener;
 
 @interface ComYahooAndroidSqliteSQLiteSession : NSObject
+@property (readonly, class) jint TRANSACTION_MODE_DEFERRED NS_SWIFT_NAME(TRANSACTION_MODE_DEFERRED);
+@property (readonly, class) jint TRANSACTION_MODE_IMMEDIATE NS_SWIFT_NAME(TRANSACTION_MODE_IMMEDIATE);
+@property (readonly, class) jint TRANSACTION_MODE_EXCLUSIVE NS_SWIFT_NAME(TRANSACTION_MODE_EXCLUSIVE);
 
 + (jint)TRANSACTION_MODE_DEFERRED;
 
@@ -32,7 +33,7 @@
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteConnectionPool:(ComYahooAndroidSqliteSQLiteConnectionPool *)connectionPool;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteConnectionPool:(ComYahooAndroidSqliteSQLiteConnectionPool *)connectionPool;
 
 - (void)beginTransactionWithInt:(jint)transactionMode
 withComYahooAndroidSqliteSQLiteTransactionListener:(id<ComYahooAndroidSqliteSQLiteTransactionListener>)transactionListener
@@ -85,7 +86,7 @@ withComYahooAndroidSqliteSQLiteStatementInfo:(ComYahooAndroidSqliteSQLiteStateme
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -111,6 +112,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteSession *create_ComYahooAndroidSqli
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteSession)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteSession")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteSession_H

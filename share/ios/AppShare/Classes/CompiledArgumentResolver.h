@@ -3,33 +3,34 @@
 //  source: ./build/j2objc/java/CompiledArgumentResolver.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CompiledArgumentResolver_H
+#define CompiledArgumentResolver_H
 
-#pragma push_macro("INCLUDE_ALL_CompiledArgumentResolver")
-#ifdef RESTRICT_CompiledArgumentResolver
-#define INCLUDE_ALL_CompiledArgumentResolver 0
-#else
-#define INCLUDE_ALL_CompiledArgumentResolver 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CompiledArgumentResolver
 
-#if !defined (ComYahooSquidbSqlCompiledArgumentResolver_) && (INCLUDE_ALL_CompiledArgumentResolver || defined(INCLUDE_ComYahooSquidbSqlCompiledArgumentResolver))
-#define ComYahooSquidbSqlCompiledArgumentResolver_
+#include "J2ObjC_header.h"
+#include "java/util/LinkedHashMap.h"
 
 @class ComYahooSquidbSqlCompiledStatement;
 @class ComYahooSquidbSqlSqlBuilder;
+@protocol JavaUtilMap;
+@protocol JavaUtilMap_Entry;
 
 @interface ComYahooSquidbSqlCompiledArgumentResolver : NSObject
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder;
+- (instancetype __nonnull)initWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder;
 
 - (ComYahooSquidbSqlCompiledStatement *)resolveToCompiledStatement;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -43,23 +44,11 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCompiledArgumentResolver *create_ComYahooSqui
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompiledArgumentResolver)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlCompiledArgumentResolver_SimpleLruCache_) && (INCLUDE_ALL_CompiledArgumentResolver || defined(INCLUDE_ComYahooSquidbSqlCompiledArgumentResolver_SimpleLruCache))
-#define ComYahooSquidbSqlCompiledArgumentResolver_SimpleLruCache_
-
-#define RESTRICT_JavaUtilLinkedHashMap 1
-#define INCLUDE_JavaUtilLinkedHashMap 1
-#include "java/util/LinkedHashMap.h"
-
-@protocol JavaUtilMap;
-@protocol JavaUtilMap_Entry;
-
 @interface ComYahooSquidbSqlCompiledArgumentResolver_SimpleLruCache : JavaUtilLinkedHashMap
 
 #pragma mark Public
 
-- (instancetype)initWithInt:(jint)maxCapacity;
+- (instancetype __nonnull)initWithInt:(jint)maxCapacity;
 
 #pragma mark Protected
 
@@ -67,16 +56,16 @@ J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompiledArgumentResolver)
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype)initWithInt:(jint)arg0
-                  withFloat:(jfloat)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithInt:(jint)arg0
+                            withFloat:(jfloat)arg1 NS_UNAVAILABLE;
 
-- (instancetype)initWithInt:(jint)arg0
-                  withFloat:(jfloat)arg1
-                withBoolean:(jboolean)arg2 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithInt:(jint)arg0
+                            withFloat:(jfloat)arg1
+                          withBoolean:(jboolean)arg2 NS_UNAVAILABLE;
 
-- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithJavaUtilMap:(id<JavaUtilMap>)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -90,6 +79,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCompiledArgumentResolver_SimpleLruCache *crea
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompiledArgumentResolver_SimpleLruCache)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CompiledArgumentResolver")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CompiledArgumentResolver_H

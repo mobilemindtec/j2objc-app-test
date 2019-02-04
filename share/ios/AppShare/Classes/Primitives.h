@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/Primitives.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Primitives_H
+#define Primitives_H
 
-#pragma push_macro("INCLUDE_ALL_Primitives")
-#ifdef RESTRICT_Primitives
-#define INCLUDE_ALL_Primitives 0
-#else
-#define INCLUDE_ALL_Primitives 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Primitives
 
-#if !defined (GsonPrimitives_) && (INCLUDE_ALL_Primitives || defined(INCLUDE_GsonPrimitives))
-#define GsonPrimitives_
+#include "J2ObjC_header.h"
 
 @class IOSClass;
 @protocol JavaLangReflectType;
@@ -47,6 +45,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonPrimitives)
 
 @compatibility_alias ComGoogleGsonInternalPrimitives GsonPrimitives;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Primitives")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Primitives_H

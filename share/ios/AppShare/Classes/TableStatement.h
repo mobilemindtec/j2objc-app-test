@@ -3,42 +3,31 @@
 //  source: ./build/j2objc/java/TableStatement.java
 //
 
-#include "J2ObjC_header.h"
-
-#pragma push_macro("INCLUDE_ALL_TableStatement")
-#ifdef RESTRICT_TableStatement
-#define INCLUDE_ALL_TableStatement 0
-#else
-#define INCLUDE_ALL_TableStatement 1
-#endif
-#undef RESTRICT_TableStatement
+#ifndef TableStatement_H
+#define TableStatement_H
 
 #if __has_feature(nullability)
 #pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
 #pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
 
-#if !defined (ComYahooSquidbSqlTableStatement_) && (INCLUDE_ALL_TableStatement || defined(INCLUDE_ComYahooSquidbSqlTableStatement))
-#define ComYahooSquidbSqlTableStatement_
-
-#define RESTRICT_CompilableWithArguments 1
-#define INCLUDE_ComYahooSquidbSqlCompilableWithArguments 1
 #include "CompilableWithArguments.h"
-
-#define RESTRICT_SqlStatement 1
-#define INCLUDE_ComYahooSquidbSqlSqlStatement 1
+#include "J2ObjC_header.h"
 #include "SqlStatement.h"
+#include "java/lang/Enum.h"
 
 @class ComYahooSquidbSqlCompileContext;
 @class ComYahooSquidbSqlCompiledStatement;
 @class ComYahooSquidbSqlSqlTable;
 @class ComYahooSquidbUtilityVersionCode;
+@class IOSObjectArray;
 
 @interface ComYahooSquidbSqlTableStatement : ComYahooSquidbSqlCompilableWithArguments < ComYahooSquidbSqlSqlStatement >
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (ComYahooSquidbSqlCompiledStatement *)compileWithComYahooSquidbSqlCompileContext:(ComYahooSquidbSqlCompileContext *)compileContext;
 
@@ -62,17 +51,6 @@ FOUNDATION_EXPORT void ComYahooSquidbSqlTableStatement_init(ComYahooSquidbSqlTab
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlTableStatement)
 
-#endif
-
-#if !defined (ComYahooSquidbSqlTableStatement_ConflictAlgorithm_) && (INCLUDE_ALL_TableStatement || defined(INCLUDE_ComYahooSquidbSqlTableStatement_ConflictAlgorithm))
-#define ComYahooSquidbSqlTableStatement_ConflictAlgorithm_
-
-#define RESTRICT_JavaLangEnum 1
-#define INCLUDE_JavaLangEnum 1
-#include "java/lang/Enum.h"
-
-@class IOSObjectArray;
-
 typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlTableStatement_ConflictAlgorithm_Enum) {
   ComYahooSquidbSqlTableStatement_ConflictAlgorithm_Enum_NONE = 0,
   ComYahooSquidbSqlTableStatement_ConflictAlgorithm_Enum_ROLLBACK = 1,
@@ -84,6 +62,12 @@ typedef NS_ENUM(NSUInteger, ComYahooSquidbSqlTableStatement_ConflictAlgorithm_En
 
 @interface ComYahooSquidbSqlTableStatement_ConflictAlgorithm : JavaLangEnum
 
+@property (readonly, class, nonnull) ComYahooSquidbSqlTableStatement_ConflictAlgorithm *NONE NS_SWIFT_NAME(NONE);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTableStatement_ConflictAlgorithm *ROLLBACK NS_SWIFT_NAME(ROLLBACK);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTableStatement_ConflictAlgorithm *ABORT NS_SWIFT_NAME(ABORT);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTableStatement_ConflictAlgorithm *FAIL NS_SWIFT_NAME(FAIL);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTableStatement_ConflictAlgorithm *IGNORE NS_SWIFT_NAME(IGNORE);
+@property (readonly, class, nonnull) ComYahooSquidbSqlTableStatement_ConflictAlgorithm *REPLACE NS_SWIFT_NAME(REPLACE);
 + (ComYahooSquidbSqlTableStatement_ConflictAlgorithm * __nonnull)NONE;
 
 + (ComYahooSquidbSqlTableStatement_ConflictAlgorithm * __nonnull)ROLLBACK;
@@ -139,10 +123,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlTableStatement_ConflictAlgorithm *ComYahooSqu
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlTableStatement_ConflictAlgorithm)
 
-#endif
-
 
 #if __has_feature(nullability)
 #pragma clang diagnostic pop
 #endif
-#pragma pop_macro("INCLUDE_ALL_TableStatement")
+#endif // TableStatement_H

@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/DatabaseErrorHandler.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DatabaseErrorHandler_H
+#define DatabaseErrorHandler_H
 
-#pragma push_macro("INCLUDE_ALL_DatabaseErrorHandler")
-#ifdef RESTRICT_DatabaseErrorHandler
-#define INCLUDE_ALL_DatabaseErrorHandler 0
-#else
-#define INCLUDE_ALL_DatabaseErrorHandler 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DatabaseErrorHandler
 
-#if !defined (ComYahooAndroidSqliteDatabaseErrorHandler_) && (INCLUDE_ALL_DatabaseErrorHandler || defined(INCLUDE_ComYahooAndroidSqliteDatabaseErrorHandler))
-#define ComYahooAndroidSqliteDatabaseErrorHandler_
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
 
@@ -28,6 +26,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooAndroidSqliteDatabaseErrorHandler)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteDatabaseErrorHandler)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DatabaseErrorHandler")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DatabaseErrorHandler_H

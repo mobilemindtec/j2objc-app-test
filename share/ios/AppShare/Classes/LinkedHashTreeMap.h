@@ -3,30 +3,25 @@
 //  source: ./build/j2objc/java/LinkedHashTreeMap.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef LinkedHashTreeMap_H
+#define LinkedHashTreeMap_H
 
-#pragma push_macro("INCLUDE_ALL_LinkedHashTreeMap")
-#ifdef RESTRICT_LinkedHashTreeMap
-#define INCLUDE_ALL_LinkedHashTreeMap 0
-#else
-#define INCLUDE_ALL_LinkedHashTreeMap 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_LinkedHashTreeMap
 
-#if !defined (GsonLinkedHashTreeMap_) && (INCLUDE_ALL_LinkedHashTreeMap || defined(INCLUDE_GsonLinkedHashTreeMap))
-#define GsonLinkedHashTreeMap_
-
-#define RESTRICT_JavaUtilAbstractMap 1
-#define INCLUDE_JavaUtilAbstractMap 1
-#include "java/util/AbstractMap.h"
-
-#define RESTRICT_JavaIoSerializable 1
-#define INCLUDE_JavaIoSerializable 1
+#include "J2ObjC_header.h"
 #include "java/io/Serializable.h"
+#include "java/util/AbstractMap.h"
+#include "java/util/AbstractSet.h"
+#include "java/util/Map.h"
 
 @class GsonLinkedHashTreeMap_Node;
 @class IOSObjectArray;
 @protocol JavaUtilComparator;
+@protocol JavaUtilIterator;
 @protocol JavaUtilMap_Entry;
 @protocol JavaUtilSet;
 
@@ -42,9 +37,9 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithJavaUtilComparator:(id<JavaUtilComparator>)comparator;
+- (instancetype __nonnull)initWithJavaUtilComparator:(id<JavaUtilComparator>)comparator;
 
 - (void)clear;
 
@@ -105,15 +100,6 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap)
 
 @compatibility_alias ComGoogleGsonInternalLinkedHashTreeMap GsonLinkedHashTreeMap;
 
-#endif
-
-#if !defined (GsonLinkedHashTreeMap_Node_) && (INCLUDE_ALL_LinkedHashTreeMap || defined(INCLUDE_GsonLinkedHashTreeMap_Node))
-#define GsonLinkedHashTreeMap_Node_
-
-#define RESTRICT_JavaUtilMap 1
-#define INCLUDE_JavaUtilMap_Entry 1
-#include "java/util/Map.h"
-
 @interface GsonLinkedHashTreeMap_Node : NSObject < JavaUtilMap_Entry > {
  @public
   GsonLinkedHashTreeMap_Node *parent_;
@@ -147,13 +133,13 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap)
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)parent
-                                            withId:(id)key
-                                           withInt:(jint)hash_
-                    withGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)next
-                    withGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)prev;
+- (instancetype __nonnull)initWithGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)parent
+                                                      withId:(id)key
+                                                     withInt:(jint)hash_
+                              withGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)next
+                              withGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)prev;
 
 @end
 
@@ -181,13 +167,6 @@ FOUNDATION_EXPORT GsonLinkedHashTreeMap_Node *create_GsonLinkedHashTreeMap_Node_
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_Node)
 
-#endif
-
-#if !defined (GsonLinkedHashTreeMap_AvlIterator_) && (INCLUDE_ALL_LinkedHashTreeMap || defined(INCLUDE_GsonLinkedHashTreeMap_AvlIterator))
-#define GsonLinkedHashTreeMap_AvlIterator_
-
-@class GsonLinkedHashTreeMap_Node;
-
 @interface GsonLinkedHashTreeMap_AvlIterator : NSObject
 
 #pragma mark Public
@@ -196,7 +175,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_Node)
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)resetWithGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)root;
 
@@ -212,18 +191,11 @@ FOUNDATION_EXPORT GsonLinkedHashTreeMap_AvlIterator *create_GsonLinkedHashTreeMa
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_AvlIterator)
 
-#endif
-
-#if !defined (GsonLinkedHashTreeMap_AvlBuilder_) && (INCLUDE_ALL_LinkedHashTreeMap || defined(INCLUDE_GsonLinkedHashTreeMap_AvlBuilder))
-#define GsonLinkedHashTreeMap_AvlBuilder_
-
-@class GsonLinkedHashTreeMap_Node;
-
 @interface GsonLinkedHashTreeMap_AvlBuilder : NSObject
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)addWithGsonLinkedHashTreeMap_Node:(GsonLinkedHashTreeMap_Node *)node;
 
@@ -243,18 +215,6 @@ FOUNDATION_EXPORT GsonLinkedHashTreeMap_AvlBuilder *create_GsonLinkedHashTreeMap
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_AvlBuilder)
 
-#endif
-
-#if !defined (GsonLinkedHashTreeMap_EntrySet_) && (INCLUDE_ALL_LinkedHashTreeMap || defined(INCLUDE_GsonLinkedHashTreeMap_EntrySet))
-#define GsonLinkedHashTreeMap_EntrySet_
-
-#define RESTRICT_JavaUtilAbstractSet 1
-#define INCLUDE_JavaUtilAbstractSet 1
-#include "java/util/AbstractSet.h"
-
-@class GsonLinkedHashTreeMap;
-@protocol JavaUtilIterator;
-
 @interface GsonLinkedHashTreeMap_EntrySet : JavaUtilAbstractSet
 
 #pragma mark Public
@@ -271,11 +231,11 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_AvlBuilder)
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonLinkedHashTreeMap:(GsonLinkedHashTreeMap *)outer$;
+- (instancetype __nonnull)initWithGsonLinkedHashTreeMap:(GsonLinkedHashTreeMap *)outer$;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -288,18 +248,6 @@ FOUNDATION_EXPORT GsonLinkedHashTreeMap_EntrySet *new_GsonLinkedHashTreeMap_Entr
 FOUNDATION_EXPORT GsonLinkedHashTreeMap_EntrySet *create_GsonLinkedHashTreeMap_EntrySet_initWithGsonLinkedHashTreeMap_(GsonLinkedHashTreeMap *outer$);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_EntrySet)
-
-#endif
-
-#if !defined (GsonLinkedHashTreeMap_KeySet_) && (INCLUDE_ALL_LinkedHashTreeMap || defined(INCLUDE_GsonLinkedHashTreeMap_KeySet))
-#define GsonLinkedHashTreeMap_KeySet_
-
-#define RESTRICT_JavaUtilAbstractSet 1
-#define INCLUDE_JavaUtilAbstractSet 1
-#include "java/util/AbstractSet.h"
-
-@class GsonLinkedHashTreeMap;
-@protocol JavaUtilIterator;
 
 @interface GsonLinkedHashTreeMap_KeySet : JavaUtilAbstractSet
 
@@ -317,11 +265,11 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_EntrySet)
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonLinkedHashTreeMap:(GsonLinkedHashTreeMap *)outer$;
+- (instancetype __nonnull)initWithGsonLinkedHashTreeMap:(GsonLinkedHashTreeMap *)outer$;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -335,6 +283,8 @@ FOUNDATION_EXPORT GsonLinkedHashTreeMap_KeySet *create_GsonLinkedHashTreeMap_Key
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedHashTreeMap_KeySet)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_LinkedHashTreeMap")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // LinkedHashTreeMap_H

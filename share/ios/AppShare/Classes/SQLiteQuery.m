@@ -66,6 +66,7 @@ J2OBJC_STATIC_FIELD_OBJ_FINAL(ComYahooAndroidSqliteSQLiteQuery, TAG, NSString *)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooAndroidSqliteSQLiteDatabase:withNSString:);
   methods[1].selector = @selector(fillWindowWithComYahooAndroidSqliteCursorWindow:withInt:withInt:withBoolean:);
   methods[2].selector = @selector(description);

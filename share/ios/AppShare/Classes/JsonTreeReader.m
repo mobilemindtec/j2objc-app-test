@@ -369,6 +369,7 @@ J2OBJC_INITIALIZED_DEFN(GsonJsonTreeReader)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonJsonElement:);
   methods[1].selector = @selector(beginArray);
   methods[2].selector = @selector(endArray);
@@ -471,6 +472,8 @@ NSString *GsonJsonTreeReader_locationString(GsonJsonTreeReader *self) {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonTreeReader)
 
+J2OBJC_NAME_MAPPING(GsonJsonTreeReader, "com.google.gson.internal.bind", "Gson")
+
 @implementation GsonJsonTreeReader_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -498,6 +501,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(readWithCharArray:withInt:withInt:);
   methods[2].selector = @selector(close);

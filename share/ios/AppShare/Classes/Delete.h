@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Delete.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Delete_H
+#define Delete_H
 
-#pragma push_macro("INCLUDE_ALL_Delete")
-#ifdef RESTRICT_Delete
-#define INCLUDE_ALL_Delete 0
-#else
-#define INCLUDE_ALL_Delete 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Delete
 
-#if !defined (ComYahooSquidbSqlDelete_) && (INCLUDE_ALL_Delete || defined(INCLUDE_ComYahooSquidbSqlDelete))
-#define ComYahooSquidbSqlDelete_
-
-#define RESTRICT_TableStatement 1
-#define INCLUDE_ComYahooSquidbSqlTableStatement 1
+#include "J2ObjC_header.h"
 #include "TableStatement.h"
 
 @class ComYahooSquidbSqlCriterion;
@@ -40,7 +35,7 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)table;
+- (instancetype __nonnull)initWithComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)table;
 
 #pragma mark Package-Private
 
@@ -49,7 +44,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -67,6 +62,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlDelete *ComYahooSquidbSqlDelete_fromWithComYa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlDelete)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Delete")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Delete_H

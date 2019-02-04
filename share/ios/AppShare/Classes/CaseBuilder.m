@@ -102,6 +102,7 @@ __attribute__((unused)) static ComYahooSquidbSqlCaseBuilder_1 *create_ComYahooSq
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithId:);
   methods[1].selector = @selector(whenWithId:withId:);
   methods[2].selector = @selector(elseExprWithId:);
@@ -171,6 +172,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComYahooSquidbSqlCaseBuilder)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithComYahooSquidbSqlCaseBuilder:);
   methods[1].selector = @selector(appendFunctionExpressionWithComYahooSquidbSqlSqlBuilder:withBoolean:);
   #pragma clang diagnostic pop

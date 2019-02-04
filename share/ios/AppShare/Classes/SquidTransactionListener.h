@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SquidTransactionListener.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SquidTransactionListener_H
+#define SquidTransactionListener_H
 
-#pragma push_macro("INCLUDE_ALL_SquidTransactionListener")
-#ifdef RESTRICT_SquidTransactionListener
-#define INCLUDE_ALL_SquidTransactionListener 0
-#else
-#define INCLUDE_ALL_SquidTransactionListener 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SquidTransactionListener
 
-#if !defined (ComYahooSquidbDataSquidTransactionListener_) && (INCLUDE_ALL_SquidTransactionListener || defined(INCLUDE_ComYahooSquidbDataSquidTransactionListener))
-#define ComYahooSquidbDataSquidTransactionListener_
+#include "J2ObjC_header.h"
 
 @protocol ComYahooSquidbDataSquidTransactionListener < JavaObject >
 
@@ -30,6 +28,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbDataSquidTransactionListener)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSquidTransactionListener)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SquidTransactionListener")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SquidTransactionListener_H

@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/CaseInsensitiveEqualsCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CaseInsensitiveEqualsCriterion_H
+#define CaseInsensitiveEqualsCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_CaseInsensitiveEqualsCriterion")
-#ifdef RESTRICT_CaseInsensitiveEqualsCriterion
-#define INCLUDE_ALL_CaseInsensitiveEqualsCriterion 0
-#else
-#define INCLUDE_ALL_CaseInsensitiveEqualsCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CaseInsensitiveEqualsCriterion
 
-#if !defined (ComYahooSquidbSqlCaseInsensitiveEqualsCriterion_) && (INCLUDE_ALL_CaseInsensitiveEqualsCriterion || defined(INCLUDE_ComYahooSquidbSqlCaseInsensitiveEqualsCriterion))
-#define ComYahooSquidbSqlCaseInsensitiveEqualsCriterion_
-
-#define RESTRICT_BinaryCriterion 1
-#define INCLUDE_ComYahooSquidbSqlBinaryCriterion 1
 #include "BinaryCriterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlOperator;
@@ -35,9 +30,9 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                                        withId:(id)value;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                                                  withId:(id)value;
 
 @end
 
@@ -51,6 +46,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlCaseInsensitiveEqualsCriterion *create_ComYah
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCaseInsensitiveEqualsCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CaseInsensitiveEqualsCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CaseInsensitiveEqualsCriterion_H

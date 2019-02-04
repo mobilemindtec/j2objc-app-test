@@ -12,8 +12,10 @@
 #include "RestDataConverter.h"
 #include "RestResult.h"
 #include "RestService.h"
+#include "TypeToken.h"
 #include "UserController.h"
 #include "java/lang/Exception.h"
+#include "java/lang/reflect/Type.h"
 #include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
 
@@ -34,6 +36,20 @@ __attribute__((unused)) static void AppUserController_1_init(AppUserController_1
 __attribute__((unused)) static AppUserController_1 *new_AppUserController_1_init(void) NS_RETURNS_RETAINED;
 
 __attribute__((unused)) static AppUserController_1 *create_AppUserController_1_init(void);
+
+@interface AppUserController_1_1 : GsonTypeToken
+
+- (instancetype)init;
+
+@end
+
+J2OBJC_EMPTY_STATIC_INIT(AppUserController_1_1)
+
+__attribute__((unused)) static void AppUserController_1_1_init(AppUserController_1_1 *self);
+
+__attribute__((unused)) static AppUserController_1_1 *new_AppUserController_1_1_init(void) NS_RETURNS_RETAINED;
+
+__attribute__((unused)) static AppUserController_1_1 *create_AppUserController_1_1_init(void);
 
 J2OBJC_INITIALIZED_DEFN(AppUserController)
 
@@ -74,6 +90,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(sigInWithUserName:password:);
   #pragma clang diagnostic pop
@@ -81,7 +98,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "logger", "LJavaUtilLoggingLogger;", .constantValue.asLong = 0, 0x1c, -1, 2, -1, -1 },
     { "converter_", "LAppBaseRestDataConverter;", .constantValue.asLong = 0, 0x0, -1, -1, 3, -1 },
   };
-  static const void *ptrTable[] = { "sigIn", "LNSString;LNSString;", &AppUserController_logger, "Lbr/com/mobilemind/j2objc/rest/RestDataConverter<Lbr/com/mobilemind/j2objc/rest/RestResult;>;" };
+  static const void *ptrTable[] = { "sigIn", "LNSString;LNSString;", &AppUserController_logger, "Lbr/com/mobilemind/j2objc/rest/RestDataConverter<Lbr/com/mobilemind/j2objc/rest/RestResult<Lbr/com/mobilemind/app/model/User;>;>;" };
   static const J2ObjcClassInfo _AppUserController = { "UserController", "br.com.mobilemind.app.controller", ptrTable, methods, fields, 7, 0x1, 2, 2, -1, -1, -1, -1, -1 };
   return &_AppUserController;
 }
@@ -110,6 +127,8 @@ AppUserController *create_AppUserController_init() {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(AppUserController)
 
+J2OBJC_NAME_MAPPING(AppUserController, "br.com.mobilemind.app.controller", "App")
+
 @implementation AppUserController_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -121,7 +140,8 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (AppBaseRestResult *)fromJsonWithNSString:(NSString *)content {
   GsonGson *gson = [new_GsonGsonBuilder_init() create];
-  return [((GsonGson *) nil_chk(gson)) fromJsonWithNSString:content withIOSClass:AppBaseRestResult_class_()];
+  id<JavaLangReflectType> typeToken = [new_AppUserController_1_1_init() getType];
+  return [((GsonGson *) nil_chk(gson)) fromJsonWithNSString:content withJavaLangReflectType:typeToken];
 }
 
 - (NSString *)toJsonWithId:(id)obj {
@@ -136,6 +156,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(fromJsonWithNSString:);
   methods[2].selector = @selector(toJsonWithId:);
@@ -157,4 +178,41 @@ AppUserController_1 *new_AppUserController_1_init() {
 
 AppUserController_1 *create_AppUserController_1_init() {
   J2OBJC_CREATE_IMPL(AppUserController_1, init)
+}
+
+@implementation AppUserController_1_1
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
+- (instancetype)init {
+  AppUserController_1_1_init(self);
+  return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
++ (const J2ObjcClassInfo *)__metadata {
+  static J2ObjcMethodInfo methods[] = {
+    { NULL, NULL, 0x0, -1, -1, -1, -1, -1, -1 },
+  };
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
+  methods[0].selector = @selector(init);
+  #pragma clang diagnostic pop
+  static const void *ptrTable[] = { "LAppUserController_1;", "fromJsonWithNSString:", "Lcom/google/gson/reflect/TypeToken<Lbr/com/mobilemind/j2objc/rest/RestResult<Lbr/com/mobilemind/app/model/User;>;>;" };
+  static const J2ObjcClassInfo _AppUserController_1_1 = { "", "br.com.mobilemind.app.controller", ptrTable, methods, NULL, 7, 0x8018, 1, 0, 0, -1, 1, 2, -1 };
+  return &_AppUserController_1_1;
+}
+
+@end
+
+void AppUserController_1_1_init(AppUserController_1_1 *self) {
+  GsonTypeToken_init(self);
+}
+
+AppUserController_1_1 *new_AppUserController_1_1_init() {
+  J2OBJC_NEW_IMPL(AppUserController_1_1, init)
+}
+
+AppUserController_1_1 *create_AppUserController_1_1_init() {
+  J2OBJC_CREATE_IMPL(AppUserController_1_1, init)
 }

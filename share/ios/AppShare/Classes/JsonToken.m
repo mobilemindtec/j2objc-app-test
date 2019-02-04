@@ -78,6 +78,7 @@ GsonJsonToken *GsonJsonToken_values_[10];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -100,16 +101,16 @@ GsonJsonToken *GsonJsonToken_values_[10];
 
 + (void)initialize {
   if (self == [GsonJsonToken class]) {
-    JreEnum(GsonJsonToken, BEGIN_ARRAY) = new_GsonJsonToken_initWithNSString_withInt_(@"", 0);
-    JreEnum(GsonJsonToken, END_ARRAY) = new_GsonJsonToken_initWithNSString_withInt_(@"", 1);
-    JreEnum(GsonJsonToken, BEGIN_OBJECT) = new_GsonJsonToken_initWithNSString_withInt_(@"", 2);
-    JreEnum(GsonJsonToken, END_OBJECT) = new_GsonJsonToken_initWithNSString_withInt_(@"", 3);
-    JreEnum(GsonJsonToken, NAME) = new_GsonJsonToken_initWithNSString_withInt_(@"", 4);
-    JreEnum(GsonJsonToken, STRING) = new_GsonJsonToken_initWithNSString_withInt_(@"", 5);
-    JreEnum(GsonJsonToken, NUMBER) = new_GsonJsonToken_initWithNSString_withInt_(@"", 6);
-    JreEnum(GsonJsonToken, BOOLEAN) = new_GsonJsonToken_initWithNSString_withInt_(@"", 7);
-    JreEnum(GsonJsonToken, NULL) = new_GsonJsonToken_initWithNSString_withInt_(@"", 8);
-    JreEnum(GsonJsonToken, END_DOCUMENT) = new_GsonJsonToken_initWithNSString_withInt_(@"", 9);
+    JreEnum(GsonJsonToken, BEGIN_ARRAY) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 0), 0);
+    JreEnum(GsonJsonToken, END_ARRAY) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 1), 1);
+    JreEnum(GsonJsonToken, BEGIN_OBJECT) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 2), 2);
+    JreEnum(GsonJsonToken, END_OBJECT) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 3), 3);
+    JreEnum(GsonJsonToken, NAME) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 4), 4);
+    JreEnum(GsonJsonToken, STRING) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 5), 5);
+    JreEnum(GsonJsonToken, NUMBER) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 6), 6);
+    JreEnum(GsonJsonToken, BOOLEAN) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 7), 7);
+    JreEnum(GsonJsonToken, NULL) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 8), 8);
+    JreEnum(GsonJsonToken, END_DOCUMENT) = new_GsonJsonToken_initWithNSString_withInt_(JreEnumConstantName(GsonJsonToken_class_(), 9), 9);
     J2OBJC_SET_INITIALIZED(GsonJsonToken)
   }
 }
@@ -150,3 +151,5 @@ GsonJsonToken *GsonJsonToken_fromOrdinal(NSUInteger ordinal) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonToken)
+
+J2OBJC_NAME_MAPPING(GsonJsonToken, "com.google.gson.stream", "Gson")

@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteConnection.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteConnection_H
+#define SQLiteConnection_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteConnection")
-#ifdef RESTRICT_SQLiteConnection
-#define INCLUDE_ALL_SQLiteConnection 0
-#else
-#define INCLUDE_ALL_SQLiteConnection 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteConnection
 
-#if !defined (ComYahooAndroidSqliteSQLiteConnection_) && (INCLUDE_ALL_SQLiteConnection || defined(INCLUDE_ComYahooAndroidSqliteSQLiteConnection))
-#define ComYahooAndroidSqliteSQLiteConnection_
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteCursorWindow;
 @class ComYahooAndroidSqliteSQLiteConnectionPool;
@@ -92,7 +90,7 @@ withComYahooAndroidSqliteSQLiteStatementInfo:(ComYahooAndroidSqliteSQLiteStateme
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -102,6 +100,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteConnection *ComYahooAndroidSqliteSQ
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteConnection)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteConnection")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteConnection_H

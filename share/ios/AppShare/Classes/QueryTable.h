@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/QueryTable.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef QueryTable_H
+#define QueryTable_H
 
-#pragma push_macro("INCLUDE_ALL_QueryTable")
-#ifdef RESTRICT_QueryTable
-#define INCLUDE_ALL_QueryTable 0
-#else
-#define INCLUDE_ALL_QueryTable 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_QueryTable
 
-#if !defined (ComYahooSquidbSqlQueryTable_) && (INCLUDE_ALL_QueryTable || defined(INCLUDE_ComYahooSquidbSqlQueryTable))
-#define ComYahooSquidbSqlQueryTable_
-
-#define RESTRICT_SqlTable 1
-#define INCLUDE_ComYahooSquidbSqlSqlTable 1
+#include "J2ObjC_header.h"
 #include "SqlTable.h"
 
 @class ComYahooSquidbSqlQuery;
@@ -35,11 +30,11 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithIOSClass:(IOSClass *)modelClass
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
-                    withNSString:(NSString *)name
-                    withNSString:(NSString *)databaseName
-      withComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)query;
+- (instancetype __nonnull)initWithIOSClass:(IOSClass *)modelClass
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
+                              withNSString:(NSString *)name
+                              withNSString:(NSString *)databaseName
+                withComYahooSquidbSqlQuery:(ComYahooSquidbSqlQuery *)query;
 
 - (IOSObjectArray *)allFields;
 
@@ -53,6 +48,8 @@ FOUNDATION_EXPORT void ComYahooSquidbSqlQueryTable_initWithIOSClass_withComYahoo
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlQueryTable)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_QueryTable")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // QueryTable_H

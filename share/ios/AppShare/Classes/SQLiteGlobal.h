@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteGlobal.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteGlobal_H
+#define SQLiteGlobal_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteGlobal")
-#ifdef RESTRICT_SQLiteGlobal
-#define INCLUDE_ALL_SQLiteGlobal 0
-#else
-#define INCLUDE_ALL_SQLiteGlobal 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteGlobal
 
-#if !defined (ComYahooAndroidSqliteSQLiteGlobal_) && (INCLUDE_ALL_SQLiteGlobal || defined(INCLUDE_ComYahooAndroidSqliteSQLiteGlobal))
-#define ComYahooAndroidSqliteSQLiteGlobal_
+#include "J2ObjC_header.h"
 
 @interface ComYahooAndroidSqliteSQLiteGlobal : NSObject
 
@@ -62,6 +60,8 @@ FOUNDATION_EXPORT jint ComYahooAndroidSqliteSQLiteGlobal_getWALConnectionPoolSiz
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteGlobal)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteGlobal")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteGlobal_H

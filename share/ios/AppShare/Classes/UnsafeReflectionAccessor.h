@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/UnsafeReflectionAccessor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef UnsafeReflectionAccessor_H
+#define UnsafeReflectionAccessor_H
 
-#pragma push_macro("INCLUDE_ALL_UnsafeReflectionAccessor")
-#ifdef RESTRICT_UnsafeReflectionAccessor
-#define INCLUDE_ALL_UnsafeReflectionAccessor 0
-#else
-#define INCLUDE_ALL_UnsafeReflectionAccessor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_UnsafeReflectionAccessor
 
-#if !defined (ComGoogleGsonInternalReflectUnsafeReflectionAccessor_) && (INCLUDE_ALL_UnsafeReflectionAccessor || defined(INCLUDE_ComGoogleGsonInternalReflectUnsafeReflectionAccessor))
-#define ComGoogleGsonInternalReflectUnsafeReflectionAccessor_
-
-#define RESTRICT_ReflectionAccessor 1
-#define INCLUDE_ComGoogleGsonInternalReflectReflectionAccessor 1
+#include "J2ObjC_header.h"
 #include "ReflectionAccessor.h"
 
 @class JavaLangReflectAccessibleObject;
@@ -30,7 +25,7 @@
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -44,6 +39,8 @@ FOUNDATION_EXPORT ComGoogleGsonInternalReflectUnsafeReflectionAccessor *create_C
 
 J2OBJC_TYPE_LITERAL_HEADER(ComGoogleGsonInternalReflectUnsafeReflectionAccessor)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_UnsafeReflectionAccessor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // UnsafeReflectionAccessor_H

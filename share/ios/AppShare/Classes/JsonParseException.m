@@ -38,6 +38,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:);
   methods[1].selector = @selector(initWithNSString:withJavaLangThrowable:);
   methods[2].selector = @selector(initWithJavaLangThrowable:);
@@ -89,3 +90,5 @@ GsonJsonParseException *create_GsonJsonParseException_initWithJavaLangThrowable_
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonParseException)
+
+J2OBJC_NAME_MAPPING(GsonJsonParseException, "com.google.gson", "Gson")

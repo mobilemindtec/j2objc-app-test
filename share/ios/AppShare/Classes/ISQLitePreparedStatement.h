@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ISQLitePreparedStatement.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ISQLitePreparedStatement_H
+#define ISQLitePreparedStatement_H
 
-#pragma push_macro("INCLUDE_ALL_ISQLitePreparedStatement")
-#ifdef RESTRICT_ISQLitePreparedStatement
-#define INCLUDE_ALL_ISQLitePreparedStatement 0
-#else
-#define INCLUDE_ALL_ISQLitePreparedStatement 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ISQLitePreparedStatement
 
-#if !defined (ComYahooSquidbDataISQLitePreparedStatement_) && (INCLUDE_ALL_ISQLitePreparedStatement || defined(INCLUDE_ComYahooSquidbDataISQLitePreparedStatement))
-#define ComYahooSquidbDataISQLitePreparedStatement_
+#include "J2ObjC_header.h"
 
 @class IOSByteArray;
 
@@ -54,6 +52,8 @@ J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbDataISQLitePreparedStatement)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataISQLitePreparedStatement)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ISQLitePreparedStatement")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ISQLitePreparedStatement_H

@@ -18,6 +18,7 @@
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(translateNameWithJavaLangReflectField:);
   #pragma clang diagnostic pop
   static const void *ptrTable[] = { "translateName", "LJavaLangReflectField;" };
@@ -28,3 +29,5 @@
 @end
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(GsonFieldNamingStrategy)
+
+J2OBJC_NAME_MAPPING(GsonFieldNamingStrategy, "com.google.gson", "Gson")

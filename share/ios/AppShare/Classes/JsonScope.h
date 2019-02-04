@@ -3,20 +3,26 @@
 //  source: ./build/j2objc/java/JsonScope.java
 //
 
+#ifndef JsonScope_H
+#define JsonScope_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_JsonScope")
-#ifdef RESTRICT_JsonScope
-#define INCLUDE_ALL_JsonScope 0
-#else
-#define INCLUDE_ALL_JsonScope 1
-#endif
-#undef RESTRICT_JsonScope
-
-#if !defined (GsonJsonScope_) && (INCLUDE_ALL_JsonScope || defined(INCLUDE_GsonJsonScope))
-#define GsonJsonScope_
-
 @interface GsonJsonScope : NSObject
+@property (readonly, class) jint EMPTY_ARRAY NS_SWIFT_NAME(EMPTY_ARRAY);
+@property (readonly, class) jint NONEMPTY_ARRAY NS_SWIFT_NAME(NONEMPTY_ARRAY);
+@property (readonly, class) jint EMPTY_OBJECT NS_SWIFT_NAME(EMPTY_OBJECT);
+@property (readonly, class) jint DANGLING_NAME NS_SWIFT_NAME(DANGLING_NAME);
+@property (readonly, class) jint NONEMPTY_OBJECT NS_SWIFT_NAME(NONEMPTY_OBJECT);
+@property (readonly, class) jint EMPTY_DOCUMENT NS_SWIFT_NAME(EMPTY_DOCUMENT);
+@property (readonly, class) jint NONEMPTY_DOCUMENT NS_SWIFT_NAME(NONEMPTY_DOCUMENT);
+@property (readonly, class) jint CLOSED NS_SWIFT_NAME(CLOSED);
 
 + (jint)EMPTY_ARRAY;
 
@@ -36,7 +42,7 @@
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -84,6 +90,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonScope)
 
 @compatibility_alias ComGoogleGsonStreamJsonScope GsonJsonScope;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonScope")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonScope_H

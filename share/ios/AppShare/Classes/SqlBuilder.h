@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SqlBuilder.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SqlBuilder_H
+#define SqlBuilder_H
 
-#pragma push_macro("INCLUDE_ALL_SqlBuilder")
-#ifdef RESTRICT_SqlBuilder
-#define INCLUDE_ALL_SqlBuilder 0
-#else
-#define INCLUDE_ALL_SqlBuilder 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SqlBuilder
 
-#if !defined (ComYahooSquidbSqlSqlBuilder_) && (INCLUDE_ALL_SqlBuilder || defined(INCLUDE_ComYahooSquidbSqlSqlBuilder))
-#define ComYahooSquidbSqlSqlBuilder_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlCompileContext;
 @class ComYahooSquidbUtilityVersionCode;
@@ -43,8 +41,8 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlCompileContext:(ComYahooSquidbSqlCompileContext *)compileContext
-                                            withBoolean:(jboolean)withBoundArguments;
+- (instancetype __nonnull)initWithComYahooSquidbSqlCompileContext:(ComYahooSquidbSqlCompileContext *)compileContext
+                                                      withBoolean:(jboolean)withBoundArguments;
 
 - (void)addCollectionArgWithJavaUtilCollection:(id<JavaUtilCollection>)value;
 
@@ -56,7 +54,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -75,6 +73,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlSqlBuilder *create_ComYahooSquidbSqlSqlBuilde
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlSqlBuilder)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SqlBuilder")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SqlBuilder_H

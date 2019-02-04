@@ -45,6 +45,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(createOpenHelperWithNSString:withComYahooSquidbDataSquidDatabase_OpenHelperDelegate:withInt:);
   methods[2].selector = @selector(getDatabasePath);
@@ -76,3 +77,5 @@ NSString *SGDBIOSOpenHelperCreator_getDatabasePath() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(SGDBIOSOpenHelperCreator)
+
+J2OBJC_NAME_MAPPING(SGDBIOSOpenHelperCreator, "br.com.mobilemind.app.ios", "SGDB")

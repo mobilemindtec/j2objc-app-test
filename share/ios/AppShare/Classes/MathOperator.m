@@ -80,6 +80,7 @@ ComYahooSquidbSqlMathOperator *ComYahooSquidbSqlMathOperator_values_[7];
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(description);
   methods[1].selector = @selector(values);
   methods[2].selector = @selector(valueOfWithNSString:);
@@ -101,13 +102,13 @@ ComYahooSquidbSqlMathOperator *ComYahooSquidbSqlMathOperator_values_[7];
 
 + (void)initialize {
   if (self == [ComYahooSquidbSqlMathOperator class]) {
-    JreEnum(ComYahooSquidbSqlMathOperator, PLUS) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" + ", @"", 0);
-    JreEnum(ComYahooSquidbSqlMathOperator, MINUS) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" - ", @"", 1);
-    JreEnum(ComYahooSquidbSqlMathOperator, MULT) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" * ", @"", 2);
-    JreEnum(ComYahooSquidbSqlMathOperator, DIVIDE) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" / ", @"", 3);
-    JreEnum(ComYahooSquidbSqlMathOperator, MODULO) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" % ", @"", 4);
-    JreEnum(ComYahooSquidbSqlMathOperator, BITWISE_AND) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" & ", @"", 5);
-    JreEnum(ComYahooSquidbSqlMathOperator, BITWISE_OR) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" | ", @"", 6);
+    JreEnum(ComYahooSquidbSqlMathOperator, PLUS) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" + ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 0), 0);
+    JreEnum(ComYahooSquidbSqlMathOperator, MINUS) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" - ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 1), 1);
+    JreEnum(ComYahooSquidbSqlMathOperator, MULT) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" * ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 2), 2);
+    JreEnum(ComYahooSquidbSqlMathOperator, DIVIDE) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" / ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 3), 3);
+    JreEnum(ComYahooSquidbSqlMathOperator, MODULO) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" % ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 4), 4);
+    JreEnum(ComYahooSquidbSqlMathOperator, BITWISE_AND) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" & ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 5), 5);
+    JreEnum(ComYahooSquidbSqlMathOperator, BITWISE_OR) = new_ComYahooSquidbSqlMathOperator_initWithNSString_withNSString_withInt_(@" | ", JreEnumConstantName(ComYahooSquidbSqlMathOperator_class_(), 6), 6);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbSqlMathOperator)
   }
 }

@@ -3,31 +3,53 @@
 //  source: ./build/j2objc/java/TableModelSpec.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TableModelSpec_H
+#define TableModelSpec_H
 
-#pragma push_macro("INCLUDE_ALL_TableModelSpec")
-#ifdef RESTRICT_TableModelSpec
-#define INCLUDE_ALL_TableModelSpec 0
-#else
-#define INCLUDE_ALL_TableModelSpec 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TableModelSpec
 
-#if !defined (ComYahooSquidbAnnotationsTableModelSpec_) && (INCLUDE_ALL_TableModelSpec || defined(INCLUDE_ComYahooSquidbAnnotationsTableModelSpec))
-#define ComYahooSquidbAnnotationsTableModelSpec_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsTableModelSpec < JavaLangAnnotationAnnotation >
+
+@property (readonly) NSString *className__;
+@property (readonly) NSString *tableName;
+@property (readonly) NSString *tableConstraint;
+@property (readonly) NSString *virtualModule;
+@property (readonly) jboolean noRowIdAlias;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsTableModelSpec : NSObject < ComYahooSquidbAnnotationsTableModelSpec > {
+ @public
+  NSString *className___;
+  NSString *tableName_;
+  NSString *tableConstraint_;
+  NSString *virtualModule_;
+  jboolean noRowIdAlias_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsTableModelSpec)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsTableModelSpec> create_ComYahooSquidbAnnotationsTableModelSpec(NSString *className__, jboolean noRowIdAlias, NSString *tableConstraint, NSString *tableName, NSString *virtualModule);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsTableModelSpec)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TableModelSpec")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TableModelSpec_H

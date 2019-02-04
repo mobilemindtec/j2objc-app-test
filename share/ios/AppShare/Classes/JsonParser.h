@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/JsonParser.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonParser_H
+#define JsonParser_H
 
-#pragma push_macro("INCLUDE_ALL_JsonParser")
-#ifdef RESTRICT_JsonParser
-#define INCLUDE_ALL_JsonParser 0
-#else
-#define INCLUDE_ALL_JsonParser 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonParser
 
-#if !defined (GsonJsonParser_) && (INCLUDE_ALL_JsonParser || defined(INCLUDE_GsonJsonParser))
-#define GsonJsonParser_
+#include "J2ObjC_header.h"
 
 @class GsonJsonElement;
 @class GsonJsonReader;
@@ -24,7 +22,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (GsonJsonElement *)parseWithGsonJsonReader:(GsonJsonReader *)json;
 
@@ -46,6 +44,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonParser)
 
 @compatibility_alias ComGoogleGsonJsonParser GsonJsonParser;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonParser")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonParser_H

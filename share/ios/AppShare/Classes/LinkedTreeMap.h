@@ -3,29 +3,24 @@
 //  source: ./build/j2objc/java/LinkedTreeMap.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef LinkedTreeMap_H
+#define LinkedTreeMap_H
 
-#pragma push_macro("INCLUDE_ALL_LinkedTreeMap")
-#ifdef RESTRICT_LinkedTreeMap
-#define INCLUDE_ALL_LinkedTreeMap 0
-#else
-#define INCLUDE_ALL_LinkedTreeMap 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_LinkedTreeMap
 
-#if !defined (GsonLinkedTreeMap_) && (INCLUDE_ALL_LinkedTreeMap || defined(INCLUDE_GsonLinkedTreeMap))
-#define GsonLinkedTreeMap_
-
-#define RESTRICT_JavaUtilAbstractMap 1
-#define INCLUDE_JavaUtilAbstractMap 1
-#include "java/util/AbstractMap.h"
-
-#define RESTRICT_JavaIoSerializable 1
-#define INCLUDE_JavaIoSerializable 1
+#include "J2ObjC_header.h"
 #include "java/io/Serializable.h"
+#include "java/util/AbstractMap.h"
+#include "java/util/AbstractSet.h"
+#include "java/util/Map.h"
 
 @class GsonLinkedTreeMap_Node;
 @protocol JavaUtilComparator;
+@protocol JavaUtilIterator;
 @protocol JavaUtilMap_Entry;
 @protocol JavaUtilSet;
 
@@ -40,9 +35,9 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithJavaUtilComparator:(id<JavaUtilComparator>)comparator;
+- (instancetype __nonnull)initWithJavaUtilComparator:(id<JavaUtilComparator>)comparator;
 
 - (void)clear;
 
@@ -99,15 +94,6 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap)
 
 @compatibility_alias ComGoogleGsonInternalLinkedTreeMap GsonLinkedTreeMap;
 
-#endif
-
-#if !defined (GsonLinkedTreeMap_Node_) && (INCLUDE_ALL_LinkedTreeMap || defined(INCLUDE_GsonLinkedTreeMap_Node))
-#define GsonLinkedTreeMap_Node_
-
-#define RESTRICT_JavaUtilMap 1
-#define INCLUDE_JavaUtilMap_Entry 1
-#include "java/util/Map.h"
-
 @interface GsonLinkedTreeMap_Node : NSObject < JavaUtilMap_Entry > {
  @public
   GsonLinkedTreeMap_Node *parent_;
@@ -140,12 +126,12 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap)
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)parent
-                                        withId:(id)key
-                    withGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)next
-                    withGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)prev;
+- (instancetype __nonnull)initWithGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)parent
+                                                  withId:(id)key
+                              withGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)next
+                              withGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)prev;
 
 @end
 
@@ -173,18 +159,6 @@ FOUNDATION_EXPORT GsonLinkedTreeMap_Node *create_GsonLinkedTreeMap_Node_initWith
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap_Node)
 
-#endif
-
-#if !defined (GsonLinkedTreeMap_EntrySet_) && (INCLUDE_ALL_LinkedTreeMap || defined(INCLUDE_GsonLinkedTreeMap_EntrySet))
-#define GsonLinkedTreeMap_EntrySet_
-
-#define RESTRICT_JavaUtilAbstractSet 1
-#define INCLUDE_JavaUtilAbstractSet 1
-#include "java/util/AbstractSet.h"
-
-@class GsonLinkedTreeMap;
-@protocol JavaUtilIterator;
-
 @interface GsonLinkedTreeMap_EntrySet : JavaUtilAbstractSet
 
 #pragma mark Public
@@ -201,11 +175,11 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap_Node)
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$;
+- (instancetype __nonnull)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -218,18 +192,6 @@ FOUNDATION_EXPORT GsonLinkedTreeMap_EntrySet *new_GsonLinkedTreeMap_EntrySet_ini
 FOUNDATION_EXPORT GsonLinkedTreeMap_EntrySet *create_GsonLinkedTreeMap_EntrySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap *outer$);
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap_EntrySet)
-
-#endif
-
-#if !defined (GsonLinkedTreeMap_KeySet_) && (INCLUDE_ALL_LinkedTreeMap || defined(INCLUDE_GsonLinkedTreeMap_KeySet))
-#define GsonLinkedTreeMap_KeySet_
-
-#define RESTRICT_JavaUtilAbstractSet 1
-#define INCLUDE_JavaUtilAbstractSet 1
-#include "java/util/AbstractSet.h"
-
-@class GsonLinkedTreeMap;
-@protocol JavaUtilIterator;
 
 @interface GsonLinkedTreeMap_KeySet : JavaUtilAbstractSet
 
@@ -247,11 +209,11 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap_EntrySet)
 
 #pragma mark Package-Private
 
-- (instancetype)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$;
+- (instancetype __nonnull)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -265,6 +227,8 @@ FOUNDATION_EXPORT GsonLinkedTreeMap_KeySet *create_GsonLinkedTreeMap_KeySet_init
 
 J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap_KeySet)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_LinkedTreeMap")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // LinkedTreeMap_H

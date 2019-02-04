@@ -211,7 +211,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
-  return JreDefaultFastEnumeration(self, state, stackbuf, len);
+  return JreDefaultFastEnumeration(self, state, stackbuf);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -249,6 +249,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithInt:);
   methods[2].selector = @selector(deepCopy);
@@ -317,3 +318,5 @@ GsonJsonArray *create_GsonJsonArray_initWithInt_(jint capacity) {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonArray)
+
+J2OBJC_NAME_MAPPING(GsonJsonArray, "com.google.gson", "Gson")

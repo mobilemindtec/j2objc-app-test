@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/Pair.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Pair_H
+#define Pair_H
 
-#pragma push_macro("INCLUDE_ALL_Pair")
-#ifdef RESTRICT_Pair
-#define INCLUDE_ALL_Pair 0
-#else
-#define INCLUDE_ALL_Pair 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Pair
 
-#if !defined (ComYahooAndroidSqlitePair_) && (INCLUDE_ALL_Pair || defined(INCLUDE_ComYahooAndroidSqlitePair))
-#define ComYahooAndroidSqlitePair_
+#include "J2ObjC_header.h"
 
 @interface ComYahooAndroidSqlitePair : NSObject {
  @public
@@ -24,8 +22,8 @@
 
 #pragma mark Public
 
-- (instancetype)initWithId:(id)first
-                    withId:(id)second;
+- (instancetype __nonnull)initWithId:(id)first
+                              withId:(id)second;
 
 + (ComYahooAndroidSqlitePair *)createWithId:(id)a
                                      withId:(id)b;
@@ -36,7 +34,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -55,6 +53,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqlitePair *ComYahooAndroidSqlitePair_createWit
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqlitePair)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Pair")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Pair_H

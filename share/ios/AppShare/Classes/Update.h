@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/Update.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Update_H
+#define Update_H
 
-#pragma push_macro("INCLUDE_ALL_Update")
-#ifdef RESTRICT_Update
-#define INCLUDE_ALL_Update 0
-#else
-#define INCLUDE_ALL_Update 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Update
 
-#if !defined (ComYahooSquidbSqlUpdate_) && (INCLUDE_ALL_Update || defined(INCLUDE_ComYahooSquidbSqlUpdate))
-#define ComYahooSquidbSqlUpdate_
-
-#define RESTRICT_TableStatement 1
-#define INCLUDE_ComYahooSquidbSqlTableStatement 1
+#include "J2ObjC_header.h"
 #include "TableStatement.h"
 
 @class ComYahooSquidbDataAbstractModel;
@@ -26,7 +21,6 @@
 @class ComYahooSquidbSqlSqlBuilder;
 @class ComYahooSquidbSqlSqlTable;
 @class ComYahooSquidbSqlTable;
-@class ComYahooSquidbSqlTableStatement_ConflictAlgorithm;
 @class ComYahooSquidbSqlView;
 @class IOSObjectArray;
 @protocol JavaUtilList;
@@ -58,7 +52,7 @@
 
 #pragma mark Protected
 
-- (instancetype)initWithComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)table;
+- (instancetype __nonnull)initWithComYahooSquidbSqlSqlTable:(ComYahooSquidbSqlSqlTable *)table;
 
 - (void)visitValuesWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder
                                        withBoolean:(jboolean)forSqlValidation;
@@ -70,7 +64,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -88,6 +82,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlUpdate *ComYahooSquidbSqlUpdate_tableWithComY
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlUpdate)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Update")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Update_H

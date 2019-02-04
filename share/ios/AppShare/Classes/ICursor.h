@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/ICursor.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ICursor_H
+#define ICursor_H
 
-#pragma push_macro("INCLUDE_ALL_ICursor")
-#ifdef RESTRICT_ICursor
-#define INCLUDE_ALL_ICursor 0
-#else
-#define INCLUDE_ALL_ICursor 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ICursor
 
-#if !defined (ComYahooSquidbDataICursor_) && (INCLUDE_ALL_ICursor || defined(INCLUDE_ComYahooSquidbDataICursor))
-#define ComYahooSquidbDataICursor_
+#include "J2ObjC_header.h"
 
 @class IOSByteArray;
 @class IOSObjectArray;
@@ -80,6 +78,11 @@
 @end
 
 @interface ComYahooSquidbDataICursor : NSObject
+@property (readonly, class) jint FIELD_TYPE_NULL NS_SWIFT_NAME(FIELD_TYPE_NULL);
+@property (readonly, class) jint FIELD_TYPE_INTEGER NS_SWIFT_NAME(FIELD_TYPE_INTEGER);
+@property (readonly, class) jint FIELD_TYPE_FLOAT NS_SWIFT_NAME(FIELD_TYPE_FLOAT);
+@property (readonly, class) jint FIELD_TYPE_STRING NS_SWIFT_NAME(FIELD_TYPE_STRING);
+@property (readonly, class) jint FIELD_TYPE_BLOB NS_SWIFT_NAME(FIELD_TYPE_BLOB);
 
 + (jint)FIELD_TYPE_NULL;
 
@@ -117,6 +120,8 @@ J2OBJC_STATIC_FIELD_CONSTANT(ComYahooSquidbDataICursor, FIELD_TYPE_BLOB, jint)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataICursor)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ICursor")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ICursor_H

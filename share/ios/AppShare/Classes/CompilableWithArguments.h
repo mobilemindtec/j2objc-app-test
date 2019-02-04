@@ -3,24 +3,23 @@
 //  source: ./build/j2objc/java/CompilableWithArguments.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef CompilableWithArguments_H
+#define CompilableWithArguments_H
 
-#pragma push_macro("INCLUDE_ALL_CompilableWithArguments")
-#ifdef RESTRICT_CompilableWithArguments
-#define INCLUDE_ALL_CompilableWithArguments 0
-#else
-#define INCLUDE_ALL_CompilableWithArguments 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_CompilableWithArguments
 
-#if !defined (ComYahooSquidbSqlCompilableWithArguments_) && (INCLUDE_ALL_CompilableWithArguments || defined(INCLUDE_ComYahooSquidbSqlCompilableWithArguments))
-#define ComYahooSquidbSqlCompilableWithArguments_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlCompileContext;
 @class ComYahooSquidbSqlSqlBuilder;
 @class ComYahooSquidbUtilityVersionCode;
 
 @interface ComYahooSquidbSqlCompilableWithArguments : NSObject
+@property (readonly, class) ComYahooSquidbUtilityVersionCode *VERSION_FOR_TO_STRING NS_SWIFT_NAME(VERSION_FOR_TO_STRING);
 
 + (ComYahooSquidbUtilityVersionCode *)VERSION_FOR_TO_STRING;
 
@@ -44,7 +43,7 @@
 
 #pragma mark Package-Private
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)appendToSqlBuilderWithComYahooSquidbSqlSqlBuilder:(ComYahooSquidbSqlSqlBuilder *)builder
                                               withBoolean:(jboolean)forSqlValidation;
@@ -62,6 +61,8 @@ FOUNDATION_EXPORT void ComYahooSquidbSqlCompilableWithArguments_init(ComYahooSqu
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlCompilableWithArguments)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_CompilableWithArguments")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // CompilableWithArguments_H

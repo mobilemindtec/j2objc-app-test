@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/TypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TypeAdapter_H
+#define TypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_TypeAdapter")
-#ifdef RESTRICT_TypeAdapter
-#define INCLUDE_ALL_TypeAdapter 0
-#else
-#define INCLUDE_ALL_TypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TypeAdapter
 
-#if !defined (GsonTypeAdapter_) && (INCLUDE_ALL_TypeAdapter || defined(INCLUDE_GsonTypeAdapter))
-#define GsonTypeAdapter_
+#include "J2ObjC_header.h"
 
 @class GsonJsonElement;
 @class GsonJsonReader;
@@ -26,7 +24,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (id)fromJsonWithJavaIoReader:(JavaIoReader *)inArg;
 
@@ -58,6 +56,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTypeAdapter)
 
 @compatibility_alias ComGoogleGsonTypeAdapter GsonTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TypeAdapter_H

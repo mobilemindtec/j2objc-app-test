@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteBlobTooBigException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteBlobTooBigException_H
+#define SQLiteBlobTooBigException_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteBlobTooBigException")
-#ifdef RESTRICT_SQLiteBlobTooBigException
-#define INCLUDE_ALL_SQLiteBlobTooBigException 0
-#else
-#define INCLUDE_ALL_SQLiteBlobTooBigException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteBlobTooBigException
 
-#if !defined (ComYahooAndroidSqliteSQLiteBlobTooBigException_) && (INCLUDE_ALL_SQLiteBlobTooBigException || defined(INCLUDE_ComYahooAndroidSqliteSQLiteBlobTooBigException))
-#define ComYahooAndroidSqliteSQLiteBlobTooBigException_
-
-#define RESTRICT_SQLiteException 1
-#define INCLUDE_ComYahooAndroidSqliteSQLiteException 1
+#include "J2ObjC_header.h"
 #include "SQLiteException.h"
 
 @class JavaLangThrowable;
@@ -26,14 +21,14 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithNSString:(NSString *)error;
+- (instancetype __nonnull)initWithNSString:(NSString *)error;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithNSString:(NSString *)arg0
-           withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0
+                     withJavaLangThrowable:(JavaLangThrowable *)arg1 NS_UNAVAILABLE;
 
 @end
 
@@ -53,6 +48,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteBlobTooBigException *create_ComYaho
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteBlobTooBigException)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteBlobTooBigException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteBlobTooBigException_H

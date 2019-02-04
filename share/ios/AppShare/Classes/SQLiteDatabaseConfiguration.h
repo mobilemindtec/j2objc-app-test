@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteDatabaseConfiguration.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteDatabaseConfiguration_H
+#define SQLiteDatabaseConfiguration_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteDatabaseConfiguration")
-#ifdef RESTRICT_SQLiteDatabaseConfiguration
-#define INCLUDE_ALL_SQLiteDatabaseConfiguration 0
-#else
-#define INCLUDE_ALL_SQLiteDatabaseConfiguration 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteDatabaseConfiguration
 
-#if !defined (ComYahooAndroidSqliteSQLiteDatabaseConfiguration_) && (INCLUDE_ALL_SQLiteDatabaseConfiguration || defined(INCLUDE_ComYahooAndroidSqliteSQLiteDatabaseConfiguration))
-#define ComYahooAndroidSqliteSQLiteDatabaseConfiguration_
+#include "J2ObjC_header.h"
 
 @class JavaUtilArrayList;
 @class JavaUtilLocale;
@@ -29,15 +27,16 @@
   jboolean foreignKeyConstraintsEnabled_;
   JavaUtilArrayList *customFunctions_;
 }
+@property (readonly, copy, class) NSString *MEMORY_DB_PATH NS_SWIFT_NAME(MEMORY_DB_PATH);
 
 + (NSString *)MEMORY_DB_PATH;
 
 #pragma mark Public
 
-- (instancetype)initWithComYahooAndroidSqliteSQLiteDatabaseConfiguration:(ComYahooAndroidSqliteSQLiteDatabaseConfiguration *)other;
+- (instancetype __nonnull)initWithComYahooAndroidSqliteSQLiteDatabaseConfiguration:(ComYahooAndroidSqliteSQLiteDatabaseConfiguration *)other;
 
-- (instancetype)initWithNSString:(NSString *)path
-                         withInt:(jint)openFlags;
+- (instancetype __nonnull)initWithNSString:(NSString *)path
+                                   withInt:(jint)openFlags;
 
 - (jboolean)isInMemoryDb;
 
@@ -45,7 +44,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -75,6 +74,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteDatabaseConfiguration *create_ComYa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteDatabaseConfiguration)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteDatabaseConfiguration")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteDatabaseConfiguration_H

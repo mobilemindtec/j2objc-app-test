@@ -509,6 +509,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(getDefaultValues);
   methods[2].selector = @selector(getDatabaseValues);
@@ -561,7 +562,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   return &_ComYahooSquidbDataAbstractModel;
 }
 
-- (id)copyWithZone:(NSZone * __nullable)zone {
+- (id)copyWithZone:(NSZone *)zone {
   return [self java_clone];
 }
 
@@ -692,6 +693,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(saveWithComYahooSquidbSqlProperty:withComYahooSquidbDataValuesStorage:withId:);
   methods[2].selector = @selector(visitDoubleWithComYahooSquidbSqlProperty:withId:withId:);
@@ -832,6 +834,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(visitIntegerWithComYahooSquidbSqlProperty:withId:);
   methods[2].selector = @selector(visitLongWithComYahooSquidbSqlProperty:withId:);

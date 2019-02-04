@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/PreparedInsertCache.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef PreparedInsertCache_H
+#define PreparedInsertCache_H
 
-#pragma push_macro("INCLUDE_ALL_PreparedInsertCache")
-#ifdef RESTRICT_PreparedInsertCache
-#define INCLUDE_ALL_PreparedInsertCache 0
-#else
-#define INCLUDE_ALL_PreparedInsertCache 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_PreparedInsertCache
 
-#if !defined (ComYahooSquidbDataPreparedInsertCache_) && (INCLUDE_ALL_PreparedInsertCache || defined(INCLUDE_ComYahooSquidbDataPreparedInsertCache))
-#define ComYahooSquidbDataPreparedInsertCache_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbDataSquidDatabase;
 @class ComYahooSquidbSqlTable;
@@ -26,7 +24,7 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithJavaUtilSet:(id<JavaUtilSet>)dbStatementTracking;
+- (instancetype __nonnull)initWithJavaUtilSet:(id<JavaUtilSet>)dbStatementTracking;
 
 - (id<ComYahooSquidbDataISQLitePreparedStatement>)getPreparedInsertWithComYahooSquidbDataSquidDatabase:(ComYahooSquidbDataSquidDatabase *)db
                                                                             withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)table
@@ -34,7 +32,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -48,6 +46,8 @@ FOUNDATION_EXPORT ComYahooSquidbDataPreparedInsertCache *create_ComYahooSquidbDa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataPreparedInsertCache)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_PreparedInsertCache")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // PreparedInsertCache_H

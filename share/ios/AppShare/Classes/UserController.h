@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/UserController.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef UserController_H
+#define UserController_H
 
-#pragma push_macro("INCLUDE_ALL_UserController")
-#ifdef RESTRICT_UserController
-#define INCLUDE_ALL_UserController 0
-#else
-#define INCLUDE_ALL_UserController 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_UserController
 
-#if !defined (AppUserController_) && (INCLUDE_ALL_UserController || defined(INCLUDE_AppUserController))
-#define AppUserController_
+#include "J2ObjC_header.h"
 
 @class AppBaseRestDataConverter;
 @class AppBaseRestResult;
@@ -24,12 +22,13 @@
  @public
   AppBaseRestDataConverter *converter_;
 }
+@property (readonly, class) JavaUtilLoggingLogger *logger NS_SWIFT_NAME(logger);
 
 + (JavaUtilLoggingLogger *)logger;
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (AppBaseRestResult *)sigInWithUserName:(NSString *)username
                                 password:(NSString *)password;
@@ -55,6 +54,8 @@ J2OBJC_TYPE_LITERAL_HEADER(AppUserController)
 
 @compatibility_alias BrComMobilemindAppControllerUserController AppUserController;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_UserController")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // UserController_H

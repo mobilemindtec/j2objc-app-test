@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/TypeAdapterFactory.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TypeAdapterFactory_H
+#define TypeAdapterFactory_H
 
-#pragma push_macro("INCLUDE_ALL_TypeAdapterFactory")
-#ifdef RESTRICT_TypeAdapterFactory
-#define INCLUDE_ALL_TypeAdapterFactory 0
-#else
-#define INCLUDE_ALL_TypeAdapterFactory 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TypeAdapterFactory
 
-#if !defined (GsonTypeAdapterFactory_) && (INCLUDE_ALL_TypeAdapterFactory || defined(INCLUDE_GsonTypeAdapterFactory))
-#define GsonTypeAdapterFactory_
+#include "J2ObjC_header.h"
 
 @class GsonGson;
 @class GsonTypeAdapter;
@@ -33,6 +31,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTypeAdapterFactory)
 
 #define ComGoogleGsonTypeAdapterFactory GsonTypeAdapterFactory
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TypeAdapterFactory")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TypeAdapterFactory_H

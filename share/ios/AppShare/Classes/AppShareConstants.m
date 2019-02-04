@@ -31,6 +31,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   #pragma clang diagnostic pop
   static const J2ObjcFieldInfo fields[] = {
@@ -56,3 +57,5 @@ AppAppShareConstants *create_AppAppShareConstants_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(AppAppShareConstants)
+
+J2OBJC_NAME_MAPPING(AppAppShareConstants, "br.com.mobilemind.app.util", "App")

@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/NegationCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef NegationCriterion_H
+#define NegationCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_NegationCriterion")
-#ifdef RESTRICT_NegationCriterion
-#define INCLUDE_ALL_NegationCriterion 0
-#else
-#define INCLUDE_ALL_NegationCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_NegationCriterion
 
-#if !defined (ComYahooSquidbSqlNegationCriterion_) && (INCLUDE_ALL_NegationCriterion || defined(INCLUDE_ComYahooSquidbSqlNegationCriterion))
-#define ComYahooSquidbSqlNegationCriterion_
-
-#define RESTRICT_Criterion 1
-#define INCLUDE_ComYahooSquidbSqlCriterion 1
 #include "Criterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlOperator;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -36,11 +31,11 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlCriterion:(ComYahooSquidbSqlCriterion *)toNegate;
+- (instancetype __nonnull)initWithComYahooSquidbSqlCriterion:(ComYahooSquidbSqlCriterion *)toNegate;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -54,6 +49,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlNegationCriterion *create_ComYahooSquidbSqlNe
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlNegationCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_NegationCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // NegationCriterion_H

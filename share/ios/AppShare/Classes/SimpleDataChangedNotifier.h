@@ -3,25 +3,19 @@
 //  source: ./build/j2objc/java/SimpleDataChangedNotifier.java
 //
 
+#ifndef SimpleDataChangedNotifier_H
+#define SimpleDataChangedNotifier_H
+
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
+#endif
+
+#include "DataChangedNotifier.h"
 #include "J2ObjC_header.h"
 
-#pragma push_macro("INCLUDE_ALL_SimpleDataChangedNotifier")
-#ifdef RESTRICT_SimpleDataChangedNotifier
-#define INCLUDE_ALL_SimpleDataChangedNotifier 0
-#else
-#define INCLUDE_ALL_SimpleDataChangedNotifier 1
-#endif
-#undef RESTRICT_SimpleDataChangedNotifier
-
-#if !defined (ComYahooSquidbDataSimpleDataChangedNotifier_) && (INCLUDE_ALL_SimpleDataChangedNotifier || defined(INCLUDE_ComYahooSquidbDataSimpleDataChangedNotifier))
-#define ComYahooSquidbDataSimpleDataChangedNotifier_
-
-#define RESTRICT_DataChangedNotifier 1
-#define INCLUDE_ComYahooSquidbDataDataChangedNotifier 1
-#include "DataChangedNotifier.h"
-
 @class ComYahooSquidbDataAbstractModel;
-@class ComYahooSquidbDataDataChangedNotifier_DBOperation;
 @class ComYahooSquidbDataSquidDatabase;
 @class ComYahooSquidbSqlSqlTable;
 @class IOSObjectArray;
@@ -32,11 +26,11 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithJavaUtilCollection:(id<JavaUtilCollection>)tables;
+- (instancetype __nonnull)initWithJavaUtilCollection:(id<JavaUtilCollection>)tables;
 
-- (instancetype)initWithComYahooSquidbSqlSqlTableArray:(IOSObjectArray *)tables;
+- (instancetype __nonnull)initWithComYahooSquidbSqlSqlTableArray:(IOSObjectArray *)tables;
 
 #pragma mark Protected
 
@@ -64,6 +58,8 @@ FOUNDATION_EXPORT void ComYahooSquidbDataSimpleDataChangedNotifier_initWithJavaU
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbDataSimpleDataChangedNotifier)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SimpleDataChangedNotifier")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SimpleDataChangedNotifier_H

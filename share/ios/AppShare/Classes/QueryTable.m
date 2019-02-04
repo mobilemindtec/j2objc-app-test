@@ -43,6 +43,7 @@ withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithIOSClass:withComYahooSquidbSqlPropertyArray:withNSString:withNSString:withComYahooSquidbSqlQuery:);
   methods[1].selector = @selector(qualifiedFields);
   methods[2].selector = @selector(allFields);

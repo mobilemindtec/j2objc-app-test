@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/User.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef User_H
+#define User_H
 
-#pragma push_macro("INCLUDE_ALL_User")
-#ifdef RESTRICT_User
-#define INCLUDE_ALL_User 0
-#else
-#define INCLUDE_ALL_User 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_User
 
-#if !defined (AppUser_) && (INCLUDE_ALL_User || defined(INCLUDE_AppUser))
-#define AppUser_
-
-#define RESTRICT_TableModel 1
-#define INCLUDE_ComYahooSquidbDataTableModel 1
+#include "J2ObjC_header.h"
 #include "TableModel.h"
 
 @class ComYahooSquidbDataSquidCursor;
@@ -30,6 +25,14 @@
 @protocol JavaUtilMap;
 
 @interface AppUser : ComYahooSquidbDataTableModel
+@property (readonly, class) IOSObjectArray *PROPERTIES NS_SWIFT_NAME(PROPERTIES);
+@property (readonly, class) ComYahooSquidbSqlTable *TABLE NS_SWIFT_NAME(TABLE);
+@property (readonly, class) ComYahooSquidbSqlTableModelName *TABLE_MODEL_NAME NS_SWIFT_NAME(TABLE_MODEL_NAME);
+@property (readonly, class) ComYahooSquidbSqlProperty_LongProperty *ID NS_SWIFT_NAME(ID);
+@property (readonly, class) ComYahooSquidbSqlProperty_StringProperty *NAME NS_SWIFT_NAME(NAME);
+@property (readonly, class) ComYahooSquidbSqlProperty_StringProperty *EMAIL NS_SWIFT_NAME(EMAIL);
+@property (readonly, class) ComYahooSquidbSqlProperty_StringProperty *TOKEN NS_SWIFT_NAME(TOKEN);
+@property (readonly, class) ComYahooSquidbDataValuesStorage *defaultValues NS_SWIFT_NAME(defaultValues);
 
 + (IOSObjectArray *)PROPERTIES;
 
@@ -49,14 +52,14 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
-- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)values;
+- (instancetype __nonnull)initWithJavaUtilMap:(id<JavaUtilMap>)values;
 
-- (instancetype)initWithJavaUtilMap:(id<JavaUtilMap>)values
- withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)withProperties;
+- (instancetype __nonnull)initWithJavaUtilMap:(id<JavaUtilMap>)values
+           withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)withProperties;
 
-- (instancetype)initWithComYahooSquidbDataSquidCursor:(ComYahooSquidbDataSquidCursor *)cursor;
+- (instancetype __nonnull)initWithComYahooSquidbDataSquidCursor:(ComYahooSquidbDataSquidCursor *)cursor;
 
 - (AppUser *)java_clone;
 
@@ -154,6 +157,8 @@ J2OBJC_TYPE_LITERAL_HEADER(AppUser)
 
 @compatibility_alias BrComMobilemindAppModelUser AppUser;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_User")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // User_H

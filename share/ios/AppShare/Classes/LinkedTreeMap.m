@@ -395,6 +395,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithJavaUtilComparator:);
   methods[2].selector = @selector(size);
@@ -590,6 +591,8 @@ id GsonLinkedTreeMap_writeReplace(GsonLinkedTreeMap *self) {
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap)
 
+J2OBJC_NAME_MAPPING(GsonLinkedTreeMap, "com.google.gson.internal", "Gson")
+
 @implementation GsonLinkedTreeMap_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -640,6 +643,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(compareWithId:withId:);
   #pragma clang diagnostic pop
@@ -744,6 +748,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithGsonLinkedTreeMap_Node:withId:withGsonLinkedTreeMap_Node:withGsonLinkedTreeMap_Node:);
   methods[2].selector = @selector(getKey);
@@ -844,6 +849,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_Node)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedTreeMap:);
   methods[1].selector = @selector(hasNext);
   methods[2].selector = @selector(nextNode);
@@ -920,7 +926,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
-  return JreDefaultFastEnumeration(self, state, stackbuf, len);
+  return JreDefaultFastEnumeration(self, state, stackbuf);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -934,6 +940,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedTreeMap:);
   methods[1].selector = @selector(size);
   methods[2].selector = @selector(iterator);
@@ -984,6 +991,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_EntrySet)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedTreeMap_EntrySet:);
   methods[1].selector = @selector(next);
   #pragma clang diagnostic pop
@@ -1034,7 +1042,7 @@ GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLi
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
-  return JreDefaultFastEnumeration(self, state, stackbuf, len);
+  return JreDefaultFastEnumeration(self, state, stackbuf);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -1048,6 +1056,7 @@ GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLi
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedTreeMap:);
   methods[1].selector = @selector(size);
   methods[2].selector = @selector(iterator);
@@ -1098,6 +1107,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_KeySet)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithGsonLinkedTreeMap_KeySet:);
   methods[1].selector = @selector(next);
   #pragma clang diagnostic pop

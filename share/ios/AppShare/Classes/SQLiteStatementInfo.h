@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/SQLiteStatementInfo.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SQLiteStatementInfo_H
+#define SQLiteStatementInfo_H
 
-#pragma push_macro("INCLUDE_ALL_SQLiteStatementInfo")
-#ifdef RESTRICT_SQLiteStatementInfo
-#define INCLUDE_ALL_SQLiteStatementInfo 0
-#else
-#define INCLUDE_ALL_SQLiteStatementInfo 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SQLiteStatementInfo
 
-#if !defined (ComYahooAndroidSqliteSQLiteStatementInfo_) && (INCLUDE_ALL_SQLiteStatementInfo || defined(INCLUDE_ComYahooAndroidSqliteSQLiteStatementInfo))
-#define ComYahooAndroidSqliteSQLiteStatementInfo_
+#include "J2ObjC_header.h"
 
 @class IOSObjectArray;
 
@@ -27,7 +25,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end
 
@@ -43,6 +41,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteSQLiteStatementInfo *create_ComYahooAndro
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteSQLiteStatementInfo)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SQLiteStatementInfo")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SQLiteStatementInfo_H

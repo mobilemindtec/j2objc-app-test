@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/DefaultDatabaseErrorHandler.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef DefaultDatabaseErrorHandler_H
+#define DefaultDatabaseErrorHandler_H
 
-#pragma push_macro("INCLUDE_ALL_DefaultDatabaseErrorHandler")
-#ifdef RESTRICT_DefaultDatabaseErrorHandler
-#define INCLUDE_ALL_DefaultDatabaseErrorHandler 0
-#else
-#define INCLUDE_ALL_DefaultDatabaseErrorHandler 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_DefaultDatabaseErrorHandler
 
-#if !defined (ComYahooAndroidSqliteDefaultDatabaseErrorHandler_) && (INCLUDE_ALL_DefaultDatabaseErrorHandler || defined(INCLUDE_ComYahooAndroidSqliteDefaultDatabaseErrorHandler))
-#define ComYahooAndroidSqliteDefaultDatabaseErrorHandler_
-
-#define RESTRICT_DatabaseErrorHandler 1
-#define INCLUDE_ComYahooAndroidSqliteDatabaseErrorHandler 1
 #include "DatabaseErrorHandler.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooAndroidSqliteSQLiteDatabase;
 
@@ -26,7 +21,7 @@
 
 #pragma mark Public
 
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 - (void)onCorruptionWithComYahooAndroidSqliteSQLiteDatabase:(ComYahooAndroidSqliteSQLiteDatabase *)dbObj;
 
@@ -42,6 +37,8 @@ FOUNDATION_EXPORT ComYahooAndroidSqliteDefaultDatabaseErrorHandler *create_ComYa
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooAndroidSqliteDefaultDatabaseErrorHandler)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_DefaultDatabaseErrorHandler")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // DefaultDatabaseErrorHandler_H

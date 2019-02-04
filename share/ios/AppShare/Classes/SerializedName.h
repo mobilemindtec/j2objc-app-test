@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/SerializedName.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef SerializedName_H
+#define SerializedName_H
 
-#pragma push_macro("INCLUDE_ALL_SerializedName")
-#ifdef RESTRICT_SerializedName
-#define INCLUDE_ALL_SerializedName 0
-#else
-#define INCLUDE_ALL_SerializedName 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_SerializedName
 
-#if !defined (GsonSerializedName_) && (INCLUDE_ALL_SerializedName || defined(INCLUDE_GsonSerializedName))
-#define GsonSerializedName_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
 @class IOSClass;
@@ -27,6 +22,10 @@
 
 @property (readonly) NSString *value;
 @property (readonly) IOSObjectArray *alternate;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
 
 @end
 
@@ -46,6 +45,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonSerializedName)
 
 #define ComGoogleGsonAnnotationsSerializedName GsonSerializedName
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_SerializedName")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // SerializedName_H

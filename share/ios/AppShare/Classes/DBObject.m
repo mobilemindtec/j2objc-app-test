@@ -153,6 +153,7 @@ __attribute__((unused)) static void ComYahooSquidbSqlDBObject_appendQualifiedExp
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:);
   methods[1].selector = @selector(initWithNSString:withNSString:);
   methods[2].selector = @selector(asWithNSString:);
@@ -179,7 +180,7 @@ __attribute__((unused)) static void ComYahooSquidbSqlDBObject_appendQualifiedExp
   return &_ComYahooSquidbSqlDBObject;
 }
 
-- (id)copyWithZone:(NSZone * __nullable)zone {
+- (id)copyWithZone:(NSZone *)zone {
   return [self java_clone];
 }
 

@@ -35,9 +35,12 @@ for f in $BUILD/java/*.java; do
 	j2objc -d $BUILD/objc \
     -sourcepath "$BUILD/java/**.java" \
     -classpath $CLASS_PATH:$CLASS_PATH_SQUIDB \
-    -use-arc --prefixes $BUILD/java/packages.properties \
+    --prefixes $BUILD/java/packages.properties \
     --swift-friendly \
-    --no-package-directories $f		
+    --no-segmented-headers \
+    -use-arc \
+    --nullability \
+    --no-package-directories $f
 
 done
 
@@ -46,17 +49,22 @@ APP_SHARE_DEF_HEADER=$APP_SHARE_SOURCES/ShareApp.h
 
 rm -R $APP_SHARE_SOURCES/*
 
-cp $LIBS/squidb/ios/SquiDB/Classes/* $APP_SHARE_SOURCES/
-cp $LIBS/j2objc-gson/ios/J2ObjCGson/Classes/* $APP_SHARE_SOURCES/
-cp $LIBS/j2objc-app-base/ios/J2ObjCAppBase/Classes/* $APP_SHARE_SOURCES/
-cp $LIBS/j2objc-unit/ios/J2ObjCUnit/Classes/* $APP_SHARE_SOURCES/
 cp $BUILD/objc/* $APP_SHARE_SOURCES/
 
-
+# basic Java work
 echo "#include \"J2ObjC_header.h\"" >> $APP_SHARE_DEF_HEADER
 echo "#include \"java/util/LinkedList.h\"" >> $APP_SHARE_DEF_HEADER
 echo "#include \"java/util/List.h\"" >> $APP_SHARE_DEF_HEADER
 
+# libs includes
+
+# copy libs sources
+cp $LIBS/squidb/ios/SquiDB/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-gson/ios/J2ObjCGson/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-app-base/ios/J2ObjCAppBase/Classes/* $APP_SHARE_SOURCES/
+cp $LIBS/j2objc-unit/ios/J2ObjCUnit/Classes/* $APP_SHARE_SOURCES/
+
+# add sources references in ShareApp.h
 for f in $APP_SHARE_SOURCES/*.h; do
 	FILE_NAME=`basename $f`
 

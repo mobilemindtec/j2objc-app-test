@@ -11,17 +11,36 @@
 #include "java/lang/annotation/ElementType.h"
 #include "java/lang/annotation/Target.h"
 
-@interface ComYahooSquidbAnnotationsImplements : NSObject
-
-@end
-
 __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsImplements__Annotations$0(void);
 
-@interface ComYahooSquidbAnnotationsImplements_InterfaceSpec : NSObject
-
-@end
-
 @implementation ComYahooSquidbAnnotationsImplements
+
+@synthesize interfaceClasses = interfaceClasses_;
+@synthesize interfaceDefinitions = interfaceDefinitions_;
+
++ (IOSObjectArray *)interfaceClassesDefault {
+  return [IOSObjectArray newArrayWithLength:0 type:IOSClass_class_()];
+}
+
++ (IOSObjectArray *)interfaceDefinitionsDefault {
+  return [IOSObjectArray newArrayWithLength:0 type:ComYahooSquidbAnnotationsImplements_InterfaceSpec_class_()];
+}
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsImplements_class_();
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"@com.yahoo.squidb.annotations.Implements(interfaceClasses=%@, interfaceDefinitions=%@)", interfaceClasses_, interfaceDefinitions_];
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
@@ -30,15 +49,27 @@ __attribute__((unused)) static IOSObjectArray *ComYahooSquidbAnnotationsImplemen
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(interfaceClasses);
   methods[1].selector = @selector(interfaceDefinitions);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "LComYahooSquidbAnnotationsImplements_InterfaceSpec;", (void *)&ComYahooSquidbAnnotationsImplements__Annotations$0 };
-  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsImplements = { "Implements", "com.yahoo.squidb.annotations", ptrTable, methods, NULL, 7, 0x2609, 2, 0, -1, 0, -1, -1, 1 };
+  static const J2ObjcFieldInfo fields[] = {
+    { "interfaceClasses_", "[LIOSClass;", .constantValue.asLong = 0, 0x1000, -1, -1, 0, -1 },
+    { "interfaceDefinitions_", "[LComYahooSquidbAnnotationsImplements_InterfaceSpec;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "[Ljava/lang/Class<*>;", "LComYahooSquidbAnnotationsImplements_InterfaceSpec;", (void *)&ComYahooSquidbAnnotationsImplements__Annotations$0 };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsImplements = { "Implements", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 2, 2, -1, 1, -1, -1, 2 };
   return &_ComYahooSquidbAnnotationsImplements;
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsImplements> create_ComYahooSquidbAnnotationsImplements(IOSObjectArray *interfaceClasses, IOSObjectArray *interfaceDefinitions) {
+  ComYahooSquidbAnnotationsImplements *self = AUTORELEASE([[ComYahooSquidbAnnotationsImplements alloc] init]);
+  self->interfaceClasses_ = RETAIN_(interfaceClasses);
+  self->interfaceDefinitions_ = RETAIN_(interfaceDefinitions);
+  return self;
+}
 
 IOSObjectArray *ComYahooSquidbAnnotationsImplements__Annotations$0() {
   return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, TYPE) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:1 type:JavaLangAnnotationAnnotation_class_()];
@@ -48,6 +79,34 @@ J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsImplements)
 
 @implementation ComYahooSquidbAnnotationsImplements_InterfaceSpec
 
+@synthesize interfaceClass = interfaceClass_;
+@synthesize interfaceTypeArgs = interfaceTypeArgs_;
+@synthesize interfaceTypeArgNames = interfaceTypeArgNames_;
+
++ (IOSObjectArray *)interfaceTypeArgsDefault {
+  return [IOSObjectArray newArrayWithLength:0 type:IOSClass_class_()];
+}
+
++ (IOSObjectArray *)interfaceTypeArgNamesDefault {
+  return [IOSObjectArray newArrayWithLength:0 type:NSString_class_()];
+}
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsImplements_InterfaceSpec_class_();
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"@com.yahoo.squidb.annotations.Implements$InterfaceSpec(interfaceClass=%@, interfaceTypeArgs=%@, interfaceTypeArgNames=%@)", interfaceClass_, interfaceTypeArgs_, interfaceTypeArgNames_];
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "LIOSClass;", 0x401, -1, -1, -1, -1, -1, -1 },
@@ -56,15 +115,29 @@ J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsImplements)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(interfaceClass);
   methods[1].selector = @selector(interfaceTypeArgs);
   methods[2].selector = @selector(interfaceTypeArgNames);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "LComYahooSquidbAnnotationsImplements;" };
-  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsImplements_InterfaceSpec = { "InterfaceSpec", "com.yahoo.squidb.annotations", ptrTable, methods, NULL, 7, 0x2609, 3, 0, 0, -1, -1, -1, -1 };
+  static const J2ObjcFieldInfo fields[] = {
+    { "interfaceClass_", "LIOSClass;", .constantValue.asLong = 0, 0x1000, -1, -1, 0, -1 },
+    { "interfaceTypeArgs_", "[LIOSClass;", .constantValue.asLong = 0, 0x1000, -1, -1, 1, -1 },
+    { "interfaceTypeArgNames_", "[LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+  };
+  static const void *ptrTable[] = { "Ljava/lang/Class<*>;", "[Ljava/lang/Class<*>;", "LComYahooSquidbAnnotationsImplements;" };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsImplements_InterfaceSpec = { "InterfaceSpec", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 3, 3, 2, -1, -1, -1, -1 };
   return &_ComYahooSquidbAnnotationsImplements_InterfaceSpec;
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsImplements_InterfaceSpec> create_ComYahooSquidbAnnotationsImplements_InterfaceSpec(IOSClass *interfaceClass, IOSObjectArray *interfaceTypeArgNames, IOSObjectArray *interfaceTypeArgs) {
+  ComYahooSquidbAnnotationsImplements_InterfaceSpec *self = AUTORELEASE([[ComYahooSquidbAnnotationsImplements_InterfaceSpec alloc] init]);
+  self->interfaceClass_ = RETAIN_(interfaceClass);
+  self->interfaceTypeArgNames_ = RETAIN_(interfaceTypeArgNames);
+  self->interfaceTypeArgs_ = RETAIN_(interfaceTypeArgs);
+  return self;
+}
 
 J2OBJC_INTERFACE_TYPE_LITERAL_SOURCE(ComYahooSquidbAnnotationsImplements_InterfaceSpec)

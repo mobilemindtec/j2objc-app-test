@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/TreeTypeAdapter.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef TreeTypeAdapter_H
+#define TreeTypeAdapter_H
 
-#pragma push_macro("INCLUDE_ALL_TreeTypeAdapter")
-#ifdef RESTRICT_TreeTypeAdapter
-#define INCLUDE_ALL_TreeTypeAdapter 0
-#else
-#define INCLUDE_ALL_TreeTypeAdapter 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_TreeTypeAdapter
 
-#if !defined (GsonTreeTypeAdapter_) && (INCLUDE_ALL_TreeTypeAdapter || defined(INCLUDE_GsonTreeTypeAdapter))
-#define GsonTreeTypeAdapter_
-
-#define RESTRICT_TypeAdapter 1
-#define INCLUDE_GsonTypeAdapter 1
+#include "J2ObjC_header.h"
 #include "TypeAdapter.h"
 
 @class GsonGson;
@@ -36,11 +31,11 @@
 
 #pragma mark Public
 
-- (instancetype)initWithGsonJsonSerializer:(id<GsonJsonSerializer>)serializer
-                  withGsonJsonDeserializer:(id<GsonJsonDeserializer>)deserializer
-                              withGsonGson:(GsonGson *)gson
-                         withGsonTypeToken:(GsonTypeToken *)typeToken
-                withGsonTypeAdapterFactory:(id<GsonTypeAdapterFactory>)skipPast;
+- (instancetype __nonnull)initWithGsonJsonSerializer:(id<GsonJsonSerializer>)serializer
+                            withGsonJsonDeserializer:(id<GsonJsonDeserializer>)deserializer
+                                        withGsonGson:(GsonGson *)gson
+                                   withGsonTypeToken:(GsonTypeToken *)typeToken
+                          withGsonTypeAdapterFactory:(id<GsonTypeAdapterFactory>)skipPast;
 
 + (id<GsonTypeAdapterFactory>)newFactoryWithGsonTypeToken:(GsonTypeToken *)exactType
                                                    withId:(id)typeAdapter OBJC_METHOD_FAMILY_NONE;
@@ -58,7 +53,7 @@
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -82,6 +77,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonTreeTypeAdapter)
 
 @compatibility_alias ComGoogleGsonInternalBindTreeTypeAdapter GsonTreeTypeAdapter;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_TreeTypeAdapter")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // TreeTypeAdapter_H

@@ -138,6 +138,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithComYahooSquidbSqlSqlTableArray:);
   methods[2].selector = @selector(initWithJavaUtilCollection:);
@@ -223,6 +224,7 @@ ComYahooSquidbDataDataChangedNotifier_DBOperation *ComYahooSquidbDataDataChanged
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(values);
   methods[1].selector = @selector(valueOfWithNSString:);
   #pragma clang diagnostic pop
@@ -238,9 +240,9 @@ ComYahooSquidbDataDataChangedNotifier_DBOperation *ComYahooSquidbDataDataChanged
 
 + (void)initialize {
   if (self == [ComYahooSquidbDataDataChangedNotifier_DBOperation class]) {
-    JreEnum(ComYahooSquidbDataDataChangedNotifier_DBOperation, INSERT) = new_ComYahooSquidbDataDataChangedNotifier_DBOperation_initWithNSString_withInt_(@"", 0);
-    JreEnum(ComYahooSquidbDataDataChangedNotifier_DBOperation, UPDATE) = new_ComYahooSquidbDataDataChangedNotifier_DBOperation_initWithNSString_withInt_(@"", 1);
-    JreEnum(ComYahooSquidbDataDataChangedNotifier_DBOperation, DELETE) = new_ComYahooSquidbDataDataChangedNotifier_DBOperation_initWithNSString_withInt_(@"", 2);
+    JreEnum(ComYahooSquidbDataDataChangedNotifier_DBOperation, INSERT) = new_ComYahooSquidbDataDataChangedNotifier_DBOperation_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbDataDataChangedNotifier_DBOperation_class_(), 0), 0);
+    JreEnum(ComYahooSquidbDataDataChangedNotifier_DBOperation, UPDATE) = new_ComYahooSquidbDataDataChangedNotifier_DBOperation_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbDataDataChangedNotifier_DBOperation_class_(), 1), 1);
+    JreEnum(ComYahooSquidbDataDataChangedNotifier_DBOperation, DELETE) = new_ComYahooSquidbDataDataChangedNotifier_DBOperation_initWithNSString_withInt_(JreEnumConstantName(ComYahooSquidbDataDataChangedNotifier_DBOperation_class_(), 2), 2);
     J2OBJC_SET_INITIALIZED(ComYahooSquidbDataDataChangedNotifier_DBOperation)
   }
 }
@@ -302,6 +304,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initialValue);
   #pragma clang diagnostic pop

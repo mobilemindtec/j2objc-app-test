@@ -198,6 +198,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(initWithJavaLangReflectType:);
   methods[2].selector = @selector(getSuperclassTypeParameterWithIOSClass:);
@@ -408,3 +409,5 @@ IOSObjectArray *GsonTypeToken__Annotations$2() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonTypeToken)
+
+J2OBJC_NAME_MAPPING(GsonTypeToken, "com.google.gson.reflect", "Gson")

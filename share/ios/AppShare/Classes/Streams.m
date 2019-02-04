@@ -133,6 +133,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(parseWithGsonJsonReader:);
   methods[2].selector = @selector(writeWithGsonJsonElement:withGsonJsonWriter:);
@@ -195,6 +196,8 @@ JavaIoWriter *GsonStreams_writerForAppendableWithJavaLangAppendable_(id<JavaLang
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonStreams)
 
+J2OBJC_NAME_MAPPING(GsonStreams, "com.google.gson.internal", "Gson")
+
 @implementation GsonStreams_AppendableWriter
 
 - (instancetype)initWithJavaLangAppendable:(id<JavaLangAppendable>)appendable {
@@ -229,6 +232,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonStreams)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithJavaLangAppendable:);
   methods[1].selector = @selector(writeWithCharArray:withInt:withInt:);
   methods[2].selector = @selector(writeWithInt:);
@@ -301,6 +305,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(java_length);
   methods[2].selector = @selector(charAtWithInt:);

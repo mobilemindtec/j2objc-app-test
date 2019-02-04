@@ -3,31 +3,49 @@
 //  source: ./build/j2objc/java/ViewModelSpec.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ViewModelSpec_H
+#define ViewModelSpec_H
 
-#pragma push_macro("INCLUDE_ALL_ViewModelSpec")
-#ifdef RESTRICT_ViewModelSpec
-#define INCLUDE_ALL_ViewModelSpec 0
-#else
-#define INCLUDE_ALL_ViewModelSpec 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ViewModelSpec
 
-#if !defined (ComYahooSquidbAnnotationsViewModelSpec_) && (INCLUDE_ALL_ViewModelSpec || defined(INCLUDE_ComYahooSquidbAnnotationsViewModelSpec))
-#define ComYahooSquidbAnnotationsViewModelSpec_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsViewModelSpec < JavaLangAnnotationAnnotation >
+
+@property (readonly) NSString *className__;
+@property (readonly) NSString *viewName;
+@property (readonly) jboolean isSubquery;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsViewModelSpec : NSObject < ComYahooSquidbAnnotationsViewModelSpec > {
+ @public
+  NSString *className___;
+  NSString *viewName_;
+  jboolean isSubquery_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsViewModelSpec)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsViewModelSpec> create_ComYahooSquidbAnnotationsViewModelSpec(NSString *className__, jboolean isSubquery, NSString *viewName);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsViewModelSpec)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ViewModelSpec")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ViewModelSpec_H

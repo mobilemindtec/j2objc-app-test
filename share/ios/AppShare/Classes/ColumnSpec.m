@@ -26,6 +26,38 @@ NSString *ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NULL = @"!NULL!";
   return ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NULL;
 }
 
+@synthesize name = name_;
+@synthesize constraints = constraints_;
+@synthesize defaultValue = defaultValue_;
+
++ (NSString *)nameDefault {
+  return @"";
+}
+
++ (NSString *)constraintsDefault {
+  return @"!NONE!";
+}
+
++ (NSString *)defaultValueDefault {
+  return @"!NONE!";
+}
+
+- (IOSClass *)annotationType {
+  return ComYahooSquidbAnnotationsColumnSpec_class_();
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"@com.yahoo.squidb.annotations.ColumnSpec(name=%@, constraints=%@, defaultValue=%@)", name_, constraints_, defaultValue_];
+}
+
+- (jboolean)isEqual:(id)obj {
+  return JreAnnotationEquals(self, obj);
+}
+
+- (NSUInteger)hash {
+  return JreAnnotationHashCode(self);
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, "LNSString;", 0x401, -1, -1, -1, -1, -1, -1 },
@@ -34,6 +66,7 @@ NSString *ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NULL = @"!NULL!";
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(name);
   methods[1].selector = @selector(constraints);
   methods[2].selector = @selector(defaultValue);
@@ -41,13 +74,24 @@ NSString *ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NULL = @"!NULL!";
   static const J2ObjcFieldInfo fields[] = {
     { "DEFAULT_NONE", "LNSString;", .constantValue.asLong = 0, 0x19, -1, 0, -1, -1 },
     { "DEFAULT_NULL", "LNSString;", .constantValue.asLong = 0, 0x19, -1, 1, -1, -1 },
+    { "name_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "constraints_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
+    { "defaultValue_", "LNSString;", .constantValue.asLong = 0, 0x1000, -1, -1, -1, -1 },
   };
   static const void *ptrTable[] = { &ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NONE, &ComYahooSquidbAnnotationsColumnSpec_DEFAULT_NULL, (void *)&ComYahooSquidbAnnotationsColumnSpec__Annotations$0 };
-  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsColumnSpec = { "ColumnSpec", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 3, 2, -1, -1, -1, -1, 2 };
+  static const J2ObjcClassInfo _ComYahooSquidbAnnotationsColumnSpec = { "ColumnSpec", "com.yahoo.squidb.annotations", ptrTable, methods, fields, 7, 0x2609, 3, 5, -1, -1, -1, -1, 2 };
   return &_ComYahooSquidbAnnotationsColumnSpec;
 }
 
 @end
+
+id<ComYahooSquidbAnnotationsColumnSpec> create_ComYahooSquidbAnnotationsColumnSpec(NSString *constraints, NSString *defaultValue, NSString *name) {
+  ComYahooSquidbAnnotationsColumnSpec *self = AUTORELEASE([[ComYahooSquidbAnnotationsColumnSpec alloc] init]);
+  self->constraints_ = RETAIN_(constraints);
+  self->defaultValue_ = RETAIN_(defaultValue);
+  self->name_ = RETAIN_(name);
+  return self;
+}
 
 IOSObjectArray *ComYahooSquidbAnnotationsColumnSpec__Annotations$0() {
   return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangAnnotationTarget([IOSObjectArray newArrayWithObjects:(id[]){ JreLoadEnum(JavaLangAnnotationElementType, FIELD) } count:1 type:JavaLangAnnotationElementType_class_()]) } count:1 type:JavaLangAnnotationAnnotation_class_()];

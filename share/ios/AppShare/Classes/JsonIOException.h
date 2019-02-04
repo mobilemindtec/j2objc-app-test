@@ -3,21 +3,16 @@
 //  source: ./build/j2objc/java/JsonIOException.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef JsonIOException_H
+#define JsonIOException_H
 
-#pragma push_macro("INCLUDE_ALL_JsonIOException")
-#ifdef RESTRICT_JsonIOException
-#define INCLUDE_ALL_JsonIOException 0
-#else
-#define INCLUDE_ALL_JsonIOException 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_JsonIOException
 
-#if !defined (GsonJsonIOException_) && (INCLUDE_ALL_JsonIOException || defined(INCLUDE_GsonJsonIOException))
-#define GsonJsonIOException_
-
-#define RESTRICT_JsonParseException 1
-#define INCLUDE_GsonJsonParseException 1
+#include "J2ObjC_header.h"
 #include "JsonParseException.h"
 
 @class JavaLangThrowable;
@@ -26,12 +21,12 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)msg;
+- (instancetype __nonnull)initWithNSString:(NSString *)msg;
 
-- (instancetype)initWithNSString:(NSString *)msg
-           withJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype __nonnull)initWithNSString:(NSString *)msg
+                     withJavaLangThrowable:(JavaLangThrowable *)cause;
 
-- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype __nonnull)initWithJavaLangThrowable:(JavaLangThrowable *)cause;
 
 @end
 
@@ -59,6 +54,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonJsonIOException)
 
 @compatibility_alias ComGoogleGsonJsonIOException GsonJsonIOException;
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_JsonIOException")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // JsonIOException_H

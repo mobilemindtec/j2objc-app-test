@@ -3,31 +3,45 @@
 //  source: ./build/j2objc/java/ViewQuery.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ViewQuery_H
+#define ViewQuery_H
 
-#pragma push_macro("INCLUDE_ALL_ViewQuery")
-#ifdef RESTRICT_ViewQuery
-#define INCLUDE_ALL_ViewQuery 0
-#else
-#define INCLUDE_ALL_ViewQuery 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ViewQuery
 
-#if !defined (ComYahooSquidbAnnotationsViewQuery_) && (INCLUDE_ALL_ViewQuery || defined(INCLUDE_ComYahooSquidbAnnotationsViewQuery))
-#define ComYahooSquidbAnnotationsViewQuery_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsViewQuery < JavaLangAnnotationAnnotation >
+
+@property (readonly) jboolean freeze;
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsViewQuery : NSObject < ComYahooSquidbAnnotationsViewQuery > {
+ @public
+  jboolean freeze_;
+}
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsViewQuery)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsViewQuery> create_ComYahooSquidbAnnotationsViewQuery(jboolean freeze);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsViewQuery)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ViewQuery")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ViewQuery_H

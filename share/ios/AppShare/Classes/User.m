@@ -158,6 +158,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(getRowIdProperty);
   methods[1].selector = @selector(getDefaultValues);
   methods[2].selector = @selector(init);
@@ -268,3 +269,5 @@ AppUser *create_AppUser_initWithJavaUtilMap_withComYahooSquidbSqlPropertyArray_(
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(AppUser)
+
+J2OBJC_NAME_MAPPING(AppUser, "br.com.mobilemind.app.model", "App")

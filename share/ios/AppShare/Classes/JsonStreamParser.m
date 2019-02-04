@@ -98,6 +98,7 @@ J2OBJC_FIELD_SETTER(GsonJsonStreamParser, lock_, id)
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
+  #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(initWithNSString:);
   methods[1].selector = @selector(initWithJavaIoReader:);
   methods[2].selector = @selector(next);
@@ -143,3 +144,5 @@ GsonJsonStreamParser *create_GsonJsonStreamParser_initWithJavaIoReader_(JavaIoRe
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonJsonStreamParser)
+
+J2OBJC_NAME_MAPPING(GsonJsonStreamParser, "com.google.gson", "Gson")

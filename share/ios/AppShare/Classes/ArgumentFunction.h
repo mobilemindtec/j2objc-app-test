@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/ArgumentFunction.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef ArgumentFunction_H
+#define ArgumentFunction_H
 
-#pragma push_macro("INCLUDE_ALL_ArgumentFunction")
-#ifdef RESTRICT_ArgumentFunction
-#define INCLUDE_ALL_ArgumentFunction 0
-#else
-#define INCLUDE_ALL_ArgumentFunction 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_ArgumentFunction
 
-#if !defined (ComYahooSquidbSqlArgumentFunction_) && (INCLUDE_ALL_ArgumentFunction || defined(INCLUDE_ComYahooSquidbSqlArgumentFunction))
-#define ComYahooSquidbSqlArgumentFunction_
-
-#define RESTRICT_Function 1
-#define INCLUDE_ComYahooSquidbSqlFunction 1
 #include "Function.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlSqlBuilder;
@@ -43,14 +38,14 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithNSString:(NSString *)functionName
-               withNSObjectArray:(IOSObjectArray *)arguments;
+- (instancetype __nonnull)initWithNSString:(NSString *)functionName
+                         withNSObjectArray:(IOSObjectArray *)arguments;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithNSString:(NSString *)arg0 NS_UNAVAILABLE;
 
 @end
 
@@ -64,6 +59,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlArgumentFunction *create_ComYahooSquidbSqlArg
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlArgumentFunction)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_ArgumentFunction")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // ArgumentFunction_H

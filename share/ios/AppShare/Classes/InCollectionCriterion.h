@@ -3,22 +3,17 @@
 //  source: ./build/j2objc/java/InCollectionCriterion.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef InCollectionCriterion_H
+#define InCollectionCriterion_H
 
-#pragma push_macro("INCLUDE_ALL_InCollectionCriterion")
-#ifdef RESTRICT_InCollectionCriterion
-#define INCLUDE_ALL_InCollectionCriterion 0
-#else
-#define INCLUDE_ALL_InCollectionCriterion 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_InCollectionCriterion
 
-#if !defined (ComYahooSquidbSqlInCollectionCriterion_) && (INCLUDE_ALL_InCollectionCriterion || defined(INCLUDE_ComYahooSquidbSqlInCollectionCriterion))
-#define ComYahooSquidbSqlInCollectionCriterion_
-
-#define RESTRICT_BinaryCriterion 1
-#define INCLUDE_ComYahooSquidbSqlBinaryCriterion 1
 #include "BinaryCriterion.h"
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlField;
 @class ComYahooSquidbSqlOperator;
@@ -36,15 +31,15 @@
 
 #pragma mark Package-Private
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
-                        withJavaUtilCollection:(id<JavaUtilCollection>)value;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)expression
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)operator_
+                                  withJavaUtilCollection:(id<JavaUtilCollection>)value;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)arg0
-                 withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg1
-                                        withId:(id)arg2 NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithComYahooSquidbSqlField:(ComYahooSquidbSqlField *)arg0
+                           withComYahooSquidbSqlOperator:(ComYahooSquidbSqlOperator *)arg1
+                                                  withId:(id)arg2 NS_UNAVAILABLE;
 
 @end
 
@@ -58,6 +53,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlInCollectionCriterion *create_ComYahooSquidbS
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlInCollectionCriterion)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_InCollectionCriterion")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // InCollectionCriterion_H

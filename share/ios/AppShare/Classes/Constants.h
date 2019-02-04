@@ -3,31 +3,40 @@
 //  source: ./build/j2objc/java/Constants.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Constants_H
+#define Constants_H
 
-#pragma push_macro("INCLUDE_ALL_Constants")
-#ifdef RESTRICT_Constants
-#define INCLUDE_ALL_Constants 0
-#else
-#define INCLUDE_ALL_Constants 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Constants
 
-#if !defined (ComYahooSquidbAnnotationsConstants_) && (INCLUDE_ALL_Constants || defined(INCLUDE_ComYahooSquidbAnnotationsConstants))
-#define ComYahooSquidbAnnotationsConstants_
-
-#define RESTRICT_JavaLangAnnotationAnnotation 1
-#define INCLUDE_JavaLangAnnotationAnnotation 1
+#include "J2ObjC_header.h"
 #include "java/lang/annotation/Annotation.h"
 
+@class IOSClass;
+
 @protocol ComYahooSquidbAnnotationsConstants < JavaLangAnnotationAnnotation >
+
+- (jboolean)isEqual:(id)obj;
+
+- (NSUInteger)hash;
+
+@end
+
+@interface ComYahooSquidbAnnotationsConstants : NSObject < ComYahooSquidbAnnotationsConstants >
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComYahooSquidbAnnotationsConstants)
 
+FOUNDATION_EXPORT id<ComYahooSquidbAnnotationsConstants> create_ComYahooSquidbAnnotationsConstants(void);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbAnnotationsConstants)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Constants")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Constants_H

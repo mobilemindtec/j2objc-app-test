@@ -3,18 +3,16 @@
 //  source: ./build/j2objc/java/Index.java
 //
 
-#include "J2ObjC_header.h"
+#ifndef Index_H
+#define Index_H
 
-#pragma push_macro("INCLUDE_ALL_Index")
-#ifdef RESTRICT_Index
-#define INCLUDE_ALL_Index 0
-#else
-#define INCLUDE_ALL_Index 1
+#if __has_feature(nullability)
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Wnullability"
+#pragma GCC diagnostic ignored "-Wnullability-completeness"
 #endif
-#undef RESTRICT_Index
 
-#if !defined (ComYahooSquidbSqlIndex_) && (INCLUDE_ALL_Index || defined(INCLUDE_ComYahooSquidbSqlIndex))
-#define ComYahooSquidbSqlIndex_
+#include "J2ObjC_header.h"
 
 @class ComYahooSquidbSqlTable;
 @class IOSObjectArray;
@@ -23,10 +21,10 @@
 
 #pragma mark Public
 
-- (instancetype)initWithNSString:(NSString *)name
-      withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)table
-                     withBoolean:(jboolean)unique
-withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties;
+- (instancetype __nonnull)initWithNSString:(NSString *)name
+                withComYahooSquidbSqlTable:(ComYahooSquidbSqlTable *)table
+                               withBoolean:(jboolean)unique
+        withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties;
 
 - (NSString *)getName;
 
@@ -38,7 +36,7 @@ withComYahooSquidbSqlPropertyArray:(IOSObjectArray *)properties;
 
 // Disallowed inherited constructors, do not use.
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
 
@@ -52,6 +50,8 @@ FOUNDATION_EXPORT ComYahooSquidbSqlIndex *create_ComYahooSquidbSqlIndex_initWith
 
 J2OBJC_TYPE_LITERAL_HEADER(ComYahooSquidbSqlIndex)
 
-#endif
 
-#pragma pop_macro("INCLUDE_ALL_Index")
+#if __has_feature(nullability)
+#pragma clang diagnostic pop
+#endif
+#endif // Index_H
