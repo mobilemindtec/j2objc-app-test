@@ -6,7 +6,7 @@
 
 * Put share code (java) into `j2objc-app-test/share` folder
 * Run `gradle assemble` to convert code from java to Objective C and so run Android or IOS app.
-* Native code Kotlin and Swift should be put into relatad project `j2objc-app-test/ios` or `j2objc-app-test/android`.
+* Native code Kotlin and Swift should be put into related project `j2objc-app-test/ios` or `j2objc-app-test/android`.
 
 ### frameworks and languages
 
