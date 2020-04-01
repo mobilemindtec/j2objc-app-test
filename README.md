@@ -168,3 +168,5 @@ So your project already done to make J2OBJC shared pod lib.
 Done. Now you can run android and ios apps.
 
 ### Error x86_b4 not found - Check configuration "Build Active Architecture Only", shoud by yes to debug.
+
+### Undefined symbols for architecture arm64 - Check if all j2objc files in ShareApp is in project
